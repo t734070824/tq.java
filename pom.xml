@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>tq.java.basic</module>
+    <module>tq.java.designmode</module>
   </modules>
 </project>

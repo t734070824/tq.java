@@ -7,23 +7,12 @@
     <artifactId>tq.java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>tq.java.basic</groupId>
-  <artifactId>tq.java.basic</artifactId>
-  <name>tq.java.basic</name>
+  <groupId>tq.java.designmode</groupId>
+  <artifactId>tq.java.designmode</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>tq.java.designmode</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
