@@ -8,5 +8,6 @@
   <modules>
     <module>tq.java.basic</module>
     <module>tq.java.designmode</module>
+    <module>tq.java.concurrent</module>
   </modules>
 </project>
