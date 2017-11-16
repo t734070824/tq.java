@@ -1,0 +1,2 @@
+2017-11-16
+	1.RollingFileWithDateAppender 主要是 实现在生成日志文件的时候添加年月日
