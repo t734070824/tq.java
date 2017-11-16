@@ -10,6 +10,7 @@
     <module>tq.java.designmode</module>
     <module>tq.java.concurrent</module>
     <module>tq.java.rabbitmq</module>
+    <module>tq.java.log</module>
   </modules>
   
   <properties>
