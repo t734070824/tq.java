@@ -11,6 +11,7 @@
     <module>tq.java.concurrent</module>
     <module>tq.java.rabbitmq</module>
     <module>tq.java.log</module>
+    <module>tq.java.jvm</module>
   </modules>
   
   <properties>
