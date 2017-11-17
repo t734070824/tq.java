@@ -1,7 +1,5 @@
 package _demo.ctwl;
 
-import java.io.UnsupportedEncodingException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.rabbitmq.client.Channel;
