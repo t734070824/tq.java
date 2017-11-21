@@ -12,6 +12,7 @@
     <module>tq.java.rabbitmq</module>
     <module>tq.java.log</module>
     <module>tq.java.jvm</module>
+    <module>tq.java.note</module>
   </modules>
   
   <properties>
