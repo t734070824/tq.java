@@ -10,7 +10,7 @@ public class UtoCreateForThreadPool extends AbsThreadPool{
 		int num = 0;
 		while (true) {
 			System.err.println("num = " + num);
-			UtoCreateForThreadPool pool = new UtoCreateForThreadPool();
+			new UtoCreateForThreadPool();
 			num++;
 		}
 	}
