@@ -9,7 +9,6 @@
   </parent>
   <groupId>tq.java.arithmetic</groupId>
   <artifactId>tq.java.arithmetic</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>tq.java.arithmetic</name>
   <url>http://maven.apache.org</url>
   <properties>
