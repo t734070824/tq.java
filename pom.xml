@@ -13,6 +13,7 @@
     <module>tq.java.log</module>
     <module>tq.java.jvm</module>
     <module>tq.java.note</module>
+    <module>tq.java.arithmetic</module>
   </modules>
   
   <properties>
