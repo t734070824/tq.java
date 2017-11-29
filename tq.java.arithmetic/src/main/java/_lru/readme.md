@@ -20,6 +20,6 @@ protected boolean removeEldestEntry(Map.Entry<K,V> eldest) {
 如果想实现线程安全的LRU缓存,只需要在get,put,remove方法加锁
 
 ## LRU Cache 不用LinkedHashMap实现的基本思想
-1.一个entry含有 pre,next,k,v
-2.一个hashMap
-3.**一个双向链表:** 当有数据插入的时候,判断长度,删除最后的数据,当查询数据的时候,将查找的entry移动到链表第一位
+- 一个entry含有 pre,next,k,v
+- 一个hashMap
+- **一个双向链表:** 当有数据插入的时候,判断长度,删除最后的数据,当查询数据的时候,将查找的entry移动到链表第一位
