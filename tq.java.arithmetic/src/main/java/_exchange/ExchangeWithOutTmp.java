@@ -1,4 +1,4 @@
-package tq.java.arithmetic._exchange;
+package _exchange;
 
 public class ExchangeWithOutTmp {
 	
