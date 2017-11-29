@@ -1,0 +1,18 @@
+2017-11-29
+	1. 	
+		Q:unix:///tmp/supervisor.sock refused connection
+		A:http://www.jianshu.com/p/b211a7bb528a
+		说明需要开启supervisord。
+		echo_supervisord_conf > /etc/supervisord.conf //如果已经修改了supervisor.conf，这句就不要执行了
+		sudo supervisord -c /etc/supervisord.conf
+		sudo supervisorctl statu
+		作者：一只飞
+		链接：http://www.jianshu.com/p/b211a7bb528a
+		來源：简书
+		著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+		
+		#重新加载配置文件
+		[root@i-p9pbx2ki ~]# supervisord -c /etc/supervisord.conf
+		Unlinking stale socket /tmp/supervisor.sock
+		
+	2.
