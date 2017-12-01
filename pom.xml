@@ -16,6 +16,7 @@
     <module>tq.java.arithmetic</module>
     <module>tq.java.linux</module>
     <module>tq.java.how-tomcat-work</module>
+    <module>tq.java.http</module>
   </modules>
   
   <properties>
