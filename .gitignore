@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.project
 *target*
 *.war
@@ -33,3 +34,9 @@ logs/
 server/logs/
 server/src/test/
 .classpath
+=======
+/target/
+/.settings/
+.classpath
+.project
+>>>>>>> stash
