@@ -14,36 +14,6 @@
   
   
   <dependencies>
-        <dependency>
-            <groupId>ct.dc.rabbitmq</groupId>
-            <artifactId>librabbitmq</artifactId>
-            <version>1.1.2-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>ct.dc.mongodb</groupId>
-            <artifactId>libmongodb</artifactId>
-            <version>1.1.1-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>ct.dc.mysql</groupId>
-            <artifactId>libmysql</artifactId>
-            <version>1.1.2-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>ct.dc.libconstants</groupId>
-            <artifactId>libconstants</artifactId>
-            <version>1.1.1-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>ct.dc.logs</groupId>
-            <artifactId>liblogs</artifactId>
-            <version>1.2.1-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>ct.dc.infrastructure</groupId>
-            <artifactId>libinfrastructure</artifactId>
-            <version>2.0.6-RELEASE</version>
-        </dependency>
   </dependencies>
   
 </project>
