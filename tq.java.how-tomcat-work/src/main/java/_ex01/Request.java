@@ -29,9 +29,6 @@ public class Request {
 			request.append((char) buffer[j]);
 		}
 		System.err.println(request);
-		if("".equals(request.toString())) {
-			System.err.println("aaaaaa");
-		}
 		uri = parseUri(request.toString());
 	}
 	
