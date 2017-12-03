@@ -34,6 +34,10 @@ public class SocketInputStream extends InputStream{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	public void readRequestLine(HttpRequestLine requestLine) {
+		
+	}
 	
 	
 
