@@ -42,6 +42,7 @@ public class NumberDescendingOrder {
 		
 		System.err.println((long)(1000000000000000000L + 3 * Math.pow(10, 18-13)));
 		System.err.println(new BigDecimal(986666654444000000L).add(new BigDecimal(3 * Math.pow(10, 18-13))));
+		//TODO 整理一份 精度相关的文档 或 代码
 
 	}
 }
