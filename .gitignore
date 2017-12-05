@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /.project
 *target*
 *.war
@@ -39,4 +38,3 @@ server/src/test/
 /.settings/
 .classpath
 .project
->>>>>>> stash
