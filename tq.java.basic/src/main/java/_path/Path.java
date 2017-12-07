@@ -2,10 +2,11 @@ package _path;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Path {
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, URISyntaxException {
 		File file = new File("");
 		System.out.println(file.getPath()); 
 		System.out.println(file.getAbsolutePath()); 
@@ -35,6 +36,9 @@ public class Path {
 //		FileTest.class.getClassLoader().getResource("")
 //		得到的也是当前ClassPath的绝对URI路径。
 		System.err.println(Path.class.getClassLoader().getResource(""));
+		
+		
+		
 		
 	}
 
