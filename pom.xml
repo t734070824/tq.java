@@ -18,6 +18,7 @@
     <module>tq.java.how-tomcat-work</module>
     <module>tq.java.http</module>
     <module>tq.java.freemarker</module>
+    <module>tq.java.thrift</module>
   </modules>
   
   <properties>
