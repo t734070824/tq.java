@@ -19,6 +19,7 @@
     <module>tq.java.http</module>
     <module>tq.java.freemarker</module>
     <module>tq.java.thrift</module>
+    <module>tq.java.json</module>
   </modules>
   
   <properties>
