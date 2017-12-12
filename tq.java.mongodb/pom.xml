@@ -7,9 +7,8 @@
     <artifactId>tq.java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>tq.java.mysql</groupId>
-  <artifactId>tq.java.mysql</artifactId>
-  <name>tq.java.mysql</name>
+  <groupId>tq.java.mongodb</groupId>
+  <artifactId>tq.java.mongodb</artifactId>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,12 +21,11 @@
       <scope>test</scope>
     </dependency>
     
-    
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>5.1.43</version>
+	    <groupId>org.mongodb</groupId>
+	    <artifactId>mongo-java-driver</artifactId>
+	    <version>3.5.0</version>
 	</dependency>
     
   </dependencies>

@@ -21,6 +21,7 @@
     <module>tq.java.thrift</module>
     <module>tq.java.json</module>
     <module>tq.java.mysql</module>
+    <module>tq.java.mongodb</module>
   </modules>
   
   <properties>
