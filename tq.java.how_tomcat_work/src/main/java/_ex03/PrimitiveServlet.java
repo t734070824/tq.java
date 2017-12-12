@@ -1,3 +1,6 @@
+package _ex03;
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -29,7 +32,7 @@ public class PrimitiveServlet implements Servlet{
 		System.err.println("from service");
 		PrintWriter writer = response.getWriter();
 		writer.println("Hello. TQ");
-		writer.print("blue");
+		writer.println("blue123AAAAAAAAsss");
 	}
 
 }
