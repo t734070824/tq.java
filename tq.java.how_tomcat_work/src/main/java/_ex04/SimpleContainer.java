@@ -173,7 +173,7 @@ public class SimpleContainer implements Container{
 		String servletName = ((HttpServletRequest)request).getRequestURI();
 		servletName = servletName.substring(servletName.lastIndexOf("/") + 1);
 		URLClassLoader loader = null;
-		try {
+        try {
 			URL[] urls = new URL[1];
 			URLStreamHandler streamHandler = null;
 			File classpath = new File(WEB_ROOT);
