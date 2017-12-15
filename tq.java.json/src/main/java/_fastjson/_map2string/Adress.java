@@ -2,55 +2,39 @@ package _fastjson._map2string;
 
 public class Adress {
 	
-	private String name;
+	private String addressName;
 	
-	private String address;
+	private String addressStr;
 	
 	private Integer num;
-	
-	private int numInt;
-	
-	
 
-	public Adress(String name, String address, Integer num) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.num = num;
-	}
+    public Adress(String addressName, String addressStr, Integer num) {
+        this.addressName = addressName;
+        this.addressStr = addressStr;
+        this.num = num;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getAddressName() {
+        return addressName;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAddressName(String addressName) {
+        this.addressName = addressName;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddressStr() {
+        return addressStr;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddressStr(String addressStr) {
+        this.addressStr = addressStr;
+    }
 
-	public Integer getNum() {
-		return num;
-	}
+    public Integer getNum() {
+        return num;
+    }
 
-	public void setNum(Integer num) {
-		this.num = num;
-	}
-
-	public int getNumInt() {
-		return numInt;
-	}
-
-	public void setNumInt(int numInt) {
-		this.numInt = numInt;
-	}
-	
-	
-
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 }
