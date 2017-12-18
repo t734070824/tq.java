@@ -12,6 +12,8 @@ public class MapStringDemo {
 		
 		Map<String, Object> mapTypes = JSON.parseObject(jsonString);
 		System.err.println(mapTypes);
+
+
 	}
 
 }

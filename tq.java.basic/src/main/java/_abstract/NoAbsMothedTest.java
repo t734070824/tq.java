@@ -1,8 +1,9 @@
 package _abstract;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
-import org.junit.Test;
 
 public class NoAbsMothedTest {
 
@@ -10,8 +11,8 @@ public class NoAbsMothedTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-	
-	@Test
+
+    @Test
 	public void CreateAbs(){
 		NoAbsMothed a = new NoAbsMothed() {
 		};

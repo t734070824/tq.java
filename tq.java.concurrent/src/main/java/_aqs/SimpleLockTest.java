@@ -1,8 +1,9 @@
 package _aqs;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 class SimpleLockTest {
 
@@ -10,8 +11,8 @@ class SimpleLockTest {
 	void test() {
 		fail("Not yet implemented");
 	}
-	
-	
+
+
 	@Test
 	public void test1() throws InterruptedException {
 		final SimpleLock lock = new SimpleLock();

@@ -26,8 +26,9 @@ import org.apache.catalina.Request;
 import org.apache.catalina.Response;
 
 public class SimpleContainer implements Container{
-	
-	public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "webroot";
+
+//	public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "tq.java.how_tomcat_work\\target\\classes" + File.separator + "webroot";
+	public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "tq.java.how_tomcat_work\\target\\classes" + File.separator;
 
 	public String getInfo() {
 		// TODO Auto-generated method stub
@@ -192,7 +193,6 @@ public class SimpleContainer implements Container{
 			myClass = loader.loadClass(servletName);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			e.printStackTrace();;
 		}
 		
 		Servlet servlet = null;
