@@ -43,7 +43,7 @@ public class SimpleLoader implements Loader{
     }
 
     public void setContainer(Container container) {
-
+        this.container = container;
     }
 
     public DefaultContext getDefaultContext() {

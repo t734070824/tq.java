@@ -42,7 +42,7 @@ public class SimplePipeline implements Pipeline{
     }
 
     public void invoke(Request request, Response response) throws IOException, ServletException {
-
+        new SimplePipelineValveContext().invokeNext(request, response);
     }
 
     public void removeValve(Valve valve) {

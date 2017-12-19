@@ -7,6 +7,8 @@ import _ex05.valve.HeaderLoggerValve;
 import org.apache.catalina.*;
 import org.apache.catalina.connector.http.HttpConnector;
 
+import java.io.IOException;
+
 @SuppressWarnings("deprecation")
 public class Bootstrap1 {
 
@@ -28,7 +30,11 @@ public class Bootstrap1 {
         try {
             connector.initialize();
             connector.start();
+
+            System.in.read();
         } catch (LifecycleException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

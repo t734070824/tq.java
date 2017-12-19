@@ -10,7 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.nio.channels.Pipe;
 
-public class SimpleWrapper implements Wrapper{
+public class SimpleWrapper implements Wrapper, Pipeline {
 
     private Loader loader;
     private Container parent = null;
@@ -19,6 +19,23 @@ public class SimpleWrapper implements Wrapper{
     public SimpleWrapper() {
         pipeline.setBasic(new SimpleWrapperValve());
     }
+
+    public Valve getBasic() {
+        return pipeline.getBasic();
+    }
+
+    public void setBasic(Valve valve) {
+
+    }
+
+    public void addValve(Valve valve){
+        pipeline.addValve(valve);
+    }
+
+    public Valve[] getValves() {
+        return pipeline.getValves();
+    }
+
 
     public long getAvailable() {
         return 0;
@@ -239,6 +256,10 @@ public class SimpleWrapper implements Wrapper{
     }
 
     public void invoke(Request request, Response response) throws IOException, ServletException {
+        pipeline.invoke(request,response);
+    }
+
+    public void removeValve(Valve valve) {
 
     }
 
