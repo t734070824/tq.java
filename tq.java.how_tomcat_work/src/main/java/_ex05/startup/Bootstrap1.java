@@ -1,41 +1,43 @@
 package _ex05.startup;
 
-import _ex05.SimpleLoader;
-import _ex05.SimpleWrapper;
-import _ex05.valve.ClientIPLoggerValve;
-import _ex05.valve.HeaderLoggerValve;
-import org.apache.catalina.*;
+import _ex05.core.SimpleLoader;
+import _ex05.core.SimpleWrapper;
+import _ex05.valves.ClientIPLoggerValve;
+import _ex05.valves.HeaderLoggerValve;
+import org.apache.catalina.Loader;
+import org.apache.catalina.Pipeline;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.http.HttpConnector;
 
-import java.io.IOException;
+public final class Bootstrap1 {
+  public static void main(String[] args) {
 
-@SuppressWarnings("deprecation")
-public class Bootstrap1 {
+/* call by using http://localhost:8080/ModernServlet,
+   but could be invoked by any name */
 
-    public static void main(String[] args) {
-        HttpConnector connector = new HttpConnector();
-        Wrapper wrapper = new SimpleWrapper();
-        wrapper.setServletClass("PrimitiveServlet");
-        Loader loader = new SimpleLoader();
-        Valve valve1 = new HeaderLoggerValve();
-        Valve valve2 = new ClientIPLoggerValve();
+    HttpConnector connector = new HttpConnector();
+    Wrapper wrapper = new SimpleWrapper();
+    wrapper.setServletClass("PrimitiveServlet");
+    Loader loader = new SimpleLoader();
+    Valve valve1 = new HeaderLoggerValve();
+    Valve valve2 = new ClientIPLoggerValve();
 
-        wrapper.setLoader(loader);
+    wrapper.setLoader(loader);
+    ((Pipeline) wrapper).addValve(valve1);
+    ((Pipeline) wrapper).addValve(valve2);
 
-        //TODO 仔细想想
-        ((Pipeline)wrapper).addValve(valve1);
-        ((Pipeline)wrapper).addValve(valve2);
+    connector.setContainer(wrapper);
 
-        connector.setContainer(wrapper);
-        try {
-            connector.initialize();
-            connector.start();
+    try {
+      connector.initialize();
+      connector.start();
 
-            System.in.read();
-        } catch (LifecycleException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+      // make the application wait until we press a key.
+      System.in.read();
     }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 }
