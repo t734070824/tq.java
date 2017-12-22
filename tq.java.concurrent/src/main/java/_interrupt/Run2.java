@@ -1,6 +1,6 @@
 package _interrupt;
 
-public class Run {
+public class Run2 {
 
     public static void main(String[] args) {
         try{
@@ -8,9 +8,7 @@ public class Run {
             thread.start();
 
             Thread.sleep(1000);
-
-            thread.interrupt();
-//            Thread.currentThread().interrupt();
+            Thread.currentThread().interrupt();
             System.err.println("1 = " + (thread.interrupted()));
             System.err.println("2 = " + (thread.interrupted()));
         } catch (InterruptedException e){
