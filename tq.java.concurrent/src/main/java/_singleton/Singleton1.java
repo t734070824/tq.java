@@ -1,4 +1,4 @@
-package com.design.singleton.me;
+package _singleton;
 
 /**
  * 恶汉式

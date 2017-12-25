@@ -1,4 +1,4 @@
-package com.design.singleton.me;
+package _singleton;
 
 /**
  * 编写一个包含单个元素的枚举类型

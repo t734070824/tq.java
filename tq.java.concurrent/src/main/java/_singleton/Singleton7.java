@@ -1,4 +1,4 @@
-package com.design.singleton.me;
+package _singleton;
 
 /**
  * 双重校验锁 ps:线程安全；延迟加载。
