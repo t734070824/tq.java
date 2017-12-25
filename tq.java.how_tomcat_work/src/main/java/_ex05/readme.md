@@ -1,11 +1,11 @@
 2017-12-13
 
-###Tomcat 架构层次结构
+### Tomcat 架构层次结构
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.how_tomcat_work/src/main/java/_ex05/1.png?raw=true)
 
-###Pipeline???
+### Pipeline
 
-###tomcat处理HTTP大致流程
+### tomcat处理HTTP大致流程
 1. HttpConnector监听端口,并接受请求
 2. HttpProcesser接受请求流,解析HTTP
 2. **process.getContainer.invock**
