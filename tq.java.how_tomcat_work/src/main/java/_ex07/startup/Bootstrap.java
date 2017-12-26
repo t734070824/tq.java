@@ -1,18 +1,9 @@
-package _ex06.startup;
+package _ex07.startup;
 
-import _ex06.core.SimpleContext;
-import _ex06.core.SimpleContextLifecycleListener;
-import _ex06.core.SimpleContextMapper;
-import _ex06.core.SimpleLoader;
-import _ex06.core.SimpleWrapper;
-import org.apache.catalina.Connector;
-import org.apache.catalina.Context;
-import org.apache.catalina.Lifecycle;
-import org.apache.catalina.LifecycleListener;
-import org.apache.catalina.Loader;
-import org.apache.catalina.Mapper;
-import org.apache.catalina.Wrapper;
+import _ex07.core.*;
+import org.apache.catalina.*;
 import org.apache.catalina.connector.http.HttpConnector;
+import org.apache.catalina.logger.FileLogger;
 
 public final class Bootstrap {
   public static void main(String[] args) {
@@ -38,6 +29,18 @@ public final class Bootstrap {
     // context.addServletMapping(pattern, name);
     context.addServletMapping("/Primitive", "Primitive");
     context.addServletMapping("/Modern", "Modern");
+
+    // add Logger
+    System.setProperty("catalina.base", System.getProperty("user.dir"));
+    FileLogger logger = new FileLogger();
+    logger.setPrefix("FileLog_");
+    logger.setSuffix(".txt");
+    logger.setTimestamp(true);
+    logger.setDirectory("tq.java.how_tomcat_work/webroot");
+
+    context.setLogger(logger);
+
+
     connector.setContainer(context);
     try {
       connector.initialize();
