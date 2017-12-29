@@ -22,6 +22,7 @@
     <module>tq.java.json</module>
     <module>tq.java.mysql</module>
     <module>tq.java.mongodb</module>
+      <module>tq.java.asm</module>
   </modules>
   
   <properties>

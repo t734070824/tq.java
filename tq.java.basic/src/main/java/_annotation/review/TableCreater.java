@@ -1,14 +1,15 @@
-package com.annotation.review;
+package _annotation.review;
+
+import com.annotation.Constraints;
+import com.annotation.DBTable;
+import com.annotation.SQLInteger;
+import com.annotation.SQLString;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.annotation.Constraints;
-import com.annotation.DBTable;
-import com.annotation.SQLInteger;
-import com.annotation.SQLString;
 public class TableCreater {
 
 	

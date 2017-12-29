@@ -1,4 +1,4 @@
-package com.annotation.review;
+package _annotation.review;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

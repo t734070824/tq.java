@@ -1,4 +1,4 @@
-package com.annotation.review;
+package _annotation.review;
 
 public class Testable {
 
