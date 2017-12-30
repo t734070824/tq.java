@@ -1,9 +1,10 @@
 package _annotation.review;
 
-import com.annotation.Constraints;
-import com.annotation.DBTable;
-import com.annotation.SQLInteger;
-import com.annotation.SQLString;
+
+import _annotation.Constraints;
+import _annotation.DBTable;
+import _annotation.SQLInteger;
+import _annotation.SQLString;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
