@@ -1,7 +1,7 @@
-package ex13.pyrmont.startup;
+package _ex13.startup;
 
 //explain Host
-import ex13.pyrmont.core.SimpleContextConfig;
+import _ex13.core.SimpleContextConfig;
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Host;
@@ -19,7 +19,7 @@ import org.apache.catalina.loader.WebappLoader;
 public final class Bootstrap1 {
   public static void main(String[] args) {
     //invoke: http://localhost:8080/app1/Primitive or http://localhost:8080/app1/Modern
-    System.setProperty("catalina.base", System.getProperty("user.dir"));
+    System.setProperty("catalina.base", System.getProperty("user.dir") + "/tq.java.how_tomcat_work");
     Connector connector = new HttpConnector();
 
     Wrapper wrapper1 = new StandardWrapper();

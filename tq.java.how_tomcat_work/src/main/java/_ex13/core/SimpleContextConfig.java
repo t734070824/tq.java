@@ -1,4 +1,4 @@
-package ex13.pyrmont.core;
+package _ex13.core;
 
 // a copy of ex11.pyrmont.core.SimpleContextConfig
 

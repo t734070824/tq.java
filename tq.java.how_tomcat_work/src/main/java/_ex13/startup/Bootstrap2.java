@@ -1,7 +1,7 @@
-package ex13.pyrmont.startup;
+package _ex13.startup;
 
 //Use engine
-import ex13.pyrmont.core.SimpleContextConfig;
+import _ex13.core.SimpleContextConfig;
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
