@@ -195,10 +195,10 @@ public class DemoService {
             try {
               fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
             } catch (org.apache.thrift.transport.TTransportException e) {
-              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              _LOGGER.error("TTransportException writing to internal frame _buffer", e);
               fb.close();
             } catch (java.lang.Exception e) {
-              _LOGGER.error("Exception writing to internal frame buffer", e);
+              _LOGGER.error("Exception writing to internal frame _buffer", e);
               onError(e);
             }
           }
@@ -222,7 +222,7 @@ public class DemoService {
             try {
               fcall.sendResponse(fb,msg,msgType,seqid);
             } catch (java.lang.Exception ex) {
-              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              _LOGGER.error("Exception writing to internal frame _buffer", ex);
               fb.close();
             }
           }
