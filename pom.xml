@@ -25,6 +25,7 @@
       <module>tq.java.asm</module>
       <module>tq.java.tomcat</module>
       <module>tq.java.netty</module>
+      <module>tq.java.mybatis</module>
   </modules>
   
   <properties>
