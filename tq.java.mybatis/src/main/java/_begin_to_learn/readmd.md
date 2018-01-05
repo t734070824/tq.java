@@ -23,9 +23,9 @@ if (resource != null) {
 1. 动态代理(Mapper)
 2. 缓存(一,二级缓存)
 3. 数据库连接池(最大活动连接, 最大空闲连接, 最大空闲时间)
-4. 动态SQL
+4. **动态SQ**L
 5. sql文件统一存放
-6. 结果映射
+6. **结果映射**
 
 ### 关键类
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.mybatis/src/main/java/_begin_to_learn/1.png?raw=true)

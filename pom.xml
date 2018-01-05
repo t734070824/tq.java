@@ -15,7 +15,6 @@
     <module>tq.java.note</module>
     <module>tq.java.arithmetic</module>
     <module>tq.java.linux</module>
-    <module>tq.java.how_tomcat_work</module>
     <module>tq.java.http</module>
     <module>tq.java.freemarker</module>
     <module>tq.java.thrift</module>
@@ -26,6 +25,7 @@
       <module>tq.java.tomcat</module>
       <module>tq.java.netty</module>
       <module>tq.java.mybatis</module>
+      <module>tq.java.how.tomcat.work</module>
   </modules>
   
   <properties>
