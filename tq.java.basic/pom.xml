@@ -15,11 +15,11 @@
   <url>http://maven.apache.org</url>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <!-- 添加mysql驱动 -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.12</version>
         </dependency>
 
     </dependencies>

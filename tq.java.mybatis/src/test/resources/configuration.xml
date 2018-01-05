@@ -3,9 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
-    <!-- 指定properties配置文件， 我这里面配置的是数据库相关 -->
+    <!-- 方法一： 从外部指定properties配置文件, 除了使用resource属性指定外，还可通过url属性指定url-->
     <properties resource="dbConfig.properties"></properties>
+
+    <!-- 方法二： 直接配置为xml
+    <properties resource="dbConfig.properties">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test1"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </properties>-->
 
     <!-- 指定Mybatis使用log4j -->
     <settings>
