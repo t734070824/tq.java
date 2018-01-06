@@ -8,9 +8,26 @@
         select * from user where id = #{id}
     </select>
 
+    <select id="findUserById2" parameterType="int" resultType="User">
+        select * from user where id = #{id}
+    </select>
+
+
+    <select id="findAllUsers" resultType="User" >
+        select * from user
+    </select>
+
+    <select id="findAllUsersMap" resultType="map" >
+        select * from user
+    </select>
+
     <insert id="insert" parameterType="User">
+        <!-- mysql插入数据后，获取id -->
+        <selectKey keyProperty="id" resultType="int" order="AFTER" >
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
         INSERT INTO  user values
-            (#{id}, #{name},#{password},#{age},#{deleteFlag});
+            (#{id}, #{name},#{password},#{age},#{deleteFlag})
 
     </insert>
 

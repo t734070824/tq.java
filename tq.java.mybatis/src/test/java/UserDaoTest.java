@@ -8,14 +8,31 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class UserDaoTest {
+
+
+    //TODO 动态sql
+    //TODO 结果集解析
+    //TODO 一级 二级 缓存
 
     @Test
     public void findUserById() {
         SqlSession sqlSession = getSessionFactory().openSession();
         UserDao userMapper = sqlSession.getMapper(UserDao.class);
         User user = userMapper.findUserById(1);
+        System.err.println(user);
+        Assert.assertNotNull("没找到数据", user);
+    }
+
+
+    @Test
+    public void findUserById2() {
+        SqlSession sqlSession = getSessionFactory().openSession();
+        UserDao userMapper = sqlSession.getMapper(UserDao.class);
+        User user = userMapper.findUserById2(2);
         System.err.println(user);
         Assert.assertNotNull("没找到数据", user);
     }
@@ -28,10 +45,30 @@ public class UserDaoTest {
         user.setId(2);
         user.setName("tsssss");
         user.setPassword("123ssssssssss");
-        userMapper.insert(user);
+        int num = userMapper.insert(user);
+        System.err.println(num);
         sqlSession.commit();
         sqlSession.close();
         Assert.assertNotNull("没找到数据", user);
+    }
+
+    @Test
+    public void findAllUsers() {
+        SqlSession sqlSession = getSessionFactory().openSession();
+        UserDao userMapper = sqlSession.getMapper(UserDao.class);
+        List<User> allUsers = userMapper.findAllUsers();
+        System.err.println(allUsers);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    @Test
+    public void findAllUsersMap() {
+        SqlSession sqlSession = getSessionFactory().openSession();
+        UserDao userMapper = sqlSession.getMapper(UserDao.class);
+        Map<Integer, User> allUsers = userMapper.findAllUsersMap();
+        System.err.println(allUsers);
+        sqlSession.commit();
+        sqlSession.close();
     }
 
     //Mybatis 通过SqlSessionFactory获取SqlSession, 然后才能通过SqlSession与数据库进行交互

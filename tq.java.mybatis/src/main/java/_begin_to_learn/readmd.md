@@ -64,3 +64,12 @@ if (isSpecifiedEnvironment(id)) {
 
 ### insert数据无法进入数据库的问题 (事务没有自动提交)
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.mybatis/src/main/java/_begin_to_learn/2.png?raw=true)
+
+
+### 结果集转换
+1. ``@MapKey("age")``
+2. 默认是 javabean的变量名字和数据库的字段名是一致的, 如果不一致, 需要resultMap(反射 set get)
+
+
+### 动态sql
+1. [动态sql](http://www.cnblogs.com/dongying/p/4092662.html)
