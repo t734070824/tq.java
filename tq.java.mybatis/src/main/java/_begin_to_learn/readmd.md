@@ -62,5 +62,5 @@ if (isSpecifiedEnvironment(id)) {
 
 1. plugins 是一个可选配置。mybatis中的plugin其实就是个interceptor， 它可以拦截Executor 、ParameterHandler 、ResultSetHandler 、StatementHandler 的部分方法，处理我们自己的逻辑               
 
-### insert数据无法进入数据库的问题 (事物没有自动提交)
+### insert数据无法进入数据库的问题 (事务没有自动提交)
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.mybatis/src/main/java/_begin_to_learn/2.png?raw=true)
