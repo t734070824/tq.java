@@ -25,10 +25,12 @@ public class UserDaoTest {
         SqlSession sqlSession = getSessionFactory().openSession();
         UserDao userMapper = sqlSession.getMapper(UserDao.class);
         User user  = new User();
-        user.setId(1);
-        user.setName("tq");
-        user.setPassword("123");
+        user.setId(2);
+        user.setName("tsssss");
+        user.setPassword("123ssssssssss");
         userMapper.insert(user);
+        sqlSession.commit();
+        sqlSession.close();
         Assert.assertNotNull("没找到数据", user);
     }
 
