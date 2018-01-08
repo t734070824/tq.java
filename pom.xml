@@ -26,6 +26,7 @@
       <module>tq.java.netty</module>
       <module>tq.java.mybatis</module>
       <module>tq.java.how.tomcat.work</module>
+      <module>tq.java.spring</module>
   </modules>
   
   <properties>
