@@ -39,4 +39,12 @@
 2. Response: getWriter() 和 getOutputStream() 不可以同时使用
 
 ### 设置内容类型 以及 编码格式
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.Professional.Java.for.Web.Applications/src/main/java/com.wrox/1.png?raw=true) 
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.Professional.Java.for.Web.Applications/src/main/java/com/wrox/1.png?raw=true) 
+
+### 注解 和 web.xml同时配置形同的内容
+1. **xml 会覆盖 注解**
+
+### 使用注解的局限
+1. 无法确定过滤器的顺序
+2. 无法创建单个 servlet 的多个实例
+3. 无法定义 错误,欢迎 界面
