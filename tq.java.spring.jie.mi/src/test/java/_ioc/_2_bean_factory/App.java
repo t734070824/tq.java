@@ -26,6 +26,16 @@ public class App {
         return beanRegistry;
     }
 
+    @Test
+    public void multi_id_with_sameclass(){
+        BeanFactory container = new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+        Object bean1 = container.getBean("djNewsPersister");
+        System.err.println(bean1);
+
+        Object bean2 = container.getBean("djNewsPersister2");
+        System.err.println(bean2);
+    }
+
 
     @Test
     public void xmlBeanFactory(){
