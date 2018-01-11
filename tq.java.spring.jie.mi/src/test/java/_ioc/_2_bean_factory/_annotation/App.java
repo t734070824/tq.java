@@ -1,4 +1,4 @@
-package _ioc._2_bean_factory;
+package _ioc._2_bean_factory._annotation;
 
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
@@ -10,11 +10,29 @@ import org.springframework.core.io.ClassPathResource;
 
 public class App {
 
+
+    @Test
+    public void annotation(){
+//        BeanFactory container = new XmlBeanFactory(new ClassPathResource("annotation-config.xml"));
+        BeanFactory container = new ClassPathXmlApplicationContext("annotation-config.xml");
+        System.err.println("annotation ");
+        FXNewsProvider bean = (FXNewsProvider) container.getBean("FXNewsProvider");
+        System.err.println(bean);
+        System.err.println(bean.getListener());
+
+
+    }
+
+
+
+
+
+
     @Test
     public void defaultListableBeanFactory(){
         DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
         BeanFactory container = bindViaXMLFile(beanRegistry);
-        FXNewsProvider newsProvider = (FXNewsProvider)container.getBean("djNewsProvider");
+        _ioc._2_bean_factory.FXNewsProvider newsProvider = (_ioc._2_bean_factory.FXNewsProvider)container.getBean("djNewsProvider");
         System.err.println(newsProvider);
 //        newsProvider.getAndPersistNews();
     }

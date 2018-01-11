@@ -27,11 +27,9 @@
       <module>tq.java.mybatis</module>
       <module>tq.java.how.tomcat.work</module>
       <module>tq.java.spring</module>
-      <module>tq.java.Professional Java for Web Applications</module>
-      <module>tq.java.Professional Java for Web Applications</module>
-      <module>tq.java.Professional Java for Web Applications</module>
       <module>tq.java.Professional.Java.for.Web.Applications</module>
       <module>tq.java.spring.jie.mi</module>
+      <module>tq.java.google.guice</module>
   </modules>
   
   <properties>
@@ -55,8 +53,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 		</plugins>
