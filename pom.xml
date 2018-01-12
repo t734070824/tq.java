@@ -30,6 +30,7 @@
       <module>tq.java.Professional.Java.for.Web.Applications</module>
       <module>tq.java.spring.jie.mi</module>
       <module>tq.java.google.guice</module>
+      <module>tq.java.cglib</module>
   </modules>
   
   <properties>
