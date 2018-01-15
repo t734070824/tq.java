@@ -21,8 +21,12 @@ public class UserDaoTest {
 
     @Test
     public void findUserById() {
+
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
+
         SqlSession sqlSession = getSessionFactory().openSession();
         UserDao userMapper = sqlSession.getMapper(UserDao.class);
+        userMapper.hashCode();
         User user = userMapper.findUserById(1);
         System.err.println(user);
         Assert.assertNotNull("没找到数据", user);
