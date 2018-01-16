@@ -9,7 +9,10 @@ public class ProxyTest {
 		UserService service = new UserServiceImpl();
 		MyInvocationHandler hanler = new MyInvocationHandler(service);
 		Object proxy = hanler.getProxy();
-        System.err.println(proxy);
         ((UserService)proxy).add();
+
+
+        ((UserService)proxy).delete();
+
 	}
 }

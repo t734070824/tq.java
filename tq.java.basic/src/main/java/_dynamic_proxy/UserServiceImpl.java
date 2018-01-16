@@ -7,4 +7,8 @@ public class UserServiceImpl implements UserService{
 		System.err.println("add");
 	}
 
+	@Override
+	public void delete() {
+        System.err.println("delete");
+	}
 }
