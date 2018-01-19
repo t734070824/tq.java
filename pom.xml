@@ -31,6 +31,7 @@
       <module>tq.java.spring.jie.mi</module>
       <module>tq.java.google.guice</module>
       <module>tq.java.cglib</module>
+      <module>tq.java.data.structure</module>
   </modules>
   
   <properties>
