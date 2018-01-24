@@ -10,7 +10,13 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
 
-public class NIOServer_1 {
+/**
+ * 经典Reactor模式中，尽管一个线程可同时监控多个请求（Channel），
+ * 但是所有读/写请求以及对新连接请求的处理都在同一个线程中处理，
+ * 无法充分利用多CPU的优势，
+ * 同时读/写操作也会阻塞对新连接请求的处理。因此可以引入多线程，并行处理多个读/写操作
+ */
+public class NIOServer_2 {
 
     public static void main(String[] args) throws IOException {
         Selector selector = Selector.open();
