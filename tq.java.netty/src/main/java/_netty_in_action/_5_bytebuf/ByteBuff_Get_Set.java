@@ -1,4 +1,4 @@
-package _netty_in_action._bytebuf;
+package _netty_in_action._5_bytebuf;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

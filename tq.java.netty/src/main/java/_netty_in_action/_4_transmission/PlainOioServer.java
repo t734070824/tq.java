@@ -1,4 +1,4 @@
-package _netty_in_action._transmission;
+package _netty_in_action._4_transmission;
 
 import java.io.IOException;
 import java.io.OutputStream;

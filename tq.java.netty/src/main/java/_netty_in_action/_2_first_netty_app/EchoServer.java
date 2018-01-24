@@ -1,4 +1,4 @@
-package _netty_in_action._first_netty_app;
+package _netty_in_action._2_first_netty_app;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
