@@ -10,7 +10,7 @@
 3. 相对于其他类的同名方法， **ChannelHandler Context 的方法将产生更短的事件流， 应该尽可能地利用这个特性来获得最大的性能**
 
 ### Channel、 ChannelPipeline、 ChannelHandler 以及 ChannelHandlerContext 之间的关系
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.netty/src/main/java/_netty_in_action/_channelhandler_channelpipeline/1.png?raw=true)
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.netty/src/main/java/_netty_in_action/_6_channelhandler_channelpipeline/1.png?raw=true)
 
 
 
