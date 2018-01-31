@@ -5,4 +5,5 @@ public class Note {
     //TODO ForkJoin
     //TODO UNSAFE
     //TODO LockSupport
+    //TODO 内存屏障
 }
