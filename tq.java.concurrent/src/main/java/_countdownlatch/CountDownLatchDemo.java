@@ -7,11 +7,11 @@ public class CountDownLatchDemo {
 	
 	public static void main(String[] args) throws InterruptedException {
 		// 新建一个CountDownLatch，并指制定一个初始大小
-	      CountDownLatch countDownLatch = new CountDownLatch(3);
+	      final CountDownLatch countDownLatch = new CountDownLatch(3);
 
-	      int sleepSec1 = 10;
-	      int sleepSec2 = 10;
-	      int sleepSec3 = 10;
+	      final int sleepSec1 = 10;
+	      final int sleepSec2 = 10;
+	      final int sleepSec3 = 10;
 	     //thread1
 	     //调用countDown方法，将计数减1
 	      new Thread(new Runnable() {
