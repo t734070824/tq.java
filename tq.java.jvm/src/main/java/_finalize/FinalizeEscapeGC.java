@@ -1,4 +1,4 @@
-package _garbage_collector._finalize;
+package _finalize;
 
 
 /**

@@ -2,3 +2,4 @@
 Netty实战
      2018-01-29: page 54:future,回调,Channelhandler,PipeLine, Selector(有意思)
      2018-01-30: page 91: ByteBuf (的确比 ByteBuffer方便)
+     2018-02-01: page 212: 线程模型 (跳过8-13章)

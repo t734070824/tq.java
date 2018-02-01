@@ -5,5 +5,6 @@ public class Note {
     //TODO TCP/IP
     //TODO epoll
     //TODO 零拷贝
+    //TODO 线程安全
 
 }
