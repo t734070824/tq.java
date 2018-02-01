@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.*;
 
 @ChannelHandler.Sharable
-public class EchoGetLengthServerHandler extends ChannelInboundHandlerAdapter{
+public class EchoGetLengthClientHandler extends ChannelInboundHandlerAdapter{
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

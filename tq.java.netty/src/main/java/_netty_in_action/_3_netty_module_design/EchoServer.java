@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 
 public class EchoServer {
 
-    private final int port = 8080;
+    private final int port = 8081;
 
     public static void main(String[] args) throws InterruptedException {
         new EchoServer().start();
@@ -21,6 +21,7 @@ public class EchoServer {
     private void start() throws InterruptedException {
         final EchoServerHandler serverHandler = new EchoServerHandler();
         final EchoAddLengthServerHandler addLengthServerHandler = new EchoAddLengthServerHandler();
+        final EchoDemoServerHandler demoServerHandler = new EchoDemoServerHandler();
 
         //创建 EventLoop
         EventLoopGroup group = new NioEventLoopGroup();
@@ -38,6 +39,7 @@ public class EchoServer {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //EchoServerHandler被标记为@Shareable 可以总是使用一个实例
                             ch.pipeline().addLast(addLengthServerHandler);
+                            ch.pipeline().addLast(demoServerHandler);
                             ch.pipeline().addLast(serverHandler);
                         }
                     });

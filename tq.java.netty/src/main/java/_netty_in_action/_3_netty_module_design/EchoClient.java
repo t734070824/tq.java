@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 
 public class EchoClient {
 
-    private final int port = 8080;
+    private final int port = 8081;
 
     private final String host = "127.0.0.1";
 
@@ -30,7 +30,8 @@ public class EchoClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new EchoGetLengthServerHandler());
+                            ch.pipeline().addLast(new EchoGetLengthClientHandler());
+                            ch.pipeline().addLast(new EchoDemoClientHandler());
                             ch.pipeline().addLast(new EchoClientHandler());
 
                         }
