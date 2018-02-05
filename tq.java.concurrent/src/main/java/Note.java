@@ -6,6 +6,9 @@ public class Note {
     //TODO UNSAFE
     //TODO LockSupport
     //TODO 内存屏障
+    //TODO 关于线程打断 整理一下
+    //TODO 整理死锁的例子 掌握死锁
+    //TODO 多线程下载
 
 
 }

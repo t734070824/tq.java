@@ -4,4 +4,5 @@ public class Note {
     //TODO pipeline模式(tomcat netty)
     //TODO 事件驱动模型
     //TODO future设计模式
+    //TODO 以前写的整理一下 太乱了
 }
