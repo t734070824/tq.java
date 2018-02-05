@@ -32,6 +32,7 @@
       <module>tq.java.google.guice</module>
       <module>tq.java.cglib</module>
       <module>tq.java.data.structure</module>
+      <module>tq.java.tcp.ip</module>
   </modules>
   
   <properties>
