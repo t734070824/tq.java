@@ -1,22 +1,20 @@
 2017-11-16
 
-### note
-```javascript
-当工作队列被填满的后,没有预定义的饱和策略来阻塞execute.然而,可以通过使用Semaphore(信号量)来限制
-任务的到达率,设置信号量的上界设置为线程池的大小加上可排队的任务的数量,这是因为信号量需要控制正在执行的和等待
-执行的任务的数量-->BoundedExecutor
----摘自 java并发编程实战
-```
-	
-```javascript
-内部类Worker是对任务的封装,所有的submit的Runnable都封装成了Worker,他本身也是一个Runnable，然后利用AQS实现一个简单
+### ThreadPoolExecutor
+1. 只有任务都是同类型的并且相互独立时,线程池的性能才能达到最佳.如果将运行时间较长的任务和运行时间较短的任务
+	混合在一起,除非线程池很大,否则将可能造成阻塞.如果提交的任务依赖与其他任务,除非线程池无限大,否则可能造成死锁
+	---摘自 java并发编程实战
+2. 带有时间监控的 ThreadPoolExecutor-->TimingThreadPool,
+3. 当工作队列被填满的后,没有预定义的饱和策略来阻塞execute.然而,可以通过使用Semaphore(信号量)来限制
+   任务的到达率,设置信号量的上界设置为线程池的大小加上可排队的任务的数量,这是因为信号量需要控制正在执行的和等待
+   执行的任务的数量-->BoundedExecutor
+4. 内部类Worker是对任务的封装,所有的submit的Runnable都封装成了Worker,他本身也是一个Runnable，然后利用AQS实现一个简单
 非重入的互斥锁.实现互斥锁主要目的是为了中断的时候判断线程是在空闲还是运行
-Q: 为什么是不可重入,比如使用ReentrantLock? 
+5. Q: 为什么是不可重入,比如使用ReentrantLock?
+6. A: 是为了避免任务执行的代码中修改线程池的变量，如setCorePoolSize，因为ReentrantLock是可重入的。
 
-A: 是为了避免任务执行的代码中修改线程池的变量，如setCorePoolSize，因为ReentrantLock是可重入的。
-```
-
-```javascript
+### 线程创建
+```$xslt
 // Check if queue empty only if necessary.
 // 这条语句等价：rs >= SHUTDOWN && (rs != SHUTDOWN || firstTask != null ||
 // workQueue.isEmpty())
