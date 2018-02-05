@@ -11,7 +11,7 @@ public class App {
         System.err.println(singlyLinkedList.toString());
 
 
-        singlyLinkedList.addNode(new SinglyNote(1231,null));
+        singlyLinkedList.addNode(new SinglyNode(1231,null));
 
         System.err.println(singlyLinkedList.toString());
     }

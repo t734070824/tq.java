@@ -2,11 +2,11 @@ package _linked_list._singly;
 
 public class SinglyLinkedList {
 
-    private SinglyNote head;
+    private SinglyNode head;
 
-    private SinglyNote tail;
+    private SinglyNode tail;
 
-    public void addNode(SinglyNote node){
+    public void addNode(SinglyNode node){
         if(node == null)
             throw  new NullPointerException("node is null");
         if(head == null){
@@ -26,7 +26,7 @@ public class SinglyLinkedList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        SinglyNote tmp = head;
+        SinglyNode tmp = head;
         while (tmp != null){
             sb.append(tmp.value).append("-->");
             tmp = tmp.nextNode;
@@ -34,19 +34,19 @@ public class SinglyLinkedList {
         return  sb.toString();
     }
 
-    public SinglyNote getHead() {
+    public SinglyNode getHead() {
         return head;
     }
 
-    public void setHead(SinglyNote head) {
+    public void setHead(SinglyNode head) {
         this.head = head;
     }
 
-    public SinglyNote getTail() {
+    public SinglyNode getTail() {
         return tail;
     }
 
-    public void setTail(SinglyNote tail) {
+    public void setTail(SinglyNode tail) {
         this.tail = tail;
     }
 }

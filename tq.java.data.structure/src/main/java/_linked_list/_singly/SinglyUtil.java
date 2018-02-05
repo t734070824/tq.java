@@ -5,7 +5,7 @@ public class SinglyUtil {
     public static SinglyLinkedList init(int num){
         SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
         for (int i = 0; i < num; i++) {
-            singlyLinkedList.addNode(new SinglyNote(i, null));
+            singlyLinkedList.addNode(new SinglyNode(i, null));
         }
         return  singlyLinkedList;
     }
@@ -13,7 +13,7 @@ public class SinglyUtil {
     public static SinglyLinkedListWithReverse initWithReverse(int num){
         SinglyLinkedListWithReverse singlyLinkedList = new SinglyLinkedListWithReverse();
         for (int i = 0; i < num; i++) {
-            singlyLinkedList.addNode(new SinglyNote(i, null));
+            singlyLinkedList.addNode(new SinglyNode(i, null));
         }
         return  singlyLinkedList;
     }

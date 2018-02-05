@@ -3,9 +3,9 @@ package _linked_list._singly;
 public class SinglyLinkedListWithReverse extends SinglyLinkedList {
 
     public void reverse(){
-        SinglyNote head = getHead();
-        SinglyNote tail = getTail();
-        SinglyNote nextNode = head.nextNode;
+        SinglyNode head = getHead();
+        SinglyNode tail = getTail();
+        SinglyNode nextNode = head.nextNode;
         if(head == null)
             throw  new NullPointerException("head is null");
         if(nextNode == null)
@@ -13,9 +13,9 @@ public class SinglyLinkedListWithReverse extends SinglyLinkedList {
         if(tail == null)
             throw  new NullPointerException("tail is null");
 
-        SinglyNote pre = head;
-        SinglyNote cur = head.nextNode;
-        SinglyNote next = null;
+        SinglyNode pre = head;
+        SinglyNode cur = head.nextNode;
+        SinglyNode next = null;
         while(cur != null){
             next = cur.nextNode;
             cur.nextNode = pre;

@@ -3,11 +3,11 @@ package _linked_list._singly;
 /**
  * 单向链表 节点
  */
-public class SinglyNote {
+public class SinglyNode {
     int value;
-    SinglyNote nextNode;
+    SinglyNode nextNode;
 
-    public SinglyNote(int value, SinglyNote nextNode) {
+    public SinglyNode(int value, SinglyNode nextNode) {
         this.value = value;
         this.nextNode = nextNode;
     }
