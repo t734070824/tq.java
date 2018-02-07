@@ -1,9 +1,13 @@
-package _stack._use._symbol_matching;
+package _stack._use._check_expression;
 
 import _stack.SeqStack;
 
+/**
+ * 符号匹配
+ * @author 734070824@qq.com
+ * @date 2018/2/7 15:53
+ */
 public class CheckExpression {
-
 
     public static void main(String[] args) {
         String expstr="((5-3)*8-2)";
