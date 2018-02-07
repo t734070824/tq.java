@@ -1,4 +1,4 @@
-package tree.binarytree;
+package _tree._binary_search_tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -132,6 +132,30 @@ public class BinarySearchTree<V extends Comparable<V>> {
                 next = 0;
             }
         }
+	}
+
+
+	public V maxData() {
+		return maxData(root);
+	}
+
+	public V maxData(TreeNode<V> subTree) {
+        V max = subTree.v;
+		if(subTree.rightChild != null){
+			max = maxData(subTree.rightChild);
+		}
+		return max;
+	}
+	public V minData() {
+		return minData(root);
+	}
+
+	public V minData(TreeNode<V> subTree) {
+        V min = subTree.v;
+        if(subTree.leftChild != null){
+			min = minData(subTree.leftChild);
+		}
+		return min;
 	}
 	
 	
