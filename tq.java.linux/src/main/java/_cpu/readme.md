@@ -11,4 +11,6 @@
 ``cat /proc/cpuinfo| grep "processor"| wc -l``
 
 ### cpu load高
+1. cpu load高不代表使用率高
+2. 如果线程过多, 线程之间的切换所需要的资源也会使 load 高
 1. ps -mp pid -o THREAD,tid,time
