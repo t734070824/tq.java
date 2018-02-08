@@ -9,3 +9,6 @@
 ``cat /proc/cpuinfo| grep "cpu cores"| uniq``
 5. 查看逻辑CPU的个数
 ``cat /proc/cpuinfo| grep "processor"| wc -l``
+
+### cpu load高
+1. ps -mp pid -o THREAD,tid,time
