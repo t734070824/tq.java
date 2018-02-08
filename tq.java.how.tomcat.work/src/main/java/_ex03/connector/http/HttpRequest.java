@@ -28,7 +28,7 @@ public class HttpRequest implements HttpServletRequest{
 
 
 	public HttpRequest(SocketInputStream inputStream) {
-		// TODO Auto-generated constructor stub
+		//
 	}
 
 	public String getRequestURI() {

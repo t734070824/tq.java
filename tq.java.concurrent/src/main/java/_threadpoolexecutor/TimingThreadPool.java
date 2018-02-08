@@ -18,7 +18,7 @@ public class TimingThreadPool extends ThreadPoolExecutor {
 			
 			@Override
 			public Thread newThread(Runnable r) {
-				// TODO Auto-generated method stub
+				//
 				return new Thread(r, "tq +" + r);
 			}
 		});

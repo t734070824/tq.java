@@ -21,7 +21,7 @@ public class CountDownLatchDemo {
 				try {
 					TimeUnit.SECONDS.sleep(sleepSec1);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					//
 					e.printStackTrace();
 				}
 				countDownLatch.countDown();
@@ -40,7 +40,7 @@ public class CountDownLatchDemo {
 				try {
 					TimeUnit.SECONDS.sleep(sleepSec2);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					//
 					e.printStackTrace();
 				}
 				countDownLatch.countDown();
@@ -58,7 +58,7 @@ public class CountDownLatchDemo {
 				try {
 					TimeUnit.SECONDS.sleep(sleepSec3);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					//
 					e.printStackTrace();
 				}
 				countDownLatch.countDown();

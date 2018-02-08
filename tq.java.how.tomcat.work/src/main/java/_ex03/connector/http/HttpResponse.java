@@ -7,7 +7,7 @@ public class HttpResponse {
 	HttpRequest request;
 	
 	public HttpResponse(OutputStream out) {
-		// TODO Auto-generated constructor stub
+		//
 	}
 
 	public void setRequest(HttpRequest request) {

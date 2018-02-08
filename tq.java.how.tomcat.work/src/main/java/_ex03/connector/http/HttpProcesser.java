@@ -47,7 +47,7 @@ public class HttpProcesser {
 	}
 
 	private void parseHeader(SocketInputStream inputStream) {
-		// TODO Auto-generated method stub
+		//
 		
 	}
 
@@ -122,7 +122,7 @@ public class HttpProcesser {
 	}
 
 	private String normalize(String uri) {
-		// TODO Auto-generated method stub
+		//
 		return null;
 	}
 
