@@ -163,20 +163,20 @@ public class BinarySearchTree<V extends Comparable<V>> {
 	public TreeNode<V> getRoot(){
 		return root;
 	}
-	
-	
+
+
 	private class TreeNode<V>{
 		public V v;
-		
-		
+
+
 		public TreeNode<V> leftChild;
-		
+
 		public TreeNode<V> rightChild;
-		
+
 		public TreeNode(V v) {
 			this.v = v;
 		}
-		
+
 		@Override
 		public String toString() {
 			return leftChild.v + "---" + v + "---" + rightChild.v;
