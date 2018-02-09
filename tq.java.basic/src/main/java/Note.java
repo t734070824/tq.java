@@ -6,4 +6,5 @@ public class Note {
     //TODO 泛型掌握的不够好
     //TODO calssloader 深入
     //TODO 对象克隆
+    //TODO 异常传播
 }
