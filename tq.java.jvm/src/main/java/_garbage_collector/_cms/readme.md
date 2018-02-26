@@ -35,7 +35,7 @@
 5. Full GC的次数说的是stop the world的次数，所以一次**CMS至少会让Full GC的次数+2**，因为CMS Initial mark和remark都会stop the world，记做2次。而CMS可能失败再引发一次Full GC
 6. **CMSScavengeBeforeRemark**
 
-### real != user+sys
+### GC时间 real != user+sys
 
 1. ``[Times: user=1.85 sys=0.10, real=1.36 secs]``
 原因:user和sys代表处于用户和系统态的时间,不包含block的时间.但是由于多cpus这个东东是累加的.所以一般来说user和sys相加都大于real

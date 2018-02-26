@@ -33,13 +33,13 @@
 
 
 ### JVM
-1. in-jvm（必考）以及jmm缓存模型如何调优?
+1. in-jvm以及jmm缓存模型如何调优?
 2. Java虚拟机的内存布局
 3. GC算法以及几种垃圾回收器
 4. 类加载机制
 5. Java内存模型
 6. happens-before规则
-7. valatile 关键字使用规则
+7. volatile 关键字使用规则
 8. JVM老年代和新生代的比例
 9. YGC 和 FGC 发生的具体场景
 10. jstack, jmap, jutil 分别的意义? 如何在线上排查JVM 相关的问题
