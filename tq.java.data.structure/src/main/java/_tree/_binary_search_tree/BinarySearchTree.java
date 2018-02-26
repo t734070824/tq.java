@@ -42,9 +42,32 @@ public class BinarySearchTree<V extends Comparable<V>> {
 		}
 	}
 	
-	//TODO 删除
-	
-	/**
+	//如果结点为叶子结点（没有左、右子树），此时删除该结点不会玻化树的结构直接删除即可，并修改其父结点指向它的引用为null
+	//如果其结点只包含左子树，或者右子树的话，此时直接删除该结点，并将其左子树或者右子树设置为其父结点的左子树或者右子树即可
+	//当结点的左右子树都不空的时候，一般的删除策略是用其右子树的最小数据（容易找到）代替要删除的结点数据并递归删除该结点（此时为null），因为右子树的最小结点不可能有左孩子，所以第二次删除较为容易
+
+    public void remove(V v) {
+        remove(v,root);
+    }
+
+    public TreeNode<V> remove(V v,TreeNode<V> node){
+	    if(node == null) return node;
+        int result = v.compareTo(node.v);
+        if(result > 0){
+            node.rightChild = remove(v, node.rightChild);
+        } else if(result < 0){
+            node.leftChild = remove(v, node.leftChild);
+        } else if(node.leftChild != null && node.rightChild != null){
+            node.v = minData(node.rightChild);
+            node.rightChild = remove(node.v, node.rightChild);
+        } else {
+            node = (node.leftChild != null) ? node.leftChild : node.rightChild;
+        }
+        return node;
+    }
+
+
+    /**
 	 * LDR 遍历
 	 * @param rootNode
 	 */
@@ -179,7 +202,9 @@ public class BinarySearchTree<V extends Comparable<V>> {
 
 		@Override
 		public String toString() {
-			return leftChild.v + "---" + v + "---" + rightChild.v;
+			return (leftChild != null ? leftChild.v+"":"null") +
+                    "---" + v + "---" +
+                    (rightChild != null ? rightChild.v + "" : "null");
 		}
 	}
 }
