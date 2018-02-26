@@ -29,6 +29,7 @@
 
 
 ### 2017-12-28 Q
-1. 修改supervisor.conf文件，修改到/var/run/及/var/log/目录
+1. 修改 supervisor.conf文件，修改到/var/run/及/var/log/目录
 2. **但是 supervisorctl start all 提示 找不到/tmp/supervisor.sock???**
+3. http://www.cashqian.net/blog/001472975510127673ea63db9234c4e8293cf43cefcafde000(修复2)
 	
