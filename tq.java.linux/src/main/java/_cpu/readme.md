@@ -10,7 +10,10 @@
 5. 查看逻辑CPU的个数
 ``cat /proc/cpuinfo| grep "processor"| wc -l``
 
-### cpu load高
+### cpu load
 1. cpu load高不代表使用率高
 2. 如果线程过多, 线程之间的切换所需要的资源也会使 load 高
-1. ps -mp pid -o THREAD,tid,time
+3. ps -mp pid -o THREAD,tid,time
+4. CPU利用率:显示的是程序在运行期间实时占用的CPU百分比
+5. CPU负载:显示的是一段时间内正在使用和等待使用CPU的平均任务数
+6. http://heipark.iteye.com/blog/1340384
