@@ -18,3 +18,17 @@
 2. 新节点为红色-->主要是以防违背 第五条
 3. 旋转或着色等操作，使之重新成为一颗红黑树。
 4. 因为此时只有 4 可能违背, 注重修复 4
+
+### 应用
+1. C++的STL中
+2. 著名的linux进程调度Completely Fair Scheduler,用红黑树管理进程控制块
+3. epoll在内核中的实现，用红黑树管理事件块
+4. nginx中，用红黑树管理timer等
+5. Java的TreeMap实现
+
+### 缺点
+1. 著名的linux进程调度Completely Fair Scheduler,用红黑树管理进程控制块
+   epoll在内核中的实现，用红黑树管理事件块
+   nginx中，用红黑树管理timer等
+   Java的TreeMap实现
+   --> B+树, Mysql

@@ -10,6 +10,6 @@ public class Note {
     //TODO 整理死锁的例子 掌握死锁
     //TODO 多线程下载
     //TODO AQS理解的不够深入 --> 队列 线程的状态
-
+    //TODO 1.8 ConcurrentHashMap.TreeNode.prev???
 
 }
