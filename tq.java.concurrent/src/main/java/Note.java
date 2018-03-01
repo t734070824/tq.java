@@ -11,5 +11,7 @@ public class Note {
     //TODO 多线程下载
     //TODO AQS理解的不够深入 --> 队列 线程的状态
     //TODO 1.8 ConcurrentHashMap.TreeNode.prev???
+    //TODO Unsafe ConcurrentHashMap static 如何获取变量的内存地址的??
+    //TODO 吃透 1.8 ConcurrentHashMap
 
 }
