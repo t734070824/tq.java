@@ -7,4 +7,5 @@ public class Note {
     //TODO calssloader 深入
     //TODO 对象克隆
     //TODO 异常传播
+    //TODO HashMap 1.8 resize() put()
 }
