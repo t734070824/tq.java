@@ -17,7 +17,7 @@
 12. ThreadPoolExecutor 内部原理
 13. IO 和  NIO的区别
 14. 顺序加锁
-15. 快速失败(fast-fail) 和 安全失败(fail-sa)的区别
+15. 快速失败(fast-fail) 和 安全失败(fail-safe)的区别
 16. finalize()
 17. 反射(反射机制, 反射性能, 如何优化)
 18. 乐观锁
@@ -45,6 +45,7 @@
 10. jstack, jmap, jutil 分别的意义? 如何在线上排查JVM 相关的问题
 11. 回收什么样子的对象
 12. CPU 100%
+13. 如何获取一个 dump文件
 
 ### 数据库
 1. 数据库的隔离级别
