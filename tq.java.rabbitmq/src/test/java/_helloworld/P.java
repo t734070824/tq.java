@@ -29,7 +29,8 @@ public class P {
         Connection connection = factory.newConnection();
 //      创建一个频道
         Channel channel = connection.createChannel();
-//      声明一个队列 -- 在RabbitMQ中，队列声明是幂等性的（一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同），也就是说，如果不存在，就创建，如果存在，不会对已经存在的队列产生任何影响。
+//      声明一个队列 -- 在RabbitMQ中，队列声明是幂等性的（一个幂等操作的特点是其任意多次执行所产生的影响均与一次执行的影响相同），
+//      也就是说，如果不存在，就创建，如果存在，不会对已经存在的队列产生任何影响。
 //        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 //        channel.
         int baseNo = 1000;
