@@ -6,4 +6,5 @@ public class Note {
 
 
     //TODO RabbitMQ 事务
+    //TODO Mysql 实现 AMQP
 }
