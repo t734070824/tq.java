@@ -24,3 +24,15 @@ http://blog.csdn.net/samxx8/article/details/47417133
 但是这还不能使得队列中的消息持久化，这需要生产者在发送消息的时候，将delivery mode设置为2，
 只有这3个全部设置完成后，才能保证服务器重启不会对现有的队列造成影响 
 
+### broker将在下面的情况中对消息进行confirm
+1. broker发现当前消息无法被路由到指定的queues中（如果设置了mandatory属性，则broker会发送basic.return） 
+1. 非持久属性的消息到达了其所应该到达的所有queue中（和镜像queue中） 
+1. 持久消息到达了其所应该到达的所有queue中（和镜像中），并被持久化到了磁盘（fsync） 
+1. 持久消息从其所在的所有queue中被consume了（如果必要则会被ack）
+
+### Fair dispatch 公平分发
+1. 默认状态下，RabbitMQ将第n个Message分发给第n个Consumer。当然n是取余后的。它不管Consumer是否还有unacked Message，只是按照这个默认机制进行分发
+2. 通过 basic.qos 方法设置prefetch_count=1 。这样RabbitMQ就会使得每个Consumer在同一个时间点最多处理一个Message。
+换句话说，在接收到该Consumer的ack前，他它不会将新的Message分发给它
+3. 这种方法可能会导致queue满。当然，这种情况下你可能需要添加更多的Consumer，或者创建更多的virtualHost来细化设计
+4. **和 exchange的类型无关**
