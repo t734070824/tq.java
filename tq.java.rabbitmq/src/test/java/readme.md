@@ -36,22 +36,3 @@ http://blog.csdn.net/samxx8/article/details/47417133
 换句话说，在接收到该Consumer的ack前，他它不会将新的Message分发给它
 3. 这种方法可能会导致queue满。当然，这种情况下你可能需要添加更多的Consumer，或者创建更多的virtualHost来细化设计
 4. **和 exchange的类型无关**
-
-### Kafka VS RabbitMQ
-1. http://blog.csdn.net/yangbutao/article/details/8741977
-
-#### 架构模型
-1. RabbitMQ遵循AMQP协议,以broker为中心；有消息的确认机制。 kafka遵从一般的MQ结构,无消息确认机制。
-
-
-#### 吞吐量
-1. kafka具有高的吞吐量，内部采用消息的批量处理，zero-copy机制，数据的存储和获取是本地磁盘顺序批量操作，具有O(1)的复杂度，消息处理的效率很高
-2. rabbitMQ支持对消息的可靠的传递，支持事务，不支持批量的操作；基于存储的可靠性的要求存储可以采用内存或者硬盘
-#### 可用性
-1. rabbitMQ支持miror的queue，主queue失效，miror queue接管。
-2. kafka的broker支持主备模式。 
-#### 集群负载均衡
-1. kafka采用zookeeper对集群中的broker、consumer进行管理，可以注册topic到zookeeper上；
-通过zookeeper的协调机制，producer保存对应topic的broker信息，可以随机或者轮询发送到broker上；
-并且producer可以基于语义指定分片，消息发送到broker的某分片上。
-2. rabbitMQ的负载均衡需要单独的loadbalancer进行支持。

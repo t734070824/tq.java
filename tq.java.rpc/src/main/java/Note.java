@@ -1,9 +1,8 @@
+package PACKAGE_NAME;
+
 /**
  * @author 734070824@qq.com
- * @date 2018/3/6 20:27
+ * @date 2018/3/7 17:58
  */
 public class Note {
-
-
-    //TODO RabbitMQ 事务
 }
