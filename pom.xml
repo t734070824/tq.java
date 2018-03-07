@@ -33,6 +33,7 @@
       <module>tq.java.cglib</module>
       <module>tq.java.data.structure</module>
       <module>tq.java.tcp.ip</module>
+      <module>tq.java.rpc</module>
   </modules>
   
   <properties>
