@@ -1,6 +1,6 @@
 2017-11-28
 ### 安装
-    1)必须要python2的pip
+    1)必须要python2的pip(yum -y install python-pip)
     2)pip install supervisor
     3)输出配置文件  echo_supervisord_conf  > /etc/supervisord.conf
     4)更改配置文件    vi   /etc/supervisord.conf
