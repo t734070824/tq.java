@@ -34,6 +34,7 @@
       <module>tq.java.data.structure</module>
       <module>tq.java.tcp.ip</module>
       <module>tq.java.rpc</module>
+      <module>tq.java.distributed.system</module>
   </modules>
   
   <properties>
