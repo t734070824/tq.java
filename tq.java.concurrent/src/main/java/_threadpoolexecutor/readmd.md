@@ -29,3 +29,6 @@
 if (rs >= SHUTDOWN && !(rs == SHUTDOWN && firstTask == null && !workQueue.isEmpty()))
     return false;
 ```
+
+### shutdown
+1. **Shutdown 不阻塞**

@@ -2,7 +2,7 @@ package _dead_lock;
 
 /**
  * LeftRightDeadlock
- * 使用相同的锁顺序
+ * -->使用相同的锁顺序
  */
 public class LeftRightDeadlock {
     private final Object left = new Object();
