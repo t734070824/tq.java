@@ -1,4 +1,4 @@
-package _example._cache;
+package _cache._result_cache;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package _example._cache;
+package _cache._result_cache;
 
 public interface Computable<A, V> {
 	
