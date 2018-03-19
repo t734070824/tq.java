@@ -7,4 +7,5 @@ package _tomcat_ext_framework;
 public class Note {
 
     //TODO tomcat总体设计架构
+    //TODO /conf/Catalina/localhost 下建立了配置文件
 }
