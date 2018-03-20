@@ -15,4 +15,6 @@ public class Note {
     //TODO 优化:元数据信息表
     //TODO 模拟哈希索引--最终还是通过B-tree查询
     //TODO 复合索引数据结构
+    //TODO in > 索引问题
+    //TODO 查询性能优化
 }
