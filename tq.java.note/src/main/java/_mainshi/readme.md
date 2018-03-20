@@ -2,6 +2,10 @@
 
 # 面试题
 
+### 项目
+1. 项目遇到什么难以解决的bug
+2. 项目怎么改为分布式
+
 ### 基础
 1. Concurrenthashmap 为什么要用红黑树？为何不用其他的树，平衡二叉树，b+？
 2. 如何给hashmap的key对象设计他的hashcode
@@ -19,10 +23,24 @@
 14. 顺序加锁
 15. 快速失败(fast-fail) 和 安全失败(fail-safe)的区别
 16. finalize()
-17. 反射(反射机制, 反射性能, 如何优化)
+17. 反射(反射机制, 反射性能, 如何优化) private
 18. 乐观锁
 19. hash冲突
 20. 锁类型(偏向锁, 轻量级锁, 自旋锁, 锁升级)
+21. JDK1.8 新特性
+22. java线程之间通信
+23. 1.8 ConCurrentHash
+24. 同步器
+25. String为什么可以用 + 操作
+26. 两个方法完全相同可以重载吗
+27. try里面的return, finally 在 return, 哪个会返回, 字节码如何体现的
+28. 什么情况下不适合用CAS
+29. 如何让一个线程放弃锁, 放弃锁之后什么时候才可以再次获取锁
+30. 如何实现自定义注解
+31. final finally finalize
+32. (short s1 =1;s1 = s1 +1) (short s1 =1;s1 += 1)
+33. runtimeException
+34. 
 
 
 ### 设计模式
@@ -46,6 +64,8 @@
 11. 回收什么样子的对象
 12. CPU 100%
 13. 如何获取一个 dump文件
+14. 什么情况下触发Minor GC
+15. Serial 特点
 
 ### 数据库
 1. 数据库的隔离级别
@@ -57,7 +77,8 @@
 7. Explain
 8. Statement PrepareStatement区别
 9. SQL 注入
-10. 
+10. 主键索引和非主键索引的区别, 分别属于哪类索引
+11. 为什么使用索引 为什么会变快
 
 
 ### 数据结构
@@ -81,20 +102,27 @@
 2. spring 事物回滚机制(传播性)
 3. 用到的设计模式
 4. IOC AOP的实现
+5. Spring, Spring MVC原理,流程
+6. 设计模式在Spring中的应用
+7. Servlet中filter和spring中的Interceptor的区别 
 
 #### Mybatis
 1. 缓存机制
 2. # $ 的区别
 3. dao层的内部实现
+4. 集合怎么进行映射配置的, 级联
+
 
 #### Tomcat
-1. 
+1. tomcat集群
+2. tomcat加载基本流程, 涉及到的参数
+3. 
 
 #### Zookeeper
 
 
 ### HTTP/WEB
-1. Session, Cookie
+1. Session, Cookie, 格式 传输内容
 2. Filter Servlet Listener
 3. get post 基本区别
 4. Servlet的生命周期
@@ -104,12 +132,13 @@
 ### TCP/IP
 1. 三次握手, 四次挥手
 2. 窗口滑动机制
-
+3. TCP VS UDP
 ### Linux
 1. 常用 linux 命令
 
 ### Redis/Memcached
 1. 为什么单线程,还很快??
+2. redis几种数据结构 底层如何实现
 
 ### 分布式/高并发
 1. Redis为什么可以实现分布式锁，memcached 可以实现分布式锁么？实现分布式锁的方式有很多种，为什么选择redis分布式锁？
