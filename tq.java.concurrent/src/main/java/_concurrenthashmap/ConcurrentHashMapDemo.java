@@ -11,8 +11,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConcurrentHashMapDemo {
 
     public static void main(String[] args) {
-        Map<String, String> cm = new ConcurrentHashMap<String, String>(5);
-        for (int i = 0; i < 14; i++) {
+        ConcurrentHashMap<String, String> cm = new ConcurrentHashMap<String, String>();
+        for (int i = 0; i < 50; i++) {
+            if(i == 11){
+                //扩容
+                System.err.println("debug");
+            }
             cm.put("key_" + i, "tangqing_" + i);
         }
     }
