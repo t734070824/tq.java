@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ConcurrentHashMapDemo {
 
     public static void main(String[] args) {
-        Map<String, String> cm = new ConcurrentHashMap<String, String>();
+        Map<String, String> cm = new ConcurrentHashMap<String, String>(5);
         for (int i = 0; i < 14; i++) {
             cm.put("key_" + i, "tangqing_" + i);
         }
