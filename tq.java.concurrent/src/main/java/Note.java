@@ -13,5 +13,7 @@ public class Note {
     //TODO 1.8 ConcurrentHashMap.TreeNode.prev???
     //TODO Unsafe ConcurrentHashMap static 如何获取变量的内存地址的??
     //TODO 吃透 1.8 ConcurrentHashMap
+    //TODO ThreadPoolExecutor 源码
+    //TODO synchronized 优化
 
 }
