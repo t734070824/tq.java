@@ -17,4 +17,5 @@ public class Note {
     //TODO 复合索引数据结构
     //TODO in > 索引问题
     //TODO 查询性能优化
+    //TODO 查询状态
 }
