@@ -17,3 +17,10 @@
 4. CPU利用率:显示的是程序在运行期间实时占用的CPU百分比
 5. CPU负载:显示的是一段时间内正在使用和等待使用CPU的平均任务数
 6. http://heipark.iteye.com/blog/1340384
+
+### 20180322 CPU load
+1. 线上项目 2cpu , cpu load在3+以上
+2. 监控显示 1000+线程数
+3. jstack pid--> total:1002, Mongodb:574, RabbitMQ:53, Consumer:53, MessageService:53
+4. 运行本地, visualvm.exe监控, 在重启任务时, 原来的Mongodb连接没有关闭, 并创建新的线程池
+5. 在重启启动任务时,关闭原有连接
