@@ -13,12 +13,6 @@ import java.util.Map;
 
 public class UserDaoTest {
 
-
-    //TODO 动态sql
-    //TODO 结果集解析
-    //TODO 一级 二级 缓存
-    //TODO 没有数据库
-
     @Test
     public void findUserById() {
 
