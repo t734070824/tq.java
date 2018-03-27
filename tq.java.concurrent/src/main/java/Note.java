@@ -15,5 +15,6 @@ public class Note {
     //TODO 吃透 1.8 ConcurrentHashMap
     //TODO ThreadPoolExecutor 源码
     //TODO synchronized 优化
+    //TODO 事务 两阶段提交 Two Phase Commits
 
 }

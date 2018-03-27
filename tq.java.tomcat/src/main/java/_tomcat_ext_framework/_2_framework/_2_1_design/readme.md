@@ -85,7 +85,7 @@
 
 ***
 
-+ 启动: Bootstrap, Cataline 
++ 启动: Bootstrap, Catalina
 
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.tomcat/src/main/java/_tomcat_ext_framework/_2_framework/_2_1_design/11.jpg?raw=true)
 
