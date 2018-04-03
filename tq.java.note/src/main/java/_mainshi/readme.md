@@ -100,7 +100,7 @@
 #### Spring
 1. spring bean初始换过程
 2. spring 事物回滚机制(传播性)
-3. 用到的设计模式
+3. **用到的设计模式以及 运用**
 4. IOC AOP的实现
 5. Spring, Spring MVC原理,流程
 6. 设计模式在Spring中的应用

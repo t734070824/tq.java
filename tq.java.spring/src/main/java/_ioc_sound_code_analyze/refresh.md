@@ -35,8 +35,7 @@
             - InstantiationStrategy.instantiate(RootBeanDefinition bd, String beanName, BeanFactory owner)
                 - bd.getMethodOverrides().isEmpty():如果不存在方法覆写，那就使用 java 反射进行实例化，否则使用 CGLIB, lookup-method 和 replaced-method
                     - java反射
-                    - GGLIB                    
-                 
+                    - GGLIB
         - populateBean(beanName, mbd, instanceWrapper): bean 实例化完成（通过工厂方法或构造方法），但是还没开始属性设值
         - initializeBean(beanName, exposedObject, mbd): 属性注入完成后，这一步其实就是处理各种回调了
             - invokeAwareMethods(beanName, bean): 如果 bean 实现了 BeanNameAware、BeanClassLoaderAware 或 BeanFactoryAware 接口，回调
@@ -44,5 +43,3 @@
             - invokeInitMethods(beanName, wrappedBean, mbd): 处理 bean 中定义的 init-method，或者如果 bean 实现了 InitializingBean 接口，调用 afterPropertiesSet() 方法
             - BeanPostProcessor 的 postProcessAfterInitialization 回调
             - **BeanPostProcessor 的两个回调都发生在这边，只不过中间处理了 init-method**
-                    
-    

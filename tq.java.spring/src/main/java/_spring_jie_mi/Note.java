@@ -8,4 +8,5 @@ package _spring_jie_mi;
 public class Note {
 
     //TODO 同一个class 多个对象, 按类型注入??
+
 }

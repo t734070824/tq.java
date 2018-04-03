@@ -1,6 +1,6 @@
 2017-11-15
 ### 理解
-1. ThreadLocal内部是用数组实现的,数组中的成员是Entry,此Entry继承了WeakReference
+1. ThreadLocal 内部是用数组实现的,数组中的成员是Entry,此Entry继承了WeakReference
 2. ThreadLocal有一个静态内部类 ThreadLocalMap
 3. 当ThreadLocal调用get方法的时候,首先获取当前线程对象,然后获取当前线程的ThreadLocalMap成员变量,通过ThreadLocal本身作为key
 获取当前ThreadLocal对象threadLocalHashCode,取模,获取数组下标,若果当前Entry的key==ThreadLocal就返回,如果不等,从当前下标往数组末尾查找,
@@ -22,4 +22,10 @@ Thread Ref -> Thread -> ThreaLocalMap -> Entry -> value永远无法回收，造�
 使用static的ThreadLocal，延长了ThreadLocal的生命周期，可能导致的内存泄漏
 分配使用了ThreadLocal又不再调用get(),set(),remove()方法，那么就会导致内存泄漏。
 (http://blog.xiaohansong.com/2016/08/06/ThreadLocal-memory-leak/)
+
+### 线程安全
+1. ThreadLocal 并**不是用来解决线程安全**的
+2. 存放到 ThreadLocal 的变量是当前线程本身就独一无二的变量
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.concurrent/src/main/java/_threadlocal/1.jpg?raw=true)       
+
 		
