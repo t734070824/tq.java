@@ -1,4 +1,4 @@
-package _spring_jie_mi._review_20180327._2_part_IOC;
+package _spring_jie_mi._review_20180327._2_ioc;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
