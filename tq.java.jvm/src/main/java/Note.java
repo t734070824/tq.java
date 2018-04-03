@@ -6,4 +6,6 @@
 public class Note {
 
     //TODO jutil
+    //TODO 可达性算法 https://www.zhihu.com/question/21539353
+    //TODO instanceof
 }

@@ -6,6 +6,8 @@ package _ioc_sound_code_analyze;
  */
 public class MessageServiceImpl implements MessageService {
 
+
+
     public String getMessage() {
         return "hello world";
     }
