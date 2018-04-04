@@ -19,7 +19,7 @@ public class ExchangeWithOutTmp {
 	
 	public static void main(String[] args) {
 		int a = Integer.MAX_VALUE;
-		int b = a - 1;
+		int b = a + 1;
 		
 		ExchangeWithOutTmp e = new ExchangeWithOutTmp();
 		e.exchangeXOR(a, b);
@@ -27,7 +27,3 @@ public class ExchangeWithOutTmp {
 	
 }
 
-class ExchangeNum{
-	int a;
-	int b;
-}
