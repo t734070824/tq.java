@@ -45,7 +45,7 @@ public class ProgrammerASM {
         // 使classWriter类已经完成  
         // 将classWriter转换成字节数组写到文件里面去  
         byte[] data = classWriter.toByteArray();  
-        File file = new File("D://Programmer.class");  
+        File file = new File("Programmer.class");
         FileOutputStream fout = new FileOutputStream(file);  
         fout.write(data);  
         fout.close(); 
