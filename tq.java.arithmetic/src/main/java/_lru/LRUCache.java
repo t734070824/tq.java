@@ -2,6 +2,11 @@ package _lru;
 
 import java.util.HashMap;
 
+/**
+ * LRUCache （least recently used）最近最少使用。
+ * @param <K>
+ * @param <V>
+ */
 public class LRUCache<K, V> {
 	
 	private final int MAX_CACHE_SIZE;

@@ -12,6 +12,7 @@ public class Note {
             //TODO 6-查询优化
             //TODO 7.11-分布式事务
             //TODO 7.12-查询缓存
+                //TODO 248/801 查询缓存带来的问题
             //TODO 12-高可用性
             //TODO 15-备份与恢复
 
