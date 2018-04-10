@@ -8,7 +8,7 @@ public class Note {
 
     //TODO 优先学习
         //TODO 高性能mysql:
-            //TODO 5-创建高性能索引
+            //TODO 5-创建高性能索引 ***
             //TODO 6-查询优化
             //TODO 7.11-分布式事务
             //TODO 7.12-查询缓存
