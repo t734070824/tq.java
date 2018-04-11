@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="listApp" class="_spring_jie_mi._review_20180327._2_ioc.ListApp">
+<bean id="listApp" class="_spring_jie_mi._2_ioc.ListApp">
         <property name="para1">
             <list>
                 <value> "123" </value>
@@ -19,7 +19,7 @@
     </property>
     </bean>
 
-    <bean id="listApp2" class="_spring_jie_mi._review_20180327._2_ioc.ListApp">
+    <bean id="listApp2" class="_spring_jie_mi._2_ioc.ListApp">
     </bean>
 
 </beans>
