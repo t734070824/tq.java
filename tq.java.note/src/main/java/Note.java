@@ -7,4 +7,5 @@ public class Note {
 
     //TODO Docker
     //TODO oschina
+    //TODO 热部署
 }

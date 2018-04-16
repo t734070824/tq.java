@@ -5,7 +5,7 @@ package _common_divisor;
  */
 public class CommonDivisorUtil {
 
-    //TODO 理解并证明
+    //TODO 欧几里得算法 -- 除法 理解并证明
 
     /**
      * 欧几里得算法 -- 除法
