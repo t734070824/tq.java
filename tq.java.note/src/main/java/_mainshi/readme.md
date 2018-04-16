@@ -8,7 +8,7 @@
 
 ### 基础
 1. Concurrenthashmap 为什么要用红黑树？为何不用其他的树，平衡二叉树，b+？
-2. 如何给hashmap的key对象设计他的hashcode
+2. 如何给hashmap的key对象设计他的 hashcode
 3. bytes --> long
 4. lru Cache
 5. Concurrenthashmap 锁分段, 读是否加锁, 迭代器是强一致性还是 弱一致性
