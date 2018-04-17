@@ -74,6 +74,9 @@
 6. 有最大扩容线程数
 7. TODO
 
+### //TODO putIfAbsent
+1. “如果（调用该方法时）key-value 已经存在，则返回那个 value 值。如果调用时 map 里没有找到 key 的 mapping，返回一个 null 值
+
 ### putVal(K key, V value, boolean onlyIfAbsent)方法干的工作如下：
 1. 检查key/value是否为空，如果为空，则抛异常，否则进行2
 2. 进入for死循环，进行3
