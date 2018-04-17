@@ -11,5 +11,22 @@
 
     <artifactId>tq.java.tomcat</artifactId>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-coyote -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-coyote</artifactId>
+            <version>8.5.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>8.5.6</version>
+        </dependency>
+
+    </dependencies>
+
+
 
 </project>

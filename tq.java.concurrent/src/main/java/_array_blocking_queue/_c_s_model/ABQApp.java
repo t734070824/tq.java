@@ -1,7 +1,5 @@
-package _abq._c_s_model;
+package _array_blocking_queue._c_s_model;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 

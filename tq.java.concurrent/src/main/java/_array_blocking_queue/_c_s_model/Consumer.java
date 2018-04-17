@@ -1,4 +1,4 @@
-package _abq._c_s_model;
+package _array_blocking_queue._c_s_model;
 
 import java.util.concurrent.BlockingQueue;
 
