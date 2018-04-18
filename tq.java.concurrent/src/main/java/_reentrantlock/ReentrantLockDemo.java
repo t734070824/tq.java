@@ -5,8 +5,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockDemo {
 	
-	public static void main(String[] args) {
-		ReentrantLock lock = new ReentrantLock(true);
+	public static void main(String[] args) throws InterruptedException {
+		ReentrantLock lock = new ReentrantLock();
 		
 		
 		
@@ -16,13 +16,16 @@ public class ReentrantLockDemo {
 			public void run() {
 				lock.lock();
 				try {
-					TimeUnit.SECONDS.sleep(15);
+					TimeUnit.SECONDS.sleep(150);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				lock.unlock();
+                System.err.println("unlock");
 			}
 		},"sleep").start();
+
+		TimeUnit.SECONDS.sleep(2);
 		
 		new Thread(new Runnable() {
 			
