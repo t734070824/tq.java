@@ -1,5 +1,8 @@
 package _linked_list._singly;
 
+/**
+ * 反转链表
+ */
 public class SinglyLinkedListWithReverse extends SinglyLinkedList {
 
     public void reverse(){
