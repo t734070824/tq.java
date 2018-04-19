@@ -17,5 +17,6 @@ public class Note {
     //TODO synchronized 优化
     //TODO 事务 两阶段提交 Two Phase Commits
     //TODO lockInterruptibly
+    //TODO Exchanger 源码解析
 
 }

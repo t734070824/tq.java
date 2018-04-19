@@ -17,8 +17,8 @@ public class ThreeThreadLoopOrderOutputBySemaphore {
 	public static void main(String[] args) {
 		ThreeThreadLoopOrderOutputBySemaphore s = new ThreeThreadLoopOrderOutputBySemaphore();
 		new Thread(s.new SemaphoreThread(0, SemaphoreA, SemaphoreB, "A")).start();
-		new Thread(s.new SemaphoreThread(0, SemaphoreB, SemaphoreC, "B")).start();
-		new Thread(s.new SemaphoreThread(0, SemaphoreC, SemaphoreA, "C")).start();
+		new Thread(s.new SemaphoreThread(1, SemaphoreB, SemaphoreC, "B")).start();
+		new Thread(s.new SemaphoreThread(2, SemaphoreC, SemaphoreA, "C")).start();
 	}
 	
 	
