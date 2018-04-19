@@ -35,6 +35,7 @@
       <module>tq.java.tcp.ip</module>
       <module>tq.java.rpc</module>
       <module>tq.java.distributed.system</module>
+    <module>tq.java.redis</module>
   </modules>
   
   <properties>
