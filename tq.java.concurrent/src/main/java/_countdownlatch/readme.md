@@ -3,6 +3,7 @@
 ## CountDownLatch
 
 ### 原理
+1. state标识 需要释放(countDown)的次数
 1. CountDownLatch(num): 标识要释放几次锁
 2. 主线程 await(): tryAcquireShared(1), 查看当前是否已经全部释放 
 3. 没有全部释放, 加入等待队列, 设置 Signel, LockSupport.lock() 
