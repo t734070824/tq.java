@@ -36,6 +36,7 @@
       <module>tq.java.rpc</module>
       <module>tq.java.distributed.system</module>
     <module>tq.java.redis</module>
+    <module>tq.java.lintcode</module>
   </modules>
   
   <properties>
