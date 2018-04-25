@@ -9,7 +9,7 @@
 
 #### 理解 Selector
 1. 本身是单线程的,只是提供非阻塞的I/O罢了
-2. 注册多个通道(这个通道很有意思 serverSocketChannel SockeyChannel)
+2. 注册多个通道(这个通道很有意思 serverSocketChannel SocketChannel)
 3. select()阻塞
 4. 只会触发感兴趣的事件
 5. 面向缓存

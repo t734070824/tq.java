@@ -9,4 +9,7 @@ public class Note {
     //TODO ObjectId 是否自增 生成规则 比较
     //TODO 线上删除多 的问题...
     //TODO count() == -1 的情况
+    //TODO 主从切换造成的影响
+        //TODO 什么时候会主从切换
+        //TODO 连接断开
 }
