@@ -10,5 +10,8 @@ public class Note {
     //TODO HashMap 1.8 resize() put()
     //TODO IO 多线程下载
     //TODO 多态 在 java中是 如何实现的???
+    //TODO 反射
+    //TODO nio wakeup
+    //TODO nio Proactor
 
 }
