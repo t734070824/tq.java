@@ -26,3 +26,18 @@
 2. Java缺省的加载器对相同全名的类只会加载一次，以后直接从缓存中取这个Class object
 3. 因此要实现hot swap，必须在加载的那一刻进行拦截，先判断是否已经加载，若是则重新加载一次，否则直接首次加载它
 4. http://blog.csdn.net/zhoudaxia/article/details/35897057
+
+### java 的 classloader
+1. 引导类加载器(bootstrap class loader)
+    - 引导启动 JVM
+    - 载入运行 JVM 所需要的类, 以及所有的核心类: java.lang.*, java.io.*等
+    - 负责加载JDK中的核心类库，如：rt.jar、resources.jar、charsets.jar等
+2. 扩展类加载器(extension class loader)    
+    - 载入标准扩展中的类
+    - 有利于程序开发, 只需要将jar文件复制到扩展目录中就可以被类加载器搜索到
+    - 负责加载Java的扩展类库，默认加载JAVA_HOME/jre/lib/ext/目下的所有jar。
+3. 系统类加载器(system class loader)    
+    - 默认的类加载器
+    - 负责加载应用程序classpath目录下的所有jar和class文件。
+    
+   
