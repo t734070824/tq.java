@@ -2,7 +2,7 @@ import javax.servlet.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class ModernServlet implements Servlet{
+public class PrimitiveServlet_1 implements Servlet{
 
 	public void destroy() {
 		System.err.println("destroy");
@@ -17,14 +17,14 @@ public class ModernServlet implements Servlet{
 	}
 
 	public void init(ServletConfig arg0) throws ServletException {
-		System.err.println("init ModernServlet");
+		System.err.println("init");
 	}
 
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-		System.err.println("from ModernServlet");
+		System.err.println("from service");
 		PrintWriter writer = response.getWriter();
 		writer.println("Hello. TQ");
-		writer.println("ModernServlet");
+		writer.println("blue123AAAAAAAAsss");
 	}
 
 }

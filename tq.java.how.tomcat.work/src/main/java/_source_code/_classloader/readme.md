@@ -11,3 +11,20 @@
 1. 在载入类中指定某些原则
 2. 缓存已载入的类
 3. 实现类的预加载, 方便使用
+
+### webAppClassLoader
+1. 载入类, 遵循以下原则
+    - 载入类的时候, 会先检查本地缓存
+    - 入本地缓存中没有, 则检查上一层缓存, 即调用 java.lang.ClassLoader 类的findLoadedClass()方法
+    - 如果两个缓存都没有, 则使用系统的类加载器进行加载, **防止 web 应用程序中的类覆盖 J2EE的类**        
+        - 同时也会防止 覆盖 非 J2EE的类(自己编写的类)
+    - 如果启用了 Securitymanager, 则检查是否允许载入该类, 如果该类是禁止载入的类, 抛出 ClassNotFoundException
+    - 如果打开 delegate, 或者待载入的类是包触发器中的包名, 则调用父加载器来加载, 如果父加载器为 null, 则使用系统加载器
+    - 从当前仓库载入相关类
+    - 如果当前仓库没有需要的类, 且标志位 delegate 关闭, 使用父加载器, 如果父加载器 =null, 使用 系统 的类加载器进行加载
+    - 仍然没有找到类,   ClassNotFoundException
+    
+### 总结
+1. 理解 servlet 放的位置的意义
+2. setPath, setDocPath 的意义
+3. 一个 servlet记载到容器的原理    

@@ -19,3 +19,8 @@
 4. **getContainer().invoke()**
 5. finshResponse()
 6. if(!stop && OK && keepLive), **继续循环处理当前连接(如果全是 长连接, 多了应该会堵死...)**
+
+### 总体
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.how.tomcat.work/src/main/java/_source_code/_http_connector/1.jpg?raw=true)
+                         
+                         
