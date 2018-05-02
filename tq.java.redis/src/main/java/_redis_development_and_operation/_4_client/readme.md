@@ -1,0 +1,37 @@
+2018-05-02
+
+## 客户端
+
+### 客户端协议
+1. 发送命令格式
+    - *<参数数量> CRLF
+    - $<参数1的字节数量> CRLF
+    - <参数1> CRLF
+    - ...
+    - $<参数N的字节数量> CRLF
+    - <参数N> CRLF
+2. 以 set hello world 为例:
+    - *3
+    - $3
+    - SET
+    - $5
+    - hello
+    - $5
+    - world
+    - 最终格式为 :*3\r\n$3\r\nSET\r\n$5\r\nhello\r\n$5\r\nworld\r\n
+3. 返回格式
+    - 状态回复： 在RESP中第一个字节为"+"。
+    - 错误回复： 在RESP中第一个字节为"-"。
+    - 整数回复： 在RESP中第一个字节为"： "。
+    - 字符串回复： 在RESP中第一个字节为"$"。
+    - 多条字符串回复： 在RESP中第一个字节为"*"    
+    - 
+    
+    
+### 连接池
+1. jedis.close()
+    - 在不使用连接池的时候是 关闭连接
+    - 在使用连接池的时候, 是归还连接  
+
+### 连接池参数
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_4_client/1.jpg?raw=true)  
