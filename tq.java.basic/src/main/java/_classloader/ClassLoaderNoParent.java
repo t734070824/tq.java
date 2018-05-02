@@ -43,10 +43,11 @@ public class ClassLoaderNoParent {
 			}
 		};
 		
-		Object o = myLoader.loadClass("com.classloader.DaoImpl").newInstance();
-		System.err.println(o.getClass());
-		System.err.println(o instanceof ClassLoaderNoParent);
-		System.err.println();
+//		Object o = myLoader.loadClass("com.classloader.DaoImpl").newInstance();
+//		System.err.println(o.getClass());
+//		System.err.println(o instanceof ClassLoaderNoParent);
+//		System.err.println();
+		//TODO 错误
 		
 	}
 

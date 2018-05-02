@@ -38,6 +38,7 @@ public final class Bootstrap {
         // StandardContext's start method adds a default mapper
         context.setPath("/myApp");
         context.setDocBase("myApp");
+        context.setReloadable(true);
 
         context.addChild(wrapper1);
         context.addChild(wrapper2);

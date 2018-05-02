@@ -17,14 +17,14 @@ public class ModernServlet_1 implements Servlet{
 	}
 
 	public void init(ServletConfig arg0) throws ServletException {
-		System.err.println("init ModernServlet");
+		System.err.println("init ModernServlet_1");
 	}
 
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-		System.err.println("from ModernServlet");
+		System.err.println("from ModernServlet_1");
 		PrintWriter writer = response.getWriter();
-		writer.println("Hello. TQ111");
-		writer.println("ModernServlet");
+		writer.println("Hello. TQ33");
+		writer.println("ModernServlet_1");
 	}
 
 }

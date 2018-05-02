@@ -24,6 +24,12 @@
     - 如果当前仓库没有需要的类, 且标志位 delegate 关闭, 使用父加载器, 如果父加载器 =null, 使用 系统 的类加载器进行加载
     - 仍然没有找到类,   ClassNotFoundException
     
+### reload
+1. reload重新加载也只限于 被 webAppClassLoader 加载的 servlet
+2. 被 系统 classLoader加载的类 并不会计入 监控中
+3. 只有被 webAppClassLoader 记载的 servlet 才会通过 findResourceInternal(String name, String path), 放入监控列表中
+4. 重新加载的 servlet 在被重新加载之前 会 destroy, 再次被加载的时候 init 
+    
 ### 总结
 1. 理解 servlet 放的位置的意义
 2. setPath, setDocPath 的意义
