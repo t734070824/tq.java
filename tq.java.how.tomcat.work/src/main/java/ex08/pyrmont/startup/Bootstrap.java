@@ -10,6 +10,7 @@ import org.apache.catalina.Loader;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.http.HttpConnector;
 import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.core.StandardWrapper;
 import org.apache.catalina.loader.WebappClassLoader;
 import org.apache.catalina.loader.WebappLoader;
 import org.apache.naming.resources.ProxyDirContext;
@@ -26,7 +27,7 @@ public final class Bootstrap {
         Wrapper wrapper1 = new SimpleWrapper();
         wrapper1.setName("Primitive");
         wrapper1.setServletClass("PrimitiveServlet");
-        Wrapper wrapper2 = new SimpleWrapper();
+        Wrapper wrapper2 = new StandardWrapper();
         wrapper2.setName("Modern");
         wrapper2.setServletClass("ModernServlet");
 
