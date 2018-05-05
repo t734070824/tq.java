@@ -22,4 +22,12 @@
 
 ### servlet容器
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.how.tomcat.work/src/main/java/_source_code/2.jpg?raw=true)   
+
+### Wrapper, Context, Host, Engine 总结
+1. 都是容器
+2. 都有自己的生命周期
+3. Engine-->Host-->Context-->Wrapper 越来越低级
+4. 都是通过各自的基础阀去掉用下一层
+5. 通过 map(request) 获取 下一个容器
+
      
