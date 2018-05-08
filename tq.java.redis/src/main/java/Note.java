@@ -15,5 +15,7 @@ public class Note {
     //TODO HyperLogLog 略过
     //TODO common-pool 掌握
     //TODO redis 常见异常, 以及 案列分析
+    //TODO 当 redis 数据较多 内存较小 走磁盘???
+    //TODO 复制章节 没有详细动手操作, 需要细读
 
 }

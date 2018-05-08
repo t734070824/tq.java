@@ -18,5 +18,6 @@ public class Note {
     //TODO 事务 两阶段提交 Two Phase Commits
     //TODO lockInterruptibly
     //TODO Exchanger 源码解析
+    //TODO ThreadPoolExecutor 如何感知任务结束的
 
 }
