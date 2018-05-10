@@ -11,7 +11,8 @@ public class Note {
         // 跳过 常见异常, 以及 案列分析
         // 20180508 _redis_development_and_operation 402 / 890
         // 复制部分没有细读
-        //
+        //20180510 _redis_development_and_operation 441 / 890
+        //跳过低七章
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
