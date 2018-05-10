@@ -9,6 +9,8 @@ public class Note {
         // 20180502 _redis_development_and_operation 302 / 890
         // 20180503 _redis_development_and_operation 339 / 890
         // 跳过 常见异常, 以及 案列分析
+        // 20180508 _redis_development_and_operation 402 / 890
+        // 复制部分没有细读
         //
 
     //TODO SDS 掌握
