@@ -13,6 +13,7 @@ public class Note {
         // 复制部分没有细读
         //20180510 _redis_development_and_operation 441 / 890
         //跳过低七章
+        //20180511 _redis_development_and_operation  464 / 890
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
