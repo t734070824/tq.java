@@ -1,0 +1,382 @@
+Nav logo
+首页
+下载App
+
+搜索
+Tomcat 源码分析 项目启动 (基于8.0.5)
+96  爱吃鱼的KK 
+2017.07.28 23:26* 字数 1287 阅读 191评论 2喜欢 14
+1. Tomcat 启动猜想
+在进行分析之前, 我们先自己猜想一下, Tomcat 启动一共完成哪些步骤:
+
+1. bash 脚本引导 java 类
+2. 解析 server.xml
+3. Server, Service, Engine 的启动
+3. 解析 ${catalina.base}/webapps 下面的项目(以文件夹/war包的形式), 包括解析 web.xml 文件, 将 servlet, filter, listener, session 对应的信息加载到 Context 里面
+4. 加载路由信息 (Mapper 模块中)
+5. 请求连接处理器 connector 启动
+2. Tomcat 启动脚本
+在启动 Tomcat 时, 我们通常通过 ./bin/start.sh 方式来启动, 而这个脚本最终也是调用 catalina.sh 来执行相应的启动, 下面我们看一下 catalina.sh 里面 启动 Java 程序这段
+
+/usr/bin/java                                                     # Java 命令                                                                                   
+-Djava.util.logging.config.file=${catalina.base}/conf/logging.properties    # Tomcat 的日志配置文件
+-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager # Tomcat 日志管理器    主要是读取日志的配置信息(能实现针对不同的 Context 配置不同的输出策略)
+-Djava.endorsed.dirs=/usr/local/tomcat7.0.73/endorsed             # 这个参数是 JVM 提供给我们替换 jdk 原有类的一个功能(我的理解就是 BootstrapClassLoader 在进行加载class时, 会先加载这个目录下的类, 而忽视原先在 ${JDK}/lib 下的相同类名的类), 这里我们还想到 "java.ext.dirs" 通过这个参数我们可以给原有的 javaapi 增加一些新的功能                       
+-classpath ${catalina.base}/bin/bootstrap.jar:${catalina.base}/bin/tomcat-juli.jar      # classpath 路径, 一个是Tomcat 的启动引导包, 一个是Tomcat 自己的日志jar
+-Dcatalina.base=/usr/local/tomcat8.0.5                                      
+-Dcatalina.home=/usr/local/tomcat7.0.5                            # Tomcat 的安装目录                                              
+-Djava.io.tmpdir=/usr/local/tomcat8.0.5/temp                      # tomcat 的临时文件目录                                          
+org.apache.catalina.startup.Bootstrap startup                     # Java 程序 main 类
+Bootstrap 是Tomcat中的启动程序引导类, 下面我们就从这类入手, 看看 Tomcat 启动过程中做了哪些事情
+
+3. Tomcat Bootstrap 启动
+我们从main入手看看到底做了什么
+
+public static void main(String args[]) {
+
+    if (daemon == null) {
+        // Don't set daemon until init() has completed
+        Bootstrap bootstrap = new Bootstrap();                      // 1.创建当前的 Bootstrap 类型的对象
+        try {
+            bootstrap.init();                                       // 2. 初始化整个系统中用到的几个 classLoader, 并设置父子关系, 创建 org.apache.catalina.startup.Catalina 对象, 设置其 parentClassLoader 为shareClassLoader, 为创建 WebappClassLoader 做准备
+        } catch (Throwable t) {
+            handleThrowable(t);
+            t.printStackTrace();
+            return;
+        }
+        daemon = bootstrap;                                         // 3. 保存当前引用到静态变量
+    } else {
+        // When running as a service the call to stop will be on a new
+        // thread so make sure the correct class loader is used to prevent
+        // a range of class not found exceptions.
+        Thread.currentThread().setContextClassLoader(daemon.catalinaLoader);
+    }
+                                                                   // 4. 程序运行到这边时 Thread.currentThread().contextClassLoader 就是 catalinaClassLoader 了(在 bootstrap.init() 里面进行了设置), 下面的所有加载 class操作, 都是由这个 classloader 来进行加载 (PS: 则在 Tomcat 8.0.x 里面, 这里的 catalinaClassLoader 其实就是 commonClassLoader)
+    try {
+        String command = "start";                                  // 5. 默认命令参数
+        if (args.length > 0) {                                     // 6. 这里可能是其他的参数, 但默认命令就是 start
+            command = args[args.length - 1];
+        }
+
+        if (command.equals("startd")) {                            // 7. 启动 Tomcat (PS: 这种方式, Tomcat 启动过后会立刻 关闭, 主要是 Catalina 里面的 await = false )
+            args[args.length - 1] = "start";
+            daemon.load(args);
+            daemon.start();
+        } else if (command.equals("stopd")) {                      // 8. 停止 Tomcat
+            args[args.length - 1] = "stop";
+            daemon.stop();
+        } else if (command.equals("start")) {
+            daemon.setAwait(true);                                 // 9. 通过更改 Catalina 里面的 await 值, 在 Tomcat start 执行时, 程序会 hold 住, 直到有向 Tomcat 发送 stop 命令, 程序才会停止 (详情见 Catalina.start() 方法最后那部分)
+            daemon.load(args);                                     // 10. 直接调用 Catalina.load 方法, 进行初始化 各个文件, 命名服务, 用 Digester 来解析 XML 文件, 并且  init Tomcat 容器里面的各个组件
+            daemon.start();                                        // 11. 启动当前 bootstrap 对象, 其实主要是通过反射调用前面生成的 org.apache.catalina.startup.Catalina 的 start 方法
+        } else if (command.equals("stop")) {                       // 12. 停止 Tomcat (最终还是调用 StandardServer.stop())
+            daemon.stopServer(args);
+        } else if (command.equals("configtest")) {                 // 13. 这个只是 将 Tomcat 的配置文件加载进来, 通过反射调用 Catalina.init, 从而检测 程序对应的配置文件是否正确
+            daemon.load(args);
+            if (null==daemon.getServer()) {
+                System.exit(1);
+            }
+            System.exit(0);
+        } else {
+            log.warn("Bootstrap: command \"" + command + "\" does not exist.");
+        }
+    } catch (Throwable t) {                                     // 抛出异常一直退出
+        // Unwrap the Exception for clearer error reporting
+        if (t instanceof InvocationTargetException &&
+                t.getCause() != null) {
+            t = t.getCause();
+        }
+        handleThrowable(t);
+        t.printStackTrace();
+        System.exit(1);
+    }
+}
+上面的 main 主要做了3件事情:
+
+1. 创建 Bootstrap 对象
+2. 调用bootstrap做一些初始化的操作(主要是 classloader 的创建)
+3. 更具命令行传来的参数start -> 先后通过反射来调用 Catalina 类的 load, 与 start方法
+而其中 Bootstrap.init() 里面定义了Tomcat的ClassLoader结构设计那我们就看一下 Bootstrap.init()
+
+/**
+ * Initialize daemon.
+ * 初始化当前的 tomcat 中的 ClassLoader, 主要是创建 org.apache.catalina.start.Catalina 对象, 并且设置它的 classLoader 为catalinaLoader
+ */
+public void init() throws Exception {
+
+    initClassLoaders();                                                 // 1.初始化 commonClassLoader, catalinaClassLoader, sharedClassLoader (其中commonClassLoader作为另外两个 classLoader 的 parent, 并且其加载了 ${catalina.base}/bin 下面的公共 jar 包) (PS: catalina.base 其实就是 Tomcat 的安装目录, catalina.home 与 catalina.base 其实是一样的)
+
+    Thread.currentThread().setContextClassLoader(catalinaLoader);       // 2. 设置当前线程的 classLoader 为 catalinaClassLoader(这是对 Tomcat 运用程序来说的); 对应的 StandardContext 来说, 其对应的  WebappClassLoader
+
+    SecurityClassLoad.securityClassLoad(catalinaLoader);                // 3. 让 catalinaLoader 来加载 Tomcat 下面几个核心的 类 (PS: 这里用 catalinaClassLoader 来加载的, 意味着 sharedClassLoader 是获取不到)
+
+    // Load our startup class and call its process() method
+    if (log.isDebugEnabled())
+        log.debug("Loading startup class");
+    Class<?> startupClass =
+        catalinaLoader.loadClass
+        ("org.apache.catalina.startup.Catalina");                      // 4. 加载 org.apache.catalina.startup.Catalina 类型 (PS: 这里的 catalina 其实没有在 Bootstrap.jar 里面)
+    Object startupInstance = startupClass.newInstance();               // 5. 创建 org.apache.catalina.startup.Catalina 对象 (PS: 这里为什么要用 反射的方式来生成 Tomcat 启动实例, 主要是为以后, 出现一个 catalina2 时, 只需要这里一个配置, 就开启另外一种 Tomcat 启动模式)
+
+    // Set the shared extensions class loader                          // 6. 设置 CataLina 类的 parentClassLoader (PS: 这是啥用??? 我们瞧瞧发现, Catalina.parentClassLoader 会 StandardContext 启动时设置 WebappLoader 的parentClassLoader 时用到; 这里用的就是 sharedClassLoader, 意味着 每个 WebAppClassLoader 的 parentClassLoader 都是 sharedClassLoader, 将代码 #new WebappLoader(getParentClassLoader())#)
+    if (log.isDebugEnabled())
+        log.debug("Setting startup class properties");
+    String methodName = "setParentClassLoader";
+    Class<?> paramTypes[] = new Class[1];
+    paramTypes[0] = Class.forName("java.lang.ClassLoader");
+    Object paramValues[] = new Object[1];
+    paramValues[0] = sharedLoader;
+    Method method =
+        startupInstance.getClass().getMethod(methodName, paramTypes);
+    method.invoke(startupInstance, paramValues);                      // 7. 调用刚刚创建的 org.apache.catalina.startup.Catalina 对象的 setParentClassLoader 设置 classLoader
+
+    catalinaDaemon = startupInstance;                                 // 8. 将这个启动的实例保存下来
+}
+这里有个小细节, 就是 Thread.currentThread 的 ContextClassLoader 设置成了 catalinaLoader, 这意味着接下来类的加载工作交给这个 catalinaLoader, 而这个 catalinaLoader 是由 initClassLoaders 创建出来的, 这个方法定义了 Tomcat 里面的主要几个 Classloader:
+
+commonLoader     : commonLoader 加载的资源 可被 Tomcat 和 所有的 Web 应用程序共同获取
+catalinaLoader   : catalinaLoader 加载的资源只能被 Tomcat 获取(所有 WebappClassLoader 不能获取到 catalinaLoader 加载的类)
+sharedLoader     : catalinaLoader 这个类是所有 WebappClassLoader 的父类, sharedLoader 所加载的类将被所有的 WebappClassLoader 共享获取
+
+但是这个版本 (Tomcat 8.x.x) 中, 默认情况下 commonLoader = catalinaLoader = sharedLoader
+(PS: 为什么这样设计, 主要这样这样设计 ClassLoader 的层级后, WebAppClassLoader 就能直接访问 tomcat 的公共资源, 若需要tomcat 有些资源不让 WebappClassLoader 加载, 则直接在 ${catalina.base}/conf/catalina.properties 中的 server.loader 配置一下 加载路径就可以了)
+见代码
+
+private void initClassLoaders() {
+    try {                                                                   // 1. 补充: createClassLoader 中代码最后调用 new URLClassLoader(array) 来生成 commonLoader, 此时 commonLoader.parent = null,  则采用的是默认的策略 Launcher.AppClassLoader
+        commonLoader = createClassLoader("common", null);                   // 2. 根据 catalina.properties 指定的 加载jar包的目录, 生成对应的 URLClassLoader( 加载 Tomcat 中公共jar包的 classLoader, 这里的 parent 参数是 null, 最终 commonLoader.parent 是 URLClassLoader)
+        if( commonLoader == null ) {                                        // 3. 若 commonLoader = null, 则说明在 catalina.properties 里面 common.loader 是空的
+            // no config file, default to this loader - we might be in a 'single' env.
+            commonLoader=this.getClass().getClassLoader();
+        }
+        catalinaLoader = createClassLoader("server", commonLoader);         // 4. 将 commonClassLoader 作为父 ClassLoader, 生成 catalinaLoader，这个类就是加载 Tomcat bootstrap.jar, tomcat-juli.jar 包的 classLoader (PS; 在 catalina.properties 里面 server.loader 是空的， 则代码中将直接将 commonLoader 赋值给 catalinaLoader)
+        sharedLoader = createClassLoader("shared", commonLoader);           // 5. 将 commonClassLoader 作为父 ClassLoader, 生成 sharedLoader, 这个类最后会作为所有 WebappClassLoader 的父类 ( PS: 因为 catalina.properties 里面 shared.loader 是空的, 所以代码中直接将 commonLoader 赋值给 sharedLoader)
+    } catch (Throwable t) {
+        handleThrowable(t);
+        log.error("Class loader creation threw exception", t);
+        System.exit(1);
+    }
+}
+4. Tomcat Catalina.load() 方法
+这个方法主要完成:
+
+1. 初始化 临时目录 (一开始以为这里是生成 JSP 对应 Servlet 的地方, 后来, 发现不对, 放  Servlet d的地方是 在 StandardContext.postWorkDirectory 中创建的)
+2. 这里设置是否 Tomcat 开启命名服务, 以及服务用哪一个 ContextFactory
+3. 创建 digester 对象, 用于解析 xml
+4. 获取 server.xml
+5. 构造 日志 handler, SystemLogHandler, 并调用 System.out/err, 这样系统的日志输出 就会 经过 SystemLogHandler 来处理
+6. 调用 getServer().init() 来初始化 StandardServer 及 service
+见代码
+
+public void load() {
+    long t1 = System.nanoTime();
+    initDirs();                                             // 1. 初始化 临时目录 (一开始以为这里是生成 JSP 对应 Servlet 的地方, 后来, 发现不对, 放  Servlet d的地方是 在 StandardContext.postWorkDirectory 中创建的)
+    initNaming();                                           // 2. 设置 Tomcat JNDI 的配置信息
+    // Create and execute our Digester
+    Digester digester = createStartDigester();              // 4. 创建 digester 对象, 用于解析 xml
+    try {
+        inputSource.setByteStream(inputStream);
+        digester.push(this);                                // 5. 这里将当前对象(Catalina) push 到 Digester 的最底部, 那调用 digester.parse 时会将 server.xml 里面的信息解析出来, 并映射到 当前的 Catalina 上
+        digester.parse(inputSource);                        // 6. 解析 server.xml 生成对应的 Server, Service, Engine, Host 等信息 
+    } catch (SAXParseException spe) {}
+    initStreams();                                          // 7. 这里的设置就是让程序里面 log 的信息输出到 catalina.out 文件里面
+    getServer().init();                                     // 8. 初始化创建的 server 对象, 其实这里主要是初始化 Servrer 及 下面的所有 childContainer
+}
+5. Tomcat StandardServer.initInternal() 方法
+先看 UML 图
+
+StandardServer_init.png
+上面这张图展现了Tomcat中一般容器的生命周期方法(其实就是父抽象类定义主逻辑, 子类实现各自的 internal 方法), 对 就是 模板模式
+先看一下 StandardServer.start() 方法主要步骤:
+
+1. 调用 super.initInternal 将自己注册到 JMX 中
+2. 初始化 StandardServer 的 JNDI 全局命名服务 (这个整个 Tomcat 只存在一个, 而与之对应的 Context 也是 每一个 Context 一个对应的 Namingresources)
+3. 调用 service.init 进行初始化
+6. Tomcat StandardService.initInternal() 方法
+见 UML 图
+
+StandardService_init.png
+主要步骤:
+
+
+1. 调用 super.initInternal 将自己注册到 JMX 中
+2. 调用 container.init() 来初始化 对应的一层一层所有的容器 (Tomcat 的容器有 Engine, Host, Context, Wrapper)
+3. 初始化 MapperListener(MapperListener 没有自己的  initInternal, 只是在父类里面注册一下 JMX 服务), 这里的 mapperListener 非常重要, 具体看其startInternal 方法, 里面有监听 各层容器的方法
+4. 初始化 所有 connector (每一个 connector 代表一种通信协议， 现有协议 http, arp, 而每种协议又对应 3种IO模型 BIO, NIO, AIO)
+7. Tomcat StandardEngine.initInternal() 方法
+StandardEngine 做的比较简单, 就是注册 JMX 与初始化内部线程池(这个线程池主要是做些开启/关闭子容器之类的事), 所以就省率了; 到这边 Tomcat 的 init 流程已经 OK 了, 至于 StandardHost, 则在 StandardHost.start() 方法触发的时候先调用其 initInternal, 再调用其 startInternal
+
+8. Tomcat StandardServer.startInternal() 方法
+到上面的流程, Catalina.load() 方法已经执行完成, 接下来就是 Catalina.start() 方法来引导各个容器来启动, 那首先就是 StandardServer, 先看一下下面的流程图
+
+StandardServer_start.png
+其主要步骤:
+
+1. 触发一下容器生命周期的事件, 设置现在容器的状态
+2. 调用 NamingResourcesImpl.start (这里面的start, 只是设置一下状态, 触发一下事件 CONFIGURE_START_EVENT)
+3. 调用 StandardService.start 来触发下面的各个组件/容器 (Engine, Host, Context, Wrapper)
+9. Tomcat StandardService.startInternal() 方法
+其实在 Tomcat 接下来的几个步骤都是 start Service 子容器, 进行相应的资源启动, 见下图:
+
+StandardService_start.png
+主要步骤:
+
+1. 设置容器的状态
+2. 启动 对应的子组件/容器 (Engine/Host/Context/Wrapper 这里启动的 wrapper 只有在是配置了 loadOnStartUp 的 wrapper)
+3. 启动 MapperListener 这里将 容器的信息加到 路由解析器 Mapper 上
+4. 启动 IO 处理器 connector
+我们看到, Tomcat 是先 start 所有的容器, 然后将容器里面的信息映射到路由器里面Mapper, 最后在启动 Tomcat 的连接处理器
+
+10. Tomcat StandardEngine.startInternal() 方法
+StandardEngine继承了ContainerBase, 而且其 start 方法的主逻辑也在 ContainerBase 里面
+
+StandardEngine_start.png
+主要步骤:
+
+1. 初始化 容器对应的 Logger
+2. 若配置了 Tomcat cluster, 则start
+3. 开启 Tomcat 验证服务 Realm
+4. 通过线程池 start 其对应的 子容器
+5. 调用 StandardPipeline.start 初始化 currentValve, 其中也会 调用 Valve.start 来启动对应的所有 Valve
+6. 开启 容器的后台定时任务(其会递归的执行其子容器)
+针对上面ContainerBase的执行操作, 这里有几点补充:
+
+为了方便阅读代码, 在调用子容器 start 时我将异步改成同步
+Tomcat 里面的StandardPipeline, XXXValve 也是容器, 在这里也调用了他们的 start 方法
+Tomcat的后台定时任务都是通过 Container.backgroundProcess, Valve.backgroundProcess 来完成的
+Container.backgroundProcess() 任务列表
+
+1. ContainerBase 集群后台任务, Realm 后台任务, 获取容器所对应的Piepline, 执行其里面Valve的 backgroundProcess
+2. StandardEngine 调用 ContainerBase 的后台任务
+3. StandardHost 调用 ContainerBase 的后台任务
+4. StandardContext 
+    (1) 调用 WebappClassLoader 来一直监控着其所加载资源, 一有变动, 就触发热部署(将 WebappClassLoader.backgroundProcess() 方法)
+    (2) 调用 ManagerBase 的backgroundProcess 来 loop 检测所有 Session 是否超时
+    (3) 调用 Cache.backgroundProcess 将超过cache 大小的元素 evict 掉 (这里的 Cache 存储的是 通过StandardRoot来拿到的资源)
+    (4) 调用 ContainerBase.backgroundProcess 来处理一些公共的定时任务
+5. StandardWrapper
+    这里主要针对JSP的 JspServlet, 它调用了 periodicEvent 方法, 主要做下面两件事
+    (1) 若设置JSP 闲置时间 jspIdleTimeout, 则将超过闲置时间的 JspServletWrapper 从 jsps(ConcurrentHashMap) 及 jspQueue(FastRemovalDequeue) 里面进行删除
+    (2) 若设置了 lastCompileCheck (间隔编译), 则达到时间间隔, 就进行重编译(这一块没有再深入了解了, 毕竟现在写JSP的页面的程序不多了)
+Valve.backgroundProcess() 任务列表
+
+1. AccessLogValve: 定时调用flush方法, 刷一下数据
+2. StuckThreadDetectionValve: 定时的扫描工作线程, 查看其是否执行工作超时(这个用的比较少, 也比较简单, 主要是捕获 程序中处理时间长的 Thread, 并且在满足条件的情况下 进行 打一下警告日志 (进行请求的时候, 加入到监控线程的定时任务里面, 监控处理所花费的时间, 若超时, 则打印线程的堆栈日志信息))
+11. Tomcat StandardHost.startInternal() 方法
+单纯的StandardHost.start比较简单, 复杂的在哪里呢, 在StandardHost 的监听器 HostConfig(HostConfig是什么鬼, 何时出现的, 其实是在 Digester 解析 server.xml 时set进去的), 在 ContainerBase 的 startInternal 最后会调用 "setState(LifecycleState.STARTING)", 从而触发监听器 HostConfig 进行 StandardContext的部署操作, 看下面的UML 图
+
+StandardHost_start.png
+这个 StnadradHost 的start主逻辑和 StandardEngine差不多, 就是在 start 成功后触发了 HostConfig 来进行部署 StandardContext, 而StandardHost.add(StandardContext) 有会触发 ContextConfig 来进行部署 Context (主要将 web.xml 信息映射到StandardContext 中,为请求做准备)
+
+12. Tomcat StandardContext.startInternal() 方法
+StandardContext 的启动是因为Host.add 方法而触发的(PS: 见ContainerBase.addChildInternal()), 不多说了, 见 UML 图
+
+StandardContext_start.png
+整个步骤比较多, 也很复杂 ! 我这里主要罗列一些 StandardContext 里面的startInternal的操作
+
+1. 发布 正在启动的 JMX 通知, 这样可以通过添加 NotificationListener 来监听 Web 应用的启动
+2. NamingResourcesImpl.start 这里只是设置容器的生命周期状态 + 发送一下消息事件
+3. 初始化 Context 对应的 StandardRoot (StandardRoot 收集了 web 服务的绝大部分资源 preResources, classResources, jarResources, postResources)
+4. 判断是否 Servlet >= 3.0 && addWebinfClassesResources == true 则将 WEB-INF/classes/META-INF 下面的资源也加载进来
+5. WebappLoader 初始化, 其中有设置是否完全遵循 parent-delegate 模式
+6. 初始化 charsetMapper (Context 支持的字符集, 负责处理本地字符问题)
+7. 初始化临时目录, 默认 为 $CATALINA_BASE/work/<Engine名称>/<Host名称>/<Context名称> (其中也涉及到 编译 JSP 生成 Servlet 及对应 class 的临时目录)
+   (1). 这里面还调用 getServletContext() 来生成 ApplicationContext, ApplicationContextFacade
+   (2). 初始化 Session 的追踪模式 Cookie 与 URl 模式 (也有可能会有 SSL 方式)
+8. 开启  JNDI 的监听器 NamingContextListener
+9. 调用 bindThread 进行绑定 ClassLoader (这里返回的 ClassLoader 是一个 null, 主要因为 这时 WebappClassLoader 是 null, 所以 这一步操作其实没有什么作用)
+10. loader.start() 触发 WebappLoader 启动 -> WebappClassloader 启动 (主要是通过反射生成  WebappClassLoader, 并且设置对应 URLClassPath 里面的 URL)
+11. 设置 StandardContext stop 时需要清除的一下属性 clearReferencesStatic, clearReferencesStopThreads, clearReferencesStopTimerThreads, clearReferencesHttpClientKeepAliveThread
+12. 调用  bindThread 将WebappClassLoader 绑定到 当前 StandardContext 上
+13. 初始化 StandardContext 对应的 Logger
+14. 若 Tomcat 配置 cluster 的话, 则进行启动
+15. 启动 Tomcat 默认的 Realm
+16. 初始化 StandardPipeline(其内部就是一个 StandardPipelineValve), 现在我们发现, Tomcat 里面的 valve 主要功能是路由, 记录日志, 对错误信息进行处理
+17. 创建 buildInjectionMap, 将 EJB, Env, 驱动 Bean, JNDI 资源, 全部注入进入(那什么时候拿出来呢, 这就是在组装对象的时候需要用到, 比如用 DefaultInstanceManager 来实例化 Servlet 对象)
+18. 生成 DefaultInstanceManager(Tomcat 中的实例化管理器, 像我们有时在 Servlet 上加一点 注解, 通过 DefaultInstanceManager 来生成, 则会将 buildInjectionMap 里面对应信息注入进去, 是不是很像 IOC啊..... )
+19. 调用 mergeParameters 合并 server.xml 与 context.xml 里面设置参数到 ApplicationContext 里面
+20. 启动对应的 ServletContainerInitializer (好像 Spring 里面有些类继承了这个类)
+21. 启动 ApplicationListener 监听器
+22. 启动 StandardManager(默认的 Session 生成, 及管理器(超时管理), 其中也创建了一个 SessionIdGenerator, 用于生成 sessionId)
+23. 将所有的 Filter 封装成 ApplicationFilterConfig, 在servlet 请求到时会进行实例化(而真正的 Filter 实例化是在 ApplicationFilterConfig.getFilter() 时生成的, 也是通过 DefaultInstanceManager 的, 具体可看 ApplicationFilterChain.internalDoFilter方法)
+24. 实例化 load-on-start-up 的 servlet(PS: 默认Tomcat 中的 Servlet 是单例模式, 另一种是对象池, 默认一个 Servlet Class 最多 20 Servlet 对象)
+25. 通过 super.threadStart() 启动 StandardContext 的后台定时任务线程
+26. 调用 unbindThread 将原来的 ClassLoader 替换回来
+27. 发布 JMX 通知事件 + 设置容器状态
+额, 过上面的 StandardContext.start() 下面的步骤简单点了
+
+13. Tomcat MapperListener.startInternal() 方法
+MapperListener是Tomcat各个容器的监听器, 它的主要任务就是将容器的信息组装到 Mapper(路由模块)中
+
+主要步骤:
+    1. 通过 StandardEngine 来确认 Tomcat 默认的 host (这里的 defaultHost 就是在 server.xml 里面的 <Engine name="Catalina" defaultHost="localhost" />)
+    2. 将自己作为 Engine, Host, Context, Wrapper 的监听器
+    3. 通过registerHost, registerContext, registerWrapper 将 host, context, wrapper 的信息存储到 Mapper 里面, 以便下次路由时使用
+14. Tomcat connector.start方法
+Connector 是Tomcat中网络连接模块, 主要支持 Http, Arp 协议, 分别有 bio, nio, aio 三种io模型的实现, 下面以最简单的 bio 来进行叙述, 见 UML图
+
+Connector_start.png
+
+网络接收都由 Endpoint 来处理, 将接收的结果集都交给 Http11Protocol 来处理, 到此, Tomcat 的整个启动流程就OK了
+
+15. Tomcat 启动流程总结
+整个Tomcat的启动流程涉及很多知识点, 尤其那些生僻的功能(如 Digester, JNDI), 这时就需要一个一个克服了, 好在现在有关Tomcat的资料比较多了! 理清Tomcat的启动流程对与我们究竟有哪些帮助呢? 我觉得最大的帮助应该就是让我们了解了一个网络服务器的架构是怎么样的, 也更加深刻的理解了项目中使用的设计模式
+
+16. 参考
+Tomcat 系统架构
+Tomcat 之设计模式
+死磕Tomcat7源码之二: web组件初始化
+Tomcat源码阅读之 Server.xml 文件的处理 与 Catalina 启动流程
+Tomcat源码阅读系列（三）启动和关闭过程
+
+小礼物走一走，来简书关注我
+
+ 日记本 © 著作权归作者所有 举报文章
+96 爱吃鱼的KK
+写了 38903 字，被 133 人关注，获得了 74 个喜欢
+
+   更多分享
+Web note ad 1
+ 240
+深入理解 Tomcat（六）源码剖析Tomcat 启动过程----生命周期和容器组件
+好了,今天我们继续分析 tomcat 源码, 这是第六篇了, 上一篇我们一边 debug 一边研究了 tomcat 的类加载体系, 我觉得效果还不错, 楼主感觉对 tomcat 的类加载体系的理解又加深了一点. 所以, 我们今天还是按照之前的方式来继续看源码, 一边 deb...
+
+ 48  莫那一鲁道
+ 240
+深入理解 Tomcat（五）源码剖析Tomcat 启动过程----类加载过程
+这是我们深入理解tomcat的第五篇文章，按照我们的思路，这次我们本应该区分析tomcat的连接器组件，但楼主思前想后，觉得连接器组件不能只是纸上谈兵，需要深入源码，但楼主本能的认为我们应该先分析tomcat的启动过程，以能够和我们上一篇文章深入理解 Tomcat（四）To...
+
+ 48  莫那一鲁道
+ 240
+深入理解 Tomcat（七）源码剖析 Tomcat 完整启动过程
+前言 这是我们分析 Tomcat 的第七篇文章，前面我们依据启动过程理解了类加载过程，生命周期组件，容器组件等。基本上将启动过程拆的七零八落，分析的差不多了， 但是还没有从整体的视图下来分析Tomcat 的启动过程。因此，这篇文章的任务就是这个，我们想将Tomcat的启动过...
+
+ 48  莫那一鲁道
+ 240
+tomcat 源码分析（三）基于JMX的生命周期管理
+根据tomcat中server.xml文件解析出来的各个对象比如：Server、Service、Connector等。这些容器都具有新建、初始化完成、启动、停止、失败、销毁等状态。tomcat的实现提供了对这些容器的生命周期管理，深入剖析这一过程 生命周期类接口设计类图如下...
+
+ 48  allenhai
+ 240
+Tomcat 源码分析 一次完整请求 (基于8.0.5)
+1. Tomcat 一次完整请求猜想 在进行分析之前, 我们先自己猜想一下, Tomcat 处理一个请求一共完成哪些步骤: 2. Tomcat Acceptor处理请求 Acceptor是一个专门处理请求连接得线程, 他主要做了以下步骤: 见代码: 从上面得代码中获知: C...
+
+ 48  爱吃鱼的KK
+ 240
+8.9
+现在真的是 时间过的那么快 做什么事情又都很无聊 真的是很糟糕 心情也很糟糕 张小厚点赞了自己的微博 也是很开心了 只有这些吧 不知道要干什么 游泳也不想去 每天只想追剧追综艺 幸好三四五六这四天有个念想 其余就天就不知道了 回去车票已经买好 不想提前回去 一点都不想。
+
+ 48  Cheryl_ak717
+ 240
+“森鹿”系列！
+已经开学一个星期了，很累，但…很充实！因为补课一点画画的时间都没有了！我就趁着这会，盘点盘点，我初学水彩最喜欢的系列《森鹿》 这是第一张，我很喜欢呦～ 这是今晚速涂的，不太认真，(*∩_∩*)！ 想知道以后内容吗？ 请继续关注呦～
+
+ 48  简龄
+11月总结
+本月主要开课是明心沙龙，九型人格还有TP8的一阶段。虽然我的CT2-9没开起来，但是在跟进的过程当中，自己内心经历了很大的冲击和变化。自己第一次跟进当班通过只有两个学员，自己都还没挑就退缩了不干了，自己又苦口婆心的带她看带她学习，能想到的都做了，感觉很吃力，一度怀...
+
+ 48  金晓娜
+2017-06-10
+2017年6月10日 天气多云转晴 星期六 送走最后一个顾客已经是8点半了。跟儿子约好了今天晚上陪他去公园玩，（不能失约）所以我们匆匆忙忙的出发了！来到公园里人还真不少，大家都不停地运动着。儿子跟只小猴子似的，上蹿下跳，高兴不得了。带着他爸爸一会儿翻...
+
+ 48  肖睿妈妈

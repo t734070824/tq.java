@@ -26,8 +26,9 @@ public class ServletParameterServlet extends HttpServlet
     {
         ServletConfig c = this.getServletConfig();
         PrintWriter writer = response.getWriter();
-
+        writer.write("first");
         writer.append("database: ").append(c.getInitParameter("database"))
               .append(", server: ").append(c.getInitParameter("server"));
+
     }
 }
