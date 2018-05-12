@@ -22,5 +22,7 @@ public class Note {
     //TODO 当 redis 数据较多 内存较小 走磁盘???
     //TODO 复制章节 没有详细动手操作, 需要细读
     //TODO 复制深入 集群
+    //TODO Redis做异步队列 思考 很有意思
+    //TODO 集群 熟读 对分布式架构很有启发
 
 }
