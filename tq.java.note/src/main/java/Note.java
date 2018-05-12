@@ -8,4 +8,5 @@ public class Note {
     //TODO Docker
     //TODO oschina
     //TODO 热部署
+    //TODO spring 事务传播复习
 }
