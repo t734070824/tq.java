@@ -12,15 +12,12 @@ import java.net.InetSocketAddress;
 
 public class EchoClient {
 
-    private final int port = 8081;
+    private final int port = 9099;
 
     private final String host = "192.168.1.133";
 
     public static void main(String[] args) throws Exception {
         new EchoClient().start();
-        for (int i = 0; i < 2; i++) {
-        }
-
     }
 
     public void start() throws  Exception{

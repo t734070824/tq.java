@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 
 public class EchoServer {
 
-    private final int port = 8081;
+    private final int port = 9099;
 
     public static void main(String[] args) throws InterruptedException {
         new EchoServer().start();
