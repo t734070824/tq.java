@@ -57,6 +57,53 @@
     
     
 ### 原理
-1. 
-     
+1. 复制过程
+    - 保存主节点信息
+    - 主从建立 socket 连接
+    - 发送 ping  命令(pong) 
+    - 权限验证
+    - 同步数据集
+        - psync
+        - 全量同步以及 部分同步
+    - 命令持续复制
+2. 数据同步
+    - 全量复制
+    - 部分复制: 主节点补发丢失数据给从节点
+    - psync
+        - 主从节点各自复制偏移量
+            - 主节点在处理写入命令后, 会把命令的自己长度做累加记录
+            - 可以通过主节点的统计信息, 计算出 master_repl_offset - slave0:offset
+            - //TODO 但是 主节点的   slave0:offset 与 从节点 slave_repl_offset 不一致???
+        - 主节点复制加压缓冲区
+            - 保存在主节点的一个固定长度的队列, 默认大小为 1MB, 当主节点有连接的从节点(slave) 是被创建, 
+            - 主节点响应写请求的时候, 不仅会把命令发送从节点, 还会写入复制挤压缓冲区
+            - 用于部分复制 以及 复制命令丢失的数据补救
+        - 主节点运行id
+            - 动态分配的一个40位的十六进制字符串作为运行ID
+            - 唯一识别一个 Redis节点
+            - 主节点的运行id变化之后会做全量复制
+            - 关闭启动后, ID会改变的
+        - psync 命令
+            - psync runID(复制主节点的id) offset(从节点已复制的数据偏移量)
+            - master--> slave
+                - 1:+FULLRESYNC-->全量复制
+                - 2:+CONTINUE-->部分复制
+                - 3:-ERR-->主节点版本低于 2.8, 
+3. 全量复制
+    - psync 全量复制
+    - 时间开销
+        - 主节点的bgsave时间
+        - RDB数据网络传输时间
+        - 从节点清空数据的时间
+        - 从节点加载RDB时间
+        - 可能的AOF重写时间
+    - ![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_6_copy/1.jpg?raw=true)
+    
+    
+4. 主从心跳判断机制
+    
+    
+5. 异步复制
+    
+    
     

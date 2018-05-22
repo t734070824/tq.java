@@ -25,5 +25,6 @@ public class Note {
     //TODO Redis做异步队列 思考 很有意思
     //TODO 集群 熟读 对分布式架构很有启发**
     //TODO Redis事务
+    //TODO 启动 --> ./redis-server redis.conf ????
 
 }
