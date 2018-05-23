@@ -28,7 +28,7 @@
 
 ### TreeBin
 1. 类并不负责包装用户的key、value信息，而是包装的很多TreeNode节点
-2. 替了TreeNode的根节点，也就是说在实际的ConcurrentHashMap“数组”中，存放的是TreeBin对象，而不是TreeNode对象，这是与HashMap的区别
+2. 代替了TreeNode的根节点，也就是说在实际的ConcurrentHashMap“数组”中，存放的是TreeBin对象，而不是TreeNode对象，这是与HashMap的区别
 
 ### ForwardingNode 
 1. 一个用于连接两个table的节点类

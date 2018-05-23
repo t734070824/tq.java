@@ -63,7 +63,7 @@ public class CLHLock implements Lock{
     private AtomicReference<Node> tail = new AtomicReference<>(new Node());
 
     /**
-     * //TODO 同一个线程 多次lock呢???
+     * //TODO 全是不可重入锁
      */
     public void lock() {
         //获取当前线程的代理排队点
@@ -111,6 +111,7 @@ public class CLHLock implements Lock{
 
     @Override
     public void unlock() {
+        //TODO 没有判断当前节点是否获取锁
         // 当前线程的节点
         Node myNode = current.get();
         // 设置锁定状态为false，后继节点（线程）获得锁

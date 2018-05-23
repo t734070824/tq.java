@@ -28,7 +28,7 @@ class SimpleLockTest {
 	            }
 	        }).start();
 	        // 简单的让线程按照for循环的顺序阻塞在lock上
-	        Thread.sleep(100);
+	        Thread.sleep(10000);
 	    }
 
 	    System.out.println("main thread unlock!");
