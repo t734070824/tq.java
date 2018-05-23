@@ -23,8 +23,12 @@ https://coderbee.net/index.php/concurrent/20131115/577
     - 每次读写操作都必须在多个处理器缓存之间进行缓存同步，这会导致繁重的系统总线和内存的流量，大大降低系统整体的性能
 
 ### MCS Spinlock
-1. 是一种基于链表的可扩展、高性能、公平的自旋锁，申请线程只在本地变量上自旋，
+1. 是一种基于链表的可扩展、高性能、公平的自旋锁，**申请线程只在本地变量上自旋 ， 等待前驱节点通知**
 2. 直接前驱负责通知其结束自旋，从而极大地减少了不必要的处理器缓存同步的次数，降低了总线和内存的开销
+3. 理解(MCSLockApp):
+    - A 第一个获取锁, 因为没有其他线程, **直接获取锁, 设置自己node的 isBlock = false**;
+    - B 第二个获取锁, 因为 A 持有锁, **设置 A.next = B, B 在 B.isBlock字段, 直到 A通知**
+    - A 释放锁, **发现 A.next != null, 则: A.next.isBlock = false**, A.next = null, 此时 B 结束自旋, 获取锁
 
 ### CIH LOCK
 1. CLH lock is Craig, Landin, and Hagersten (CLH) locks, CLH lock is a spin lock, can ensure no hunger, provide fairness first come first service. 
