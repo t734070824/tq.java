@@ -1,10 +1,10 @@
 2017-11-29
 ### CMS采用的垃圾回收算法?
 1. CMS采用了标记--清除算法，由于标记清除算法会生成内存碎片，所以JVM提供了参数来使CMS可以在几次清除后作一次整理
--XX:CMSFullGCsBeforeCompaction：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，
-使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。
--XX:+UseCMSCompactAtFullCollection：打开对年老代的压缩。可能会影响性能，但是可以消除碎片
-摘自http://blog.csdn.net/iter_zc/article/details/41746265
+    - -XX:CMSFullGCsBeforeCompaction：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，
+        使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。
+    - -XX:+UseCMSCompactAtFullCollection：打开对年老代的压缩。可能会影响性能，但是可以消除碎片
+    - 摘自http://blog.csdn.net/iter_zc/article/details/41746265
 
 ### CMS为什么使用 标记--清除算法?
 ![](https://segmentfault.com/img/bVtUHO)
@@ -27,13 +27,9 @@
 
 
 ### FULL GC
-
-1. Full GC == Major GC指的是对老年代/永久代的stop the world的GC
-2. Full GC的次数 = 老年代GC时 stop the world的次数
-3. Full GC的时间 = 老年代GC时 stop the world的总时间
 4. CMS 不等于Full GC，我们可以看到CMS分为多个阶段，只有stop the world的阶段被计算到了Full GC的次数和时间，而和业务线程并发的GC的次数和时间则不被认为是Full GC
 5. Full GC的次数说的是stop the world的次数，所以一次**CMS至少会让Full GC的次数+2**，因为CMS Initial mark和remark都会stop the world，记做2次。而CMS可能失败再引发一次Full GC
-6. **CMSScavengeBeforeRemark**
+6. **CMSScavengeBeforeRemark**:执行CMS remark之前进行一次youngGC，这样能有效降低remark的时间
 
 ### GC时间 real != user+sys
 

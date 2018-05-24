@@ -1,6 +1,6 @@
 2018-02-01
 
-### Parellel Scavenge收集器
+### Parellel Scavenge 收集器
 1. 新生代收集器
 2. 复制算法
 3. 并行的线程收集器
