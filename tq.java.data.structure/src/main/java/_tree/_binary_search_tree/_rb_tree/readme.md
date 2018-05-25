@@ -28,8 +28,4 @@
 5. Java的TreeMap实现
 
 ### 缺点
-1. 著名的linux进程调度Completely Fair Scheduler,用红黑树管理进程控制块
-   epoll在内核中的实现，用红黑树管理事件块
-   nginx中，用红黑树管理timer等
-   Java的TreeMap实现
-   --> B+树, Mysql
+1. //TODO

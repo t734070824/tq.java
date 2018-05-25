@@ -351,7 +351,7 @@ public class DemoService {
     }
 
     /**
-     * Performs a deep copy on <i>other</i>.
+     * Performs a deep copy on <i>_other</i>.
      */
     public demoMethod_args(demoMethod_args other) {
       if (other.isSetParam1()) {
@@ -961,7 +961,7 @@ public class DemoService {
     }
 
     /**
-     * Performs a deep copy on <i>other</i>.
+     * Performs a deep copy on <i>_other</i>.
      */
     public demoMethod_result(demoMethod_result other) {
       __isset_bitfield = other.__isset_bitfield;

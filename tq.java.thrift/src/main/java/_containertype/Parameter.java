@@ -109,7 +109,7 @@ public class Parameter implements org.apache.thrift.TBase<Parameter, Parameter._
   }
 
   /**
-   * Performs a deep copy on <i>other</i>.
+   * Performs a deep copy on <i>_other</i>.
    */
   public Parameter(Parameter other) {
     __isset_bitfield = other.__isset_bitfield;
