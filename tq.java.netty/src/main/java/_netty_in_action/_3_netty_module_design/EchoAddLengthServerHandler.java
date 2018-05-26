@@ -11,9 +11,14 @@ public class EchoAddLengthServerHandler extends ChannelOutboundHandlerAdapter{
 
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
-        ByteBuf out = (ByteBuf) msg;
-        out.setInt(0, out.capacity());
-        System.err.println(out.capacity());
-        super.write(ctx, msg, promise);
+        try{
+            ByteBuf out = (ByteBuf) msg;
+            out.setInt(0, out.capacity());
+            System.err.println(out.capacity());
+            super.write(ctx, msg, promise);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

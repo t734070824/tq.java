@@ -13,5 +13,11 @@ public class EchoDemoServerHandler extends ChannelOutboundHandlerAdapter{
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
         System.err.println("EchoDemoServerHandler");
         super.write(ctx, msg, promise);
+
+        /**
+         * 有两次输出 EchoDemoServerHandler 的原因是因为
+         * 在 EchoServerHandler.channelReadComplete()还会触发一次写出消息
+         *
+         */
     }
 }
