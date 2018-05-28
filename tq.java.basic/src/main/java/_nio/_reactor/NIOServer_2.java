@@ -25,31 +25,30 @@ public class NIOServer_2 {
         serverSocketChannel.bind(new InetSocketAddress(1234));
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
-        while(selector.select() > 0){
+        while (true){
+            if(selector.selectNow() < 0){
+                continue;
+            }
+
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = selectionKeys.iterator();
             while (iterator.hasNext()){
                 SelectionKey key = iterator.next();
                 iterator.remove();
+
                 if(key.isAcceptable()){
-                    ServerSocketChannel acceptServerChannel = (ServerSocketChannel) key.channel();
-                    SocketChannel socketChannel = acceptServerChannel.accept();
+                    ServerSocketChannel acceptServerSocketChannel = (ServerSocketChannel) key.channel();
+                    SocketChannel socketChannel = acceptServerSocketChannel.accept();
                     socketChannel.configureBlocking(false);
-                    System.err.println("Accept:" + socketChannel.getRemoteAddress());
-                    socketChannel.register(selector, SelectionKey.OP_READ);
+                    System.err.println("Accept request from {}" + socketChannel.getRemoteAddress());
+                    SelectionKey readKey = socketChannel.register(selector, SelectionKey.OP_READ);
+                    //非必须
+                    readKey.attach(new Processor_2());
                 } else if(key.isReadable()){
-                    SocketChannel socketChannel = (SocketChannel) key.channel();
-                    ByteBuffer allocate = ByteBuffer.allocate(1024);
-                    int read = socketChannel.read(allocate);
-                    if(read <= 0){
-                        socketChannel.close();
-                        key.cancel();
-                        System.err.println("error");
-                        continue;
-                    }
-                    System.err.println("received:" + new String(allocate.array()));
+                    Processor_2 processor_2 = (Processor_2) key.attachment();
+                    processor_2.proces(key);
                 }
-                selectionKeys.remove(key);
+
             }
         }
 
