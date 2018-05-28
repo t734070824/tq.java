@@ -17,7 +17,7 @@
 ### Node 内部类
 1. 这个Node内部类与HashMap中定义的Node类很相似，但是有一些差别  
 2. 它对value和next属性设置了volatile同步锁  
-3. 它不允许调用setValue方法直接改变Node的value域  
+3. 它不允许调用setValue方法直接改变Node的value域, **用于只读遍历**  
 4. 它增加了find方法辅助map.get()方法 
 
 ### TreeNode
