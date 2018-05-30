@@ -19,6 +19,7 @@ public class Note {
     //TODO lockInterruptibly
     //TODO Exchanger 源码解析
     //TODO ThreadPoolExecutor 如何感知任务结束的
-    //TODO ConcurrentHashMap.扩容
+    //TODO ConcurrentHashMap.扩容 2386行
+    //TODO ConcurrentHashMap.红黑树 掌握
 
 }
