@@ -1,4 +1,7 @@
 2018-01-23
+
+## ByteBuf
+
 ### ByteBuf 优点
 1. 可以被用户自定义的缓冲区类型扩展
 2. 通过内置的复合缓冲区类型实现了透明的零拷贝????
@@ -8,6 +11,15 @@
 6. 支持方法的链式调用
 7. 支持引用计数
 8. 支持池化
+
+### 概念
+1. 如何工作
+    - readerIndex, writeIndex
+    - readerIndex > writeIndex--> error, writeIndex > MAX_CAPACITY-->error
+2. 使用模式
+    - **一个由不同的索引分别控制读访问以及写访问的字节数组**
+    - 堆缓冲区
+        - 
 
 
 ### 直接缓冲区
