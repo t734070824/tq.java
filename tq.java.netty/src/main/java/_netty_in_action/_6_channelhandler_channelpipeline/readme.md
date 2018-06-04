@@ -1,5 +1,12 @@
 2018-01-24
 
+## ChannelHandler ChannelPipeline
+
+### 资源管理
+1. //TODO 内存泄漏检测
+
+### 
+
 ### ChannelHdnler 的执行与阻塞
 1. 通常 ChannelPipeline 中的 每一个 ChannelHandler 都是通过它的 EventLoop (I/O 线程)来处理传递给它的事件.
 所以至关重要的是 **不要阻塞这个线程,因为这会对整体的 I/O 处理产生负面的影响**
