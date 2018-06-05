@@ -17,5 +17,6 @@ public class Note {
     //TODO Netty线程模型的卓越性能取决于对于当前执行的Thread的身份的确定
     //TODO google:netty eventloop
     //TODO google:netty parentgroup childgroup
+    //TODO 如何解决数据分批发的情况???
 
 }
