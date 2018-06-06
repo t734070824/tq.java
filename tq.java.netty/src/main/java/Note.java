@@ -18,5 +18,6 @@ public class Note {
     //TODO google:netty eventloop
     //TODO google:netty parentgroup childgroup
     //TODO 如何解决数据分批发的情况???
+    //TODO netty EventLoop源码分析 https://segmentfault.com/a/1190000007403873
 
 }

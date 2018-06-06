@@ -4,7 +4,7 @@
 ### Boss/Worker EventLoopGroup
 1. Netty服务器编程中需要BossEventLoopGroup和WorkerEventLoopGroup两个EventLoopGroup来进行工作
 2. 一个 ServerSocketChannel 对应一个 Selector 和 一个 EventLoop线程
-3. BossEventLoopGroup的线程数参数这是为1
+3. BossEventLoopGroup的线程数参数建议为1
 4. **BossEventLoop负责接收客户端的连接并将SocketChannel交给WorkerEventLoopGroup来进行IO处理**
 5. Boss EventloopGroup 负责 接收连接， worker EventloopGroup 负责处理以及读写
 
