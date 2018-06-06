@@ -20,8 +20,10 @@ public class Practice {
         //33
         System.err.println(1+2+"3");
 
-
-
-
+        System.out.println('b');
+        System.out.println('b' + 'c');
+        System.out.println((char) ('a' + 4));
     }
+
+
 }
