@@ -4,7 +4,7 @@
 
 <configuration>
     <typeAliases>
-        <typeAlias alias="Student" type="_begin_to_learn._1_basic.Student"/>
+        <typeAlias alias="Student" type="_begin_to_learn._3_sql_map.Student"/>
     </typeAliases>
 
     <environments default="development">
@@ -22,7 +22,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="_begin_to_learn/_1_basic/student.xml"/>
+        <mapper resource="_begin_to_learn/_3_sql_map/student.xml"/>
     </mappers>
 
 </configuration>
