@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="2">
+    <select id="selectInCondition" parameterType="student" resultType="student">
+        select * from student where studentId > #{studentId}
+        <if test="studentName != null">
+            and studentName = #{studentName};
+        </if>
+    </select>
+
+    <select id="selectInCondition2" parameterType="student" resultType="student">
+        <![CDATA[
+        select * from student where studentId > #{studentId}
+    ]]>
+        <if test="studentName != null and studentName != 'Jack' ">
+            and studentName = #{studentName}
+        </if>
+        <if test="studentAge != 0">
+            and studentAge = #{studentAge};
+        </if>
+    </select>
+
+    <select id="selectInCondition3" parameterType="student" resultType="student">
+        <![CDATA[
+          select * from student where studentId > #{studentId}
+        ]]>
+        <choose>
+            <when test="studentName != null">
+                and studentName = #{studentName};
+            </when>
+            <when test="studentAge != 0">
+                and studentAge = #{studentAge};
+            </when>
+            <otherwise>
+                or 1 = 1;
+            </otherwise>
+        </choose>
+    </select>
+
+
+    <!--trim、where、set-->
+    <select id="selectInCondition4" parameterType="student" resultType="student">
+        <![CDATA[
+        select * from student
+    ]]>
+        <where>
+            <if test="studentName != null and studentName != 'Jack' ">
+                and studentName = #{studentName}
+            </if>
+            <if test="studentAge != 0">
+                and studentAge = #{studentAge};
+            </if>
+        </where>
+    </select>
+
+    <!--前缀覆盖-->
+    <select id="selectInCondition6" parameterType="student" resultType="student">
+        select * from student
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="studentName != null and studentName != 'Jack' ">
+                and studentName = #{studentName}
+            </if>
+            <if test="studentAge != 0">
+                and studentAge = #{studentAge};
+            </if>
+        </trim>
+    </select>
+
+
+    <update id="updateStudentAgeById5" parameterType="Student">
+        <!--update student set studentAge = #{studentAge} where
+            studentId = #{studentId}; -->
+        <![CDATA[
+        update student
+    ]]>
+        <set>
+            <if test="studentAge != 0">studentAge = #{studentAge}</if>
+        </set>
+        where studentId = #{studentId}
+    </update>
+
+
+    <select id="dynamicForeach3Map1" parameterType="Object" resultType="student">
+        select * from student where studentAge = #{age} and studentName = #{name}
+
+    </select>
+
+   <insert id="dynamicForeach3Map2" parameterType="java.util.HashMap" >
+           insert into ${table} values
+            <foreach collection="ids" index="index" item="item" open="" separator="," close="">
+                (null, #{item.studentName},#{item.studentAge},#{item.studentPhone})
+            </foreach>
+   </insert>
+
+
+
+</mapper>

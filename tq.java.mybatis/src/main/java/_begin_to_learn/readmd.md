@@ -1,4 +1,20 @@
 2018-01-04
+
+### mybatis中的# 和$ 的区别
+1. -- #{ } 解析为一个 JDBC 预编译语句（prepared statement）的参数标记符
+    - select * from user where name = #{name}; --> select * from user where name = ?;
+    - Mybatis会把这个参数认为是一个字符串
+2. ${ } 仅仅为一个纯碎的 string 替换，在动态 SQL 解析阶段将会进行变量替换
+    - select * from user where name = '${name}'; --> select * from user where name = "ruhua";
+3. 总结
+    - 能使用 #{ } 的地方就用 #{ }
+    - 表名作为变量时，必须使用 ${ }
+        - select * from #{tableName} where name = #{name}; --> select * from ? where name = ?; --> select * from 'user' where name='ruhua';
+    - ${ } 在预编译之前已经被变量替换了，这会存在 sql 注入问题
+    - $方式一般用于传入数据库对象，例如传入表名
+    - 只能${}的情况,order by、like 语句只能用${}了,用#{}会多个' '导致sql语句失效.
+
+
 ### Mybatis 配置文件
 1. configuration节点为根节点。
 2. 在configuration节点之下，我们可以配置10个子节点， 
