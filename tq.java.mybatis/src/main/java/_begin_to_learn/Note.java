@@ -8,4 +8,5 @@ public class Note {
 
     //TODO flushCache
     //TODO useCache
+    //TODO 插件
 }
