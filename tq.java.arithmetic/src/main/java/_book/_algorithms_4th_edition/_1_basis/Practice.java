@@ -3,6 +3,8 @@ package _book._algorithms_4th_edition._1_basis;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author 734070824@qq.com
@@ -110,5 +112,53 @@ public class Practice {
         return exRl(n - 3) + n + exRl(n - 2) + n;
     }
 
+
+    @Test
+    public void _18(){
+        int a= 2;
+        int b = 25;
+
+        //2, 25 --> 50 //XXX
+        System.err.println(mystery(a, b));
+
+        //3, 11--> 33
+        System.err.println(mystery(3, 11));
+
+        //给定正整数, mystery(a,b)= a * b // NB
+        //给定正整数, mystery2(a,b)= Math.pow(a, b) // NB
+
+    }
+
+    private int mystery(int a, int b) {
+        if(b == 0)return 0;
+        if(b % 2 == 0) return mystery(a + a, b /2);
+        return mystery(a + a, b / 2) + a;
+    }
+
+    private int mystery2(int a, int b) {
+        if(b == 0)return 0;
+        if(b % 2 == 0) return mystery(a * a, b /2);
+        return mystery(a * a, b / 2) * a;
+    }
+
+    @Test
+    public void _19(){
+        /**
+         * {@link _dynamic_programming._take_the_stairs.TakeTheStairs.takeTheStairs()}
+         */
+        Map<Integer, Long> map = new HashMap<>();
+        System.err.println(F(100, map));
+
+    }
+
+    private long F(int n, Map<Integer, Long> map) {
+
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+        if(map.get(n) != null) return map.get(n);
+        long num = F(n-1, map) + F(n-2, map);
+        map.put(n, num);
+        return num;
+    }
 
 }
