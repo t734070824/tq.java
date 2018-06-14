@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="2">
+    <resultMap type="Teacher" id="TeacherMap">
+        <id column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectAllTeachers" resultMap="TeacherMap">
+        select teacher_id, teacher_name from teacher;
+    </select>
+
+    <insert id="insertTeacher" useGeneratedKeys="true" keyProperty="teacher_id" parameterType="Teacher">
+        insert into teacher(teacher_id, teacher_name) values(null, #{teacherName, jdbcType=VARCHAR});
+    </insert>
+</mapper>

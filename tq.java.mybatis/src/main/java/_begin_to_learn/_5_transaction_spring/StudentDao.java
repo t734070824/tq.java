@@ -10,4 +10,5 @@ public interface StudentDao
 {
     public List<Student2> selectAllStudents();
     public int insertStudent(Student2 student);
+    public int batchInsertStudents(List<Student2> studentList);
 }

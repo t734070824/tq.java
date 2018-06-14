@@ -7,3 +7,12 @@ create table student2
 
 
 ######################
+
+create table teacher
+(
+  teacher_id    int            auto_increment,
+  teacher_name  varchar(20)    not null,
+  primary key(teacher_id)
+)
+
+######################

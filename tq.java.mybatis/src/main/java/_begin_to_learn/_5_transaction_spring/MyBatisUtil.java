@@ -21,7 +21,7 @@ public class MyBatisUtil
     {
         try
         {
-            reader = Resources.getResourceAsReader("config.xml");
+            reader = Resources.getResourceAsReader("_begin_to_learn/_5_transaction_spring/config.xml");
             ssf = new SqlSessionFactoryBuilder().build(reader);
         }
         catch (IOException e)
