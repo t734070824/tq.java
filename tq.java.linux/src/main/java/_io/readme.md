@@ -1,6 +1,6 @@
 2018-03-05
 
-## IO Select Poll Epoll 
+## IO -- Select Poll Epoll 
 
 ### 疑问
 1. 同步IO VS 异步IO
@@ -27,7 +27,8 @@
 
 ### IO 模式
 1. 阻塞IO (Blocking IO)
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/1.jpg?raw=true)
+
+    ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/1.jpg?raw=true)
 
     - 用户进程调用了recvfrom, kernel 进入等待数据阶段, 此时用户进程被阻塞
     - 数据准备好, 从 kernel 拷贝到 用户内存, 在拷贝的过程中, 用户进程依然被阻塞
@@ -35,7 +36,8 @@
     - **blocking IO的特点就是在IO执行的两个阶段都被block了**
 
 2. 非阻塞 I/O（nonblocking IO）
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/2.jpg?raw=true)
+
+    ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/2.jpg?raw=true)
     
     - 用户read请求时, kernel并不会阻塞用户线程, 如果数据没有准备好, 返回 error, 
     - 用户进程 read之后,不等待, 判断结果,如果是 error, 再次 read
@@ -43,7 +45,8 @@
     - **nonblocking IO的特点是用户进程需要不断的主动询问kernel数据好了没有 --> 但用户进程并没有阻塞**
     
 3. I/O 多路复用()IO multiplexing 又被称为“事件驱动”)
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/3.jpg?raw=true)
+
+    ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/3.jpg?raw=true)
 
     - select/epoll的好处就在于**单个process就可以同时处理多个网络连接的IO**
     - 基本原理就是select，poll，epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程
@@ -55,7 +58,8 @@
     - 特点是通过一种机制一个进程能同时等待多个文件描述符，而这些文件描述符（套接字描述符）其中的任意一个进入读就绪状态，select()函数就可以返回
     
 4. 异步 I/O(asynchronous IO)
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/4.jpg?raw=true)
+
+    ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/4.jpg?raw=true)
 
     - 用户进程发起read操作之后，立刻就可以开始去做其它的事
     - 从kernel的角度，当它受到一个asynchronous read之后，首先它会立刻返回，所以不会对用户进程产生任何block
@@ -63,7 +67,8 @@
 
 
 ### 总结
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/5.jpg?raw=true)
+
+   ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/5.jpg?raw=true)
 
 1. blocking和non-blocking的区别
     - 调用blocking IO会一直block住对应的进程直到操作完成，而non-blocking IO在kernel还准备数据的情况下会立刻返回。
