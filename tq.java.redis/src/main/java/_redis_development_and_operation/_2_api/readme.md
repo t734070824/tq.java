@@ -2,6 +2,24 @@
 
 ## api的理解与运用
 
+### 数据结构与内部编码
+1. String
+    - raw
+    - int
+    - embstr
+2. hash
+    - hashTable
+    - zipList
+3. list
+    - linkedList
+    - zipList
+4. set
+    - hashTable
+    - intset
+5. zset
+    - skiplist
+    - ziplist
+
 ### 单线程架构
 1. I/O多路复用模型
 
@@ -12,16 +30,29 @@
    Redis自身的事件处理模型将epoll中的连接、 读写、 关闭都转换为事件， 不
    在网络I/O上浪费过多的时间**
 3. 单线程避免了线程切换和竞态产生的消耗   
+    - 简化数据结构与算法的实现: 并发数据结构的实现 困难并且难以测试
+    - 避免了线程切换和竞态产生的消耗   
 4. 问题:
     1. 对每个命令的执行时间有要求, 如果某个命令执行过长, 会阻塞其他命令
     
+### 增量迭代 scan
+1. 每次执行都只会返回少量元素
+1. 使用 SMEMBERS 命令可以返回集合键当前包含的所有元素， 
+    但是对于 SCAN 这类增量式迭代命令来说， 因为在对键进行增量式迭代的过程中， 键可能会被修改， 
+3. **增量式迭代命令只能对被返回的元素提供有限的保证** 
+    
 ### 字符串 API
-1. setnx key value: 键必须不存在, 才可以设置成功
+1. SET key value [EX seconds] [PX milliseconds] [NX|XX]: 
+    - EX second ：设置键的过期时间为 second 秒。 SET key value EX second 效果等同于 SETEX key second value 。
+    - PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。
+    - NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
+    - XX ：只在键已经存在时，才对键进行设置操作。
     - 因为 redis的单线程命令处理机制, 如果多个客户端同时执行 setnx key value, 只有一个客户端会成功--> **分布式锁**
-2. set key value xx: 键必须存在, 才可以设置成功    
-    - 
-3. incr(自增), decr(自减), incrby(自增指定数字), decrby, incrbyfloat(自增浮点数)         
-4. 
+2. incr(自增), decr(自减), incrby(自增指定数字), decrby, incrbyfloat(自增浮点数)         
+3. append: 向字符串尾部增加值
+4. getset: 设置并返回原值
+
+    
 
 ### 字符串 内部编码
 1. int: 8个字节的长整数
@@ -47,6 +78,7 @@
     - 当哈希类型元素的个数小于 hash-max-ziplist-entries 配置(512)
     - 同时所有值都小于 hash-max-ziplist-value 配置(64字节)
 2. hashtable:
+    - 无法满足 ziplist的时候
     - 当 有key 或者 value 大于64字节
     - **当恢复成满足ziplist的条件时, 不会改变为 ziplist**    
     

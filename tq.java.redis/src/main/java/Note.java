@@ -14,6 +14,8 @@ public class Note {
         //20180510 _redis_development_and_operation 441 / 890
         //跳过低七章
         //20180511 _redis_development_and_operation  464 / 890
+    //复习
+        //20180619 _redis_development_and_operation 108 2.4--列表
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过

@@ -20,4 +20,6 @@ public class Note {
     //TODO 如何解决数据分批发的情况???
     //TODO netty EventLoop源码分析 https://segmentfault.com/a/1190000007403873
 
+    //TODO **** outofdirectmemoryerror failed to
+
 }
