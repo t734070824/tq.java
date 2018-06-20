@@ -21,5 +21,7 @@ public class Note {
     //TODO netty EventLoop源码分析 https://segmentfault.com/a/1190000007403873
 
     //TODO **** outofdirectmemoryerror failed to
+    //TODO netty UDP size
+    //TODO bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(20480));
 
 }

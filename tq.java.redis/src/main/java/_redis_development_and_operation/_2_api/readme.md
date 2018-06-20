@@ -89,12 +89,18 @@
 4. 可以充当 栈 与 队列的 角色
 4. 可以重复
 
+    
+### brpop / blpop
+1. 如果有多个键, brpop / blpop 会从左至右遍历键, 一旦有一个键能弹出元素, 客户段立刻返回
+2. 多个客户端同时执行 brpop / blpop, 最先执行命令的客户端可以获取弹出的值
+
 ### list 内部编码
 1. ziplist  
     - 当列表类型元素的个数小于 list-max-ziplist-entries 配置(512)
     - 同时所有值都小于 list-max-ziplist-value 配置(64字节)
 2. linkedlist
     - 无法满足 ziplist
+
     
 ### list 应用场景    
 1. 消息队列
@@ -108,11 +114,11 @@
 ### 集合
 1. 不允许有 重复元素
 2. 无序, 无法通过下标获取
-3. 最多 2的32次方-1  
+3. **最多 2的32次方-1**  
 4. 支持集合内的增删改查, 多个集合的 交,并差 集
 
 ### set 内部编码
-1. intset : 当集合中的元素都是整数且元素个数小于set-maxintset-entries配置（默认512个） 时
+1. intset : 当集合中的元素**都是整数**且元素个数小于set-maxintset-entries配置（默认512个） 时
 2. hashtable（哈希表） ： 当集合类型无法满足intset的条件时， Redis会使用hashtable作为集合的内部实现。
 
 ### set 使用场景
@@ -126,6 +132,11 @@
     - sadd=Tagging（标签）
     - spop/srandmember=Random item（生成随机数， 比如抽奖）
     - sadd+sinter=Social Graph（社交需求）    
+    
+### SortedSet
+1. 分数从小到大排序
+2. 第一个排名=0;
+3. 
 
 ### SortedSet 内部编码
 1. ziplist（压缩列表）
