@@ -23,5 +23,6 @@ public class Note {
     //TODO **** outofdirectmemoryerror failed to
     //TODO netty UDP size
     //TODO bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(20480));
+    //TODO UDP Netty 1472
 
 }

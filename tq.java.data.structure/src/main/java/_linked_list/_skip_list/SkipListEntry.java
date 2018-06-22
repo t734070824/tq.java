@@ -6,18 +6,18 @@ package _linked_list._skip_list;
  */
 public class SkipListEntry {
 
-    public String key;
+    public Integer key;
     public Integer value;
 
     public  int pos;//为了打印
 
     public SkipListEntry up, down, left, right;  //上下左右 四个指针
 
-    public  static String negInf = new String("-oo");//负无穷
+    public  static int negInf = Integer.MIN_VALUE;//负无穷
 
-    public  static String posInf = new String("+oo");//正无穷
+    public  static int posInf = Integer.MAX_VALUE;//正无穷
 
-    public SkipListEntry(String key, Integer value) {
+    public SkipListEntry(int key, Integer value) {
         this.key = key;
         this.value = value;
 
@@ -25,13 +25,13 @@ public class SkipListEntry {
     }
 
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 
 
 
-    public String getKey() {
+    public Integer getKey() {
         return key;
     }
 
