@@ -19,8 +19,8 @@ public class SafeRemove {
         // Iterating and removing objects from list
         // This is wrong way, will throw ConcurrentModificationException
         for(String phone : listOfPhones){
-            if(phone.startsWith("iPhone")){
-                // listOfPhones.remove(phone); // will throw exception
+            if(phone.startsWith("Samsung Galaxy 4")){
+                listOfPhones.remove(phone); // will throw exception
             }
         }
         // The Right way, iterating elements using Iterator's remove() method
