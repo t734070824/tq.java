@@ -2,6 +2,13 @@
 
 ##其他
 
+
+### 动态修改命令
+1. config set命令动态修改
+    - config set slowlog-log-slower-than 20000
+    - config set slowlog-max-len 1000
+    - **config rewrite** (将配置持久化到本地配置文件)
+
 ### 问题
 1. 分布式锁
     - setnx + expire: 加一个过期时间防止锁忘记了释放
@@ -11,3 +18,4 @@
             - PX millisecond ：设置键的过期时间为 millisecond 毫秒。 SET key value PX millisecond 效果等同于 PSETEX key millisecond value 。
             - NX ：只在键不存在时，才对键进行设置操作。 SET key value NX 效果等同于 SETNX key value 。
             - XX ：只在键已经存在时，才对键进行设置操作。
+            

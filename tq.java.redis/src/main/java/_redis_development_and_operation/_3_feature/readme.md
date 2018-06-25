@@ -3,12 +3,18 @@
 ## 小功能大用处
 
 ### 慢查询
-1. 预设阀值:slowlog-log-slower-than
+1. 预设阀值:slowlog-log-slower-than:微秒, 默认10000
     - 如果slowlog-log-slower-than=0会记录所有的命令， slowlog-log-slowerthan<0对于任何命令都不会进行记录
 2. 慢查询记录: slowlog-max-len
     - 使用了一个列表来存储慢查询日 志， slowlog-max-len就是列表的最大长度。 一个新的命令满足慢查询条件时
       被插入到这个列表中， 当慢查询日志列表已处于其最大长度时， 最早插入的一个命令将从列表中移出
 3. **慢查询只记录命令执行时间， 并不包括命令排队和网络传输时间**
+5. showlog get n
+    - 标识id
+    - 发生时间戳
+    - 命令耗时
+    - 执行命令
+    - 参数
 
 ### redis shell
 1.
@@ -23,13 +29,49 @@
       端的共同实现。
       
 ### 事务 与 Lua
-1. Redis 不支持回滚      
+1. 事务(Redis 不支持回滚)
+    - multi
+    - sadd user:a:follow  user:b
+    - zadd user:b:fans 1 user:a(数据库中已有一个相同的key, 类型是 String)
+    - exec
+    - 结果: 
+        - 1
+        - WRONGTYPE Operation against a key holding the wrong kind of value
+    - user:a:follow数据成功插入
+    
+2. watch: 确保事务中的key 没有被其他客户端修改, 才执行事务, 否则不执行
+    
+3. lua
+    - script load 
+        - '脚本'
+        - '$(xx.lua)'
+    - eval 脚本内容 key个数 key列表 参数列表
+    - evalsha 脚本SHA1值 key个数 key列表 参数列表
+    - redis.call/ redis.pcall
+    - 好处
+        - Lua脚本在Redis中是原子执行的
+        - 定制命令, 常驻Redis内存
+        - 多条命令打包, 减少网络开销
+4. lua脚本管理
+    - script load
+    - script exists sha1...
+    - script flush
+        - 清除Redis内存中已经加载的所有lua脚本
+    - script kill
+        - 杀掉正在执行的 lua脚本
+        - 无法停止正在执行写入操作的脚本
+        - 
       
       
 ### Bitmaps
 1. 本身不是数据结构, 是一个字符串, 但可以对字符串进行 位操作(字符串 --> ASCII --> 二进制)      
 2. 单独提供一套指令, 
 3. 相当于位 操作
+5. 相当于一个数据, 下标就是偏移量, 值就是数据(0或1)
+
+
+### Bitmaps 命令
+1. setbit key offset value
 
 ### Bitmap 分析
 1. 做活跃用户分析:
