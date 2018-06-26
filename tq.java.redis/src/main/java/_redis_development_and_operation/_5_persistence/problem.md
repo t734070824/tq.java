@@ -67,4 +67,15 @@
       **aof_delayed_fsync指标会累加**， 查看这个指标方便定位AOF阻塞问题
     - AOF同步最多允许2秒的延迟， 当延迟发生时说明硬盘存在高负载问
       题， 可以通过监控工具如iotop， 定位消耗硬盘IO资源的进程
+      
+### 多实例部署
+1. 充分利用CPU多核特性, 在一台机器部署多个Redis实例
+2. 但是 同一时刻运行多个子进程, 对系统影响较为明显
+    - 外部程序轮询控制AOF重写操作的执行
+        - 轮询机器上的所有redis
+        - 确认aof增长率
+        - 超过阈值, bgrewriteaof 手动触发当前redis实例的AOF重写
+        - 运行期间循环检查aof_rewrite_in_progress和
+          aof_current_rewrite_time_sec指标， 直到AOF重写结束
+        - 循环
         

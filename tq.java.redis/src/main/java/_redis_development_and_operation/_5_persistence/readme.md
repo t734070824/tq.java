@@ -15,8 +15,8 @@
           时， 自动触发bgsave**
         - 如果从节点执行全量复制操作， 主节点自动执行bgsave生成RDB文件并发送给从节点
         - 执行debug reload命令重新加载Redis时， 也会自动触发save操作
-        - 默认情况下执行shutdown命令时， 如果没有开启AOF持久化功能则
-          自动执行bgsave
+        - **默认情况下执行shutdown命令时， 如果没有开启AOF持久化功能则
+          自动执行bgsave**
 2. 保存文件的处理
     - RDB文件保存在dir配置指定的目录下， 文件名通过dbfilename配置指定
     - 当遇到坏盘或磁盘写满等情况时， 可以通过config set dir{newDir}在线
@@ -54,8 +54,8 @@
     - Redis使用单线程响应命令， 如
       果每次写AOF文件命令都直接追加到硬盘， 那么性能完全取决于当前硬盘负
       载
-    - 先写入缓冲区aof_buf中， 还有另一个好处， Redis可以提供多种缓冲区
-      同步硬盘的策略， 在性能和安全性方面做出平衡
+    - 先写入缓冲区aof_buf中， 还有另一个好处， **Redis可以提供多种缓冲区
+      同步硬盘的策略， 在性能和安全性方面做出平衡**
 ### 文件同步
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/3.jpg?raw=true)
 
@@ -71,8 +71,12 @@
 
 1. 合并命令
 2. 删除无效命令
-3. 超时数据不写入文件
+3. 进程内已经超时的数据不在写入文件
 4. **子进程将旧的AOF文件 合并到 新的 AOF文件中, 主线程依然接受新的请求, 放入AOF缓冲区, 并根据appendfsync策略同步硬盘, 保证原有的AOF机制有效**
+5. 由于fork操作运用写时复制技术， 子进程只能共享fork操作时的内
+   存数据。 由于父进程依然响应命令， **Redis使用“AOF重写缓冲区”保存这部
+   分新数据， 防止新AOF文件生成期间丢失这部分数据**
+6. **父进程把AOF重写缓冲区的数据写入到新的AOF文件。**
 5. 新的 AOF文件 覆盖 旧的
 
 ### 重启机制
