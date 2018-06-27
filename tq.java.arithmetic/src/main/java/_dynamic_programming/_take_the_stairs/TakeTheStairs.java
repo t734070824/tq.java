@@ -39,7 +39,9 @@ public class TakeTheStairs {
      * @return
      */
     private static int takeTheStairsCache(int level, Map<Integer, Integer> map) {
-        if(level < 3) return 1;
+        if(level < 1) return 0;
+        if(level == 1) return 1;
+        if(level == 2) return 2;
         if(map.containsKey(level)){
             return map.get(level);
         } else {
@@ -58,7 +60,9 @@ public class TakeTheStairs {
      * @return
      */
     private static int takeTheStairsLowToHigh(int level) {
-        if(level < 3) return 1;
+        if(level < 1) return 0;
+        if(level == 1) return 1;
+        if(level == 2) return 2;
         int a= 1;
         int b  = 2;
         int temp = 0;
