@@ -32,3 +32,6 @@
 
 ### shutdown
 1. 指定端口实例: redis-cli -p 6380 shutdown
+
+### redis-cli
+1. redis-cli -h {host} -p {port} -a {pass}
