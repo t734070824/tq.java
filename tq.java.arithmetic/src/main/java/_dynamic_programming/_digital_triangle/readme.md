@@ -33,4 +33,7 @@
         MaxSum( r, j) = Max{ MaxSum(r＋1,j), MaxSum(r+1,j+1) } + D(r,j) 
 
 ```
+
+### 动态规划
+1. //TODO
  

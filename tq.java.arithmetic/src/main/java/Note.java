@@ -8,4 +8,5 @@ public class Note {
     //TODO 掌握 log(n) 函数
     //TODO 布隆过滤器拦截
     //TODO 布隆过滤器拦截 False positives 概率推导
+    //TODO 三角形的动态规划
 }
