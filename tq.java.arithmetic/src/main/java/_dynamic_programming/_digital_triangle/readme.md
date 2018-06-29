@@ -7,33 +7,26 @@
 2. http://blog.csdn.net/baidu_28312631/article/details/47418773
 3. http://blog.csdn.net/u013445530/article/details/45645307
 
-```javascript
-    输入格式：
-
+```text
     5      //表示三角形的行数    接下来输入三角形
-
     7
-
     3   8
-
     8   1   0
-
     2   7   4   4
-
     4   5   2   6   5 
-    
-    1. 得用二维数组来存放数字三角形
-    2. 用D( r, j) 来表示第r行第 j 个数字(r,j从1开始算)
-    3. MaxSum(r, j)表示从D(r,j)到底边的各条路径中，最佳路径的数字之和。
-    4. 最终问题就变成了求 MaxSum(1,1)
-    D(r, j)出发，下一步只能走D(r+1,j)或者D(r+1, j+1)。故对于N行的三角形，我们可以写出如下的递归式：   
-    if ( r == N)                  
-        MaxSum(r,j) = D(r,j)    
-    else        
-        MaxSum( r, j) = Max{ MaxSum(r＋1,j), MaxSum(r+1,j+1) } + D(r,j) 
-
 ```
 
 ### 动态规划
-1. //TODO
+1. 抽象
+    - H 高度, 
+    - D( r, j) 来表示第r行第 j 个数字(r,j从1开始算),  
+    - MaxSum(r, j)表示从D(r,j)到底边的各条路径中，最佳路径的数字之和。
+1. 最优子结构
+    - MaxSum(r＋1,j) + D(r,j) 
+    - MaxSum(r+1,j+1) + D(r,j)  
+2. 边界
+    - if ( r == N) MaxSum(r,j) = D(r,j)   
+5. 状态转移公式
+    - MaxSum(r,j) = D(r,j)  (r == N)
+    - MaxSum(r,j) = Max(MaxSum(r＋1,j), MaxSum(r+1,j+1)) + D(r,j) 
  

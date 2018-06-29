@@ -18,6 +18,7 @@ public class Note {
         //20180619 _redis_development_and_operation 108 2.4--列表
         //20180625 _redis_development_and_operation 略过 第3章 redis shell 部分  223 / 890
         //20180626 _redis_development_and_operation  复制 351 / 890
+        //20180627 _redis_development_and_operation  阻塞 402 / 890
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
