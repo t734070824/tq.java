@@ -19,6 +19,7 @@ public class Note {
         //20180625 _redis_development_and_operation 略过 第3章 redis shell 部分  223 / 890
         //20180626 _redis_development_and_operation  复制 351 / 890
         //20180627 _redis_development_and_operation  阻塞 402 / 890
+        //20180630 _redis_development_and_operation  哨兵Sentinel 521 / 890
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
@@ -33,5 +34,7 @@ public class Note {
     //TODO 启动 --> ./redis-server redis.conf ????
     //TODO hashtable
     //TODO 事务
+    //TODO 哨兵 故障转移 发布订阅
+    //TODO 哨兵 实现原理
 
 }
