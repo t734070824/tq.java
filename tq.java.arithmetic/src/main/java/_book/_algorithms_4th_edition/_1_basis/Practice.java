@@ -1,5 +1,7 @@
 package _book._algorithms_4th_edition._1_basis;
 
+import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -29,6 +31,22 @@ public class Practice {
         System.out.println('b');
         System.out.println('b' + 'c');
         System.out.println((char) ('a' + 4));
+
+
+        int N = 50;
+        double[] a = new double[N];
+        for (int i = 0; i < N; i++)
+            a[i] = StdRandom.uniform();
+        for (int i = 0; i < N; i++)
+        {
+            double x = 1.0*i/N;
+            double y = a[i]/2.0;
+            double rw = 0.5/N;
+            double rh = a[i]/2.0;
+            StdDraw.filledRectangle(x, y, rw, rh);
+        }
+
+
     }
 
 
@@ -159,6 +177,46 @@ public class Practice {
         long num = F(n-1, map) + F(n-2, map);
         map.put(n, num);
         return num;
+    }
+
+    @Test
+    public void _26(){
+        int a = 5;
+        int b = 6;
+        int c = 4;
+
+        threeNumSort(a, b, c);
+    }
+
+    /**
+     * 将三个数字排序。 假设 a、 b、 c 和 t 都是同一种原始数字类型的变量。 证明以下代码能够将 a、
+     * b、 c 按照升序排列
+     *
+     * 相当于分配位置
+     * @param a
+     * @param b
+     * @param c
+     */
+    private void threeNumSort(int a, int b, int c) {
+        int t;
+        if (a > b) { t = a; a = b; b = t; } // 保证a为a、b两数的较小者
+        if (a > c) { t = a; a = c; c = t; } // 保证a为a、b、c三数中的最小者
+        if (b > c) { t = b; b = c; c = t; }// 保证b为比a大的b、c两数的较小者，从而必有c为三数中的最大者
+        System.err.println(a + "--" + b + "--" + c);
+    }
+
+
+    @Test
+    public  void _35(){
+        int SIDES = 6;
+        double[] dist = new double[2*SIDES+1];
+        for (int i = 1; i <= SIDES; i++)
+            for (int j = 1; j <= SIDES; j++)
+                dist[i+j] += 1.0;
+        for (int k = 2; k <= 2*SIDES; k++)
+            dist[k] = dist[k] / 36.0 * 100;
+
+        System.err.println(Arrays.toString(dist));
     }
 
 }
