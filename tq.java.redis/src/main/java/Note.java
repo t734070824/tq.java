@@ -36,5 +36,9 @@ public class Note {
     //TODO 事务
     //TODO 哨兵 故障转移 发布订阅
     //TODO 哨兵 实现原理
+    //TODO QA
+        //TODO 哨兵中 可否 全部是 slave
+    //TODO 故障转移日志分析
+    //TODO 集群和哨兵的关系...
 
 }

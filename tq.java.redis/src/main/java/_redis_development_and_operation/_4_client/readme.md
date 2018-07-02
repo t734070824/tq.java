@@ -30,8 +30,8 @@
     
 ### 连接池
 1. jedis.close()
-    - 在不使用连接池的时候是 关闭连接
-    - 在使用连接池的时候, 是归还连接  
+    - **在不使用连接池的时候是 关闭连接**
+    - **在使用连接池的时候, 是归还连接**  
 
 ### 连接池参数
 ![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_4_client/1.jpg?raw=true)  

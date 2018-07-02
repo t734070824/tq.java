@@ -36,5 +36,56 @@
     
     
 ### API
-1. 
+
+
+### 客户端连接 Sentinel节点集合+ masterName
+1. 遍历Sentinel节点集合获取一个可用的Sentinel节点
+    - Sentinel之间共享数据
+    - 可以从任意一个Sentinel节点获取主节点信息
+2. 通过 sentinel get-master-addr-byname master-name 获取主节点信息
+3. 验证当前的主节点是否是 真正 的主节点, 防止故障转移期间的 主节点变化
+4. 保持与 Sentinel节点之间的联系, 时刻获取关于主节点的相关信息
+
+### Java客户端源码解析
+1. 主节点变化
+    - 每个Sentinel线程 启动一个线程
+    - 通过订阅 +switch-master 频道,
+    - Redis Sentinel在结束对主节点故障转移后会发布切换主节点的消息，
+    - Sentinel节点基本将故障转移的各个阶段发生的行为都通过这种发布订阅的形式对外提供
+
+
+
+### Sentinel 实现原理
+1. 三个定时任务
+    - **每隔10秒， 每个Sentinel节点会向主节点和从节点发送info命令获取最新的拓扑结构**
+        - 获取主节点信息
+        - 感知新加入的从节点
+        - 节点不可达或者故障转移后, 更新节点的拓扑结构
+    - **每隔2秒， 每个Sentinel节点会向Redis数据节点的__sentinel__： hello**频道上发送该Sentinel节点对于主节点的判断以及当前Sentinel节点的信息
+        - 发现新的 Sentinel节点
+        - 交换主节点的状态, 作为后面客观下线以及领导者选举的依据
+    - **每隔1秒， 每个Sentinel节点会向主节点、 从节点、 其余Sentinel节点送一条ping命令做一次心跳检测， 来确认这些节点当前是否可达**
+        - 
+2. 主观下线
+    - 每个Sentinel节点对 主节点, 从节点, Sentine节点, 每隔1秒, ping, 
+    - 超过down-after-milliseconds 没有有效回复, 失败判定, 主观下线
+    - 是当前 Sentinel的一家之言, 有误判可能
+3. 客观下线
+    - 当主观下线的是主节点的时候
+    - 向其他Sentinel节点询问对主节点的判断
+    - 超过 quorum 认定下线,  则下线主节点, **Sentinel领导节点故障转移**
+4. Sentinel领导者选举
+    - **Raft算法确定leader**
+5. 故障转移
+    - 过滤: “不健康”（主观下线、 断线） 、 5秒内没有回复过Sentinel节
+          点ping响应、 与主节点失联超过down-after-milliseconds*10秒。
+    - 选择slave-priority（从节点优先级） 最高的从节点列表
+    - 选择复制偏移量最大的从节点（复制的最完整）
+    - 选择runid最小的从节点
+    -  Sentinel领导者节点会对第一步选出来的从节点执行slaveof no one命
+      令让其成为主节点
+    - Sentinel领导者节点会向剩余的从节点发送命令， 让它们成为新主节
+      点的从节点， 复制规则和parallel-syncs参数有关。
+    - Sentinel节点集合会将原来的主节点更新为从节点， 并保持着对其关
+      注， 当其恢复后命令它去复制新的主节点。
 
