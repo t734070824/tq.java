@@ -18,6 +18,11 @@ public class SchoolServiceImpl implements SchoolService
     @Resource
     private TeacherDao teacherDao;
 
+    @Override
+    public void insertTeacherAndStudent2(Teacher teacher, Student2 student) {
+        insertTeacherAndStudent(teacher, student);
+    }
+
     @Transactional
     public void insertTeacherAndStudent(Teacher teacher, Student2 student)
     {

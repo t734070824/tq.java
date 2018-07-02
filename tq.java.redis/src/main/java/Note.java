@@ -20,6 +20,7 @@ public class Note {
         //20180626 _redis_development_and_operation  复制 351 / 890
         //20180627 _redis_development_and_operation  阻塞 402 / 890
         //20180630 _redis_development_and_operation  哨兵Sentinel 521 / 890
+        //20180702 _redis_development_and_operation  哨兵Sentinel 562 / 890
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过

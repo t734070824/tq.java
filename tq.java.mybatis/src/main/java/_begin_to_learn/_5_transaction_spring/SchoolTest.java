@@ -26,6 +26,13 @@ public class SchoolTest {
         Teacher teacher = new Teacher();
         teacher.setTeacherName(null);
 
-        schoolService.insertTeacherAndStudent(teacher, student);
+        try{
+            schoolService.insertTeacherAndStudent(teacher, student);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        schoolService.insertTeacherAndStudent2(teacher, student);
+
     }
 }

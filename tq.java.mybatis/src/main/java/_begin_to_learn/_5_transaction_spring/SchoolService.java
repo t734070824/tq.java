@@ -7,4 +7,6 @@ package _begin_to_learn._5_transaction_spring;
 public interface SchoolService {
 
     public void insertTeacherAndStudent(Teacher teacher, Student2 student);
+
+    public void insertTeacherAndStudent2(Teacher teacher, Student2 student);
 }

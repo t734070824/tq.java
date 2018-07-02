@@ -29,31 +29,31 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>4.3.14.RELEASE</version>
         </dependency>
         <!-- 添加spring-context包 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>4.3.14.RELEASE</version>
         </dependency>
         <!-- 添加spring-tx包 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>4.3.14.RELEASE</version>
         </dependency>
         <!-- 添加spring-jdbc包 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>4.3.14.RELEASE</version>
         </dependency>
         <!-- 为了方便进行单元测试，添加spring-test包 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.1.4.RELEASE</version>
+            <version>4.3.14.RELEASE</version>
         </dependency>
         <!--添加aspectjweaver包 -->
         <dependency>
