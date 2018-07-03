@@ -33,7 +33,7 @@
         - createBeanInstance(String beanName, RootBeanDefinition mbd, Object[] args);
             - instantiateBean(final String beanName, final RootBeanDefinition mbd)
             - InstantiationStrategy.instantiate(RootBeanDefinition bd, String beanName, BeanFactory owner)
-                - bd.getMethodOverrides().isEmpty():如果不存在方法覆写，那就使用 java 反射进行实例化，否则使用 CGLIB, lookup-method 和 replaced-method
+                - bd.getMethodOverrides().isEmpty():如果不存在方法覆写，**即实例中是否有和IOC容器同名的方法**. 那就使用 java 反射进行实例化，否则使用 CGLIB, lookup-method 和 replaced-method
                     - java反射
                     - GGLIB
         - populateBean(beanName, mbd, instanceWrapper): bean 实例化完成（通过工厂方法或构造方法），但是还没开始属性设值

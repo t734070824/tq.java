@@ -58,3 +58,8 @@ http://www.importnew.com/24459.html
             
 ### 代理方法调用原理
 1. //TODO
+
+### 图
+1. https://blog.csdn.net/u013430196/article/details/48290749
+
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.spring/src/main/java/_aop_sound_code_analyze/2.png?raw=true)
