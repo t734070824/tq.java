@@ -15,7 +15,7 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
     <context:annotation-config />
     <context:component-scan base-package="_begin_to_learn._5_transaction_spring" />
-    <aop:config proxy-target-class="true"></aop:config>
+   <!-- <aop:config proxy-target-class="true"></aop:config>-->
 
     <!-- 数据库连接池,这里使用alibaba的Druid -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
