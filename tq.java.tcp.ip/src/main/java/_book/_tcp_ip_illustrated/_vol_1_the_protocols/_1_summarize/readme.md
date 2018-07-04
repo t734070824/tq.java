@@ -17,9 +17,9 @@
     - 0 000 0000 0000 0000 0000 0000 0000 0000 --- 0 111 1111 1111 1111 1111 1111 1111 1111 
     - 0.0.0.0 --- 127.255.255.255 
 
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_tcp_ip/_vol_1_the_protocols/_1_summarize/1.png?raw=true)
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_tcp_ip_illustrated/_vol_1_the_protocols/_1_summarize/1.png?raw=true)
 
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_tcp_ip/_vol_1_the_protocols/_1_summarize/2.png?raw=true)
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_tcp_ip_illustrated/_vol_1_the_protocols/_1_summarize/2.png?raw=true)
 
 ### 封装
 1. 由于TCP、UDP、ICMP和IGMP都要向IP传送数据，因此IP必须在
