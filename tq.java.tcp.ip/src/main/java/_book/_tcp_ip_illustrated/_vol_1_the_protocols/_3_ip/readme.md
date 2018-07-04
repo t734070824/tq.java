@@ -4,9 +4,9 @@
 
 ### IP首部
 
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_vol_1_the_protocols/_vol_1_the_protocols/_3_ip/1.png?raw=true)
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_tcp_ip_illustrated/_vol_1_the_protocols/_3_ip/1.jpg?raw=true)
 
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_vol_1_the_protocols/_vol_1_the_protocols/_3_ip/2.png?raw=true)
+![](https://github.com/t734070824/tq.java/blob/master/tq.java.tcp.ip/src/main/java/_book/_tcp_ip_illustrated/_vol_1_the_protocols/_3_ip/2.jpg?raw=true)
 
 1. 192.168.1.183 --> 192.168.1.133, 数据:2
 2. 4位版本号
