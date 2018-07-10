@@ -32,5 +32,11 @@
       法被调用时被释放
     - //TODO ??
 
-
+### ctx.close
+1. 因为 Netty 的操作都是异步的，例如下面代码中的消息在被发送之前可能会被先关闭连接
+    - Channel ch = ...;
+    - ch.writeAndFlush(message);
+    - ch.close();
+2. f.addListener(ChannelFutureListener.CLOSE)
+    - 以上就是调节一个Close监听器的原因
     
