@@ -22,6 +22,9 @@ public class Note {
         //20180630 _redis_development_and_operation  哨兵Sentinel 521 / 890
         //20180702 _redis_development_and_operation  哨兵Sentinel 562 / 890
 
+    //设计与实现
+        //20180710 _redis_design_and_implementation  跳跃表 43 / 392
+
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
     //TODO common-pool 掌握
@@ -41,5 +44,6 @@ public class Note {
         //TODO 哨兵中 可否 全部是 slave
     //TODO 故障转移日志分析
     //TODO 集群和哨兵的关系...
+    //TODO Hystrix
 
 }
