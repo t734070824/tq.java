@@ -1,4 +1,4 @@
-package _from_web._jianshu_linyuan._time_server;
+package _from_web._jianshu_linyuan._1_time_server;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

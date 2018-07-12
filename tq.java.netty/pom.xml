@@ -51,7 +51,7 @@
                         </manifest>
                         <manifestEntries>
                             <Main-Class>
-                                _from_web._jianshu_linyuan._time_server.Server
+                                _from_web._jianshu_linyuan._1_time_server.Server
                             </Main-Class>
                         </manifestEntries>
                     </archive>

@@ -24,5 +24,6 @@ public class Note {
     //TODO netty UDP size
     //TODO bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(20480));
     //TODO UDP Netty 1472
+    //TODO 线程模型 NioEventLoop  NioEventLoopGroup
 
 }
