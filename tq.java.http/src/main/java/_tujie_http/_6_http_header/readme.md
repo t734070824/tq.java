@@ -77,5 +77,34 @@
     - Server
         - 告知客户端当前服务器上安装的HTTP服务器应用程序的版本
 4. 实体首部
+    - 用于补充内容的更新时间, 与实体相关的信息
+    - Allow	资源可支持的HTTP方法
+    - Location	告知客户端实体实际上位于何处
+    - Content-Encoding	实体主体使用的编码方法
+    - Content-Language	实体主体的自然语言
+    - Content-Length	实体主体的大小
+    - Content-Location	替代对应的资源的URI
+    - Content-MD5	实体主体的报文摘要
+    - Content-Range	实体主体的位置范围
+    - Content-Type	实体主体的媒体类型
+    - Expires	实体主体过期的日期时间
+    - Last-Modified	资源的最后修改时间|
+    
+5. Cookie 首部
+    - Set-Cookie
+        - NAME=VALUE 赋予 Cookie 的名称和其值（必需项）
+        - expires=DATE Cookie 的有效期（若不明确指定则默认为浏览器关闭前为止）
+        - path=PATH 将服务器上的文件目录作为Cookie的适用对象（若不指定则默
+        - 认为文档所在的文件目录）
+        - domain=域名 作为 Cookie 适用对象的域名 （若不指定则默认为创建 Cookie
+        - 的服务器的域名）
+        - Secure 仅在 HTTPS 安全通信时才会发送 Cookie
+        - HttpOnly 加以限制， 使 Cookie 不能被 JavaScript 脚本访问
+    - Cookie
+        - Cookie: status=enable
+        - 首部字段 Cookie 会告知服务器， 当客户端想获得 HTTP 状态管理支
+          持时， 就会在请求中包含从服务器接收到的 Cookie。 接收到多个
+          Cookie 时， 同样可以以多个 Cookie 形式发送
+
     
         
