@@ -13,7 +13,7 @@
 4. ValveContext.getValve.invoke
 4. **valve.invokeNext**
 5. BasicValve.invoke
-6. reponse  
+6. response  
 
 ### Context Wrapper 容器
 1. 如何解析HTTP
