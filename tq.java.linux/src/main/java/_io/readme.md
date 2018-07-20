@@ -20,10 +20,16 @@
     - **只有处于运行态的进程(获取CPU执行时间), 才可以将其转为 阻塞状态**
     - **进程进入阻塞状态, 不占用 CPU资源**
 4. 文件描述符fd
-    - //TODO
+    - 一个索引值
+    - 进程用于标识打开的文件的无符号整数
+    - 表述指向文件的引用的抽象化概念
 5. 缓存 I/O
     - 数据会先被拷贝到操作系统内核的缓冲区中，然后才会从操作系统内核的缓冲区拷贝到应用程序的地址空间
     - 数据在传输过程中需要在应用程序地址空间和内核进行多次数据拷贝操作，这些数据拷贝操作所带来的 CPU 以及内存开销是非常大的。
+
+### Read操作发生
+1. 等待数据准备(Waiting for the data to be ready)
+2. 将数据从内核拷贝到进程中(Copying the data from the kernel to the process)
 
 ### IO 模式
 1. 阻塞IO (Blocking IO)
@@ -49,7 +55,8 @@
     ![](https://github.com/t734070824/tq.java/blob/master/tq.java.linux/src/main/java/_io/3.jpg?raw=true)
 
     - select/epoll的好处就在于**单个process就可以同时处理多个网络连接的IO**
-    - 基本原理就是select，poll，epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程
+    - 基本原理就是select，poll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程
+    - epoll callBack //TODO
     - 操作系统的这个功能通过select/poll/epoll/kqueue之类的系统调用函数来使用，这些函数都可以同时监视多个描述符的读写就绪状况，
       这样，多个描述符的I/O操作都能在一个线程内并发交替地顺序完成，这就叫I/O多路复用，这里的“复用”指的是复用同一个线程
     - Reactor模式
