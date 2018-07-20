@@ -45,5 +45,6 @@ public class Note {
     //TODO 故障转移日志分析
     //TODO 集群和哨兵的关系...
     //TODO Hystrix
+    //TODO redis 事务 原子 要复习
 
 }
