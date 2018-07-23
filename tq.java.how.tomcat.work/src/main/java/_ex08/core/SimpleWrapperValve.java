@@ -1,7 +1,7 @@
 /**
  * copied from ex07.pyrmont.core.SimpleWrapperValve
  */
-package ex08.pyrmont.core;
+package _ex08.core;
 
 import java.io.IOException;
 import javax.servlet.Servlet;

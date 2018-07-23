@@ -1,7 +1,7 @@
-package ex08.pyrmont.startup;
+package _ex08.startup;
 
-import ex08.pyrmont.core.SimpleWrapper;
-import ex08.pyrmont.core.SimpleContextConfig;
+import _ex08.core.SimpleContextConfig;
+import _ex08.core.SimpleWrapper;
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Lifecycle;
