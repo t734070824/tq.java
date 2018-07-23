@@ -5,4 +5,6 @@ public class Note {
     //TODO 文件下载 length??
 
     //TODO cookie 和 域名的 关系
+
+    //TODO 跨域
 }
