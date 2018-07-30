@@ -23,7 +23,7 @@
     - 构造器循环依赖:表示通过构造器注入构成的循环依赖，此依赖是无法解决的
     - setter循环依赖:表示通过setter注入方法构成的循环依赖。对于setter注入造成的依赖是通过Spring容器提前暴露刚完成构造器注入但未完成其他步骤（比如setter注入）的bean来完成的。
     而且只能解决单例作用域的bean循环依赖。通过提前暴露一个单例工厂方法，从而使得其他bean能引用到该bean
-    - prototype范围的依赖处理:对应prototype作用域bean，Spring容器无法完成依赖注入，因为Spring容器不进行缓存“prototype”作用域的bean，因此无法提前暴露一个创建中的bean
+    - prototype范围的依赖处理:对应prototype作用域bean，Spring容器无法`完成依赖注入，因为Spring容器不进行缓存“prototype”作用域的bean，因此无法提前暴露一个创建中的bean
     - 对于“prototype”不做循环依赖的检查。
 
 2. 已经初始化过了就从容器中直接返回，否则就先初始化再返回

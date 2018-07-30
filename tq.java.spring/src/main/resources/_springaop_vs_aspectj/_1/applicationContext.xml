@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <bean id="userServiceImpl" class="_aop_sound_code_analyze._springaop_vs_aspectj.UserServiceImpl"/>
+
+    <!--配置切面类, 用于获取通知-->
+    <bean id="simpleAspect" class="_aop_sound_code_analyze._springaop_vs_aspectj.MyAspect"/>
+
+    <bean id="proxyService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!--确定接口-->
+        <!--<property name="interfaces" value="xxx"></property>-->
+
+        <!--确定目标类-->
+        <property name="target" ref="userServiceImpl"></property>
+
+        <!--确定通知-->
+        <property name="interceptorNames" value="simpleAspect"></property>
+
+        <!--强制使用Cglib-->
+        <!--Spring4已不需要设置, 自行判断-->
+        <!--<property name="optimize" value="true"></property>-->
+
+
+
+    </bean>
+
+
+
+
+</beans>

@@ -5,7 +5,7 @@
 public class Note {
 
     //TODO Spring AOP 源码解析
-    //TODO Spring 事务
+    //TODO Spring 事务 **再次重申 20180730
     //TODO spring.jie.mi model转移
 
     //TODO transactional 失效的情况: 前面的调用没有transactional注解
