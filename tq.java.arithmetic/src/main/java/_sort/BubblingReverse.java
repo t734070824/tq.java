@@ -3,7 +3,7 @@ package _sort;
 import java.util.Arrays;
 
 /**
- * 冒泡排序 正序
+ * 冒泡排序 反序
  * @author tangqing
  *
  */
