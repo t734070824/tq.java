@@ -7,8 +7,11 @@ package _jdk7_new._autoclose_try;
 public class App {
 
     public static void main(String[] args) {
-        try(Resource resource = new Resource()){
 
+        try(Resource resource = new Resource()){
+            resource.get();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

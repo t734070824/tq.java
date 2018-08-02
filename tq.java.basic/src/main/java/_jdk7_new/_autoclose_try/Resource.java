@@ -5,8 +5,11 @@ package _jdk7_new._autoclose_try;
  * @date 2018/8/1 11:43
  */
 public class Resource implements AutoCloseable{
+
+
+
     @Override
-    public void close() throws Exception {
+    public void close() {
         System.err.println("close");
     }
 
