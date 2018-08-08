@@ -53,6 +53,8 @@ public class ExpressionEvaluation {
                                 System.exit(0);
                             }
                             break;
+                        default:
+                            break;
 
                     }
                 }
@@ -103,8 +105,9 @@ public class ExpressionEvaluation {
                 return opnd1 * opnd2;
             case '/':
                 return opnd1 / opnd2;
+            default:
+                return 0;
         }
-        return 0;
     }
 
     private char precede(char θ1, char θ2) {
