@@ -25,21 +25,30 @@ public class ExpressionEvaluation {
         for (int i = 0; i < expression.length(); i++) {
             char c = expression.charAt(i);
             // 如果当前字符是数字，也就是操作数
-            if(Character.isDigit(c)){
-                OPND_stack.push(Double.valueOf(c+""));
+            if (Character.isDigit(c) || c == '.') {
+                StringBuilder stringBulider = new StringBuilder();
+                // 操作数的拼接，包括小数点
+                while (i < expression.length() && (Character.isDigit(c = expression.charAt(i)) || c == '.')) {
+                    stringBulider.append(c);
+                    i++;
+                }
+                // 操作数入栈
+                OPND_stack.push(Double.valueOf(stringBulider.toString()));
+                // 跳过本次循环，i的值已经增加过，所以要减去
+                i--;
                 continue;
             } else{
                 // 当前的字符是操作符
-                while (!OPTR_stack.isEmpty()) {
+            outer: while (!OPTR_stack.isEmpty()) {
                     switch (precede(OPTR_stack.peek(), c)) {
                         case '<':
                             // 栈顶运算符小于该运算符，该运算符直接入栈
                             OPTR_stack.push(c);
-                            break;
+                            break outer;
                         case '=':
                             // 栈顶运算符等于该运算符，只有一种情况，左右括号匹配，弹出左括号
                             OPTR_stack.pop();
-                            break;
+                            break outer;
                         case '>':
                             // 栈顶运算符大小该运算符
                             char optr = OPTR_stack.pop();
@@ -52,9 +61,6 @@ public class ExpressionEvaluation {
                                 System.err.println("Character.isDigit(c)--表达式有误0！");
                                 System.exit(0);
                             }
-                            break;
-                        default:
-                            break;
 
                     }
                 }
@@ -81,7 +87,7 @@ public class ExpressionEvaluation {
         if (OPND_stack.size() == 1) {
             return OPND_stack.pop();
         } else {
-            System.err.println("OPND_stack.size() == 1 -- 表达式有误！");
+            System.err.println("OPND_stack.size() != 1 -- 表达式有误！");
             System.exit(0);
         }
         return 0;

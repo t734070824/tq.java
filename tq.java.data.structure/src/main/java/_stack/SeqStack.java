@@ -1,6 +1,7 @@
 package _stack;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.EmptyStackException;
 
 public class SeqStack<T> implements Stack<T>, Serializable{
@@ -36,7 +37,10 @@ public class SeqStack<T> implements Stack<T>, Serializable{
         return size;
     }
 
-
+    @Override
+    public String toString() {
+        return Arrays.toString(array) + "_" + top + "_" + size;
+    }
 
     @Override
     public boolean isEmpty() {
