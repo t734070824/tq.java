@@ -19,12 +19,6 @@
 ### 数制转换
 1. 十进制数N和其他d进制数的转换是计算机实现计算的基本问题，其解决方法很多，其中一个简单算法基于下列原理：
 2. N = (N div d) * d + N mod d(其中：div为整除运算，mod为求余运算)
-<div style="align: center">
-<img src="https://github.com/t734070824/tq.java/blob/master/tq.java.data.structure/src/main/java/_stack/_use/1.png?raw=true"/>
-</div>
+![](1.png)
 
-
-![](1.png)
-![](1.png)
-![](1.png)
 ### 
