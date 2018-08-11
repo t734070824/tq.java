@@ -32,4 +32,12 @@ public class Queen {
                 || (x + y == (queen.x + queen.y))
                 ||  ((x - y) == (queen.x - queen.y));
     }
+
+    @Override
+    public String toString() {
+        return "Queen{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
