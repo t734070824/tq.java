@@ -1,4 +1,4 @@
-package _book._4_stack;
+package _book._4_stack_and_queue._stack;
 
 import java.util.Stack;
 

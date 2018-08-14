@@ -1,4 +1,4 @@
-package _book._4_stack._eight_queen;
+package _book._4_stack_and_queue._stack._eight_queen;
 
 import java.util.Stack;
 
