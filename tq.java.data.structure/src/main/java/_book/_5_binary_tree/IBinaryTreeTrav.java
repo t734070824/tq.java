@@ -7,22 +7,6 @@ package _book._5_binary_tree;
  */
 public interface IBinaryTreeTrav {
 
-    /**
-     * 作为当前节点的左孩子插入当前节点
-     * @param t
-     * @param <T>
-     * @return
-     */
-    <T> BinNode<T> insertAsLC(T t);
-
-    /**
-     * 作为当前节点的右孩子插入当前节点
-     * @param t
-     * @param <T>
-     * @return
-     */
-    <T> BinNode<T> insertAsRC(T t);
-
 
     /**
      * 先序遍历
