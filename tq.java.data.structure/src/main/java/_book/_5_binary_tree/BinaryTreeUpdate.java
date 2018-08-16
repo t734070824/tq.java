@@ -9,12 +9,20 @@ public class BinaryTreeUpdate implements IBinaryTreeUpdate{
 
 
     @Override
-    public <T> BinNode<T> insertAsLC(T t) {
-        return null;
+    public <T> BinNode<T> insertAsLC(T t, BinNode<T> parent) {
+        BinNode node = new BinNode(t);
+        node.parent = parent;
+        parent.lChild = node;
+        //TODO 高度
+        return node;
     }
 
     @Override
-    public <T> BinNode<T> insertAsRC(T t) {
-        return null;
+    public <T> BinNode<T> insertAsRC(T t, BinNode<T> parent) {
+        BinNode node = new BinNode(t);
+        node.parent = parent;
+        parent.rChild = node;
+        //TODO 高度
+        return node;
     }
 }
