@@ -1,5 +1,6 @@
 package _arithmetic;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -275,29 +276,177 @@ public class Solution {
      * @return
      */
     public int removeDuplicates(int[] nums) {
-        if(nums.length <= 1) return 1;
-        int len = nums.length;
-        for (int i = 0; i < nums.length-1; i++) {
-            if(nums[i] == nums[i+1]){
-                for (int j = i+1; j < nums.length; j++) {
-                    //TODO 可以通过有序这个条件 对多个相同数字进行删除
-                }
-                len--;
+        /**
+         * 方法：双指针法
+         算法
+
+         数组完成排序后，我们可以放置两个指针 ii 和 jj，其中 ii 是慢指针，而 jj 是快指针。只要 nums[i] = nums[j]nums[i]=nums[j]，
+         我们就增加 jj 以跳过重复项。
+
+         当我们遇到 nums[j] \neq nums[i]nums[j]≠nums[i] 时，跳过重复项的运行已经结束，因此我们必须把它（nums[j]nums[j]）
+         的值复制到 nums[i + 1]nums[i+1]。然后递增 ii，接着我们将再次重复相同的过程，直到 jj 到达数组的末尾为止。
+         */
+        if(nums.length <= 0) return 0;
+        int i = 0;
+        for (int j = 1; j < nums.length; j++) {
+            if(nums[i] != nums[j]){
+                i++;
+                nums[i] = nums[j];
             }
         }
-        return len;
+        return i+1;
+    }
+
+
+    /**
+     * 给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度。
+
+     不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。
+
+     元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+
+     示例 1:
+
+     给定 nums = [3,2,2,3], val = 3,
+
+     函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
+
+     你不需要考虑数组中超出新长度后面的元素。
+     示例 2:
+
+     给定 nums = [0,1,2,2,3,0,4,2], val = 2,
+
+     函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。
+
+     注意这五个元素可为任意顺序。
+
+     你不需要考虑数组中超出新长度后面的元素。
+     * @param nums
+     * @param val
+     * @return
+     */
+    public int removeElement(int[] nums, int val) {
+        if(nums.length <= 0) return 0;
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if(nums[j] != val){
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        return i;
+    }
+
+    /**
+     * 实现 strStr() 函数。
+
+     给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
+
+     示例 1:
+
+     输入: haystack = "hello", needle = "ll"
+     输出: 2
+     示例 2:
+
+     输入: haystack = "aaaaa", needle = "bba"
+     输出: -1
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    public int strStr(String haystack, String needle) {
+        if(needle == null || "".equals(needle)) return 0;
+        int len = haystack.length();
+        int j = 0;
+        for (int i = 0; i < len; i++) {
+            char c = haystack.charAt(i);
+            char c1 = needle.charAt(j);
+            if(c == c1){
+                if(j == needle.length()-1){
+                    return i-j;
+                }else {
+                    j++;
+                }
+            }else {
+                if(j >0){
+                    i = i - j;
+                    j = 0;
+                }
+
+            }
+        }
+        return -1;
+    }
+
+
+    /**
+     * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+
+     你可以假设数组中无重复元素。
+
+     示例 1:
+
+     输入: [1,3,5,6], 5
+     输出: 2
+     示例 2:
+
+     输入: [1,3,5,6], 2
+     输出: 1
+     示例 3:
+
+     输入: [1,3,5,6], 7
+     输出: 4
+     示例 4:
+
+     输入: [1,3,5,6], 0
+     输出: 0
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int searchInsert(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if(target <= num) return i;
+        }
+        return nums.length;
+    }
+
+
+    /**
+     * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+
+     示例:
+
+     输入: [-2,1,-3,4,-1,2,1,-5,4],
+     输出: 6
+     解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+
+     * @param nums
+     * @return
+     */
+    public int maxSubArray(int[] nums) {
+        int result = nums[0];
+        int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (sum > 0) {
+                sum += nums[i];
+            }else {
+                sum = nums[i];
+            }
+        }
+        if(sum > result) {
+            result = sum;
+        }
+        return result;
     }
 
 
     public static void main(String[] args) {
-        System.err.println(new Solution().isValid("()"));
-        ListNode l1 = new ListNode(2);
-        l1.next = new ListNode(3);
+        int[] nums = new int[]{1,3,5,6};
+        int target = 2;
+        System.err.println(new Solution().searchInsert(nums, target));
 
-        ListNode l2 = new ListNode(2);
-        l2.next = new ListNode(3);
-        System.err.println(new Solution().mergeTwoLists(l1, l2));
-        System.err.println(new Solution().mergeTwoLists(null, null));
     }
 
 }
