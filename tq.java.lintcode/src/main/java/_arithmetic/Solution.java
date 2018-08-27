@@ -441,11 +441,162 @@ public class Solution {
         return result;
     }
 
+    /**
+     * 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。
+
+     如果不存在最后一个单词，请返回 0 。
+
+     说明：一个单词是指由字母组成，但不包含任何空格的字符串。
+
+     示例:
+
+     输入: "Hello World"
+     输出: 5
+     * @param s
+     * @return
+     */
+    public int lengthOfLastWord(String s) {
+        int length = s.length();
+        int num=0;
+        for (int i = length-1; i >= 0; i--) {
+            if(' ' != s.charAt(i)){
+                num++;
+            }else if(num > 0) {
+                return num;
+            }
+        }
+        return num;
+
+    }
+
+
+    /**
+     * 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
+
+     最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。
+
+     你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+     示例 1:
+
+     输入: [1,2,3]
+     输出: [1,2,4]
+     解释: 输入数组表示数字 123。
+     示例 2:
+
+     输入: [4,3,2,1]
+     输出: [4,3,2,2]
+     解释: 输入数组表示数字 4321。
+     * @param digits
+     * @return
+     */
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        boolean jinwei = true;
+        for (int i = len-1; i >= 0; i--) {
+            int a = digits[i];
+            if(jinwei){
+                a = a+1;
+            }
+            if(a >= 10){
+                a = a - 10;
+            }else {
+                jinwei  = false;
+            }
+            digits[i] = a;
+        }
+        if(jinwei){
+            int[] arr = new int[len +1];
+            arr[0] = 1;
+            return arr;
+        }else {
+            return digits;
+        }
+    }
+
+
+    public int climbStairs(int level) {
+        if(level < 1) return 0;
+        if(level == 1) return 1;
+        if(level == 2) return 2;
+        int a= 1;
+        int b  = 2;
+        int temp = 0;
+        for (int i = 3; i <= level; i++) {
+            temp = a + b;
+            a = b;
+            b = temp;
+        }
+        return temp;
+    }
+
+    /**
+     * 给定一个排序链表，删除所有重复的元素，使得每个元素只出现一次。
+
+     示例 1:
+
+     输入: 1->1->2
+     输出: 1->2
+     示例 2:
+
+     输入: 1->1->2->3->3
+     输出: 1->2->3
+     * @param head
+     * @return
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head == null) return head;
+        ListNode next = head.next;
+        ListNode cur = head;
+        while (next != null) {
+            if(next.val != cur.val){
+                cur.next = next;
+                cur = next;
+            }else {
+                cur.next = next.next;
+            }
+            next = next.next;
+        }
+        return head;
+    }
+
+
+    /**
+     *
+     给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。
+
+     说明:
+
+     初始化 nums1 和 nums2 的元素数量分别为 m 和 n。
+     你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。
+     示例:
+
+     输入:
+     nums1 = [1,2,3,0,0,0], m = 3
+     nums2 = [2,5,6],       n = 3
+
+     输出: [1,2,2,3,5,6]
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     */
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int tmp = 0;
+        int nIndex = 0;
+        for (int i = 0; i < nums1.length; i++) {
+            int n1 = nums1[i];
+            int n2 = nums2[i];
+            if(n1 <= n2){
+                tmp = nums1[i++];
+                
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,3,5,6};
-        int target = 2;
-        System.err.println(new Solution().searchInsert(nums, target));
+        int level = 3;
+        System.err.println(new Solution().climbStairs(level));
 
     }
 
