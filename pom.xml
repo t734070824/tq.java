@@ -38,6 +38,7 @@
     <module>tq.java.redis</module>
     <module>tq.java.lintcode</module>
       <module>tq.java.hikaricp</module>
+    <module>tq.java.bigdata</module>
   </modules>
   
   <properties>
