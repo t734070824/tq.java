@@ -20,6 +20,9 @@
 ### Routing Key
 1. 每个Message一般来说必须指定一个Routing Key，Exchange根据Message的Routing Key进行Binding，然后完成Message的转发。
 
+### 路由建模糊匹配
+1. 常用的正则表示式不同，这里的话“#”表示所有、全部的意思；“*”只匹配到一个词
+
 ### Binding Key
 1. 每个Queue一般来说必须指定一个Binding Key
 2. Binding的过程其实就是根据一定的规则判定Message的Routing Key是否与Queue的Binding Key匹配，如果匹配，则转发Message到Queue
