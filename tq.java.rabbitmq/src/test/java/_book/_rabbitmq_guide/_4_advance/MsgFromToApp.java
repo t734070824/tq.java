@@ -27,11 +27,8 @@ public class MsgFromToApp {
         //创建连接
         Connection connection = factory.newConnection();
         //创建信道
-        Channel channel = connection.createChannel();
 
-        channel.basicPublish(EXCHANGE_NAME, "", true,
-                MessageProperties.PERSISTENT_TEXT_PLAIN,
-                "mandatory test".getBytes());
+        Channel channel = connection.createChannel();
         channel.addReturnListener(new ReturnListener() {
             @Override
             public void handleReturn(int replyCode, String replyText, String exchange, String routingKey,
@@ -40,7 +37,12 @@ public class MsgFromToApp {
                 System.err.println("return : " + msg);
             }
         });
-        TimeUnit.SECONDS.sleep(50);
+        TimeUnit.SECONDS.sleep(2);
+        channel.basicPublish(EXCHANGE_NAME, "", true,
+                MessageProperties.PERSISTENT_TEXT_PLAIN,
+                "mandatory test".getBytes());
+
+        TimeUnit.SECONDS.sleep(5);
         channel.close();
         connection.close();
     }
