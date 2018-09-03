@@ -20,7 +20,6 @@ public class Graph {
 
     public Graph(int V) {
         this.V = V;
-        this.E = E;
         adj = new Bag[V];
         for (int v = 0; v < V; v++) {
             adj[v] = new Bag<>();
@@ -66,12 +65,16 @@ public class Graph {
     }
 
     /**
-     * 和v相邻的多有顶点
+     * 和v相邻的多个顶点
      * @param v
      * @return
      */
     Iterable<Integer> adj(int v){
         return adj[v];
+    }
+
+    public int adjSize(int v){
+        return adj[v].size();
     }
 
     /**
