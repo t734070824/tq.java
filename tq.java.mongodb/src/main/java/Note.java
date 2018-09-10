@@ -12,4 +12,5 @@ public class Note {
     //TODO 主从切换造成的影响
         //TODO 什么时候会主从切换
         //TODO 连接断开
+    //TODO mongo的bulk
 }
