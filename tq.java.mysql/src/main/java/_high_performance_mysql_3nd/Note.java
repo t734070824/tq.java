@@ -8,6 +8,7 @@ public class Note {
 
     //书签
         // 高性能mysql 148 / 801 schema(数据库) 与 数据类型优化 20180908
+        // 高性能mysql 171 / 801 schema(数据库) 与 数据类型优化 20180910 物化视图
 
     //TODO 优先学习
         //TODO 高性能mysql:
