@@ -39,6 +39,7 @@
     <module>tq.java.lintcode</module>
       <module>tq.java.hikaricp</module>
     <module>tq.java.bigdata</module>
+    <module>tq.java.summarize</module>
   </modules>
   
   <properties>
