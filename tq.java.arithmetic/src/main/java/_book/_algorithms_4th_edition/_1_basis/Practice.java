@@ -15,6 +15,8 @@ import java.util.Map;
 public class Practice {
 
     public static void main(String[] args) {
+
+        System.err.println(8 % 21);
         //7
         System.err.println((0 + 15)/2);
         //false
