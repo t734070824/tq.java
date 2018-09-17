@@ -7,7 +7,7 @@
     - TODO
 2. 分布式锁
     - redis, UUID, 解铃还须系铃人
-3. nginx的请求转发算法，如何配置根据权重转发
+3. nginx 的请求转发算法，如何配置根据权重转发
     - TODO
 4. 用hashmap实现redis有什么问题（死锁，死循环，可用 ConcurrentHashmap）
     - 死循环 TODO
@@ -75,14 +75,17 @@
     - TODO
 23. 线程如何退出结束
     - TODO
+    - 正常停止
+    - while
+    - interrupt
 24. java有哪些锁？
     - 乐观锁 
     - 悲观锁 
     - synchronized 
     - 可重入锁 
     - 读写锁,
-    - reentrantlock与synmchronized的区别
-        - 锁终端
+    - reentrantlock与synchronized的区别
+        - 锁中断
         - 尝试获取
         - 底层实现
 25. ThreadLocal的使用场景

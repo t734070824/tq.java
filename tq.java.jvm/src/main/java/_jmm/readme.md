@@ -1,6 +1,6 @@
 2018-07-20
 
-## JMM java Memory Model
+## JMM java Memory Model(java内存模型)
 
 ### 定义
 1. Java 虚拟机(JVM)在计算机内存(RAM)中的工作方式
