@@ -4,7 +4,7 @@ import org.junit.Assert;
 
 import java.util.Arrays;
 
-import static _book._algorithms_4th_edition._2_rank.RankUtil.*;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.*;
 
 /**
  * 归并排序

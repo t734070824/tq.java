@@ -1,13 +1,12 @@
 package _book._algorithms_4th_edition._2_rank._2_2_merge_rank;
 
-import _book._algorithms_4th_edition._2_rank.RankUtil;
 import org.junit.Assert;
 
 import java.util.Arrays;
 
-import static _book._algorithms_4th_edition._2_rank.RankUtil.isSorted;
-import static _book._algorithms_4th_edition._2_rank.RankUtil.less;
-import static _book._algorithms_4th_edition._2_rank.RankUtil.show;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.isSorted;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.less;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.show;
 
 /**
  * 归并排序

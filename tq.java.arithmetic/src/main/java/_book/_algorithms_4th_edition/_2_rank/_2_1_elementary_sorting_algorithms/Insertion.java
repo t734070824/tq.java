@@ -1,8 +1,6 @@
-package _book._algorithms_4th_edition._2_rank;
+package _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms;
 
-import edu.princeton.cs.algs4.StdOut;
-
-import static _book._algorithms_4th_edition._2_rank.RankUtil.*;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.*;
 
 /**
  * 插入排序

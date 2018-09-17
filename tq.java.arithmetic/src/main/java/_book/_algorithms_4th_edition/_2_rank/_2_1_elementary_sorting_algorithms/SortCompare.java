@@ -1,10 +1,8 @@
-package _book._algorithms_4th_edition._2_rank;
+package _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms;
 
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
-
-import static org.checkerframework.checker.units.UnitsTools.s;
 
 /**
  * @author 734070824@qq.com

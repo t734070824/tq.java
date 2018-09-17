@@ -1,4 +1,4 @@
-package _book._algorithms_4th_edition._2_rank;
+package _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms;
 
 /**
  * @author 734070824@qq.com

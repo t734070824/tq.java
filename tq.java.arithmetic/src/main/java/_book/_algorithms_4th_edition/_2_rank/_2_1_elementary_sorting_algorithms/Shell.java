@@ -1,7 +1,6 @@
-package _book._algorithms_4th_edition._2_rank;
-import org.junit.Assert;
+package _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms;
 
-import static _book._algorithms_4th_edition._2_rank.RankUtil.*;
+import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil.*;
 
 /**
  * 希尔排序
