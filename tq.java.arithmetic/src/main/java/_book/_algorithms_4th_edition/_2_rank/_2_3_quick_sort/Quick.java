@@ -40,7 +40,7 @@ public class Quick {
                 }
             }
             while (RankUtil.less(v, a[--j])){
-                if(i == lo){
+                if(j == lo){
                     break;
                 }
             }
@@ -57,7 +57,7 @@ public class Quick {
 
     public static void main(String[] args) {
         String[] arr = {"S","O","R","T","E","X","A","M","P","L","E"};
-        int partition = partition(arr, 0, args.length-1);
+        int partition = partition(arr, 0, arr.length-1);
         System.err.println(partition);
 
     }
