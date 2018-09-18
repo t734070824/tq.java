@@ -6,7 +6,7 @@ import static _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algo
  * 插入排序
  * 在计算机的实现中， 为了给要插入的元素腾出空间， 我们需要将其余所有元素在插入之前都向右移
  动一位。 这种算法叫做插入排序
- * {@link tq.java.data.structure\src\main\java\_book\_3_list\readme.md}
+ * {@link \tq.java.data.structure\src\main\java\_book\_3_list\readme.md}
  * @author 734070824@qq.com
  * @date 2018/6/30 16:47
  */
