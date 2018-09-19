@@ -40,6 +40,7 @@
       <module>tq.java.hikaricp</module>
     <module>tq.java.bigdata</module>
     <module>tq.java.summarize</module>
+      <module>tq.java.effective.java</module>
   </modules>
   
   <properties>
