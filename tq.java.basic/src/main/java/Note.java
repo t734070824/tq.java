@@ -17,5 +17,6 @@ public class Note {
     //TODO AIO
 
     //TODO NIO2
+    //TODO intern
 
 }
