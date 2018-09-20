@@ -25,5 +25,8 @@ public class Note {
     //TODO bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(20480));
     //TODO UDP Netty 1472
     //TODO 线程模型 NioEventLoop  NioEventLoopGroup
+    //TODO 粘包
+    //TODO 一次接受大量数据造成的内存溢出 20180920 面试完
+    //TODO ByteBuf 深入 20180920 面试完
 
 }
