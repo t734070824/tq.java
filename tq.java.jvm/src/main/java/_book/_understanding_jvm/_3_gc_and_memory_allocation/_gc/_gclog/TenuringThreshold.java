@@ -1,4 +1,4 @@
-package _book._understanding_jvm._3_gc_and_memory_allocation._gclog;
+package _book._understanding_jvm._3_gc_and_memory_allocation._gc._gclog;
 
 public class TenuringThreshold {
 
