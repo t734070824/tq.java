@@ -86,7 +86,7 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * 递归的思想 饿呢嗯嗯
+     * 递归的思想
      * @param x
      * @param key
      * @return
@@ -287,7 +287,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         private Key key;
         private Value value;
         private Node left, right;
-        //已该节点为根的子树中的节点数
+        //以该节点为根的子树中的节点数
         private int N;
 
         public Node(Key key, Value value, int n) {
@@ -295,5 +295,20 @@ public class BST<Key extends Comparable<Key>, Value> {
             this.value = value;
             N = n;
         }
+    }
+
+
+    public static void main(String[] args) {
+        BST bst = new BST();
+        bst.put(10, "1");
+        bst.put(5, "1");
+        bst.put(4, "1");
+        bst.put(6, "1");
+        bst.put(12, "1");
+        bst.put(11, "1");
+        bst.put(13, "1");
+
+        bst.delete(5);
+        System.err.println("1");
     }
 }

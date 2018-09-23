@@ -2,6 +2,8 @@ package _book._algorithms_4th_edition._2_rank._2_3_quick_sort;
 
 import _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil;
 
+import java.util.Arrays;
+
 /**
  * 快速排序
  * @author 734070824@qq.com
@@ -59,6 +61,8 @@ public class Quick {
         String[] arr = {"S","O","R","T","E","X","A","M","P","L","E"};
         int partition = partition(arr, 0, arr.length-1);
         System.err.println(partition);
+        sort(arr, 0, arr.length-1);
+        System.err.println(Arrays.toString(arr));
 
     }
 }
