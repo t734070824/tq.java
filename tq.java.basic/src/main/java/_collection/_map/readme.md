@@ -3,7 +3,7 @@
 1. key.hash --> index --> 链表 Or 红黑树 --> key == k
 
 ## Hashmap 1.8
-1. https://tech.meituan.com/java-hashmap.html
+1. https://tech.meituan.com/java_hashmap.html
 ### threshold
 1. threshold = length * Load factor
 2. 所能容纳的key-value对极限

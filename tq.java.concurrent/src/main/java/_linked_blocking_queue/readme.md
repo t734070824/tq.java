@@ -21,15 +21,19 @@ https://blog.csdn.net/u010887744/article/details/73010691
 3. 此外，由于此处获取的锁均是同一个（putLock或takeLock），同一时刻被锁的线程只有一个，也就无从谈起唤醒多个线程了。
 
 ### LinkedBlockingQueue与ArrayBlockingQueue简要比较
-1. ArrayBlockingQueue**底层基于数组，创建时必须指定队列大小，“有界”**；LinkedBlockingQueue“无界”，节点动态创建，节点出队后可被GC，故伸缩性较好；
-2. ArrayBlockingQueue**入队和出队使用同一个lock**（但数据读写操作已非常简洁），读取和写入操作无法并行，LinkedBlockingQueue使用双锁可并行读写，其吞吐量更高
+1. ArrayBlockingQueue**底层基于数组，创建时必须指定队列大小，“有界”**；
+    LinkedBlockingQueue“无界”，节点动态创建，节点出队后可被GC，故伸缩性较好；
+2. ArrayBlockingQueue**入队和出队使用同一个lock**（但数据读写操作已非常简洁），
+    读取和写入操作无法并行，LinkedBlockingQueue使用双锁可并行读写，其吞吐量更高
 3. ArrayBlockingQueue**在插入或删除元素时直接放入数组指定位置（putIndex、takeIndex）**，不会产生或销毁任何额外的对象实例；
     而LinkedBlockingQueue则会生成一个额外的Node对象，在高效并发处理大量数据时，对GC的影响存在一定的区别
 
 ### 总结
 1. LinkedBlockingQueue通过对 插入、取出数据 使用不同的锁，实现多线程对竞争资源的互斥访问
-2. (之前队列为空)添加数据后调用signalNotEmpty()方法唤醒等待取数据的线程；(之前队列已满)取数据后调用signalNotFull()唤醒等待插入数据的线程。这种唤醒模式可节省线程等待时间
-3. 个别操作需要调用方法fullyLock()同时获取putLock、takeLock两把锁（如方法：clear()、contains(Object o)、remove(Object o)、toArray()、toArray(T[] a)、toString()），
+2. (之前队列为空)添加数据后调用signalNotEmpty()方法唤醒等待取数据的线程；
+    (之前队列已满)取数据后调用signalNotFull()唤醒等待插入数据的线程。这种唤醒模式可节省线程等待时间
+3. 个别操作需要调用方法fullyLock()同时获取putLock、takeLock两把锁
+    （如方法：clear()、contains(Object o)、remove(Object o)、toArray()、toArray(T[] a)、toString()），
     **注意fullyLock和fullyUnlock获取锁和解锁的顺序刚好相反，避免死锁**。
 4. LinkedBlockingQueue的头部具有一个不变性: 头部的元素总是为null，head.item==null
 

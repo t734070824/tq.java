@@ -10,7 +10,7 @@ http://www.cnblogs.com/xrq730/p/4979021.html
 3. 队列中, head为 空 Node, head以后的节点才是只能的等待节点
 4. 第一个线程释放锁后, Node h = head, 获取后面节点, LockSupport.unpark()
 5. 总结:
-    - 正在运行的线程完全与 等队列隔离
+    - 正在运行的线程完全与 等待队列隔离
     - head 为空 Node
 
 ### AQS.Node
@@ -58,7 +58,8 @@ http://www.cnblogs.com/xrq730/p/4979021.html
 ### ReentrantLock.lock()
 1. 设置AbstractQueuedSynchronizer的state为1
 2. 设置AbstractOwnableSynchronizer的thread为当前线程
-3. 这两步做完之后就表示线程1独占了锁。然后线程2也要尝试获取同一个锁，在线程1没有释放锁的情况下必然是行不通的，所以线程2就要阻塞。那么，线程2如何被阻塞
+3. 这两步做完之后就表示线程1独占了锁。然后线程2也要尝试获取同一个锁，在线程1没有释放锁的情况下必然是行不通的，
+    所以线程2就要阻塞。那么，线程2如何被阻塞
 
 ### 线程2.lock()
 1. acquire(1): 尝试获取锁
@@ -76,7 +77,8 @@ http://www.cnblogs.com/xrq730/p/4979021.html
 
 ### setHead
 1. setHead方法里面的前驱Node是Null，也没有线程，那么为什么不用一个在等待的线程作为Head Node呢?
-    - 因为一个线程随时有可能因为中断而取消，而取消的话，Node自然就要被GC了，那GC前必然要把头Node的后继Node变为一个新的头而且要应对多种情况，这样就很麻烦。
+    - 因为一个线程随时有可能因为中断而取消，而取消的话，Node自然就要被GC了，
+        那GC前必然要把头Node的后继Node变为一个新的头而且要应对多种情况，这样就很麻烦。
 	- 用一个没有thread的Node作为头，相当于起了一个引导作用，因为head没有线程，自然也不会被取消。
 	
 ### 怎么样的代码差别导致公平锁和非公平锁的产生的呢
