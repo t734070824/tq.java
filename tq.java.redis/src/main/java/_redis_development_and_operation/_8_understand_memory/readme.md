@@ -107,7 +107,7 @@
           改字符串， 降低预分配带来的内存浪费和内存碎片化**
           
 ### 编码优化
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_8_understand_memory/1.jpg?raw=true)
+![](1.jpg)
 
 1. //TODO  编码优化
     
