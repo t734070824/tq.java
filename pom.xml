@@ -41,6 +41,7 @@
     <module>tq.java.bigdata</module>
     <module>tq.java.summarize</module>
       <module>tq.java.effective.java</module>
+      <module>tq.java.nginx</module>
   </modules>
   
   <properties>
