@@ -75,6 +75,7 @@
         - 不存在
             - 拒绝
             - (term, (nextIndex - 1 - 1))
+            - 循环
 4. 哪些Follower有资格成为Leader
     - **Raft保证被选为新leader的节点拥有所有已提交的log entry**
     - 这个保证是在RequestVoteRPC阶段做的
@@ -104,6 +105,56 @@
     - 过程 TODO
 
 ### Log Compaction
-1. snapshot TODO
-
+1. snapshot
+    - 原因: 防止日志无线增长, 导致系统重启是需要花费很长的时间进行回放
+    - 解决: 丢弃 snapshot 之前的日志
+    - 应用: Chubby Zookeeper
+2. raft 应用
+    - 每个副本独立对自己的系统状态进行 Snapshot
+    - 只能对已经提交的日志(已经应用到状态机) 进行 snapshot
+3. 缺点
+    - 不是增量的
+4. 注意
+    - 不要做的太频繁
+        - 消耗磁盘带宽
+    - 不要做得不太频繁
+        - 一点节点重启需要回放大量日志
+        - **当日志达到一个固定大小之后做一次 Snapshot**
+    - 做一次 Snapshot 可能耗时太长
+        - copy-on-write
 ### 集群拓扑变化
+1. 运行过程中副本集的结构性变化
+    - 增加/减少副本数
+    - 节点更换
+2. 流程
+    - 配置变化, 
+        - Leader 人工命令配置变换, 
+        - Cold--> Cnew
+    - Leader 在本地生成一个 新的 Log Entry, 
+        - 内容为 Cold U Cnew, 
+        - 代表当前新旧拓扑共存
+        - 写入本地日志
+        - 推送到其他 Follower
+    - Follower 收到 新的 Log Entry
+        - 更新本地日志
+        - 更新自己的全局拓扑结构
+    - 多数 Follower 确认这个日志
+        - Leader Commit log Entry
+    - Leader 生成新的 Log Entry 
+        - 内容: 全新的配置 Cnew
+        - 写入本地日志
+        - 推送 Follower
+    - Follower 收到新的 Cnew
+        - 写入本地日志
+        - 新的日志为 系统拓扑
+        - 发现自己不在Cnew中, 自动退出
+    - 多数 Follwer 确认消息
+        - Leader 提交
+2. 异常分析
+    - 如果Leader的Cold U Cnew尚未推送到Follower，Leader就挂了，此时选出的新的Leader并不包含这条日志，此时新的Leader依然使用Cold作为全局拓扑    配置
+    - 如果Leader的Cold U Cnew推送到大部分的Follower后就挂了，此时选出的新的Leader可能是Cold也可能是Cnew中的某个Follower；
+    - 如果Leader在推送Cnew配置的过程中挂了，那么和2一样，新选出来的Leader可能是Cold也可能是Cnew中的某一个，那么此时客户端继续执行一次改变配       置的命令即可
+    - 如果大多数的Follower确认了Cnew这个消息后，那么接下来即使Leader挂了，新选出来的Leader也肯定是位于Cnew这个配置中的，因为有Raft的协议保证。
+3. 为什么需要弄这样一个两阶段协议，而不能直接从Cold切换至Cnew？
+    - 多个 Follower 系统视图不一致
+    - 可能会产生多个 Leader
