@@ -11,11 +11,11 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 http://www.springframework.org/schema/tx">
 
-    <bean id="djNewsListener" class="_ioc._2_bean_factory.DowJonesNewsListener"></bean>
-    <bean id="djNewsPersister" class="_ioc._2_bean_factory.DowJonesNewsPersister"></bean>
+    <bean id="djNewsListener" class="_2_ioc._2_ioc_concept.DowJonesNewsListener"></bean>
+    <bean id="djNewsPersister" class="_2_ioc._2_ioc_concept.DowJonesNewsPersister"></bean>
 
 
-    <bean id="djNewsProvider" class="_ioc._2_bean_factory.FXNewsProvider">
+    <bean id="djNewsProvider" class="_2_ioc._2_ioc_concept.FXNewsProvider">
         <constructor-arg index="0">
             <ref bean="djNewsListener"/>
         </constructor-arg>

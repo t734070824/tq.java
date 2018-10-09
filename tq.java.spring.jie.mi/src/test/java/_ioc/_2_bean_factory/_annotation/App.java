@@ -32,7 +32,7 @@ public class App {
     public void defaultListableBeanFactory(){
         DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
         BeanFactory container = bindViaXMLFile(beanRegistry);
-        _ioc._2_bean_factory.FXNewsProvider newsProvider = (_ioc._2_bean_factory.FXNewsProvider)container.getBean("djNewsProvider");
+        _2_ioc._2_ioc_concept.FXNewsProvider newsProvider = (_2_ioc._2_ioc_concept.FXNewsProvider)container.getBean("djNewsProvider");
         System.err.println(newsProvider);
 //        newsProvider.getAndPersistNews();
     }

@@ -1,5 +1,6 @@
 package _ioc._2_bean_factory;
 
+import _2_ioc._2_ioc_concept.FXNewsProvider;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;

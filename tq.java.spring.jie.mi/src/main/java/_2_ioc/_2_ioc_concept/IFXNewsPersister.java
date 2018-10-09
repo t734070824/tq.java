@@ -1,4 +1,4 @@
-package _ioc._2_bean_factory;
+package _2_ioc._2_ioc_concept;
 
 public interface IFXNewsPersister {
 }
