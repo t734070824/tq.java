@@ -6,21 +6,21 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <modules>
-    <module>tq.java.basic</module>
-    <module>tq.java.designmode</module>
-    <module>tq.java.concurrent</module>
-    <module>tq.java.rabbitmq</module>
-    <module>tq.java.log</module>
-    <module>tq.java.jvm</module>
-    <module>tq.java.note</module>
-    <module>tq.java.arithmetic</module>
-    <module>tq.java.linux</module>
-    <module>tq.java.http</module>
-    <module>tq.java.freemarker</module>
-    <module>tq.java.thrift</module>
-    <module>tq.java.json</module>
-    <module>tq.java.mysql</module>
-    <module>tq.java.mongodb</module>
+      <module>tq.java.basic</module>
+      <module>tq.java.designmode</module>
+      <module>tq.java.concurrent</module>
+      <module>tq.java.rabbitmq</module>
+      <module>tq.java.log</module>
+      <module>tq.java.jvm</module>
+      <module>tq.java.note</module>
+      <module>tq.java.arithmetic</module>
+      <module>tq.java.linux</module>
+      <module>tq.java.http</module>
+      <module>tq.java.freemarker</module>
+      <module>tq.java.thrift</module>
+      <module>tq.java.json</module>
+      <module>tq.java.mysql</module>
+      <module>tq.java.mongodb</module>
       <module>tq.java.asm</module>
       <module>tq.java.tomcat</module>
       <module>tq.java.netty</module>
@@ -35,14 +35,14 @@
       <module>tq.java.tcp.ip</module>
       <module>tq.java.rpc</module>
       <module>tq.java.distributed.system</module>
-    <module>tq.java.redis</module>
-    <module>tq.java.lintcode</module>
+      <module>tq.java.redis</module>
+      <module>tq.java.lintcode</module>
       <module>tq.java.hikaricp</module>
-    <module>tq.java.bigdata</module>
-    <module>tq.java.summarize</module>
+      <module>tq.java.bigdata</module>
+      <module>tq.java.summarize</module>
       <module>tq.java.effective.java</module>
       <module>tq.java.nginx</module>
-    <module>tq.java.spingboot</module>
+      <module>tq.java.spingboot</module>
   </modules>
   
   <properties>
