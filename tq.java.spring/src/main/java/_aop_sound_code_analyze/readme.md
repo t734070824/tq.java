@@ -9,7 +9,7 @@ http://www.importnew.com/24459.html
 
 
 ### Spring-Aop相关概念
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.spring/src/main/java/_aop_sound_code_analyze/1.jpg?raw=true)
+![](1.jpg)
 
 - Target(目标对象)：需要被代理增强的对象
 - Proxy(代理对象)：目标对象被AOP 织入 增强/通知后,产生的对象.
