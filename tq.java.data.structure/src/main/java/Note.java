@@ -16,5 +16,7 @@ public class Note {
     //TODO LSM Tree VS B Tree
     //TODO b-tree 增删查
     //TODO skiplist ** TODO https://blog.csdn.net/u013457382/article/details/49057767***
+
+    //TODO 列存储 VS 行存储
 }
 
