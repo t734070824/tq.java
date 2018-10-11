@@ -28,6 +28,8 @@
     - Xml
         - XmlBeanDefinitionReader
         - XmlBeanFactory
+            - 这个默认不支持 BeanPostProcessor，需要使用ApplicationContext实现如ClassPathXmlApplicationContext
+            - **导致 xmlBeanFactory 对 @Autowired 不起作用 **            
 3. 注解方式
     - @Component, @Autowired
     - context:component-scan base-package=""
@@ -58,7 +60,7 @@
         - 这个对象本身是生产 Bean 的工厂
 
 ### 容器背后的秘密
-![](../_5_applicationContext/5.jpg)
+![](5.jpg)
 1. 过程
     - 启动
         - BeanDefinitionReader
@@ -117,3 +119,16 @@
         - 回调
         - 常见场景
             - 数据路连接池
+
+### BeanFactory的基本类体系结构（接口为主）
+![](4.png)  
+
+### Bean初始化路径
+```text
+BeanFactory.getBean() --> AbstractBeanFactory.doGetBean() --> cache, parentBeanFactory
+--> dependsOn --> AbstractAutowireCapableBeanFactory.createBean() --> AbstractAutowireCapableBeanFactory.doCreateBean()
+--> AbstractAutowireCapableBeanFactory.createBeanInstance() --> BeanUtils.instantiateClass() OR CGLIB --> BeanWrapper
+--> AbstractAutowireCapableBeanFactory.populateBean() --> AbstractAutowireCapableBeanFactory.initializeBean()
+```      
+            
+            
