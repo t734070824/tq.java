@@ -82,4 +82,20 @@
         - ProxyTargetClass = true
         - optimize = true
     - 本质
-        - 
+        - AopProxy
+            - Cglib2AopProxy
+            - JdkDynamicAopProxy
+                - InvocationHandler
+
+        - 工厂模式
+            - AopProxyFactory
+                - DefaultAopProxyFactory
+                    - AdvisedSupport
+                        - ProxyConfig
+                            - 生成代理对象的控制信息
+                        - Advised
+                            - 生成代理对象所需要的必要信息
+                                - 目标类
+                                - Advice
+                                - Advisor
+            - ProxyCreatorSupport

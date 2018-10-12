@@ -1,4 +1,4 @@
-package _3_aop._spring_aop_process._ProxyFactory;
+package _3_aop._9_10_spring_aop_process._ProxyFactory;
 
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
@@ -7,16 +7,14 @@ import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
  * @author 734070824@qq.com
  * @date 2018/10/11 19:45
  */
-public class ProxyFactory_Dy_App {
+public class ProxyFactory_CGLIB_App {
 
     public static void main(String[] args) {
         /**
          * 要代理的接口
          */
-        MockTask task = new MockTask();
+        Executable task = new Executable();
         ProxyFactory weaver = new ProxyFactory(task);
-//        weaver.setInterfaces(new Class[]{ITask.class});
-
 
         /**
          * joinpoint advice
@@ -30,11 +28,11 @@ public class ProxyFactory_Dy_App {
          * Aspect, weaver
          */
         weaver.addAdvisor(advisor);
-        ITask proxyObject = (ITask) weaver.getProxy();
+        Executable proxyObject = (Executable) weaver.getProxy();
         proxyObject.execute();
 
         /**
-         * class com.sun.proxy.$Proxy0
+         * class _3_aop._9_10_spring_aop_process._ProxyFactory.Executable$$EnhancerByCGLIB$$938f93b7
          */
         System.err.println(proxyObject.getClass());
     }
