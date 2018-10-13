@@ -10,11 +10,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AnnotationAwareAspectJAutoProxyCreatorApp {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("_2/aspect.xml");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("_3_aop/_10_spring_aop_process_two/aspect.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("_3_aop/_10_spring_aop_process_two/aspect-autoproxy.xml");
         Foo target = (Foo) context.getBean("target");
         target.method1();
         target.method2();
-
     }
 
 }
