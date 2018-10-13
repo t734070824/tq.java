@@ -1,4 +1,4 @@
-package _3_aop._9_10_spring_aop_process._ProxyFactory;
+package _3_aop._9_spring_aop_process_one._ProxyFactory;
 
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
@@ -7,7 +7,7 @@ import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
  * @author 734070824@qq.com
  * @date 2018/10/11 19:45
  */
-public class ProxyFactory_Dy_App {
+public class ProxyFactoryDyApp {
 
     public static void main(String[] args) {
         /**

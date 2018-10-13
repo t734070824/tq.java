@@ -99,3 +99,46 @@
                                 - Advice
                                 - Advisor
             - ProxyCreatorSupport
+                - createAopProxy()
+    - 容器中的织入器 - ProxyFactoryBean
+        - Proxy + FactoryBean
+        - getObject()
+            - 返回的都是代理对象Proxy
+            - Singleton 返回缓存对象
+    - 织入的自动化
+        - 建立在 IOC 容器的 BeanPostProcesser
+        - 
+        ![](5.jpg)
+        - **如何判断当前bean是否符合拦截条件**
+            - 外部配置文件, Pointcut, Advisor
+            - 注解
+            - 可用的AutoProxyCreator
+                - BeanNameAutoProxyCreator
+                    - **将一组拦截器(Advice, Advisor)应用到容器内指定的目标对象**
+                - DefaultAdvisorAutoProxyCreator
+                    - **自动搜寻容器内的所有Advisor, 根据Advisor提供的拦截信息, 为符合条件的目标对象生成代理对象** 
+                    -只对 Advisor 有效
+                        - 有 PointCut 筛选目标对象
+                        - 有 Advice 获取切面
+        - InstantiationAwareBeanPostProcessor
+            - **检测到此类型的 BeanPostProcesser, 直接返回此Processor构造的对象返回,** 
+            - **短路**
+
+### TargetSource
+1. 作用
+    - **proxy代理的不是 target, 而是 targetSource**
+    - 可以使得每次方法调用的target实例不同
+    - 使方法调用变得灵活, 可以扩展需要高级功能
+        - targetPool
+        - hot swap
+2. 实现
+    - SingletonTargetSource
+        - 最常用
+    - PrototypeTargetSource
+    - HotSwappableTargetSource
+        - 动态替换目标类型类的实现
+            - 动态切换数据源
+    - CommonsPoolTargetSource
+    - ThreadLocalTargetSource
+        - 不同线程提供不同的对象
+        - ThreadLocal的简单封装

@@ -1,4 +1,4 @@
-package _3_aop._9_10_spring_aop_process._ProxyFactory;
+package _3_aop._9_spring_aop_process_one._ProxyFactory;
 
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
@@ -7,7 +7,7 @@ import org.springframework.aop.support.NameMatchMethodPointcutAdvisor;
  * @author 734070824@qq.com
  * @date 2018/10/11 19:45
  */
-public class ProxyFactory_CGLIB_App {
+public class ProxyFactoryCglibApp {
 
     public static void main(String[] args) {
         /**
@@ -32,7 +32,7 @@ public class ProxyFactory_CGLIB_App {
         proxyObject.execute();
 
         /**
-         * class _3_aop._9_10_spring_aop_process._ProxyFactory.Executable$$EnhancerByCGLIB$$938f93b7
+         * class _3_aop._9_spring_aop_process_one._ProxyFactory.Executable$$EnhancerByCGLIB$$938f93b7
          */
         System.err.println(proxyObject.getClass());
     }

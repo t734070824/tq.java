@@ -10,3 +10,9 @@
        - 思考一下 
 3. MockTask proxyObject = (MockTask) weaver.getProxy() 是否可以??
     - 动态代理出来的真正对象是什么
+    
+4. 思考 TargetSource 具体的作用
+    - 灵活
+
+5. TransactionProxyFactoryBean
+    - TODO
