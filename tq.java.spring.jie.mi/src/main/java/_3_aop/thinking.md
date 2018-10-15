@@ -16,3 +16,6 @@
 
 5. TransactionProxyFactoryBean
     - TODO
+    
+6. 用到的设计模式与具体的类
+    - TODO

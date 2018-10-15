@@ -12,8 +12,12 @@ http://www.springframework.org/schema/aop/spring-aop.xsd
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+    <context:component-scan base-package="_3_aop._10_spring_aop_process_two" >
+        <context:include-filter type="annotation"
+                                expression="org.aspectj.lang.annotation.Aspect"/>
+    </context:component-scan>
 
-    <bean id="performanceAspect" class="_3_aop._10_spring_aop_process_two.PerformanceTraceAspect"></bean>
-    <bean id="target" class="_3_aop._10_spring_aop_process_two.Foo"></bean>
+    <!--<bean id="performanceAspect" class="_3_aop._10_spring_aop_process_two.PerformanceTraceAspect"></bean>-->
+    <!--<bean id="target" class="_3_aop._10_spring_aop_process_two.Foo"></bean>-->
 
 </beans>

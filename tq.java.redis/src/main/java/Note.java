@@ -47,5 +47,6 @@ public class Note {
     //TODO 集群和哨兵的关系...
     //TODO Hystrix
     //TODO redis 事务 原子 要复习
+    //TODO redis 与 Linux
 
 }
