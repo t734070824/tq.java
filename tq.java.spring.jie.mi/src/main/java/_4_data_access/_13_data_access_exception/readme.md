@@ -16,5 +16,16 @@
     - 错误统一分类
         - 连接失败
         - 数据一致性冲突
+3. 异常
+    - ClearupFailureDataAccessException
+        - 资源清理失败: 关闭数据库连接
+    - DataAccessResourceFailureException
+        - 无法访问数据源
+    - ConcurrencyFailureException
+        - 并发访问数据库失败: 获取锁失败
+    - PermissionDeniedDataAccessException
+        - 没有响应的权限
+    - DataIntegrityViolationException
+        - 数据一致性冲突
 
 
