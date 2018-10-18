@@ -10,6 +10,7 @@ public class Note {
         // 210 / 673 20181013 @Aspect
         // 264 / 673 20181015 spring异常体系
         // 305 / 673 20181016 dataSource, 跳过了 JdbcTemplate 大部分内容
+        // 340 / 673 20181018 ibatis
     //TODO
         //TODO 了解 component-scan 中include-filter 的作用
 }
