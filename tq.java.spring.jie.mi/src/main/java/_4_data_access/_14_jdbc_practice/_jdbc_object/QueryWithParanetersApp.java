@@ -1,14 +1,14 @@
-package _4_data_access._14_jdbc_practice;
+package _4_data_access._14_jdbc_practice._jdbc_object;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 /**
- * 具体使用示例
  * @author 734070824@qq.com
- * @date 2018/10/16 20:16
+ * @date 2018/10/18 15:36
  */
-public class JdbcTemplateApp {
+public class QueryWithParanetersApp {
 
     public static void main(String[] args) {
         BasicDataSource dataSource = new BasicDataSource();
@@ -17,8 +17,12 @@ public class JdbcTemplateApp {
         dataSource.setUsername("root");
         dataSource.setPassword("333dkx8s");
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        int i = jdbcTemplate.queryForInt("SELECT count(*) FROM `student` WHERE studentAge = 0 ");
-        System.err.println(i);
+        QueryWithParaneters query = new QueryWithParaneters(dataSource);
+        List list = query.execute("tq");
+        for (Object o : list) {
+
+            System.err.println(o);
+        }
+
     }
 }

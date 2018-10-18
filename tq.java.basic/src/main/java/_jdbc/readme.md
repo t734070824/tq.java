@@ -17,3 +17,6 @@
 1. Statement 的子接口
 2. 避免sql注入
 3. 可以对 SQL 进行预编译, 提高数据库的执行效率
+
+### ResultSet
+1. 从 1 开始(columnIndex)

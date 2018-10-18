@@ -65,5 +65,42 @@
 1. ConnectionFactory
 2. 分类
     - 简单的实现
-        - 
+        - DriverManagerDataSource
+            - 每一次都是返回新的连接
+            - 没有池化的功能
+            - 测试环境使用
+        - SingleConnectionDataSource
+            - 总是返回同一个 Connection
+    - 拥有连接缓冲池的DataSource实现
+        - DPCP
+        - C3P0
+    - 支持分布式事务的 DataSource 实现
+        - XADataSource
+
+### JdbcDaoSupport
+1. 直接继承就可以使用了
+    - 终于想起了以前为什么那么做
     
+### 基于操作对象的JDBC使用方式
+1. RdbmsOperation
+    - 查询操作对象
+        - SqlQuery
+            - SqlFunction
+                - 更纯粹的查询
+                - 常用 返回单一的结果
+    - 更新操作对象
+        - SqlUpdate
+    - 存储过程对象
+        - StoredProceure
+    - declareParameter
+        - 确定参数类型
+    - **compile**
+        - 必须的参数检查和设置
+2. UpdatableSqlQuery
+    - **可更新的结果集**: 对查询结果进行更新
+3. 更新
+    - SqlUpdate
+        - compile
+    - BatchSqlUpdate
+        - 批量执行多个sql语句
+        - 仍然是借助于 JdbcTemplate 
