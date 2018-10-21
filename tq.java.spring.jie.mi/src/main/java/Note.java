@@ -11,6 +11,7 @@ public class Note {
         // 264 / 673 20181015 spring异常体系
         // 305 / 673 20181016 dataSource, 跳过了 JdbcTemplate 大部分内容
         // 340 / 673 20181018 ibatis
+        // 391 / 673 20181021 PlatformTransactionManager
     //TODO
         //TODO 了解 component-scan 中include-filter 的作用
 }
