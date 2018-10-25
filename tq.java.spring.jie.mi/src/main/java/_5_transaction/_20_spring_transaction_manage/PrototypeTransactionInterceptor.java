@@ -1,4 +1,4 @@
-package _spring_jie_mi._5_transaction_management._5_20_transaction_manager;
+package _5_transaction._20_spring_transaction_manage;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

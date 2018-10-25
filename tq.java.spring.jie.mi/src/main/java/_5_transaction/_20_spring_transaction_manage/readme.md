@@ -1,4 +1,4 @@
-2018-04-16
+2018-10-25
 
 ## Spring 事务管理
 
@@ -15,6 +15,14 @@
         - 无法向 更上层抛出未检查异常
         
 ### 声明式事务管理
+1. 实现拦截器
+    - 需要知道方法是否需要事务支持
+    - 哪些异常需要回滚事务
+2. 4中配置方式
+    - ProxyFactory(ProxyFactoryBean) + TransactionInterceptor
+    - TransactionProxyFactoryBean
+    - BeanNameAutoProxyCreator
+    - 声明事务配置方式
 1. **五种方式**: https://blog.csdn.net/hjm4702192/article/details/17277669                  
 2. DataSource, TransactionManager, 代理机制
     - 每个Bean都有一个代理
@@ -23,6 +31,8 @@
     - 使用tx标签配置的拦截器
     - 全注解
 3. 无论哪种配置方式，一般变化的只是代理机制这部分。
+
+
 
 ### 扩展
 1. Strategy 在开发过程中的应用

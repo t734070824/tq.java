@@ -75,7 +75,16 @@
     ![](5.jpg)
     
 ### AbstractPlatformTransactionManager
-1. 
+1. 判断是否存在当前事务
+2. 结合是否存在当前事务的情况, 根据传播行为, 执行后继逻辑
+2. 根据情况挂起或者恢复事务
+3. readOnly是否设置, 如果设置, 用事务的回滚代替事务的提交
+4. 事务回滚的情况下, 清理并恢复事务状态
+5. 如果事务的 Synchonization 处于 active 转态, 在事务处理的规定点出发注册的回调接口 
+7. 子类
+    -
+    ![](6.jpg)
+
 
 ### PlatformTransactionManager 实现类
 1. JtaTransactionManager

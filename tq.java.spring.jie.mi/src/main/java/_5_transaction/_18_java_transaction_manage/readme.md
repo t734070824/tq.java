@@ -8,6 +8,6 @@
 
 ### 分布式事务支持
 1. JTA(Java Transaction API)
-    - JTA编程事务处理
         - javax.transaction.UserTransaction
 2. JCA(Java Connection Architecture)
+    - JTA编程事务处理

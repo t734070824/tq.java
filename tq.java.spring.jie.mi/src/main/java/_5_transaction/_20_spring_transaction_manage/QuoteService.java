@@ -1,4 +1,4 @@
-package _spring_jie_mi._5_transaction_management._5_20_transaction_manager._xml._proxyfactorybean_transactiointerceptor;
+package _5_transaction._20_spring_transaction_manage;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,7 +17,7 @@ public class QuoteService implements IQuoteService{
 
     @Override
     public Quote getQuote() {
-        return getJdbcTemplate().queryForObject("", new RowMapper<Quote>() {
+        return getJdbcTemplate().queryForObject("SELECT  * FROM  student LIMIT 1", new RowMapper<Quote>() {
             @Override
             public Quote mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Quote quote = new Quote();
