@@ -56,3 +56,33 @@
     - 关闭事务开始到结束的事务状态
     - 大多用于编程式事务
     
+### 事务对象
+1. transaction Object
+    - 当前事务的必要信息, 提供给 PlatformTransactionManager 来决定如何处理事务
+    - java.transaction.Transaction
+2. TransactionSynchronization
+    - 事务处理的回调接口
+        - 清理资源
+    - javax.transaction.Synchronization
+    - org.springframework.transaction.support.TransactionSynchronization
+        -提供更加丰富的回调
+3. TransactionSynchronizationManager
+    - 类似 TransactionSynchronizationRegistry
+    - 管理回调接口, 当前事务状态, 具体的事务资源
+    - **Connection, Hibernate Session 绑定的目的地**
+4. 结构
+    -
+    ![](5.jpg)
+    
+### AbstractPlatformTransactionManager
+1. 
+
+### PlatformTransactionManager 实现类
+1. JtaTransactionManager
+    - 全局事务, 分布式事务
+    - 对各种JTA提供的分布式事务支持进行统一的封装
+    - **最终都为委派给具体的JTA实现来完成**
+2. DataSourceTransactionManager
+    - 
+    
+
