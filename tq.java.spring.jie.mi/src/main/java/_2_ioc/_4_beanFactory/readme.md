@@ -87,7 +87,7 @@
     - Bean的实例化与 BeanWrapper
         - 实例化方式(策略模式)
             - 反射
-                - SimpleInstantiattionStrategy
+                - SimpleInstantiationStrategy
                     -  不支持方法注入的对象实例化
             - CGLIB
                 - CglibSubclassingInstantiationStrategy
