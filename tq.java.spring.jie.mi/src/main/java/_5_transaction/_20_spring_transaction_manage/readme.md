@@ -18,11 +18,23 @@
 1. 实现拦截器
     - 需要知道方法是否需要事务支持
     - 哪些异常需要回滚事务
+2. 多个方面协同工作
+    - 具体的数据资源类型
+    - 数据访问技术
+    - 事务管理实现
+    - 业务方法拦截功能
+    - **数据访问技术与事务管理实现 是 一一对应的**
 2. 4中配置方式
     - ProxyFactory(ProxyFactoryBean) + TransactionInterceptor
+        - 基本实现功能
     - TransactionProxyFactoryBean
+        - 减少配置, 提高效率
     - BeanNameAutoProxyCreator
+        - 解决使用声明式事务的业务增加, 配置项也跟着增加的问题
+        - 自动代理
+        - 依然需要在新增的时候手动配置
     - 声明事务配置方式
+        - 只要放宽 pointcut 的限制, 就可以代理多个
 1. **五种方式**: https://blog.csdn.net/hjm4702192/article/details/17277669                  
 2. DataSource, TransactionManager, 代理机制
     - 每个Bean都有一个代理
@@ -31,6 +43,10 @@
     - 使用tx标签配置的拦截器
     - 全注解
 3. 无论哪种配置方式，一般变化的只是代理机制这部分。
+
+### 注解元数据驱动的声明式事务
+1. @Transactional
+1. tx:annotation-driven transaction-manager="transactionManager"
 
 
 

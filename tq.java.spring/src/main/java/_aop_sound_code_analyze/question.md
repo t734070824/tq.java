@@ -11,10 +11,10 @@
 
 ### 针对不同的注解会有怎样的方式
 
-### @Transaction 是如何处理的
+### @Transactional 是如何处理的
 1. 对于每个切面(方法或者是类)都会有自己的 **interception chain**
 2. 
 
-### @Transaction注解的方法中如果没有sql相关的会如何回滚...
+### @Transactional 注解的方法中如果没有sql相关的会如何回滚...
 
-### @Transaction注解无用的原因
+### @Transactional 注解无用的原因

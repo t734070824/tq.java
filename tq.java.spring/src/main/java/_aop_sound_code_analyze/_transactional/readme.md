@@ -1,6 +1,6 @@
 2018-07-02
 
-## @Transaction 源码解析
+## @Transactional 源码解析
 
 ### Q
 1. 注解在非 public方法不起作用
