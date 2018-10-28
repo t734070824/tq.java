@@ -49,12 +49,4 @@
 1. tx:annotation-driven transaction-manager="transactionManager"
 
 
-
-### 扩展
-1. Strategy 在开发过程中的应用
-    - 事务抽象框架
-    - IOC 根据 Bean 定义的内容, 实例化相应 bean 的时候, 根据情况使用反射 还是 CGLIB 来实例化相应的内容
-    - Spring 的 Validation 框架
-    - 常用的 commons logging 中, Log接口就是一个策略接口, JDK14Logger, Log4JLogger, SimpleLog
-
               

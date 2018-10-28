@@ -16,3 +16,6 @@
     
 5. @Transaction 为什么建立写在 实现类上, 而不是接口
     - Dynamic Proxy -- Cglib
+    
+6. ThreadLocal 在事务中的作用
+    - connection-passing
