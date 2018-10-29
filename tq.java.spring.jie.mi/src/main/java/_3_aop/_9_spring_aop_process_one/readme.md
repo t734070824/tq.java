@@ -72,7 +72,8 @@
         - 多个需要在同一个Joinpointc处执行的Advice逻辑存在优先顺序依赖
         - 如果没有实现这个接口, 那么就会按照声明的顺序, 谁先声明谁在前面
             - 如果全局的异常捕获Advisor在其他异常捕获Advisor之后, 就会导致 其他异常捕获Advisor 抛出的异常无法捕获
-### SPring AOP 的织入
+
+### Spring AOP 的织入
 1. 织入器 -- ProxyFactory
     - 需要
         - 要对其进行织入的对象
