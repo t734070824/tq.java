@@ -47,5 +47,10 @@
     - 客户端整个生命周期只依赖于单一的策略
     
 ### Spring JTA
-1. 
-    
+1. TM(TransactionManager) + RM(ResourceManager)
+2. JtaTransactionManager
+    - 对分布式事务管理功能进行封装, 具体的工作还是委托给JTA的实现
+3. XA
+    - 分布式事务协议, 事务管理器 + 本地资源管理器
+    - 具体实现
+        - 2PC(the two-phase commit protocol)

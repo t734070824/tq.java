@@ -14,4 +14,6 @@ public class Note {
         // 391 / 673 20181021 PlatformTransactionManager
     //TODO
         //TODO 了解 component-scan 中include-filter 的作用
+        //TODO Spring 分布式事务 jta
+        //TODO ioc-aop-transaction 总结
 }
