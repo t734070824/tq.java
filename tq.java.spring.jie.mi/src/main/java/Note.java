@@ -16,4 +16,5 @@ public class Note {
         //TODO 了解 component-scan 中include-filter 的作用
         //TODO Spring 分布式事务 jta
         //TODO ioc-aop-transaction 总结
+        // 用到的设计模式与具体的类
 }
