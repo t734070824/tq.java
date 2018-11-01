@@ -13,4 +13,5 @@
 5. 选出排在后面的10个
    - du -s /usr/* | sort -rn | tail
 
-### 
+### 文件内容查找
+1. grep -r common.dcorm.tcy365.net /projects/server/ROOT/*/configs

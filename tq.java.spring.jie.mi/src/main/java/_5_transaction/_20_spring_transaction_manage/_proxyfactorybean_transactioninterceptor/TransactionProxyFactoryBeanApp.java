@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * TransactionProxyFactoryBea 事务管理
+ * TransactionProxyFactoryBean 事务管理
  * @author 734070824@qq.com
  * @date 2018/10/13 14:35
  */
