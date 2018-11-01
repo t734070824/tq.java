@@ -53,7 +53,7 @@
 ### 消费模式
 1. 推模式(Push)
     -       String basicConsume(String queue , boolean autoAck, String consumerTag,
-            boolean noLocal , boolean exclusive, Map<Str 工 ng ， Object> arguments , Consumer callback)
+            boolean noLocal , boolean exclusive, Map<String ， Object> arguments , Consumer callback)
             throws IOException 
         - queue
         - autoAck
@@ -73,5 +73,15 @@
       的限制.如果只想从队列获得单条消息而不是持续订阅，建议还是使用 Basic.Get 进行消费.但
       是不能将 Basic.Get 放在一个循环里来代替 Basic.Consume ，这样做会严重影响 RabbitMQ
       的性能.如果要实现高吞吐量，消费者理应使用 Basic.Consume 方法
+      
+### 消息端的确认与拒绝
+1. autoAck
+    - false
+        - 等待消费者显式的回复确认后才从内存或者磁盘中移除消息(实际是 打上删除标签, 之后再删除)
+    - true
+        - 发送成功之后, 移除
+
+### 关闭连接
+1. addShutDownListener(ShutDownListener listener), 很多都是这么设计..
 
         

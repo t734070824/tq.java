@@ -37,8 +37,7 @@ public class MsgFromToApp {
                 System.err.println("return : " + msg);
             }
         });
-        TimeUnit.SECONDS.sleep(2);
-        channel.basicPublish(EXCHANGE_NAME, "", true,
+        channel.basicPublish(EXCHANGE_NAME, "", false,
                 MessageProperties.PERSISTENT_TEXT_PLAIN,
                 "mandatory test".getBytes());
 
