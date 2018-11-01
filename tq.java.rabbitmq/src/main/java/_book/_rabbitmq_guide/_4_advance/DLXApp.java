@@ -3,6 +3,8 @@ package _book._rabbitmq_guide._4_advance;
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -11,7 +13,7 @@ import java.util.concurrent.TimeoutException;
  * @author 734070824@qq.com
  * @date 2018/8/29 16:39
  */
-public class MsgFromToApp {
+public class DLXApp {
     private static final String EXCHANGE_NAME = "exchange_demo";
     private static final String ROUTING_KEY = " routingkey_demo";
     private static final String QUEUE_NAME = "queue_demo";
@@ -29,20 +31,21 @@ public class MsgFromToApp {
         //创建信道
 
         Channel channel = connection.createChannel();
-        channel.addReturnListener(new ReturnListener() {
-            @Override
-            public void handleReturn(int replyCode, String replyText, String exchange, String routingKey,
-                                     AMQP.BasicProperties properties, byte[] body) throws IOException {
-                String msg = new String(body);
-                System.err.println("return : " + msg);
-            }
-        });
-        channel.basicPublish(EXCHANGE_NAME, "", false,
-                MessageProperties.PERSISTENT_TEXT_PLAIN,
-                "mandatory test".getBytes());
+        channel.exchangeDeclare("exchange.dlx", "direct");
+        channel.exchangeDeclare("exchange.normal", "fanout", true);
+        Map<String, Object> arg = new HashMap<>();
+        arg.put("x-message-ttl", 10000);
+        arg.put("x-dead-letter-exchange", "exchange.dlx");
+        arg.put("x-dead-letter-routing-key", "routingkey");
+        channel.queueDeclare("queue.normal", true, false, false, arg);
+        channel.queueBind("queue.normal", "exchange.normal", "");
+        channel.queueDeclare("queue.dlx", true, false, false, null);
+        channel.queueBind("queue.dlx", "exchange.dlx", "routingkey");
 
-        TimeUnit.SECONDS.sleep(5);
+        channel.basicPublish("exchange.normal", "rk", MessageProperties.PERSISTENT_TEXT_PLAIN, "dlx".getBytes());
+
         channel.close();
         connection.close();
+
     }
 }

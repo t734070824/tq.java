@@ -37,7 +37,7 @@ public class MsgFromToApp {
                 System.err.println("return : " + msg);
             }
         });
-        channel.basicPublish(EXCHANGE_NAME, "", true,
+        channel.basicPublish(EXCHANGE_NAME, "", false,
                 MessageProperties.PERSISTENT_TEXT_PLAIN,
                 "mandatory test".getBytes());
 
