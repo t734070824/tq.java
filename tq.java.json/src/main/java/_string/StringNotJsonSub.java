@@ -4,15 +4,15 @@ package _string;
  * @author 734070824@qq.com
  * @date 2018/11/5 14:51
  */
-public class StringNotJsonSuper {
+public class StringNotJsonSub {
 
-    private String name;
+    private String age;
 
-    public String getName() {
-        return name;
+    public String getAge() {
+        return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAge(String age) {
+        this.age = age;
     }
 }
