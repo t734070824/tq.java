@@ -15,18 +15,28 @@ import java.util.concurrent.TimeoutException;
  */
 public class RabbitProducer {
 
-    private static final String EXCHANGE_NAME = "exchange_demo";
-    private static final String ROUTING_KEY = " routingkey_demo";
-    private static final String QUEUE_NAME = "queue_demo";
-    private static final String IP_ADDRESS = "192.168.101.167";
+//    private static final String EXCHANGE_NAME = "exchange_demo";
+//    private static final String ROUTING_KEY = " routingkey_demo";
+//    private static final String QUEUE_NAME = "queue_demo";
+//    private static final String IP_ADDRESS = "192.168.101.167";
+//    private static final String USER = "datacenter";
+//    private static final String PASS = "123";
+//    private static final int PORT = 5672;//RabbitMQ 服务端默认端口号为 5672
+
+    private static final String EXCHANGE_NAME = "demo.tq";
+    private static final String ROUTING_KEY = " tangqing";
+    private static final String QUEUE_NAME = "demo.tangqing";
+    private static final String IP_ADDRESS = "192.168.7.190";
+    private static final String USER = "admin";
+    private static final String PASS = "admin";
     private static final int PORT = 5672;//RabbitMQ 服务端默认端口号为 5672
 
     public static void main(String[] args) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(IP_ADDRESS);
         factory.setPort(PORT);
-        factory.setUsername("datacenter");
-        factory.setPassword("123");
+        factory.setUsername(USER);
+        factory.setPassword(PASS);
         //创建连接
         Connection connection = factory.newConnection();
         //创建信道
