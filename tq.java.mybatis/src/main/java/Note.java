@@ -4,6 +4,11 @@
  * @date 2018/4/3 10:41
  */
 public class Note {
+
+    //书签
+        // MyBatis技术内幕 21 / 447 20181106
+
+
     //TODO 2018-01-06 http://www.cnblogs.com/dongying/p/4142476.html
     //TODO mybatis 如何管理Session, cache
     //TODO mybatis 事务
