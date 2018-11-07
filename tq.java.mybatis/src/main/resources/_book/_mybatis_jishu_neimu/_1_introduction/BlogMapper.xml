@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--<mapper namespace="_begin_to_learn._1_basic.StudentMapper">-->
+<mapper namespace="_book._mybatis_jishu_neimu._1_introduction.BlogMapper">
+    <!--定义映射规则-->
+    <resultMap id="detailBlogResultMap" type="Blog">
+        <!--构造函数映射-->
+        <constructor>
+            <idArg column="blog_id" javaType="int"/>
+        </constructor>
+        <!--属性映射-->
+        <result property="title" column="blog_title"/>
+        <!--对象属性映射, 同时也是一个嵌套映射-->
+        <association property="author" resultMap="authorResult"/>
+        <!--集合映射 也是一个匿名的嵌套映射-->
+        <collection property="posts" ofType="Post">
+            <id property="id" column="post_id"/>
+            <result property="content" column="post_content"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="authorResult" type="Author">
+        <id property="id" column="author_id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <!--sql 语句 , 节点-->
+    <select id="selectBlogDetail" resultMap="detailBlogResultMap">
+        select B.id as blog_id , B.title as blog_title , B.author_id as blog_author_id ,
+               A.id as author_id , A.username as author_username , A.password as author_password ,
+               A.email as author_email , P.id as post_id, P.blog_id as post_blog_id,
+               P.content as post_content
+        from Blog B left outer join Author A on B. author.id = A.id
+        left outer join Post P on B.id = P.blog_id where B.id = #{id}
+    </select>
+
+</mapper>

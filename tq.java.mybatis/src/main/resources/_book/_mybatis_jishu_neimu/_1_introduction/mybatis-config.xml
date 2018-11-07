@@ -28,7 +28,7 @@
 
     <!--配置文件位置-->
     <mappers>
-        <mapper resource=""/>
+        <mapper resource="_book/_mybatis_jishu_neimu/_1_introduction/BlogMapper.xml"/>
     </mappers>
 </configuration>
 
