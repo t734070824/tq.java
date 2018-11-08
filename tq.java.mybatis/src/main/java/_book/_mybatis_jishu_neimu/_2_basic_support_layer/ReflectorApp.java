@@ -1,4 +1,4 @@
-package _book._mybatis_jishu_neimu._2_basic_support_layer._2_reflector;
+package _book._mybatis_jishu_neimu._2_basic_support_layer;
 
 import _book._mybatis_jishu_neimu._1_introduction.Blog;
 import org.apache.ibatis.reflection.Reflector;
