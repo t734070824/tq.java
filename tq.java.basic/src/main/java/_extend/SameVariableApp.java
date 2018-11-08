@@ -13,6 +13,7 @@ public class SameVariableApp {
 
         System.out.println(b.x);
         System.out.println(((A)b).x);
+        System.out.println(((A)b).getX());
 
         b.print();
         b.printSuper();
@@ -24,6 +25,7 @@ public class SameVariableApp {
 
         System.out.println(a.x);
         System.out.println(((B)a).x);
+        System.out.println(((B)a).getX());
 
         a.print();
 
@@ -38,6 +40,10 @@ class A {
     void print(){
         System.out.println(x);
     }
+
+    public int getX() {
+        return x;
+    }
 }
 
 class B extends A{
@@ -50,6 +56,11 @@ class B extends A{
 
     void printSuper(){
         System.out.println(super.x);
+    }
+
+    @Override
+    public int getX() {
+        return x;
     }
 }
 
