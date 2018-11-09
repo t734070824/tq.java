@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--<mapper namespace="_begin_to_learn._1_basic.StudentMapper">-->
+<mapper namespace="_book._mybatis_jishu_neimu._2_basic_support_layer._mapper_interface_xml_combine.StudentDao">
+
+    <resultMap type="Student" id="studentResultMap">
+        <id property="studentId" column="studentId" />
+        <result property="studentName" column="studentName" />
+        <result property="studentAge" column="studentAge" />
+        <result property="studentPhone" column="studentPhone" />
+    </resultMap>
+
+    <select id="selectStudentById" parameterType="int" resultType="Student">
+        <![CDATA[
+            select * from student where studentId = #{id}
+        ]]>
+    </select>
+
+    <select id="selectStudentByNameAndAge" parameterType="Student" resultType="Student">
+        <![CDATA[
+            select * from student where studentName = #{studentName} and studentAge = #{studentAge}
+        ]]>
+    </select>
+
+    <select id="selectAll" parameterType="int" resultType="Student" flushCache="false" useCache="true"
+            timeout="10000" fetchSize="2" statementType="PREPARED" resultSetType="FORWARD_ONLY">
+        <![CDATA[
+            select * from student where studentId > #{id};
+        ]]>
+    </select>
+
+
+    <insert id="insertOneStudent" parameterType="Student">
+        <![CDATA[
+            insert into student    values(null, #{studentName}, #{studentAge}, #{studentPhone});
+        ]]>
+    </insert>
+
+    <!--<insert id="insertOneStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
+        <![CDATA[
+            insert into student(studentName, studentAge, studentPhone) values(#{studentName}, #{studentAge}, #{studentPhone});
+        ]]>
+    </insert>-->
+
+    <update id="updateStudentAgeById" parameterType="Student">
+        <![CDATA[
+        update student set studentAge = #{studentAge} where
+            studentId = #{studentId};
+    ]]>
+    </update>
+
+
+
+    <delete id="deleteStudentById" parameterType="int">
+        <![CDATA[
+        delete from student where studentId = #{studentId};
+    ]]>
+    </delete>
+</mapper>
