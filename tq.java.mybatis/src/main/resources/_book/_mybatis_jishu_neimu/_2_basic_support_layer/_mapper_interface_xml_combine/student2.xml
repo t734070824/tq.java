@@ -4,6 +4,7 @@
 
 <!--<mapper namespace="_begin_to_learn._1_basic.StudentMapper">-->
 <mapper namespace="_book._mybatis_jishu_neimu._2_basic_support_layer._mapper_interface_xml_combine.StudentDao">
+    <cache />
 
     <resultMap type="Student" id="studentResultMap">
         <id property="studentId" column="studentId" />
@@ -12,13 +13,13 @@
         <result property="studentPhone" column="studentPhone" />
     </resultMap>
 
-    <select id="selectStudentById" parameterType="int" resultType="Student">
+    <select id="selectStudentById" parameterType="int" resultType="Student" useCache="true">
         <![CDATA[
             select * from student where studentId = #{id}
         ]]>
     </select>
 
-    <select id="selectStudentByNameAndAge" parameterType="Student" resultType="Student">
+<!--    <select id="selectStudentByNameAndAge" parameterType="Student" resultType="Student">
         <![CDATA[
             select * from student where studentName = #{studentName} and studentAge = #{studentAge}
         ]]>
@@ -38,11 +39,11 @@
         ]]>
     </insert>
 
-    <!--<insert id="insertOneStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
+    &lt;!&ndash;<insert id="insertOneStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
         <![CDATA[
             insert into student(studentName, studentAge, studentPhone) values(#{studentName}, #{studentAge}, #{studentPhone});
         ]]>
-    </insert>-->
+    </insert>&ndash;&gt;
 
     <update id="updateStudentAgeById" parameterType="Student">
         <![CDATA[
@@ -57,5 +58,5 @@
         <![CDATA[
         delete from student where studentId = #{studentId};
     ]]>
-    </delete>
+    </delete>-->
 </mapper>

@@ -15,6 +15,7 @@ public class LRUCacheWithLinkedHashMap<K, V> {
 	public LRUCacheWithLinkedHashMap(int cacheSize) {
 		MAX_CACHE_SIZE = cacheSize;
 		//根据cacheSize和加载因子计算hashmap的capactiy，+1确保当达到cacheSize上限时不会触发hashmap的扩容，
+        //向上取整
         int capacity = (int) Math.ceil(MAX_CACHE_SIZE / DEFAULT_LOAD_FACTOR) + 1;
         cache = new LinkedHashMap<K, V>(capacity, DEFAULT_LOAD_FACTOR, true) {
 			private static final long serialVersionUID = 1149429885235855423L;

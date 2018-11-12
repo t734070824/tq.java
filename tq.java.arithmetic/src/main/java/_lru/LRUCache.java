@@ -87,9 +87,3 @@ public class LRUCache<K, V> {
 	}
 }
 
-class Entry<K, V> {
-    public Entry<K, V> pre;
-    public Entry<K, V> next;
-    public K key;
-    public V value;
-}

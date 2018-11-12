@@ -28,7 +28,7 @@
 
     <!--配置文件位置-->
     <mappers>
-        <mapper resource="_book/_mybatis_jishu_neimu/_2_basic_support_layer/_mapper_interface_xml_combine/student.xml"/>
+        <!--<mapper resource="_book/_mybatis_jishu_neimu/_2_basic_support_layer/_mapper_interface_xml_combine/student.xml"/>-->
         <mapper resource="_book/_mybatis_jishu_neimu/_2_basic_support_layer/_mapper_interface_xml_combine/student2.xml"/>
     </mappers>
 </configuration>

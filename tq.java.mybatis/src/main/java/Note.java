@@ -19,4 +19,5 @@ public class Note {
     //TODO 一级 二级 缓存
     //TODO 没有数据库
     //TODO 源码分析
+    //TODO Mybatis 涉及的设计模式
 }

@@ -33,5 +33,6 @@ public class StudentApp {
         Student student = mapper.selectStudentById(1);
 
         System.err.println(student);
+        System.err.println(mapper.selectStudentById(1));
     }
 }
