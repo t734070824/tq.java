@@ -64,7 +64,7 @@
 2. 实现
     - **标记-清除**
 3. 步骤
-    - 初识标记 (CMS initial mark)
+    - 初始标记 (CMS initial mark)
         - **STW**
         - 单线程，由于是从GCRoot寻找直达的对象，速度快
     - 并发标记 (CMS concurrent mark)

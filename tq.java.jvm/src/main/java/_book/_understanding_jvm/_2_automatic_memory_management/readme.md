@@ -38,7 +38,7 @@
 7. 直接内存
     - 不是虚拟机运行时数据区的一部分
     - 也不是java虚拟机规范中定义的内存区域
-    - 因为NIO引入了一个基于通道(channel) 和 缓冲区(buffer) 的IO方式, 使用Native函数库直接分       配堆外内存,
+    - 因为NIO引入了一个基于通道(channel) 和 缓冲区(buffer) 的IO方式, 使用Native函数库直接分配堆外内存,
     - 通过存储在java堆中的 DirectByteBuffer 对象作为这块内存的引用进行操作
     - **避免了在java堆和Native堆中来回复制数据来提高性能**
     - Netty -- 零拷贝
