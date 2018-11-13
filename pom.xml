@@ -43,6 +43,7 @@
       <module>tq.java.effective.java</module>
       <module>tq.java.nginx</module>
       <module>tq.java.undertow</module>
+      <module>tq.java.spring.boot</module>
   </modules>
   
   <properties>
