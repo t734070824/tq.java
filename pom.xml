@@ -42,7 +42,6 @@
       <module>tq.java.summarize</module>
       <module>tq.java.effective.java</module>
       <module>tq.java.nginx</module>
-      <module>tq.java.spingboot</module>
       <module>tq.java.undertow</module>
   </modules>
   
