@@ -36,7 +36,7 @@
 2. 在 每次使用的时候 再去和上次刷新时间比较, 惰性
 
 ### 二级缓存
-1. 默认关闭
+1. 默认开启
     - 在 mapper.xml 中添加 cache 节点 或者在 config.xml 的 setting 节点中 cacheEnable = true
 2. SqlSession关闭后才会将数据写到二级缓存区域
 3. 查询多于修改时使用二级缓存 

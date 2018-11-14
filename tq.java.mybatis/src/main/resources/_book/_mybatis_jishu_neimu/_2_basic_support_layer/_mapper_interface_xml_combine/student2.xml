@@ -19,6 +19,18 @@
         ]]>
     </select>
 
+    <select id="selectStudentByNameAndAge" parameterType="Student" resultType="Student">
+        <![CDATA[
+            select * from ${studentName} where studentAge = #{studentAge}
+        ]]>
+    </select>
+
+    <insert id="insertOneStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="studentId">
+        <![CDATA[
+            insert into student(studentName, studentAge, studentPhone) values(#{studentName}, #{studentAge}, #{studentPhone});
+        ]]>
+    </insert>
+
 <!--    <select id="selectStudentByNameAndAge" parameterType="Student" resultType="Student">
         <![CDATA[
             select * from student where studentName = #{studentName} and studentAge = #{studentAge}

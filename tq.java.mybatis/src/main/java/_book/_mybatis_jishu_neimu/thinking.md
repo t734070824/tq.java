@@ -13,3 +13,11 @@
         - SynchronizedCache
     - 
     ![](1.jpg)
+    
+3. 获取插入后的自增主键的实际过程
+    - useGeneratedKeys = true
+    - keyProperty
+    - **那个对象**
+
+4. 理解 批量更新的时候 自增主键的获取过程
+    - commit之后
