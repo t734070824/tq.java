@@ -10,6 +10,8 @@ public class StringNotJsonSuper {
 
     private String sub;
 
+    private int add;
+
     public String getName() {
         return name;
     }
@@ -25,4 +27,13 @@ public class StringNotJsonSuper {
     public void setSub(String sub) {
         this.sub = sub;
     }
+
+    public int getAdd() {
+        return add;
+    }
+
+    public void setAdd(int add) {
+        this.add = add;
+    }
 }
+
