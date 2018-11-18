@@ -1,4 +1,5 @@
 2018-03-22
+
 ## 查询性能优化
 
 ### 一次查询涉及到的子任务
@@ -63,7 +64,7 @@
 2. 当查询语句很长的时候 , 参数max_allowed_packet 就很重要了
 3. 必要的时候在查询中加入LIMIT
 
-### 查询状态(show full processlist : Command)
+### 查询状态(show full processlist --> 所有的Command)
 1. sleep
     - 线程等待客户端发送新的请求
 2. Query
@@ -108,6 +109,127 @@
 8. 列表 In()
     - IN() 列表中的数据先排序, 二分查找, O(logn)
 
-### 
+### 关联查询
+1. mysql中每一次查询就是一次关联
+    - 读取结果临时表也是一种关联
+2. 第任何关联都执行 嵌套循环关联操作
+
+### 执行计划
+1. 生成查询的一颗指令树
+2. 不是一颗平衡树, 而是左侧深度优先的树
+    - mysql总是 嵌套循环, 回溯完成所有关联的表
+    
+### 关联查询优化器
+1. 选择合适的关联查询让查询执行的成本尽可能低
+    - 重新定义关联的顺序
+2. 问题
+    - 当有超过 N 个表的关联, 需要检查 n 的阶乘种关联顺序
+        - 可能的执行计划的"搜索空间"
+        - 搜索空间增长非常--N
+    - 当 N > optimizer_search_depth
+        - 贪婪搜索模式
+        
+### 排序优化
+1. 成本很高的操作
+    - 避免排序或者避免大数据排序
+1. 数据量小在内存, 大在硬盘
+    - filesort
+    - 排序缓冲区
+        - 小于
+            - 内存 快速排序
+        - 大于
+            - 数据分块
+            - 对每个独立的块 快速排序
+            - 合并(merge), 返回
+2. 关联查询时候的排序
+    - orde by
+        - 子句的所有列都来自关联的第一个表
+            - 在关联处理的第一个表的时候就进行文件排序
+        - 不是
+            - 将关联的结果放到临时表中, 在所有关联结束后, 再进行文件排序
+    - limit
+        - 会在排序之后应用, 即使返回较少的数据, 临时表和需要排序的数据量也是非常大
+        - Mysql 5.6 返回部分排序结果时, 抛弃不满足条件的结果, 然后进行排序
+        
+### 查询执行引擎
+1. 底层接口简单, 数量少, 搭积木的方式完成操作
+     
+### 返回结果给客户端
+1. 这个阶段 将结果放入缓存中
+1. **是一个增量, 逐步返回的过程**
+    - 无需存储过多的结果, 节省内存
+    - 客户端第一时间获取返回的结果
+
+### Mysql查询优化器的局限
+1. where 条件中包含 In() 的子查询语句
+    - Mysql5.5
+        - 将外层表压入子查询中
+        - 然后在子查询中对外层表全表扫描
+    - Mysql5.6
+        - 已优化
 
 
+### 索引合并优化
+1. 最大值和最小值优化
+    - min(), max()
+        - 如果 where 字段中没有建立索引, 就会全表扫描
+        - 如果进行主键扫描
+            - 满足条件的第一个记录就是需要寻找的值
+        - mysql 的优化方式
+            - select min(field) from xxx  where con, 优化为↓
+            - select field from xxx USE INDEX(PRIMARY) where con LIMIT 1;
+            
+### 查询优化器的提示
+1. TODO
+
+### 优化特定类型的查询
+1. count()
+    - 作用
+        - 统计某个列值的数量, 统计行数
+        - 统计结果集的行数
+    - count(*)
+        - 直接忽视所有的列而直接统计所有的行数
+        - 非常快
+    - 简单的优化
+        - 查询 ID 大于5的城市数
+            - select count(*) from world.city where id > 5;
+            - 优化: select (select count(*) from world.city) - count(*) from world.city where id <= 5;
+            - **减少扫描的行数** 
+        - 同一个查询中统计同一个列的不同值的数量, 已减少查询的语句量: 查询各个不同颜色的商品的数量  
+            - 分析
+                - 不能使用 OR, 无法区分不同颜色的商品数量
+                - 不能在 where 条件中指定颜色
+            - 解决
+                - select sum(if(color = 'blue',1,0)) as blue, sum(if(color = 'red',1,0)) as red from items;
+                - select count(color = 'blue' or null) as blue,count(color = 'red' or null) as red from items; 
+    - 使用近似值
+        - explain 可以获取近似值
+    - 更复杂的优化
+        - 索引覆盖
+        - 汇总表
+        - 外部缓存系统
+2. 优化关联查询
+    - 确保 ON 或 USING 子句列上有索引
+    - 确保任何 Group by, Order by 中的表达式只涉及到一个表中列
+3. 优化 Group by, Distinct
+    - 索引
+4. 优化 Limit 分页
+    - 通常: limit + 偏移量 + 合适的 order by 子句
+    - 当偏移量非常大的时候
+        - limit 10000, 20
+            - 需要查询 10020 条数据, 然后丢弃前 10000, 返回后20
+        - 优化
+            - 使用索引覆盖
+                - 延迟关联
+                    - select field1, field2 from xxx order by con limit n, m;
+                    - 优化为: select field1, field2 from xxx inner join (select key from xxx oder by con limit n, m) as ttt useing(...)
+            - order by desc limit
+            - 汇总表
+            - 关联到一个冗余表
+                - 只包含 主键列和需要做排序的数据列
+5. 使用用户自定义变量
+    - TODO
+    
+    
+### 案列学习
+[案列学习](case_study.md)
