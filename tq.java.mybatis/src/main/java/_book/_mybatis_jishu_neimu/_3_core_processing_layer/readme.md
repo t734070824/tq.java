@@ -80,8 +80,6 @@
     - 策略模式的特点
 3. BaseStatementHandler
     - 参数绑定
-4. ParameterHandler
-    - 参数设置
 5. SimpleStatementHandler
     - java.sql.Statement
     - sql语句不存在占位符
@@ -92,6 +90,9 @@
 4. CallableStatementHandler
     - java.sql.CallableStatement
     - 存储过程
+    
+### ParameterHandler
+1. 参数设置
 
 ### Executor
 1. 数据库操作的基本方法
