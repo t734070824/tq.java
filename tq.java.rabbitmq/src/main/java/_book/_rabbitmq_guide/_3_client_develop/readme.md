@@ -3,7 +3,7 @@
 ## 客户端开发
 
 ### 连接MQ
-1. 多线程共享Channel实例是非线程安全的
+1. **多线程共享Channel实例是非线程安全的**
 2. isOpen()
     - 不要在生产环境使用
     - 在判断之后, 其他代码执行之前, 状态可能改变
@@ -73,6 +73,10 @@
       的限制.如果只想从队列获得单条消息而不是持续订阅，建议还是使用 Basic.Get 进行消费.但
       是不能将 Basic.Get 放在一个循环里来代替 Basic.Consume ，这样做会严重影响 RabbitMQ
       的性能.如果要实现高吞吐量，消费者理应使用 Basic.Consume 方法
+      
+### 消费者取消订阅
+1. 重写 handleCancelOk 和 handlerCancel, 会在取消订阅的时候被调用
+2. channel.basicCancel(consumerTag) 显式的取消一个消费者的订阅
       
 ### 消息端的确认与拒绝
 1. autoAck
