@@ -20,14 +20,23 @@
 1. args.put("alternate-exchange","exchange-name")
 2. channe1.exchangeDec1are( "norma1Exchange" , "direct" , true , fa1se , args)
 3. 当消息不能路由到任何与 norma1Exchange 绑定的任何队列上, 就会发送给  备份交换机
+3.消息被重新发送到备份交换机时的路由建和生产者发出的路由建是一致的
+    - 所以 推荐备份交换机设置为 fanout 属性
 
 ### 过期时间(Time to Live)
 1. 可以 对消息以及队列 设置 TTL
-2. 设置队列的TTL, 则所有的消息都会有相同的过期时间
-    - x-expires:毫秒
-3. 对信息本身进行设置, 每条消息都可以不同
+2. 设置消息的 TTL
+    - 通过队列属性设置, 队列中所有的消息都有相同的过期时间
+        - channel.queueDeclare("x-message-ttl"), 毫秒
+    - 对消息本身进行单独设置
+        - channel.basicPublish(build.expiration()), 毫秒
     - **当两个都设置了 TTL, 两者之间较小的值为准**
-    - 参数: x-message-ttl:毫秒
+3. 设置队列的TTL
+    -  channel.queueDeclare("x-expires"), 毫秒
+    - 自动删除前处于未使用状态的队列
+        - 没有任何消费者
+        - 没有被重新声明
+        - 在过期时间内未调用过 Basic.ack
     
 ### 死信队列
 1. DLX, Dead-Letter-Exchange 死信交换机
@@ -72,9 +81,10 @@
                 - 发送方确认机制
 
 ### 生产者确认
-1. 发送方无法确定 消息是否已经到达服务器
+1. 发送方无法确定 消息是否已经到达服务器, **解决 消息一定到达服务器**
 2. 解决
     - 事务机制
+        - AMQP 协议层面提供
         - channel.txSelect
             - 设置当前信道为 事务模式
         - channel.txCommit
@@ -85,6 +95,7 @@
             - 损失性能
             - 一条消息发送之后, 发送端阻塞
     - 发送方确认(publisher confirm)
+        - RabbitMQ 提供的改进方案
         - confirm 模式
         - 唯一id, 有序
         - 一次确认多个(id之前)
