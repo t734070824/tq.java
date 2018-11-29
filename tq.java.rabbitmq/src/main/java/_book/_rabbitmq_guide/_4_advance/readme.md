@@ -115,6 +115,7 @@
     - 同一个队列多个消费者: 轮询分发
     - 问题
         - 无法区分哪些消费者的任务是否繁重
+            - 整体性能将由性能最差的消费者决定
             - channel.basicQos(int perfetchCount)
                 - **允许信道上的消费者所能保持的最大未确认消息的数量**
                 - 类似 TCP/IP 的活动窗口
@@ -127,6 +128,22 @@
         - publisher confirm 的 补偿机制
         - 消息超时时间 DLX
         - 消费者拒绝消息
+        
+### basicQos
+1. void basicQos(int prefetchSize, int prefetchCount, boolean global)
+    - prefetchSize
+        - 表示消费者所能未确认消息的总体大小的上线, 单位 B, 
+    - prefetchCount
+        - 大于 0, 
+            - 这个信道需要和各个队列协调以确保发送的消息都没有超过所限定的 prefetchCount 的值
+            - 这样会使 RabbitMQ 的性能降低，尤其是这些队列分散在集群中的多个 Broker 节点之中
+    - global
+        - TODO
+        
+### 废弃 QueueingConsumer
+1. 内部使用 LinkedBlockingQueue, 当无法及时消费, 会造成客户端内存溢出
+    - basicQos
+2. 不是事件驱动
 
 ### 消息传输保证
 1. 三个层级
@@ -148,3 +165,6 @@
         - GUID
         - 客户端去重
         - 集中式缓存
+        
+### vc Kafka
+1. https://juejin.im/post/5b32044ef265da59654c3027
