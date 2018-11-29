@@ -63,8 +63,9 @@
 
 ### 持久化
 1. 交换机的持久化
+    - 元数据持久化
 2. 队列的持久化
-    - 消息的持久化不会内部所存储的消息不会丢失
+    - 队列的持久化不会保证内部所存储的消息不会丢失
     - BasicProperties.deliveryMode = 2
     - MessageProperties.Persistent_text_plain 封装了这个特性
 3. 消息的持久化

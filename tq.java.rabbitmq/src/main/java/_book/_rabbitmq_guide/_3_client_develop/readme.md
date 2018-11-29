@@ -68,7 +68,8 @@
       会被"耽搁"。
 2. 拉模式(Pull)
     -       GetResponse basicGet(String queue , boolean autoAck) throws IOException;
-    - Basic.Consume 将信道 (Channel) 直为接收模式，直到取消队列的订阅为止。在接收
+
+3. Basic.Consume 将信道 (Channel) 直为接收模式，直到取消队列的订阅为止。在接收
       模式期间， RabbitMQ 会不断地推送消息给消费者，当然推送消息的个数还是会受到 Basic.Qos
       的限制.如果只想从队列获得单条消息而不是持续订阅，建议还是使用 Basic.Get 进行消费.但
       是不能将 Basic.Get 放在一个循环里来代替 Basic.Consume ，这样做会严重影响 RabbitMQ
