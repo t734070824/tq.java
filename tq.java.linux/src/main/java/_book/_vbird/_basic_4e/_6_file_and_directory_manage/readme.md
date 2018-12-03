@@ -74,3 +74,14 @@
     - 备份
         - cp -a
             - 完整复制文件权限
+2. rm
+    - rm [-fir] 文件或目录
+        - -f: force, 
+        - -i: 互动模式, 删除前询问
+        - -r: 递归删除
+3. mv
+    - mv [-fiu] source  destionation
+        - -u: 若目标文件已经存在，且 source 比较新，才会更新 （update）
+        
+### 文件内容查阅 cat, more, less, tail, tac
+1.
