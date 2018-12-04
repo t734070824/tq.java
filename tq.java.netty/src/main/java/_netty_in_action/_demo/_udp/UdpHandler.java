@@ -27,5 +27,7 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
         String body = new String(req, CharsetUtil.UTF_8);
         System.err.println(body);
+        System.err.println(req.length);
+        System.err.println("--------------");
     }
 }

@@ -13,6 +13,6 @@ public class UdpTest {
     public static void main(String[] args) throws IOException, UnknownHostException {
         final String data = "123";
         byte[] buf = data.getBytes("utf-8");
-        new DatagramSocket().send(new DatagramPacket(buf, buf.length,InetAddress.getByName("127.0.0.1"), 9099));
+        new DatagramSocket().send(new DatagramPacket(buf, buf.length,InetAddress.getByName("192.168.1.133"), 9009));
     }
 }

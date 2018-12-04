@@ -49,7 +49,7 @@
                         </manifest>
                         <manifestEntries>
                             <Main-Class>
-                                _demo.EchoServer
+                                _book._tcp_ip_illustrated._vol_1_the_protocols._11_ucp.UdpSharding
                             </Main-Class>
                         </manifestEntries>
                     </archive>

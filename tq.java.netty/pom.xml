@@ -51,7 +51,8 @@
                         </manifest>
                         <manifestEntries>
                             <Main-Class>
-                                _from_web._jianshu_linyuan._1_time_server.Server
+                                <!--_from_web._jianshu_linyuan._1_time_server.Server-->
+                                _netty_in_action._demo._udp.UdpServer
                             </Main-Class>
                         </manifestEntries>
                     </archive>
