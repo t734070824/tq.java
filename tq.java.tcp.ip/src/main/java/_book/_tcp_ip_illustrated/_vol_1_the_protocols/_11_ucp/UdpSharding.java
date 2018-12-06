@@ -16,7 +16,7 @@ public class UdpSharding {
     public static void main(String[] args) throws IOException, UnknownHostException {
         String data = "12";
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 30000; i++) {
+        for (int i = 0; i < 3000; i++) {
             sb.append(data);
         }
         data = sb.toString();
@@ -24,7 +24,7 @@ public class UdpSharding {
         System.err.println(buf.length);
         System.err.println(data);
         DatagramSocket socket = new DatagramSocket();
-        socket.send(new DatagramPacket(buf, buf.length,InetAddress.getByName("192.168.1.133"), 9009));
+        socket.send(new DatagramPacket(buf, buf.length,InetAddress.getByName("192.168.7.183"), 9199));
 
     }
 }

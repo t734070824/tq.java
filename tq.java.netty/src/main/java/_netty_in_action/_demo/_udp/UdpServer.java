@@ -26,7 +26,7 @@ public class UdpServer {
             bootstrap.handler(new UdpHandler());
             bootstrap.option(ChannelOption.RCVBUF_ALLOCATOR, new FixedRecvByteBufAllocator(65535));
             // 监听端口
-            bootstrap.bind(9009).sync();
+            bootstrap.bind(9199).sync();
         } finally {
 //            nioEventLoopGroup.shutdownGracefully().sync();
         }
