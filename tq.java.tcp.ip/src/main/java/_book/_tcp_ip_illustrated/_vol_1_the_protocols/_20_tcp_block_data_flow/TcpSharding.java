@@ -25,5 +25,6 @@ public class TcpSharding {
         DataOutputStream out = new DataOutputStream(socket.getOutputStream());
         out.write(sb.toString().getBytes());
         out.close();
+        System.err.println(sb.toString());
     }
 }
