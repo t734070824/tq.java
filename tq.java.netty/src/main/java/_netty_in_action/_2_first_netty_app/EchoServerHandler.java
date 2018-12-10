@@ -16,7 +16,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter{
         ByteBuf in = (ByteBuf) msg;
         System.err.println("server received: " + in.toString(CharsetUtil.UTF_8));
         //将接受到的消息写给发送方,而不冲刷出站消息??
-        ctx.write(msg);
+//        ctx.write(msg);
     }
 
     @Override
