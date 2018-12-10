@@ -18,7 +18,7 @@ public class TcpSharding {
         Socket socket = new Socket(host, port);
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 1461 * 1; i++) {
+        for (int i = 0; i < 1461 * 10; i++) {
             sb.append("1");
         }
         //向服务器端发送数据
