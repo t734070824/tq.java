@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 734070824@qq.com
@@ -20,10 +21,13 @@ import java.util.concurrent.TimeUnit;
  */
 public class StockClient {
 
+    public  static AtomicInteger falseNum = new AtomicInteger();
+
     public static void main(String[] args) {
         ExecutorService service = new ThreadPoolExecutor(10, 10,
                 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<Runnable>());
+
         for (int i = 0; i < 100; i++) {
             service.execute(new Runnable() {
                 @Override
@@ -41,7 +45,8 @@ public class StockClient {
                             // *) 调用服务
                             int stock = client.getStock(1);
                             if(stock > 1){
-                                client.reduceStock(1, 1);
+                                boolean b = client.setStockWithOld(1, stock - 1, stock);
+                                if(!b)falseNum.getAndIncrement();
                             }
                         }
 

@@ -18,6 +18,8 @@ public class StockService {
 
     public boolean setStock(int sid, int setNum) throws org.apache.thrift.TException;
 
+    public boolean setStockWithOld(int sid, int setNum, int oldNum) throws org.apache.thrift.TException;
+
   }
 
   public interface AsyncIface {
@@ -27,6 +29,8 @@ public class StockService {
     public void reduceStock(int sid, int reduce, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
     public void setStock(int sid, int setNum, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+
+    public void setStockWithOld(int sid, int setNum, int oldNum, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
   }
 
@@ -119,6 +123,31 @@ public class StockService {
         return result.success;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "setStock failed: unknown result");
+    }
+
+    public boolean setStockWithOld(int sid, int setNum, int oldNum) throws org.apache.thrift.TException
+    {
+      send_setStockWithOld(sid, setNum, oldNum);
+      return recv_setStockWithOld();
+    }
+
+    public void send_setStockWithOld(int sid, int setNum, int oldNum) throws org.apache.thrift.TException
+    {
+      setStockWithOld_args args = new setStockWithOld_args();
+      args.setSid(sid);
+      args.setSetNum(setNum);
+      args.setOldNum(oldNum);
+      sendBase("setStockWithOld", args);
+    }
+
+    public boolean recv_setStockWithOld() throws org.apache.thrift.TException
+    {
+      setStockWithOld_result result = new setStockWithOld_result();
+      receiveBase(result, "setStockWithOld");
+      if (result.isSetSuccess()) {
+        return result.success;
+      }
+      throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "setStockWithOld failed: unknown result");
     }
 
   }
@@ -241,6 +270,44 @@ public class StockService {
       }
     }
 
+    public void setStockWithOld(int sid, int setNum, int oldNum, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+      checkReady();
+      setStockWithOld_call method_call = new setStockWithOld_call(sid, setNum, oldNum, resultHandler, this, ___protocolFactory, ___transport);
+      this.___currentMethod = method_call;
+      ___manager.call(method_call);
+    }
+
+    public static class setStockWithOld_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Boolean> {
+      private int sid;
+      private int setNum;
+      private int oldNum;
+      public setStockWithOld_call(int sid, int setNum, int oldNum, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+        super(client, protocolFactory, transport, resultHandler, false);
+        this.sid = sid;
+        this.setNum = setNum;
+        this.oldNum = oldNum;
+      }
+
+      public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
+        prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("setStockWithOld", org.apache.thrift.protocol.TMessageType.CALL, 0));
+        setStockWithOld_args args = new setStockWithOld_args();
+        args.setSid(sid);
+        args.setSetNum(setNum);
+        args.setOldNum(oldNum);
+        args.write(prot);
+        prot.writeMessageEnd();
+      }
+
+      public java.lang.Boolean getResult() throws org.apache.thrift.TException {
+        if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
+          throw new java.lang.IllegalStateException("Method call not finished!");
+        }
+        org.apache.thrift.transport.TMemoryInputTransport memoryTransport = new org.apache.thrift.transport.TMemoryInputTransport(getFrameBuffer().array());
+        org.apache.thrift.protocol.TProtocol prot = client.getProtocolFactory().getProtocol(memoryTransport);
+        return (new Client(prot)).recv_setStockWithOld();
+      }
+    }
+
   }
 
   public static class Processor<I extends Iface> extends org.apache.thrift.TBaseProcessor<I> implements org.apache.thrift.TProcessor {
@@ -257,6 +324,7 @@ public class StockService {
       processMap.put("getStock", new getStock());
       processMap.put("reduceStock", new reduceStock());
       processMap.put("setStock", new setStock());
+      processMap.put("setStockWithOld", new setStockWithOld());
       return processMap;
     }
 
@@ -323,6 +391,27 @@ public class StockService {
       }
     }
 
+    public static class setStockWithOld<I extends Iface> extends org.apache.thrift.ProcessFunction<I, setStockWithOld_args> {
+      public setStockWithOld() {
+        super("setStockWithOld");
+      }
+
+      public setStockWithOld_args getEmptyArgsInstance() {
+        return new setStockWithOld_args();
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public setStockWithOld_result getResult(I iface, setStockWithOld_args args) throws org.apache.thrift.TException {
+        setStockWithOld_result result = new setStockWithOld_result();
+        result.success = iface.setStockWithOld(args.sid, args.setNum, args.oldNum);
+        result.setSuccessIsSet(true);
+        return result;
+      }
+    }
+
   }
 
   public static class AsyncProcessor<I extends AsyncIface> extends org.apache.thrift.TBaseAsyncProcessor<I> {
@@ -339,6 +428,7 @@ public class StockService {
       processMap.put("getStock", new getStock());
       processMap.put("reduceStock", new reduceStock());
       processMap.put("setStock", new setStock());
+      processMap.put("setStockWithOld", new setStockWithOld());
       return processMap;
     }
 
@@ -525,6 +615,68 @@ public class StockService {
 
       public void start(I iface, setStock_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
         iface.setStock(args.sid, args.setNum,resultHandler);
+      }
+    }
+
+    public static class setStockWithOld<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, setStockWithOld_args, java.lang.Boolean> {
+      public setStockWithOld() {
+        super("setStockWithOld");
+      }
+
+      public setStockWithOld_args getEmptyArgsInstance() {
+        return new setStockWithOld_args();
+      }
+
+      public org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> getResultHandler(final org.apache.thrift.server.AbstractNonblockingServer.AsyncFrameBuffer fb, final int seqid) {
+        final org.apache.thrift.AsyncProcessFunction fcall = this;
+        return new org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean>() { 
+          public void onComplete(java.lang.Boolean o) {
+            setStockWithOld_result result = new setStockWithOld_result();
+            result.success = o;
+            result.setSuccessIsSet(true);
+            try {
+              fcall.sendResponse(fb, result, org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+            } catch (org.apache.thrift.transport.TTransportException e) {
+              _LOGGER.error("TTransportException writing to internal frame buffer", e);
+              fb.close();
+            } catch (java.lang.Exception e) {
+              _LOGGER.error("Exception writing to internal frame buffer", e);
+              onError(e);
+            }
+          }
+          public void onError(java.lang.Exception e) {
+            byte msgType = org.apache.thrift.protocol.TMessageType.REPLY;
+            org.apache.thrift.TSerializable msg;
+            setStockWithOld_result result = new setStockWithOld_result();
+            if (e instanceof org.apache.thrift.transport.TTransportException) {
+              _LOGGER.error("TTransportException inside handler", e);
+              fb.close();
+              return;
+            } else if (e instanceof org.apache.thrift.TApplicationException) {
+              _LOGGER.error("TApplicationException inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = (org.apache.thrift.TApplicationException)e;
+            } else {
+              _LOGGER.error("Exception inside handler", e);
+              msgType = org.apache.thrift.protocol.TMessageType.EXCEPTION;
+              msg = new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR, e.getMessage());
+            }
+            try {
+              fcall.sendResponse(fb,msg,msgType,seqid);
+            } catch (java.lang.Exception ex) {
+              _LOGGER.error("Exception writing to internal frame buffer", ex);
+              fb.close();
+            }
+          }
+        };
+      }
+
+      protected boolean isOneway() {
+        return false;
+      }
+
+      public void start(I iface, setStockWithOld_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+        iface.setStockWithOld(args.sid, args.setNum, args.oldNum,resultHandler);
       }
     }
 
@@ -2862,6 +3014,916 @@ public class StockService {
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, setStock_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(1);
+        if (incoming.get(0)) {
+          struct.success = iprot.readBool();
+          struct.setSuccessIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class setStockWithOld_args implements org.apache.thrift.TBase<setStockWithOld_args, setStockWithOld_args._Fields>, java.io.Serializable, Cloneable, Comparable<setStockWithOld_args>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("setStockWithOld_args");
+
+    private static final org.apache.thrift.protocol.TField SID_FIELD_DESC = new org.apache.thrift.protocol.TField("sid", org.apache.thrift.protocol.TType.I32, (short)-1);
+    private static final org.apache.thrift.protocol.TField SET_NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("setNum", org.apache.thrift.protocol.TType.I32, (short)-2);
+    private static final org.apache.thrift.protocol.TField OLD_NUM_FIELD_DESC = new org.apache.thrift.protocol.TField("oldNum", org.apache.thrift.protocol.TType.I32, (short)-3);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new setStockWithOld_argsStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new setStockWithOld_argsTupleSchemeFactory();
+
+    public int sid; // required
+    public int setNum; // required
+    public int oldNum; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SID((short)-1, "sid"),
+      SET_NUM((short)-2, "setNum"),
+      OLD_NUM((short)-3, "oldNum");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case -1: // SID
+            return SID;
+          case -2: // SET_NUM
+            return SET_NUM;
+          case -3: // OLD_NUM
+            return OLD_NUM;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SID_ISSET_ID = 0;
+    private static final int __SETNUM_ISSET_ID = 1;
+    private static final int __OLDNUM_ISSET_ID = 2;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SID, new org.apache.thrift.meta_data.FieldMetaData("sid", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.SET_NUM, new org.apache.thrift.meta_data.FieldMetaData("setNum", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      tmpMap.put(_Fields.OLD_NUM, new org.apache.thrift.meta_data.FieldMetaData("oldNum", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(setStockWithOld_args.class, metaDataMap);
+    }
+
+    public setStockWithOld_args() {
+    }
+
+    public setStockWithOld_args(
+      int sid,
+      int setNum,
+      int oldNum)
+    {
+      this();
+      this.sid = sid;
+      setSidIsSet(true);
+      this.setNum = setNum;
+      setSetNumIsSet(true);
+      this.oldNum = oldNum;
+      setOldNumIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public setStockWithOld_args(setStockWithOld_args other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.sid = other.sid;
+      this.setNum = other.setNum;
+      this.oldNum = other.oldNum;
+    }
+
+    public setStockWithOld_args deepCopy() {
+      return new setStockWithOld_args(this);
+    }
+
+    @Override
+    public void clear() {
+      setSidIsSet(false);
+      this.sid = 0;
+      setSetNumIsSet(false);
+      this.setNum = 0;
+      setOldNumIsSet(false);
+      this.oldNum = 0;
+    }
+
+    public int getSid() {
+      return this.sid;
+    }
+
+    public setStockWithOld_args setSid(int sid) {
+      this.sid = sid;
+      setSidIsSet(true);
+      return this;
+    }
+
+    public void unsetSid() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SID_ISSET_ID);
+    }
+
+    /** Returns true if field sid is set (has been assigned a value) and false otherwise */
+    public boolean isSetSid() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SID_ISSET_ID);
+    }
+
+    public void setSidIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SID_ISSET_ID, value);
+    }
+
+    public int getSetNum() {
+      return this.setNum;
+    }
+
+    public setStockWithOld_args setSetNum(int setNum) {
+      this.setNum = setNum;
+      setSetNumIsSet(true);
+      return this;
+    }
+
+    public void unsetSetNum() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SETNUM_ISSET_ID);
+    }
+
+    /** Returns true if field setNum is set (has been assigned a value) and false otherwise */
+    public boolean isSetSetNum() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SETNUM_ISSET_ID);
+    }
+
+    public void setSetNumIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SETNUM_ISSET_ID, value);
+    }
+
+    public int getOldNum() {
+      return this.oldNum;
+    }
+
+    public setStockWithOld_args setOldNum(int oldNum) {
+      this.oldNum = oldNum;
+      setOldNumIsSet(true);
+      return this;
+    }
+
+    public void unsetOldNum() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __OLDNUM_ISSET_ID);
+    }
+
+    /** Returns true if field oldNum is set (has been assigned a value) and false otherwise */
+    public boolean isSetOldNum() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __OLDNUM_ISSET_ID);
+    }
+
+    public void setOldNumIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __OLDNUM_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, java.lang.Object value) {
+      switch (field) {
+      case SID:
+        if (value == null) {
+          unsetSid();
+        } else {
+          setSid((java.lang.Integer)value);
+        }
+        break;
+
+      case SET_NUM:
+        if (value == null) {
+          unsetSetNum();
+        } else {
+          setSetNum((java.lang.Integer)value);
+        }
+        break;
+
+      case OLD_NUM:
+        if (value == null) {
+          unsetOldNum();
+        } else {
+          setOldNum((java.lang.Integer)value);
+        }
+        break;
+
+      }
+    }
+
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SID:
+        return getSid();
+
+      case SET_NUM:
+        return getSetNum();
+
+      case OLD_NUM:
+        return getOldNum();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SID:
+        return isSetSid();
+      case SET_NUM:
+        return isSetSetNum();
+      case OLD_NUM:
+        return isSetOldNum();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof setStockWithOld_args)
+        return this.equals((setStockWithOld_args)that);
+      return false;
+    }
+
+    public boolean equals(setStockWithOld_args that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_sid = true;
+      boolean that_present_sid = true;
+      if (this_present_sid || that_present_sid) {
+        if (!(this_present_sid && that_present_sid))
+          return false;
+        if (this.sid != that.sid)
+          return false;
+      }
+
+      boolean this_present_setNum = true;
+      boolean that_present_setNum = true;
+      if (this_present_setNum || that_present_setNum) {
+        if (!(this_present_setNum && that_present_setNum))
+          return false;
+        if (this.setNum != that.setNum)
+          return false;
+      }
+
+      boolean this_present_oldNum = true;
+      boolean that_present_oldNum = true;
+      if (this_present_oldNum || that_present_oldNum) {
+        if (!(this_present_oldNum && that_present_oldNum))
+          return false;
+        if (this.oldNum != that.oldNum)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + sid;
+
+      hashCode = hashCode * 8191 + setNum;
+
+      hashCode = hashCode * 8191 + oldNum;
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(setStockWithOld_args other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSid()).compareTo(other.isSetSid());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSid()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.sid, other.sid);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetSetNum()).compareTo(other.isSetSetNum());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSetNum()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.setNum, other.setNum);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetOldNum()).compareTo(other.isSetOldNum());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetOldNum()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.oldNum, other.oldNum);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+    }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("setStockWithOld_args(");
+      boolean first = true;
+
+      sb.append("sid:");
+      sb.append(this.sid);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("setNum:");
+      sb.append(this.setNum);
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("oldNum:");
+      sb.append(this.oldNum);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class setStockWithOld_argsStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public setStockWithOld_argsStandardScheme getScheme() {
+        return new setStockWithOld_argsStandardScheme();
+      }
+    }
+
+    private static class setStockWithOld_argsStandardScheme extends org.apache.thrift.scheme.StandardScheme<setStockWithOld_args> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, setStockWithOld_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case -1: // SID
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.sid = iprot.readI32();
+                struct.setSidIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case -2: // SET_NUM
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.setNum = iprot.readI32();
+                struct.setSetNumIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            case -3: // OLD_NUM
+              if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+                struct.oldNum = iprot.readI32();
+                struct.setOldNumIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, setStockWithOld_args struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        oprot.writeFieldBegin(OLD_NUM_FIELD_DESC);
+        oprot.writeI32(struct.oldNum);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(SET_NUM_FIELD_DESC);
+        oprot.writeI32(struct.setNum);
+        oprot.writeFieldEnd();
+        oprot.writeFieldBegin(SID_FIELD_DESC);
+        oprot.writeI32(struct.sid);
+        oprot.writeFieldEnd();
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class setStockWithOld_argsTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public setStockWithOld_argsTupleScheme getScheme() {
+        return new setStockWithOld_argsTupleScheme();
+      }
+    }
+
+    private static class setStockWithOld_argsTupleScheme extends org.apache.thrift.scheme.TupleScheme<setStockWithOld_args> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, setStockWithOld_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSid()) {
+          optionals.set(0);
+        }
+        if (struct.isSetSetNum()) {
+          optionals.set(1);
+        }
+        if (struct.isSetOldNum()) {
+          optionals.set(2);
+        }
+        oprot.writeBitSet(optionals, 3);
+        if (struct.isSetSid()) {
+          oprot.writeI32(struct.sid);
+        }
+        if (struct.isSetSetNum()) {
+          oprot.writeI32(struct.setNum);
+        }
+        if (struct.isSetOldNum()) {
+          oprot.writeI32(struct.oldNum);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, setStockWithOld_args struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet incoming = iprot.readBitSet(3);
+        if (incoming.get(0)) {
+          struct.sid = iprot.readI32();
+          struct.setSidIsSet(true);
+        }
+        if (incoming.get(1)) {
+          struct.setNum = iprot.readI32();
+          struct.setSetNumIsSet(true);
+        }
+        if (incoming.get(2)) {
+          struct.oldNum = iprot.readI32();
+          struct.setOldNumIsSet(true);
+        }
+      }
+    }
+
+    private static <S extends org.apache.thrift.scheme.IScheme> S scheme(org.apache.thrift.protocol.TProtocol proto) {
+      return (org.apache.thrift.scheme.StandardScheme.class.equals(proto.getScheme()) ? STANDARD_SCHEME_FACTORY : TUPLE_SCHEME_FACTORY).getScheme();
+    }
+  }
+
+  public static class setStockWithOld_result implements org.apache.thrift.TBase<setStockWithOld_result, setStockWithOld_result._Fields>, java.io.Serializable, Cloneable, Comparable<setStockWithOld_result>   {
+    private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("setStockWithOld_result");
+
+    private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.BOOL, (short)0);
+
+    private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new setStockWithOld_resultStandardSchemeFactory();
+    private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new setStockWithOld_resultTupleSchemeFactory();
+
+    public boolean success; // required
+
+    /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
+    public enum _Fields implements org.apache.thrift.TFieldIdEnum {
+      SUCCESS((short)0, "success");
+
+      private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+
+      static {
+        for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
+          byName.put(field.getFieldName(), field);
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, or null if its not found.
+       */
+      public static _Fields findByThriftId(int fieldId) {
+        switch(fieldId) {
+          case 0: // SUCCESS
+            return SUCCESS;
+          default:
+            return null;
+        }
+      }
+
+      /**
+       * Find the _Fields constant that matches fieldId, throwing an exception
+       * if it is not found.
+       */
+      public static _Fields findByThriftIdOrThrow(int fieldId) {
+        _Fields fields = findByThriftId(fieldId);
+        if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+        return fields;
+      }
+
+      /**
+       * Find the _Fields constant that matches name, or null if its not found.
+       */
+      public static _Fields findByName(java.lang.String name) {
+        return byName.get(name);
+      }
+
+      private final short _thriftId;
+      private final java.lang.String _fieldName;
+
+      _Fields(short thriftId, java.lang.String fieldName) {
+        _thriftId = thriftId;
+        _fieldName = fieldName;
+      }
+
+      public short getThriftFieldId() {
+        return _thriftId;
+      }
+
+      public java.lang.String getFieldName() {
+        return _fieldName;
+      }
+    }
+
+    // isset id assignments
+    private static final int __SUCCESS_ISSET_ID = 0;
+    private byte __isset_bitfield = 0;
+    public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
+    static {
+      java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+      tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BOOL)));
+      metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
+      org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(setStockWithOld_result.class, metaDataMap);
+    }
+
+    public setStockWithOld_result() {
+    }
+
+    public setStockWithOld_result(
+      boolean success)
+    {
+      this();
+      this.success = success;
+      setSuccessIsSet(true);
+    }
+
+    /**
+     * Performs a deep copy on <i>other</i>.
+     */
+    public setStockWithOld_result(setStockWithOld_result other) {
+      __isset_bitfield = other.__isset_bitfield;
+      this.success = other.success;
+    }
+
+    public setStockWithOld_result deepCopy() {
+      return new setStockWithOld_result(this);
+    }
+
+    @Override
+    public void clear() {
+      setSuccessIsSet(false);
+      this.success = false;
+    }
+
+    public boolean isSuccess() {
+      return this.success;
+    }
+
+    public setStockWithOld_result setSuccess(boolean success) {
+      this.success = success;
+      setSuccessIsSet(true);
+      return this;
+    }
+
+    public void unsetSuccess() {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    /** Returns true if field success is set (has been assigned a value) and false otherwise */
+    public boolean isSetSuccess() {
+      return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __SUCCESS_ISSET_ID);
+    }
+
+    public void setSuccessIsSet(boolean value) {
+      __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __SUCCESS_ISSET_ID, value);
+    }
+
+    public void setFieldValue(_Fields field, java.lang.Object value) {
+      switch (field) {
+      case SUCCESS:
+        if (value == null) {
+          unsetSuccess();
+        } else {
+          setSuccess((java.lang.Boolean)value);
+        }
+        break;
+
+      }
+    }
+
+    public java.lang.Object getFieldValue(_Fields field) {
+      switch (field) {
+      case SUCCESS:
+        return isSuccess();
+
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
+    public boolean isSet(_Fields field) {
+      if (field == null) {
+        throw new java.lang.IllegalArgumentException();
+      }
+
+      switch (field) {
+      case SUCCESS:
+        return isSetSuccess();
+      }
+      throw new java.lang.IllegalStateException();
+    }
+
+    @Override
+    public boolean equals(java.lang.Object that) {
+      if (that == null)
+        return false;
+      if (that instanceof setStockWithOld_result)
+        return this.equals((setStockWithOld_result)that);
+      return false;
+    }
+
+    public boolean equals(setStockWithOld_result that) {
+      if (that == null)
+        return false;
+      if (this == that)
+        return true;
+
+      boolean this_present_success = true;
+      boolean that_present_success = true;
+      if (this_present_success || that_present_success) {
+        if (!(this_present_success && that_present_success))
+          return false;
+        if (this.success != that.success)
+          return false;
+      }
+
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int hashCode = 1;
+
+      hashCode = hashCode * 8191 + ((success) ? 131071 : 524287);
+
+      return hashCode;
+    }
+
+    @Override
+    public int compareTo(setStockWithOld_result other) {
+      if (!getClass().equals(other.getClass())) {
+        return getClass().getName().compareTo(other.getClass().getName());
+      }
+
+      int lastComparison = 0;
+
+      lastComparison = java.lang.Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetSuccess()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.success, other.success);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      return 0;
+    }
+
+    public _Fields fieldForId(int fieldId) {
+      return _Fields.findByThriftId(fieldId);
+    }
+
+    public void read(org.apache.thrift.protocol.TProtocol iprot) throws org.apache.thrift.TException {
+      scheme(iprot).read(iprot, this);
+    }
+
+    public void write(org.apache.thrift.protocol.TProtocol oprot) throws org.apache.thrift.TException {
+      scheme(oprot).write(oprot, this);
+      }
+
+    @Override
+    public java.lang.String toString() {
+      java.lang.StringBuilder sb = new java.lang.StringBuilder("setStockWithOld_result(");
+      boolean first = true;
+
+      sb.append("success:");
+      sb.append(this.success);
+      first = false;
+      sb.append(")");
+      return sb.toString();
+    }
+
+    public void validate() throws org.apache.thrift.TException {
+      // check for required fields
+      // check for sub-struct validity
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+      try {
+        write(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(out)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+      try {
+        // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+        __isset_bitfield = 0;
+        read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
+      } catch (org.apache.thrift.TException te) {
+        throw new java.io.IOException(te);
+      }
+    }
+
+    private static class setStockWithOld_resultStandardSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public setStockWithOld_resultStandardScheme getScheme() {
+        return new setStockWithOld_resultStandardScheme();
+      }
+    }
+
+    private static class setStockWithOld_resultStandardScheme extends org.apache.thrift.scheme.StandardScheme<setStockWithOld_result> {
+
+      public void read(org.apache.thrift.protocol.TProtocol iprot, setStockWithOld_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TField schemeField;
+        iprot.readStructBegin();
+        while (true)
+        {
+          schemeField = iprot.readFieldBegin();
+          if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+            break;
+          }
+          switch (schemeField.id) {
+            case 0: // SUCCESS
+              if (schemeField.type == org.apache.thrift.protocol.TType.BOOL) {
+                struct.success = iprot.readBool();
+                struct.setSuccessIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
+            default:
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+          }
+          iprot.readFieldEnd();
+        }
+        iprot.readStructEnd();
+
+        // check for required fields of primitive type, which can't be checked in the validate method
+        struct.validate();
+      }
+
+      public void write(org.apache.thrift.protocol.TProtocol oprot, setStockWithOld_result struct) throws org.apache.thrift.TException {
+        struct.validate();
+
+        oprot.writeStructBegin(STRUCT_DESC);
+        if (struct.isSetSuccess()) {
+          oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
+          oprot.writeBool(struct.success);
+          oprot.writeFieldEnd();
+        }
+        oprot.writeFieldStop();
+        oprot.writeStructEnd();
+      }
+
+    }
+
+    private static class setStockWithOld_resultTupleSchemeFactory implements org.apache.thrift.scheme.SchemeFactory {
+      public setStockWithOld_resultTupleScheme getScheme() {
+        return new setStockWithOld_resultTupleScheme();
+      }
+    }
+
+    private static class setStockWithOld_resultTupleScheme extends org.apache.thrift.scheme.TupleScheme<setStockWithOld_result> {
+
+      @Override
+      public void write(org.apache.thrift.protocol.TProtocol prot, setStockWithOld_result struct) throws org.apache.thrift.TException {
+        org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
+        java.util.BitSet optionals = new java.util.BitSet();
+        if (struct.isSetSuccess()) {
+          optionals.set(0);
+        }
+        oprot.writeBitSet(optionals, 1);
+        if (struct.isSetSuccess()) {
+          oprot.writeBool(struct.success);
+        }
+      }
+
+      @Override
+      public void read(org.apache.thrift.protocol.TProtocol prot, setStockWithOld_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
         java.util.BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {

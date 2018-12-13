@@ -8,4 +8,6 @@ bool reduceStock(i32 sid, i32 reduce)
 
 bool setStock(i32 sid, i32 setNum)
 
+bool setStockWithOld(i32 sid, i32 setNum, i32 oldNum)
+
 }

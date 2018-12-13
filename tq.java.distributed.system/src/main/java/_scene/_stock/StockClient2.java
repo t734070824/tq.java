@@ -27,7 +27,7 @@ public class StockClient2 {
         StockService.Client client = new StockService.Client(protocol);
         int stock = client.getStock(1);
         System.err.println(stock);
-//        client.setStock(1, 1000);
+        client.setStock(1, 1000);
 
         // *) 关闭句柄
         transport.close();

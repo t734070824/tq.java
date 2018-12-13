@@ -21,4 +21,9 @@ public class StockServiceImpl implements StockService.Iface{
     public boolean setStock(int sid, int setNum) throws TException {
         return StockDao.setStock(sid, setNum);
     }
+
+    @Override
+    public boolean setStockWithOld(int sid, int setNum, int oldNum) throws TException {
+        return StockDao.setStockWithOld(sid, setNum, oldNum);
+    }
 }
