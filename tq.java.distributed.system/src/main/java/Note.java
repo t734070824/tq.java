@@ -10,6 +10,7 @@ public class Note {
     //TODO 分布式事务 *** 消息队列
     //TODO 两段提交
     //TODO raft 一致性算法 http://thesecretlivesofdata.com/raft/  https://raft.github.io/
+    //TODO 虚ip ip漂移
 
 
 }
