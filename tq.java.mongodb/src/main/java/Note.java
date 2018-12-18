@@ -12,5 +12,6 @@ public class Note {
     //TODO 主从切换造成的影响
         //TODO 什么时候会主从切换
         //TODO 连接断开
-    //TODO mongo的bulk
+    //TODO mongo的bulk.
+    //TODO 既然同一个字段不限制具体的数据类型, 那么索引是以哪种字段为基本的呢?
 }
