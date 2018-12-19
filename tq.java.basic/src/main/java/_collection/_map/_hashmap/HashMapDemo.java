@@ -9,7 +9,8 @@ import java.util.HashMap;
 public class HashMapDemo {
 
     public static void main(String[] args) {
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap map = new HashMap<>();
+        map.put(0, "0");
         for (int i = 0; i < 1000; i++) {
             map.put(i+"", i);
         }

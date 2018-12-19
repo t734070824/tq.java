@@ -2,6 +2,13 @@
 ## Concurrenthashmap 1.8
 1. http://blog.csdn.net/u010723709/article/details/48007881
 
+
+### 20181219 新的理解
+1. 并发扩容
+    - 在并发扩容中, 每个线程都有自己的在源数组的操作范围, 但是可能重叠
+    - 通过CAS-ForwardNode来标识当前节点已被处理过, 线程就可以跳过这个节点
+    - 同过对Node链表的头结点加锁, 来保证线程安全
+
 ### 1.8 VS 1.6
 1. 它摒弃了Segment（锁段）的概念，而是启用了一种全新的方式实现,利用CAS算法
 2. 沿用了与它同时期的HashMap版本的思想，底层依然由“数组”+链表+红黑树的方式思想
@@ -42,7 +49,8 @@
 
 ### TreeBin
 1. 类并不负责包装用户的key、value信息，而是包装的很多TreeNode节点
-2. 代替了TreeNode的根节点，也就是说在实际的ConcurrentHashMap“数组”中，存放的是TreeBin对象，而不是TreeNode对象，这是与HashMap的区别
+2. 代替了TreeNode的根节点，也就是说在实际的ConcurrentHashMap的 红黑树中，存放的是TreeBin对象，而不是TreeNode对象，
+    这是与HashMap的区别
 
 ### ForwardingNode 
 1. 一个用于连接两个table(一个源table, 一个扩容后的table: nextTable)的节点类
@@ -55,7 +63,7 @@
 1. 对于ConcurrentHashMap来说，调用它的构造方法仅仅是设置了一些参数而已
 2. 而整个table的初始化是在向ConcurrentHashMap中插入元素的时候发生的。
 如调用put、computeIfAbsent、compute、merge等方法的时候，调用时机是检查table==null
-3. 初始化方法主要应用了关键属性sizeCtl 如果这个值〈0，表示其他线程正在进行初始化，就放弃这个操作(Thread.yield())
+3. 初始化方法主要应用了关键属性sizeCtl 如果这个值 < 0，表示其他线程正在进行初始化，就放弃这个操作(Thread.yield())
 4. 如果获得了初始化权限，就用CAS方法将sizeCtl置为-1，防止其他线程进入
 5. 初始化数组后，将sizeCtl的值改为0.75*n
 
