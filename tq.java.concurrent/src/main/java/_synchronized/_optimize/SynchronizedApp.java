@@ -7,7 +7,6 @@ package _synchronized._optimize;
  */
 public class SynchronizedApp {
     public synchronized void test1(){
-
     }
     public void test2(){
         synchronized (this){
