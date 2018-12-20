@@ -24,5 +24,6 @@ public class Note {
     //TODO ScheduledThreadPoolExecutor 原理 ***
     //TODO LongAdder
     //TODO 无锁队列 disruptor
+    //TODO 伪共享
 
 }

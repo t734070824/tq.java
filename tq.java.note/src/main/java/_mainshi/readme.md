@@ -117,9 +117,10 @@
     - 读读
 53. 线程安全的单例模式
     - volatile    
-54. concurrenhashmap求size是如何加锁的，如果刚求完一段后这段发生了变化该如何处理
+54. concurrenthashmap 求size是如何加锁的，如果刚求完一段后这段发生了变化该如何处理
     - jdk7 全部加锁
     - TODO jdk8
+    - LongAdder
 55. 可重入的读写锁，可重入是如何实现的？
     - Thread身份
     - TODO
@@ -130,11 +131,13 @@
     交换进磁盘？基于缓存的线程池解决方法呢？
     - TODO
 58. 可重入锁中的lock和trylock的区别
+    - trylock 失败 直接放入对垒
+    - lock 失败 自旋
 59. LinkedHashmap的底层实现
     - map+链表
     - LRU
 60. java的反射是如何实现的【阿里巴巴面试题目含答案】
-    - TODO
+    - RTTI
 61. 动态代理的几种实现方式及优缺点
     - TODO
 62. 按线程池内部机制.当提交新任务时.有哪些异常要考虑？
