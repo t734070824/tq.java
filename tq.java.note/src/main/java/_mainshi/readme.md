@@ -8,6 +8,8 @@
 
 ### 基础
 1. Concurrenthashmap 为什么要用红黑树？为何不用其他的树，平衡二叉树，b+？
+    - ***
+    - 20181220 数据结构部分 未看
 2. 如何给hashmap的key对象设计他的 hashcode
 3. bytes --> long
 4. lru Cache
@@ -34,6 +36,8 @@
 24. 同步器
 25. String为什么可以用 + 操作
 26. 两个方法完全相同可以重载吗
+    - ***
+    - 20181219 跳过
 27. try里面的return, finally 在 return, 哪个会返回, 字节码如何体现的
 28. 什么情况下不适合用CAS
 29. 如何让一个线程放弃锁, 放弃锁之后什么时候才可以再次获取锁
@@ -43,10 +47,12 @@
 33. runtimeException
 34. 分析线程池的实现原理和线程的调度过程
 35. Java 8的内存分代改进
+     - ***
+     - 20181220 跳过
 36. 用hashmap实现redis有什么问题（死锁，死循环，可用 ConcurrentHashmap）
     - 死循环 TODO
     - ConcurrentHashmap 源码 
-    - TODO 扩容
+    - 扩容
 37. 线程的状态
     - new Thread() 
     - Runnable 

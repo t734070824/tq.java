@@ -21,7 +21,7 @@ public class Note {
     //TODO ThreadPoolExecutor 如何感知任务结束的
     //TODO ConcurrentHashMap.扩容 2386行
     //TODO ConcurrentHashMap.红黑树 掌握
-    //TODO ScheduledThreadPoolExecutor 原理
+    //TODO ScheduledThreadPoolExecutor 原理 ***
     //TODO LongAdder
     //TODO 无锁队列 disruptor
 

@@ -15,7 +15,7 @@ public class TableCreater {
 
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-		String[] className = new String[]{"com.annotation.Member"};
+		String[] className = new String[]{"_annotation.Member"};
 		printSql(className);
 	}
 
