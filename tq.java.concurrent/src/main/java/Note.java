@@ -25,5 +25,6 @@ public class Note {
     //TODO LongAdder
     //TODO 无锁队列 disruptor
     //TODO 伪共享
+    //TODO concurrenthashmap size
 
 }
