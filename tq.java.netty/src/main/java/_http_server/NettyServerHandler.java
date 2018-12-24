@@ -26,9 +26,12 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	 	}
 		FullHttpRequest httpRequest = (FullHttpRequest)msg;
 		try{
-			String path=httpRequest.uri();			//获取路径
-			String body = getBody(httpRequest); 	//获取参数
-			HttpMethod method=httpRequest.method();//获取请求方法
+			//获取路径
+			String path=httpRequest.uri();
+            //获取参数
+			String body = getBody(httpRequest);
+            //获取请求方法
+			HttpMethod method=httpRequest.method();
 			//如果不是这个路径，就直接返回错误
 			if(!"/api/test".equalsIgnoreCase(path)){
 				result="非法请求!";

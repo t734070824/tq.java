@@ -17,7 +17,8 @@ public class NettyServerFilter extends ChannelInitializer<SocketChannel> {
          //处理http服务的关键handler
          ph.addLast("encoder",new HttpResponseEncoder());
          ph.addLast("decoder",new HttpRequestDecoder());
-         ph.addLast("aggregator", new HttpObjectAggregator(10*1024*1024)); 
-         ph.addLast("handler", new NettyServerHandler());// 服务端业务逻辑
+         ph.addLast("aggregator", new HttpObjectAggregator(10*1024*1024));
+         // 服务端业务逻辑
+         ph.addLast("handler", new NettyServerHandler());
      }
  }

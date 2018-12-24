@@ -25,7 +25,7 @@
     - childOption：用于设置workerGroup相关参数
     
 ### 客户端 
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.netty/src/main/java/_from_web/_jianshu_linyuan/_time_server/1.jpg?raw=true)
+![](1.jpg)
 
 1. 有没有 future.channel().closeFuture() 区别
     - 连接成功后 走 finally
