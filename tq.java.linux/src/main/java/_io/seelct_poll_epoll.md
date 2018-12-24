@@ -16,6 +16,17 @@
 
 ### poll
 1. int poll (struct pollfd *fds, unsigned int nfds, int timeout)
+    - pollfd
+        - int fd;
+            - 文件描述符
+        - short events;      
+            - 等待的事件
+            - 监控文件描述符的事件掩码
+            - 用户来设置这个域
+        - short revents; 
+            - 实际发生了的事件
+            - 文件描述符的操作结果事件掩码
+            - 内核在调用返回时设置这个域
 2. 并没有最大数量限制（但是数量过大后性能也是会下降）
 3. 和select函数一样，poll返回后，**需要轮询pollfd来获取就绪的描述符**
 
@@ -28,11 +39,12 @@
 2. int epoll_create(int size)
     - 参数size并不是限制了epoll所能监听的描述符最大个数，只是对内核初始分配内部数据结构的一个建议
 3. int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)
+    - epoll的事件注册函数。
     - 对指定描述符fd执行op操作
     - epfd：是epoll_create()的返回值
-    - op：表示op操作，用三个宏来表示：添加EPOLL_CTL_ADD，删除EPOLL_CTL_DEL，修改EPOLL_CTL_MOD。分别添加、删除和修改对fd的监听事件
+    - op：表示op操作，用三个宏来表示：添加 EPOLL_CTL_ADD，删除 EPOLL_CTL_DEL，修改 EPOLL_CTL_MOD。分别添加、删除和修改对fd的监听事件
     - fd：是需要监听的fd（文件描述符）
-    - epoll_event：是告诉内核需要监听什么事
+    - epoll_event：是告诉内核需要监听什么事件
         - struct epoll_event {__uint32_t events;  epoll_data_t data; };
         - events
             - EPOLLIN: 表示对应文件描述符可以读(包括对端SOCKET正常关闭)
