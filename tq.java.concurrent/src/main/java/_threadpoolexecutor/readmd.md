@@ -2,6 +2,31 @@
 
 ## ThreadPoolExecutor
 
+### 源码分析
+1. 变量
+    - private final AtomicInteger **ctl** = new AtomicInteger(ctlOf(RUNNING, 0));
+        - 所有有效线程的数量(低29位)
+        - 各个线程状态(runState)(高3位)
+            - RUNNING:-536870912
+            - SHUTDOWN:0
+            - STOP:536870912
+            - TIDYING:1073741824
+            - TERMINATED:1610612736
+    - corePoolSize
+    - keepAliveTime
+2. 方法
+    - public void execute(Runnable command)
+        - 活动线程小于corePoolSize的时候创建新的线程；
+        - 活动线程大于corePoolSize时都是先加入到任务队列当中；
+        - 任务队列满了再去启动新的线程，如果线程数达到最大值就拒绝任务。
+2. 内部类
+    - final class Worker extends AbstractQueuedSynchronizer implements Runnable ...
+        - 内部类Worker是对任务的封装，所有submit的Runnable都被封装成了Worker，
+        - 它本身也是一个Runnable， 
+        - 然后利用AQS框架实现了一个简单的非重入的互斥锁， 
+        - **实现互斥锁主要目的是为了中断的时候判断线程是在空闲还是运行**
+        - 之所以不用ReentrantLock是为了避免任务执行的代码中修改线程池的变量，如setCorePoolSize，因为ReentrantLock是可重入的。
+
 ### 任务执行
 1. 当调用 execute() 方法添加一个任务时
     - 如果正在运行的线程数量小于 corePoolSize，那么马上创建线程运行这个任务
