@@ -65,7 +65,7 @@ http://www.cnblogs.com/xrq730/p/4979021.html
 1. acquire(1): 尝试获取锁
 2. addWaiter(Node mode): 获取失败, 添加进等待队列, 独占模式
 3. 头结点为空, 头结点的后面一个节点才是 等待节点
-4. LockSupport.lock(Thread): 暂停线程
+4. LockSupport.park(Thread): 暂停线程
 5. release(int arg): 锁持有者释放锁, 当释放次数=加锁次数之后, 真正释放锁
 6. unparkSuccessor(Node node): 就从尾到头遍历，找出离head最近的一个node，对这个node进行unPark操作
 7. acquireQueued(final Node node, int arg): 

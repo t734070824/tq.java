@@ -6,7 +6,7 @@
 1. state标识 需要释放(countDown)的次数
 1. CountDownLatch(num): 标识要释放几次锁
 2. 主线程 await(): tryAcquireShared(1), 查看当前是否已经全部释放 
-3. 没有全部释放, 加入等待队列, 设置 Signel, LockSupport.lock() 
+3. 没有全部释放, 加入等待队列, 设置 Signel, LockSupport.park() 
 4. 当最后一次 countDown 之后, 由当前线程(countDown线程)唤醒靠近队列头部最近的等待node
 
 ### 使用场景
