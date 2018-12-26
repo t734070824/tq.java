@@ -18,7 +18,7 @@ public class EchoClient {
 
     private final int port = 8880;
 
-    private final String host = "192.168.1.133";
+    private final String host = "127.0.0.1";
 
     public static void main(String[] args) throws Exception {
         new EchoClient().start();
