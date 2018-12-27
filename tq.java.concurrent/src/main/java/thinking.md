@@ -6,3 +6,6 @@
     - TODO 
 3. 在addWorker中, 有new Worker(), 其中有ThreadFactory.newThread(this) 的操作, 但是没有看到对这个Thread的调用啊
     - TODO 
+3. ThreadPoolExecutor 是如何实现线程超时回收的
+    - 借助 getTask 的超时
+    - 阻塞队列

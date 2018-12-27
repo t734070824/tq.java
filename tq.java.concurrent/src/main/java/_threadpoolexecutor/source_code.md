@@ -132,6 +132,117 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
             }
             return workerStarted;
         }
+        
+    final void runWorker(Worker w) {
+            Thread wt = Thread.currentThread();
+            Runnable task = w.firstTask;
+            w.firstTask = null;
+            // Worker的构造函数中抑制了线程中断setState(-1)，所以这里需要unlock从而允许中断
+            w.unlock(); // allow interrupts
+            // 用于标识是否异常终止，finally中processWorkerExit的方法会有不同逻辑
+            // 为true的情况：1.执行任务抛出异常；2.被中断。
+            boolean completedAbruptly = true;
+            try {
+                
+                // 如果getTask返回null那么getTask中会将workerCount递减，如果异常了这个递减操作会在processWorkerExit中处理
+                while (task != null || (task = getTask()) != null) {
+                    w.lock();
+                    // If pool is stopping, ensure thread is interrupted;
+                    // if not, ensure thread is not interrupted.  This
+                    // requires a recheck in second case to deal with
+                    // shutdownNow race while clearing interrupt
+                    if ((runStateAtLeast(ctl.get(), STOP) ||
+                         (Thread.interrupted() &&
+                          runStateAtLeast(ctl.get(), STOP))) &&
+                        !wt.isInterrupted())
+                        wt.interrupt();
+                    try {
+                        // 任务执行前可以插入一些处理，子类重载该方法
+                        beforeExecute(wt, task);
+                        Throwable thrown = null;
+                        try {
+                            task.run();
+                        } catch (RuntimeException x) {
+                            thrown = x; throw x;
+                        } catch (Error x) {
+                            thrown = x; throw x;
+                        } catch (Throwable x) {
+                            thrown = x; throw new Error(x);
+                        } finally {
+                            // 和beforeExecute一样，留给子类去重载
+                            afterExecute(task, thrown);
+                        }
+                    } finally {
+                        task = null;
+                        w.completedTasks++;
+                        w.unlock();
+                    }
+                }
+                completedAbruptly = false;
+            } finally {
+                // 结束线程的一些清理工作
+                processWorkerExit(w, completedAbruptly);
+            }
+        }    
+        
+    private Runnable getTask() {
+            boolean timedOut = false; // Did the last poll() time out?
+    
+            for (;;) {
+                int c = ctl.get();
+                int rs = runStateOf(c);
+    
+                // Check if queue empty only if necessary.
+                //1.rs > SHUTDOWN 所以rs至少等于STOP,这时不再处理队列中的任务
+                //2.rs = SHUTDOWN 所以rs>=STOP肯定不成立，这时还需要处理队列中的任务除非队列为空
+                //这两种情况都会返回null让runWoker退出while循环也就是当前线程结束了，所以必须要 decrementWorkerCount
+                if (rs >= SHUTDOWN && (rs >= STOP || workQueue.isEmpty())) {
+                    // 递减workerCount值
+                    decrementWorkerCount();
+                    return null;
+                }
+    
+                int wc = workerCountOf(c);
+    
+                // Are workers subject to culling?
+                // 标记从队列中取任务时是否设置超时时间
+                boolean timed = allowCoreThreadTimeOut || wc > corePoolSize;
+    
+                /*
+                 * wc > maximumPoolSize的情况是因为可能在此方法执行阶段同时执行了setMaximumPoolSize方法；
+                 * timed && timedOut 如果为true，表示当前操作需要进行超时控制，并且上次从阻塞队列中获取任务发生了超时
+                 * 接下来判断，如果有效线程数量大于1，或者阻塞队列是空的，那么尝试将workerCount减1；
+                 * 如果减1失败，则返回重试。
+                 * 如果wc == 1时，也就说明当前线程是线程池中唯一的一个线程了。
+                 */
+                if ((wc > maximumPoolSize || (timed && timedOut))
+                    && (wc > 1 || workQueue.isEmpty())) {
+                    // workerCount递减，结束当前thread
+                    if (compareAndDecrementWorkerCount(c))
+                        return null;
+                    continue;
+                }
+    
+                try {
+                    /*
+                     * 根据timed来判断，如果为true，则通过阻塞队列的poll方法进行超时控制，如果在keepAliveTime时间内没有获取到任务，则返回null；
+                     * 否则通过take方法，如果这时队列为空，则take方法会阻塞直到队列不为空。
+                     * 
+                     */
+                    Runnable r = timed ?
+                        workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) :
+                        workQueue.take();
+                    if (r != null)
+                        return r;
+                     // 如果 r == null，说明已经超时，timedOut设置为true
+                    timedOut = true;
+                } catch (InterruptedException retry) {
+                    // 如果获取任务时当前线程发生了中断，则设置timedOut为false并返回循环重试
+                    timedOut = false;
+                }
+            }
+        }
+
     }
 ``` 
 
