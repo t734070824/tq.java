@@ -1,8 +1,12 @@
 2018-12-04
-';lkuytrewq z  '
 
 ## 思考
 1. netty: udp vs tcp
-
 2. udp:2048
     - TODO
+3. Netty 怎么知道事件发生了...
+    - TODO
+4. 多个 Channel 共享一个 线程
+4. 理解 Netty 中 write 异步所带来的影响
+    - 连接什么时候关闭
+5. 如何为一个 ByteBuf 增加一个当前可读数量

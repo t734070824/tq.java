@@ -7,7 +7,7 @@
     - 对 socket的包装
     - NioSocketChannel
 2. EventLoop接口---控制流, 多线程处理, 并发
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.netty/src/main/java/_netty_in_action/_3_netty_module_design/1.jpg?raw=true)
+![](1.jpg)
     - EventLoopGroup--多个 EventLoop
     - 一个 EventLoop 在它的生命周期内只和一个 Thread 绑定
     - **所有 由 EventLoop 处理的 IO 事件都将在它专有的 Thread上被处理**
@@ -42,6 +42,7 @@
     - 两种发送消息的方式
         - 直接写到 Channel中 : **消息从ChannelPipeline尾端开始流动**
         - 写到和 ChannelHandler 关联的 ChannelHandlerContext 对象中: **消息从 Pipeline中的下一个ChannelHandler流动**
+    - **入站和出站都是对于应用本身而言**
         
 ### 
 

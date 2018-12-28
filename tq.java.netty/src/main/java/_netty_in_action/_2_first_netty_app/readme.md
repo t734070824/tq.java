@@ -30,7 +30,6 @@
     - 为此， EchoServerHandler扩展了 ChannelInboundHandlerAdapter，其在这个时间点上不会释放消息。
       消息在 EchoServerHandler 的 channelReadComplete()方法中，当 writeAndFlush()方
       法被调用时被释放
-    - //TODO ??
 
 ### ctx.close
 1. 因为 Netty 的操作都是异步的，例如下面代码中的消息在被发送之前可能会被先关闭连接

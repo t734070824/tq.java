@@ -36,16 +36,29 @@
     - ChannelFuture ChannelFutureListener
         - JDK内置的 Future接口需要手动检查操作是否完成, 或者一直阻塞到完成
         - 由ChannelFutureListener提供的通知机制消除了手动检查对应的操作是否完成的必要
-        - //TODO 既然可以主动通知, 还要 Future干什么
-            - 应该是添加监听器, 至少有一个通知的地方
+        - ChannelFutureListener 可以看做回调的一个更加精细的版本
+            - 回调和Future
 4. 事件和 ChannelHandler
+    - 已经发生的事来触发适当的动作
+    - 网络相关
+        - 入站数据或者相关的状态更改而触发的事件
+            - 连接已被激活或者连接失活
+            - 数据读取
+            - 用户事件
+            - 错误事件
+        - 出站事件是未来将会触发的某个动作的操作结果
+            - 打开或者关闭到远程节点的连接；
+            - 将数据写到或者冲刷到套接字。
+
     
 ### 回顾
 1. Future, 回调, ChannelHandler
+    - 事件被派发到 ChannelHandler 的方法发生在更深的层次
     - 提供一个处理环境, 使应用程序逻辑可以独立于任何网络操作相关的顾虑而 独立的演变 
 2. 选择器, 事件, EventLoop
     - 通过触发事件将 Selector 从应用程序中抽象出来，消除了所有本来将需要手动编写
          的派发代码。 在内部，将会为每个 Channel 分配一个 EventLoop， 用以处理所有事件
     - **EventLoop 本身只由一个线程驱动，其处理了一个 Channel 的所有 I/O 事件，并且在该
          EventLoop 的整个生命周期内都不会改变**
+    - 多个 Channel 共享一个 线程
 

@@ -38,15 +38,7 @@ public class EchoClient {
                         }
                     });
             ChannelFuture sync = b.connect().sync();
-//            sync.addListener(new ChannelFutureListener() {
-//                @Override
-//                public void operationComplete(ChannelFuture future) throws Exception {
-//                    ByteBuf buffer = Unpooled.copiedBuffer(
-//                            "Hello", Charset.defaultCharset());
-//                    ChannelFuture wf = future.channel()
-//                            .writeAndFlush(buffer);
-//                }
-//            });
+
             sync.channel().closeFuture().sync();
         }finally {
             group.shutdownGracefully().sync();

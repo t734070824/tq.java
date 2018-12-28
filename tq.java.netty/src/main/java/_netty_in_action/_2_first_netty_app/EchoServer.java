@@ -41,7 +41,6 @@ public class EchoServer {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //EchoServerHandler被标记为@Shareable 可以总是使用一个实例
                             ch.pipeline().addLast(serverHandler);
-
                         }
                     });
 
