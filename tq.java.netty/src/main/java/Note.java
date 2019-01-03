@@ -30,5 +30,6 @@ public class Note {
     //TODO ByteBuf 深入 20180920 面试完
     //TODO Netty线程模型
     //TODO jemalloc Netty 内存管理
+    //TODO 平衡二叉树的伙伴分配算法
 
 }

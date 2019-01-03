@@ -1,4 +1,4 @@
-package _tree._binary_search_tree._avl_tree;
+package _book._algorithms_4th_edition._3_search._3_3_balanced_search_trees._avl_tree;
 
 /**
  * Created by zejian on 2016/12/25.
