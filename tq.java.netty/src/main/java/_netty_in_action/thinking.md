@@ -10,3 +10,6 @@
 4. 理解 Netty 中 write 异步所带来的影响
     - 连接什么时候关闭
 5. 如何为一个 ByteBuf 增加一个当前可读数量
+
+6. CompositeByteBuf
+    - 扩容

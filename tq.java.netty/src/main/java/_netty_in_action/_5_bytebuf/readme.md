@@ -30,7 +30,7 @@
 1. JDK的 ByteBuffer 需要调用 flip() 的重要原因就是要 在 读模式和写模式之间切换(readIndex, writeIndex) 
 
 
-### discardReadBytes():回收已度过数据的内存
+### discardReadBytes():回收已读过数据的内存
 1. 迁移 readIndex--writeIndex 之间得到数据到0-(writeIndex - readIndex)
 1. readerIndex = 0, 修改writerIndex = (writeIndex - readIndex),
 2. 迁移write导致内存复制,
@@ -43,6 +43,12 @@
 ### 派生缓冲区
 1. duplicate(), slice() 虽然有全新的索引, 但是对源 ByteBuf 的修改依然体现在拍摄缓冲区中, 反之依然
 2. copy()方法可以得到一个真实副本, 拥有独立的数据缓冲区
+
+
+### ByteBuf 分配
+1. 池化
+    - 降低分配和释放内存的开销
+    - 默认使用 PooledByteBufAllocator
 
 ### 引用计数
 1. //TODO
