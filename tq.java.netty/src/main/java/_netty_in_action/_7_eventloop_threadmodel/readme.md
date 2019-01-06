@@ -1,5 +1,6 @@
 2018-01-24
 
+## 线程模型
 
 ### Boss/Worker EventLoopGroup
 1. Netty服务器编程中需要BossEventLoopGroup和WorkerEventLoopGroup两个EventLoopGroup来进行工作
@@ -12,17 +13,21 @@
 1. 事件和任务是以 FIFO 的顺序执行的. 这样可以保证字节内容总是按照正确的顺序被处理, 消除潜在的数据破坏的可能性
 
 ### EventLoop 的类层次结构
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.netty/src/main/java/_netty_in_action/_7_eventloop_threadmodel/1.png?raw=true)
+![](1.png)
 
-### 线程管理
-1. Netty线程模型的卓越性能取决于对于当前执行的Thread的身份的确定 --> 通过调用 EventLoop 的 inEventLoop(Thread)方法实现
-2. **确定它是否是分配给当前channel以及它的EventLoop的那一个线程**
-3. 如果当前调用线程是支撑 EventLoop 的线程, 那么代码将直接执行
-4. 否则, EventLoop 将调度任务以便稍后执行, 放入内部队列中, 
-5. **每个 EventLoop 都有自己的任务队列, 独立于其他任何的 EventLoop**
+### 
 
-### EventLoop/线程的分配
-1. 
+### EventLoop 和 线程模型 实现细节
+1. 线程管理
+   - Netty线程模型的卓越性能取决于对于当前执行的Thread的身份的确定 --> 通过调用 EventLoop 的 inEventLoop(Thread)方法实现
+   - **确定它是否是分配给当前channel以及它的EventLoop的那一个线程**
+   - 如果当前调用线程是支撑 EventLoop 的线程, 那么代码将直接执行
+   - 否则, EventLoop 将调度任务以便稍后执行, 放入内部队列中, 
+   - **每个 EventLoop 都有自己的任务队列, 独立于其他任何的 EventLoop**
+2. EventLoop/线程的分配
+    - 异步传输
+        - EventLoopGroup 负责为每一个新创建的 Channel 分配一个 EventLoop, 
+        - 当前实现中, 使用顺序循环(round-robin) 的方式进行分配, 以获取一个均衡的分布
 
 
 ### 线程模型
