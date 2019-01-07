@@ -1,4 +1,4 @@
-package _book._algorithms_4th_edition._1_basis;
+package _book._algorithms_4th_edition._1_basic;
 
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;

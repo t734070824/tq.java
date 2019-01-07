@@ -1,4 +1,4 @@
-package _book._algorithms_4th_edition._1_basis;
+package _book._algorithms_4th_edition._1_basic;
 
 /**
  * 最大公约数-- 欧几里得算法
