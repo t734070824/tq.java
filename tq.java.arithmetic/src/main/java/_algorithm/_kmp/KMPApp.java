@@ -1,7 +1,5 @@
 package _kmp;
 
-import java.util.stream.IntStream;
-
 /**
  * KMP算法
  * @author 734070824@qq.com

@@ -62,7 +62,7 @@ public class Merge {
 
         //归并会 a[lo, hi]
         for (int k = lo; k <= hi; k++) {
-            // 右边还有数据
+            // 左边的数据已添加完, 右边还有数据
             if(i > mid) {
                 a[k] = aux[j++];
             }else if(j > hi){

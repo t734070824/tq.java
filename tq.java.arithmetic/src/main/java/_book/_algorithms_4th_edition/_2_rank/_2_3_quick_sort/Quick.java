@@ -36,11 +36,13 @@ public class Quick {
         //切分元素
         Comparable v = a[lo];
         while (true){
+            //找到 第一个 比 v 大的
             while(RankUtil.less(a[++i], v)){
                 if(i == hi) {
                     break;
                 }
             }
+            //找到 第一个 比 v 小的
             while (RankUtil.less(v, a[--j])){
                 if(j == lo){
                     break;

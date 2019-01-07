@@ -1,4 +1,4 @@
-package _other;
+package _algorithm;
 
 /**
  * 大于或等于输入参数且最近的2的整数次幂的数

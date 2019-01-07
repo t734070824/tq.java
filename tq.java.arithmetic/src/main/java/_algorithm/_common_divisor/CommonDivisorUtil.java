@@ -1,4 +1,4 @@
-package _common_divisor;
+package _algorithm._common_divisor;
 
 /**
  * 公约数
