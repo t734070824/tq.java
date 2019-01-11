@@ -11,6 +11,7 @@ public class Note {
     //TODO 两段提交
     //TODO raft 一致性算法 http://thesecretlivesofdata.com/raft/  https://raft.github.io/
     //TODO 虚ip ip漂移
+    //TODO Jmeter 压力测试工具
 
 
 }
