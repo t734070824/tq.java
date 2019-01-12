@@ -12,4 +12,5 @@
 ### 问题
 1. unable to connect to node rabbit@localhost: nodedown : http://www.cnblogs.com/Richard-xie/p/4201994.html
 
-### 
+### Failed to start LSB: Enable AMQP service provided by RabbitMQ broker.
+1. 修改了主机名
