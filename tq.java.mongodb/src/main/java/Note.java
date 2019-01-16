@@ -14,4 +14,5 @@ public class Note {
         //TODO 连接断开
     //TODO mongo的bulk.
     //TODO 既然同一个字段不限制具体的数据类型, 那么索引是以哪种字段为基本的呢?
+    //TODO MongoDB 磁盘空间不释放的问题
 }
