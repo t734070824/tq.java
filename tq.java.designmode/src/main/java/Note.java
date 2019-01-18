@@ -6,5 +6,6 @@ public class Note {
     //TODO future设计模式
     //TODO 以前写的整理一下 太乱了
     //TODO Facade 模式 20180503
+    //TODO https://design-patterns.readthedocs.io/zh_CN/latest/
 }
 
