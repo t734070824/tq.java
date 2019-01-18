@@ -23,8 +23,8 @@ public class ProducerPartition {
         kafkaProps.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(kafkaProps);
         //异步发送
-        for (int i = 10001; i < 20000; i++) {
-            ProducerRecord<String, String> record3 = new ProducerRecord<>("Tangqing",3, null, i+"");
+        for (int i = 10001; i < 10002; i++) {
+            ProducerRecord<String, String> record3 = new ProducerRecord<>("Tangqing",i+"");
             kafkaProducer.send(record3, new Callback() {
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {

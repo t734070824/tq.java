@@ -16,19 +16,24 @@ public class ConsumerDemo {
     public static void main(String[] args) {
         Properties kafkaProps = new Properties();
         kafkaProps.put("bootstrap.servers", "192.168.7.204:9092");
-        kafkaProps.put("group.id", "Test");
-        kafkaProps.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
-        kafkaProps.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+        kafkaProps.put("group.id", "Test_3");
+        kafkaProps.put("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
+        kafkaProps.put("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(kafkaProps);
         consumer.subscribe(Collections.singletonList("Tangqing"));
 
         try{
 
-            ConsumerRecords<String, String> poll = consumer.poll(1000);
-            for (ConsumerRecord<String, String> record : poll) {
-                System.err.println(record.topic()+"--" +record.partition()
-                        +"--"+record.offset()+"--"+record.key()+"--"+record.value());
+            int num = 0;
+            while (true){
+                ConsumerRecords<String, String> poll = consumer.poll(1000);
+                for (ConsumerRecord<String, String> record : poll) {
+                    System.err.println(record.topic()+"--" +record.partition()
+                            +"--"+record.offset()+"--"+record.key()+"--"+record.value());
+                    num++;
+                }
+                System.err.println(num);
             }
 
 
