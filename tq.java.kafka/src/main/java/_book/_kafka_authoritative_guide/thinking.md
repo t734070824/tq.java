@@ -62,4 +62,8 @@
     - 客户端API 会从 服务器获取 broker的 真实地址    
 1. 消费者的暂停与恢复
     - TODO
+    
+1. broker 之间 有没有 leader
+    - TODO
+1. 理解零拷贝
 
