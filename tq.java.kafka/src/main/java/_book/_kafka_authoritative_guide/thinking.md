@@ -66,4 +66,9 @@
 1. broker 之间 有没有 leader
     - TODO
 1. 理解零拷贝
+    - TODO
+    - 不在经过 用户
+    - linux sendFile, mmap
+1. 复制系数 > broker 数量??
+    - TODO
 
