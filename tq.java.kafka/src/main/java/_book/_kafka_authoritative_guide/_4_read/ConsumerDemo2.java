@@ -13,14 +13,14 @@ import java.util.concurrent.TimeUnit;
  * @author 734070824@qq.com
  * @date 2019/1/16 14:54
  */
-public class ConsumerDemo {
+public class ConsumerDemo2 {
     public static void main(String[] args) throws InterruptedException {
         Properties kafkaProps = new Properties();
         kafkaProps.put("bootstrap.servers", "192.168.7.204:9092");
         kafkaProps.put("group.id", "Test_3");
         kafkaProps.put("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
         kafkaProps.put("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
-        kafkaProps.put("auto.offset.reset","earliest");
+        kafkaProps.put("auto.offset.reset","latest");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(kafkaProps);
         consumer.subscribe(Collections.singletonList("Tangqing"));

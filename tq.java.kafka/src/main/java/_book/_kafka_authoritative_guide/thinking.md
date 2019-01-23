@@ -71,4 +71,11 @@
     - linux sendFile, mmap
 1. 复制系数 > broker 数量??
     - TODO
+1. replication.factor vs min.insync.replicas
+    - 一个是复制系数
+    - 一个是 保证 有多少个同步副本才可以写入分区数据
+1. 同一个 group.id 在不同的程序中使用不同的配置会怎么样
+    - TODO
+2. 同一个分区同一个 group.id 的 offset 是否唯一
+    - TODO
 
