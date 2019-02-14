@@ -31,3 +31,7 @@
     - 理解这句话TODO
 2. binlog redolog 的一致性以及顺序一致性
     - TODO
+1. 脏页 delete/update vs 插入缓冲
+    - TODO
+2. 如果页本身发生了损坏, 重做没有意义
+    - TODO

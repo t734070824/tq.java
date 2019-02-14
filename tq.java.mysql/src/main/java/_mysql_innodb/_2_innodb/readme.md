@@ -76,4 +76,58 @@
         - 当重做日志缓冲池的剩余空间小于1/2...
         
 ### CheckPoint技术
-1. 
+1. **为了避免发生数据丢失的问题, 事务数据库系统普遍采用 WriteAhead Log 策略, 当事务提交的时候, 先写重做日志, 在修改页** 
+2. **将缓冲池中的脏页刷会磁盘**
+2. CheckPoint需要解决的问题
+    - 缩短数据库的恢复时间
+        - 当数据库宕机的时候, 不需要重做所有日志, 只需要对 CheckPoint 后的重做日志进行恢复
+    - 缓冲池不够用时, 将脏页刷新到磁盘
+        - 根据LRU算法移除最近最少使用的页, 如果是脏页, 需要强制执行 CheckPoint
+    - 重做日志不可用时, 刷新脏页
+3. 两种 CheckPoint
+    - Sharp CheckPoint
+        - 在数据库关闭的时候 将所有的脏页刷新回磁盘
+        - 默认的工作方式 innodb_fast_shutdown = 1
+    - Fuzzy CheckPoint
+        - Master Thread CheckPoint
+            - 以每秒或每十秒的速度从缓冲池的脏页列表中刷新一定比例的页回磁盘
+            - 异步
+        - FlUSH_LRU_LIST CheckPoint
+            - 保证足够的空闲页
+            - innodb 移除 LRU 尾端的页如果有脏页, 会触发 CheckPoint
+        - Async/Sync Flush CheckPoint
+            - 重做日志不可用, 强制将一些脏页刷新回磁盘
+            - redo_lsn, checkpoint_lsn
+            - **保证重做日志的循环使用的可用性**
+        - Dirty Page too much CheckPoint
+    
+### Master Thread 工作方式
+1. TODO
+
+### Innodb 关键特性
+1. 插入缓冲(insert buffer)
+    - **物理页的一个组成部分**
+    - 要求
+        - 索引是辅助索引(Secondary index)
+            - 插入聚簇索引一般都是顺序的
+        - 索引不唯一
+            - 在插入缓冲中, 数据库不去查询索引页来判断插入的记录的唯一性
+    - Change Buffer
+        - TODO
+    - 内部实现
+        - B+Tree
+        - TODO
+    - Merge Insert Buffer
+        - 合并到真正的辅助索引中
+        - TODO
+2. 二次写(double write)
+    - Innodb 数据页的可靠性
+    - 当数据库宕机时,  一个页只写入表中一部分 --> 部分写失效
+        - 可以重做日志恢复
+            - 如果页本身发生了损坏, 重做没有意义
+        - **需要页的副本, 在写入失效发生时, 先通过页的副本来还原该页, 在进行重做** --> 两次写
+3. 自适应哈希索引(adaptive hash index)
+    - **Innodb 自动根据访问的频率和模式自动的为某些热点页建立哈希索引**
+4. 异步IO(Async IO)
+5. 刷新邻接页(Flush Neighbor Page)
+    - **刷新脏页时, Innodb 在检测到该页所在区(extent) 的所有页, 如果是脏页, 一起刷新**
