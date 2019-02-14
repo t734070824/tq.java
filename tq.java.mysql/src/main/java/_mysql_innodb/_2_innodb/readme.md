@@ -60,4 +60,20 @@
         - 放入列表的 midpoint 位置
         - innodb_old_blocks_pct 指定 是一个 百分比
         - 默认 3/8处(列表尾端的37%)
-        - 之后的 old列表 之前的 new 列表
+        - midpoint之后的 old列表 
+        - midpoint之前的 new 列表
+        - innodb_old_blocks_time
+            - **表示页读取到mid位置后需要等待多久才会被加入到LRU列表的热端**
+3. 脏页
+    - 在LRU列表中的页被修改后(缓冲池中的页和磁盘上的页的数据不一致)
+    - checkpoint 机制刷新回磁盘
+    - Flush 列表中的页就是 脏页列表
+    - 脏页即存在与 Flush  列表中, 也可能存在于 LRU 列表中
+4. 重做日志缓冲(redo log buffer)
+    - 先将重做日志信息先放入这个缓冲区, 然后按照一定的频率将其刷新到重做日志文件
+        - Master Thread 每一秒将重做日志缓冲刷新到重做日志文件
+        - 每个事物提交的时会...
+        - 当重做日志缓冲池的剩余空间小于1/2...
+        
+### CheckPoint技术
+1. 
