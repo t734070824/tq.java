@@ -1,5 +1,7 @@
 package _book._algorithms_4th_edition._2_rank._2_4_priority_queue;
 
+import _book._algorithms_4th_edition._2_rank._2_1_elementary_sorting_algorithms.RankUtil;
+
 /**
  * @author 734070824@qq.com
  * @date 2018/9/22 15:45
@@ -11,8 +13,6 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     //存储于pq[1...N], pq[0] 没有使用
     private  int N;
 
-    public MaxPQ() {
-    }
 
     /**
      * 最大容量为 max 的优先队列
@@ -56,7 +56,7 @@ public class MaxPQ<Key extends  Comparable<Key>> {
 
 
     public Key max() {
-        return null;
+        return pq[0];
     }
 
 
@@ -99,13 +99,29 @@ public class MaxPQ<Key extends  Comparable<Key>> {
      * @param k
      */
     private void exch(int i, int k) {
+        RankUtil.exch(pq, i, k);
     }
 
     public boolean less(int k, int i) {
-        return pq[k].compareTo(pq[i]) < 0;
+
+        return pq[k] == null ? true :
+                (pq[i] == null ? false :  pq[k].compareTo(pq[i]) < 0);
+    }
+
+
+    public Key[] getPq() {
+        return pq;
+    }
+
+    public int getN() {
+        return N;
     }
 
     public static void main(String[] args) {
-        System.err.println(new Integer(3).compareTo(new Integer(2)));
+        MaxPQ maxPQ = new MaxPQ(10);
+        maxPQ.insert(10);
+        maxPQ.insert(11);
+        maxPQ.insert(5);
+        System.err.println(maxPQ.getPq());
     }
 }
