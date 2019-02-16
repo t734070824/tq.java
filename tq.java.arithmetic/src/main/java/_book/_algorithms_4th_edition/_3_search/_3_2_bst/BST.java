@@ -224,7 +224,11 @@ public class BST<Key extends Comparable<Key>, Value> {
         }else {
             //这个时候 很是复杂
             //将右子树的最小节点代替x
-            //我的想法: 将整个左子树 移到右子树最小节点的左节点, 右子树的root代替x
+            /**
+             * 我的想法: 将整个左子树 移到右子树最小节点的左节点, 右子树的root代替x
+             * 问题:
+             *      1. 会使右子树长度边长, 增加查询深度
+             */
             if(x.right == null){
                 return x.left;
             }
@@ -260,16 +264,22 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
         int cmplo = lo.compareTo(x.key);
         int cmphi = hi.compareTo(x.key);
+
+
         //这一段理解起来有些难度
         if(cmplo < 0){
             keys(x.left, queue, lo ,hi);
         }
+
         if(cmplo <= 0 && cmphi >= 0){
             queue.enqueue(x.key);
         }
+
         if(cmphi > 0){
             keys(x.right, queue, lo, hi);
         }
+
+
     }
 
 
@@ -301,14 +311,19 @@ public class BST<Key extends Comparable<Key>, Value> {
     public static void main(String[] args) {
         BST bst = new BST();
         bst.put(10, "1");
-        bst.put(5, "1");
+        bst.put(9, "1");
         bst.put(4, "1");
         bst.put(6, "1");
+        bst.put(5, "1");
         bst.put(12, "1");
         bst.put(11, "1");
         bst.put(13, "1");
 
-        bst.delete(5);
+//        bst.deleteMin();
+
+//        bst.delete(6);
         System.err.println("1");
+        Iterable keys = bst.keys();
+        System.err.println(keys);
     }
 }

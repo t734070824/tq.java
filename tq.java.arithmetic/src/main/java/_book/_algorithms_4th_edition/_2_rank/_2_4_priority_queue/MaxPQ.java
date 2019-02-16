@@ -40,7 +40,7 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     }
 
     public void insert(Key k) {
-        pq[N++] = k;
+        pq[++N] = k;
         swim(N);
     }
 
@@ -82,6 +82,7 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     private void sink(int k) {
         while (2*k <= N){
             int j = 2*k;
+            // 交换孩子节点中较小的那一个
             if(j < N & less(j, j+1)) {
                 j++;
             }
@@ -103,9 +104,10 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     }
 
     public boolean less(int k, int i) {
+        if(pq[k] == null) return true;
+        if(pq[i] == null) return false;
 
-        return pq[k] == null ? true :
-                (pq[i] == null ? false :  pq[k].compareTo(pq[i]) < 0);
+        return  pq[k].compareTo(pq[i]) < 0;
     }
 
 
@@ -119,9 +121,11 @@ public class MaxPQ<Key extends  Comparable<Key>> {
 
     public static void main(String[] args) {
         MaxPQ maxPQ = new MaxPQ(10);
-        maxPQ.insert(10);
+
         maxPQ.insert(11);
+
         maxPQ.insert(5);
+        maxPQ.insert(10);
         System.err.println(maxPQ.getPq());
     }
 }
