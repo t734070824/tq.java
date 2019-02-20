@@ -21,7 +21,7 @@
   <!--
     - This is a sample configuration for log4j.
     - It simply just logs everything into a single log file.
-    - Note, that you can use properties for value substitution.
+    - _spring_boot_docs_2_1_3_RELEASE.Note, that you can use properties for value substitution.
     -->
   <appender name="CORE" class="org.apache.log4j.FileAppender">
     <param name="File"   value="${org.apache.cocoon.work.directory}/cocoon-logs/log4j.log" />
