@@ -46,6 +46,7 @@
       <module>tq.java.spring.boot</module>
       <module>tq.java.Hadoop 2.X HDFS</module>
       <module>tq.java.kafka</module>
+      <module>tq.java.spring.cloud</module>
   </modules>
   
   <properties>
