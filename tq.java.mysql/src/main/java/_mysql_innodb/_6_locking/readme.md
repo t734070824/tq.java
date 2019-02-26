@@ -78,3 +78,28 @@
     - Record Lock: 单个行记录上的锁
     - Gap Lock: 间隙锁, 锁定一个范围, 但不包括记录本身
     - Next-Key Lock: Gap lock + Record Lock 锁定一个范围, 并且锁定记录本身
+2. 解决 phantom problem (幻读问题)
+    - Next-Key Locking
+
+### 锁问题
+1. 脏读
+    - 读取到其他事务未提交的数据
+2. 不可重复读
+3. 丢失更新
+    - 串行处理
+
+### 阻塞
+1. innodb_lock_wait_timeout
+    - 控制 锁 等待时间
+    - 50s
+2. innodb_rollback_on_timeout
+    - 是否在等待超时的时候对正在进行的事务进行回滚
+    - 默认不会
+    - **会出现 一个事务出现错误 没有rollback 但又没有 commit的问题**
+    
+### 死锁
+1. 检测
+    - 超时机制
+    - wait-for graph(等待图)
+        - 锁的信息链表
+        - 事务等待链表
