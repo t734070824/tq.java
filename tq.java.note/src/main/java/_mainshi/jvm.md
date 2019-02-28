@@ -2,7 +2,8 @@
 1. in-jvm以及jmm缓存模型如何调优?
 2. Java虚拟机的内存布局
 3. GC算法以及几种垃圾回收器
-4. 类加载机制
+4. 类加载机制, 加载类的过程
+    - TODO
 5. Java内存模型
 6. happens-before规则
 7. volatile 关键字使用规则

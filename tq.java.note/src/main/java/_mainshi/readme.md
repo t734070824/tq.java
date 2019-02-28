@@ -20,9 +20,7 @@
 
 
     
-#### SpringBoot
-1. 说说springboot启动机制
-    - TODO
+
 
 #### Mybatis
 1. 缓存机制

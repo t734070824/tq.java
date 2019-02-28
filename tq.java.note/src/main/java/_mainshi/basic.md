@@ -18,6 +18,11 @@
 8. 线程池 参数的意义
 9. 使用无界阻塞队列会出现的问题
 11. ThreadLocal
+    - Thread
+    - ThreadLocalMap
+    - Entry
+    - 当前 Thread 为 key, 链表逐个比较
+    - **不是一个 MAP**
 12. ThreadPoolExecutor 内部原理
 13. NIO
     - IO 和  NIO的区别 
@@ -35,7 +40,8 @@
 22. java线程之间通信
 23. 1.8 ConcurrentHashMap
 24. 同步器
-25. String为什么可以用 + 操作
+25. String为什么可以用 + 操作, StringBuffer StringBuilder
+    - 实现 TODO
 26. 两个方法完全相同可以重载吗
     - ***
     - 20181219 跳过
@@ -73,6 +79,8 @@
     - 数组
     - 链表
     - 红黑树
+    - 扩容 2次幂
+        - TODO
 41. 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化
     - TODO
     - 不会变化 TODO
