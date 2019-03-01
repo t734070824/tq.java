@@ -1,5 +1,14 @@
 2019-01-12
 
+
+## 重新学习遇到的问题
+1. 无法启动
+    - ip改变了, 没有修改hosts
+    - 防火墙
+2. 启动过后一会就停止了
+    - 无法连接 其他节点, 主动停止???
+
+
 ## RabbitMQ 集群搭建中的问题
 1. 修改主机名
     - 一定要修改
@@ -19,3 +28,5 @@
     - rabbitmqctl reset
     - rabbitmqctl join_cluster rabbit@rabbitmq_node3
     - rabbitmqctl start_app
+
+

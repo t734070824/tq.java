@@ -31,7 +31,7 @@
     - AMQP 信道
     - 建立在Connection上的虚拟连接
     - 类似 NIO, Reactor
-    - 当信道本身流量很大的时候, 多个信道使用同一个Connetion, 就会面临性能瓶颈
+    - **当信道本身流量很大的时候, 多个信道使用同一个Connetion, 就会面临性能瓶颈**
     
 ### AMQP协议
 1. Module Layer
@@ -54,7 +54,8 @@
 ![](1.jpg)
 
 ### 消费者流转过程
-x
+![](2.jpg)
+
 
 ### AMQP 命令
 ![](3.jpg)
