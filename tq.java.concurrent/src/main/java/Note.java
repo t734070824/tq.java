@@ -27,6 +27,9 @@ public class Note {
     //TODO 伪共享
     //TODO concurrenthashmap size
 
+    //TODO StampedLock ReentrantReadWriteLock
+    //TODO ConcurrentLinkedQueue
+
     //TODO posix mutex condition
 
 }

@@ -185,6 +185,8 @@
 66. ReadWriteLock 读写之间互斥吗
     - 只有读读 不互斥
     - 写 和 其他都互斥
+    - **如果读取执行情况很多，写入很少的情况下，使用 ReentrantReadWriteLock 可能会使写入线程遭遇饥饿（Starvation）问题，
+        也就是写入线程吃吃无法竞争到锁定而一直处于等待状态**
 67. 同步与互斥
     - Barrier，Semaphore是专门来解决同步的
     - 互斥是通过竞争对资源的独占使用，彼此之间不需要知道对方的存在，执行顺序是一个乱序。
@@ -195,3 +197,14 @@
     - tryLock, tryRelease
 69. JDK9 模块化
     - TODO
+1. StampedLock 锁原理的理解？
+1. 谈下对基于链表的非阻塞无界队列 ConcurrentLinkedQueue 原理的理解？
+1. ConcurrentLinkedQueue 内部是如何使用 CAS 非阻塞算法来保证多线程下入队出队操作的线程安全？
+1. 基于链表的阻塞队列 LinkedBlockingQueue 原理。
+1. 阻塞队列LinkedBlockingQueue 内部是如何使用两个独占锁 ReentrantLock 以及对应的条件变量保证多线程先入队出队操作的线程安全？
+1. 分析下JUC 中倒数计数器 CountDownLatch 的使用与原理？
+1. CountDownLatch 与线程的 Join 方法区别是什么？
+1. 讲讲对JUC 中回环屏障 CyclicBarrier 的使用？
+1. CyclicBarrier内部的实现与 CountDownLatch 有何不同？
+1. Semaphore 的内部实现是怎样的？
+1. 并发组件CopyOnWriteArrayList 是如何通过写时拷贝实现并发安全的 List？

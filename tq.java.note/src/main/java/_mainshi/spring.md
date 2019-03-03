@@ -39,3 +39,23 @@
     - 针对特殊行为的其他Aware接口
     - Bean配置文件中的Custom init()方法和destroy()方法
     - @PostConstruct和@PreDestroy注解方式
+1. 为什么需要代理模式？
+1. 讲讲静态代理模式的优点及其瓶颈？
+1. 对Java 接口代理模式的实现原理的理解？
+1. 如何使用 Java 反射实现动态代理？
+1. Java 接口代理模式的指定增强？
+1. 谈谈对Cglib 类增强动态代理的实现？
+1. 怎么理解面向切面编程的切面？
+1. 讲解OOP与AOP的简单对比？
+1. 讲解JDK 动态代理和 CGLIB 代理原理以及区别？
+1. 讲解Spring 框架中基于 Schema 的 AOP 实现原理？
+1. 讲解Spring 框架中如何基于 AOP 实现的事务管理？
+1. 谈谈对控制反转的设计思想的理解？
+1. 怎么理解 Spring IOC 容器？
+1. Spring IOC 怎么管理 Bean 之间的依赖关系，怎么避免循环依赖？
+1. 对Spring IOC 容器的依赖注入的理解？
+1. 说说对Spring IOC 的单例模式和高级特性？
+1. BeanFactory 和 FactoryBean 有什么区别？
+1. BeanFactory 和 ApplicationContext 又有什么不同？
+1. Spring 在 Bean 创建过程中是如何解决循环依赖的？
+1. 谈谈Spring Bean 创建过程中的设计模式？
