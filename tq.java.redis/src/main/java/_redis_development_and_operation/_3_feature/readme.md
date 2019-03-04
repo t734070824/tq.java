@@ -39,7 +39,14 @@
         - WRONGTYPE Operation against a key holding the wrong kind of value
     - user:a:follow数据成功插入
     
-2. watch: 确保事务中的key 没有被其他客户端修改, 才执行事务, 否则不执行
+2. watch: 
+    - 确保事务中的key 没有被其他客户端修改, 才执行事务, 否则不执行
+    - CAS
+    - 步骤
+        - watch key
+        - multi
+        - 修改
+        - exec/discard
     
 3. lua
     - script load 

@@ -48,7 +48,7 @@
 
 
 ### AOF追加阻塞
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/6.jpg?raw=true)
+![](6.jpg)
 
 1. 流程分析
     - 主线程负责写入 AOF 缓冲区

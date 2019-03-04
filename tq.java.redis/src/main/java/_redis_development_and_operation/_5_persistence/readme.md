@@ -3,7 +3,7 @@
 ## 持久化
 
 ### RDB(Redis Database)
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/1.jpg?raw=true)
+![](1.jpg)
 
 
 1. 触发机制
@@ -41,7 +41,7 @@
 1. **以独立日志的方式记录每次写命令，
    重启时再重新执行AOF文件中的命令达到恢复数据的目的。** AOF的主要作用
    是解决了数据持久化的实时性        
-2. 工作流程: ![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/2.jpg?raw=true)
+2. 工作流程: ![](2.jpg)
 
 
 ### AOF 命令写入
@@ -57,7 +57,7 @@
     - 先写入缓冲区aof_buf中， 还有另一个好处， **Redis可以提供多种缓冲区
       同步硬盘的策略， 在性能和安全性方面做出平衡**
 ### 文件同步
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/3.jpg?raw=true)
+![](3.jpg)
 
 1. write:操作会触发延迟写（delayed write） 机制。 Linux在内核提供页缓
          冲区用来提高硬盘IO性能。 write操作在写入系统缓冲区后直接返回。 同步
@@ -67,7 +67,7 @@
           阻塞直到写入硬盘完成后返回， 保证了数据持久化
           
 ### 重写机制(AOF重写机制压缩文件体积)
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/4.jpg?raw=true)
+![](4.jpg)
 
 1. 合并命令
 2. 删除无效命令
@@ -80,4 +80,4 @@
 5. 新的 AOF文件 覆盖 旧的
 
 ### 重启机制
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/5.jpg?raw=true)
+![](5.jpg)

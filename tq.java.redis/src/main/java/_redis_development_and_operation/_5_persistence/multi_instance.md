@@ -7,7 +7,7 @@
 4. **CPU 和 IO 竞争**
 
 ### 解决方案
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_5_persistence/7.jpg?raw=true)
+![](7.jpg)
 
 1. 流程
     - 关闭自动重写功能
