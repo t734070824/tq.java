@@ -52,14 +52,13 @@
             - 自适应算法, 根据键的过期比例, 使用快慢两种速率模式回收键
                 - TODO
     - 内存达到maxmemory上限是触发内存溢出的控制策略
-        - **noeviction: 默认策略, 不会删除任何数据, 拒绝写入操作并返回错误**
-        - volatile-lru: 根据LRU算法删除设置了超时属性（expire） 的键， 直
+        - **noeviction: , 不会删除任何数据, 拒绝写入操作并返回错误**
+        - volatile-lru: 默认策略, 根据LRU算法删除设置了超时属性（expire） 的键， 直
                        到腾出足够空间为止。 如果没有可删除的键对象， 回退到noeviction策略。
         - allkeys-lru： 根据LRU算法删除键， 不管数据有没有设置超时属性，直到腾出足够空间为止
         - allkeys-random： 随机删除所有键， 直到腾出足够空间为止。
         - volatile-random： 随机删除过期键， 直到腾出足够空间为止。
-        - volatile-ttl： 根据键值对象的ttl属性， 删除最近将要过期数据。 如果
-        没有， 回退到noeviction策略
+        - volatile-ttl： 根据键值对象的ttl属性， 删除最近将要过期数据。 如果没有， 回退到noeviction策略
 
 ### 内存优化
 1. redisObject
