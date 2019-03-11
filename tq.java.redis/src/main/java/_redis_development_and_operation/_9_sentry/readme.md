@@ -25,13 +25,12 @@
     - daemonize yes
     - logfile "26379.log"
     - dir /opt/soft/redis/data
-    - sentinel monitor mymaster 127.0.0.1 6379 2 --> 2代表判断主节点失败至少需要2个 Sentinel节点同意
+    - sentinel monitor mymaster 127.0.0.1 6379 2 --> 2--代表判断主节点失败至少需要2个 Sentinel节点同意
     - sentinel down-after-milliseconds mymaster 30000
     - sentinel parallel-syncs mymaster 1
     - sentinel failover-timeout mymaster 180000
 2. 监控多个节点
-    - 只需要指定多个masterName来区分不同的主节点
-      即可
+    - 只需要指定多个masterName来区分不同的主节点即可
 3. 动态设置参数
     - sentinel set <param> <value>
     
