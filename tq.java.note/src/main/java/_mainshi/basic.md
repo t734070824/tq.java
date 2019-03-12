@@ -15,13 +15,23 @@
 2. 如何给hashmap的key对象设计他的 hashcode
 3. bytes --> long
 4. lru Cache
+    - 链表+hashMap
+    - LinkedHashMap
 6. CAS, 什么情况下不适合用CAS
     - 循环时间长开销大(争用比较激烈)
     - 只能保证一个共享变量的原子操作
     - ABA
 7. HashMap 多线程下的扩容死循环问题
 8. 线程池 参数的意义
+    - 核心
+    - 最大
+    - 时间单位
+    - 时间
+    - 任务队列
+    - 工厂
+    - 队列满的任务拒绝策略
 9. 使用无界阻塞队列会出现的问题
+    - OOM
 11. ThreadLocal
     - Thread
     - ThreadLocalMap
@@ -36,15 +46,27 @@
 14. 顺序加锁
 15. 快速失败(fast-fail) 和 安全失败(fail-safe)的区别
 16. finalize()
+    - 对象不可达 判断是否需要调用
+    - 唯一一次逃逸的机会
+    - 只有一次
+    - 不保证运行完
 17. 反射(反射机制, 反射性能, 如何优化) private
     - *** 20181219 跳过
 18. 乐观锁
+    - CAS
+    - 先获取, 修改, 然后假设没有其他人获取锁
 19. hash冲突
+    - equal
+    - 链表
+    - 红黑树
 20. 锁类型(偏向锁, 轻量级锁, 自旋锁, 锁升级)
 21. JDK1.8 新特性
 22. java线程之间通信
-23. 1.8 ConcurrentHashMap
 24. 同步器
+    - countDownLatch
+    - Semaphore
+    - ReentrantLock
+    - 
 25. String为什么可以用 + 操作, StringBuffer StringBuilder
     - 实现 TODO
 26. 两个方法完全相同可以重载吗
@@ -57,6 +79,9 @@
 31. final finally finalize
 32. (short s1 =1;s1 = s1 +1) (short s1 =1;s1 += 1)
 33. runtimeException
+    - error : 无需捕获, 系统错误
+    - Exception
+        - runtimeException, IOException
 34. 分析线程池的实现原理和线程的调度过程
 35. Java 8的内存分代改进
      - ***
@@ -130,7 +155,7 @@
     - java内存模型
         - 保证可见性
     - 防止重排序
-    - **和 CAS 结合 保证原子性**
+    - **和 CAS 结合 保证一致性**
 52. 读写锁
     - 读时复制
     - 写独锁
@@ -151,7 +176,7 @@
     交换进磁盘？基于缓存的线程池解决方法呢？
     - TODO
 58. 可重入锁中的lock和trylock的区别
-    - trylock 失败 直接放入对垒
+    - trylock 失败 直接放入队列
     - lock 失败 自旋
 59. LinkedHashmap的底层实现
     - map+链表
