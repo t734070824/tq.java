@@ -114,7 +114,7 @@
         - 从节点清空数据的时间
         - 从节点加载RDB时间
         - 可能的AOF重写时间
-    - ![](https://github.com/t734070824/tq.java/blob/master/tq.java.redis/src/main/java/_redis_development_and_operation/_6_copy/1.jpg?raw=true)
+    - ![](1.jpg)
     
 
 4. 复制积压缓冲区

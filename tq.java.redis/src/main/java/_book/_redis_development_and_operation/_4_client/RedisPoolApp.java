@@ -1,4 +1,4 @@
-package _redis_development_and_operation._4_client;
+package _book._redis_development_and_operation._4_client;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.Jedis;

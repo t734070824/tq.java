@@ -1,4 +1,4 @@
-package _redis_development_and_operation._9_sentry;
+package _book._redis_development_and_operation._9_sentry;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;

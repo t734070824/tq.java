@@ -5,25 +5,25 @@
 public class Note {
 
     //书签
-        // 2018030 _redis_development_and_operation 215 / 890
-        // 20180502 _redis_development_and_operation 302 / 890
-        // 20180503 _redis_development_and_operation 339 / 890
+        // 2018030 _book._redis_development_and_operation 215 / 890
+        // 20180502 _book._redis_development_and_operation 302 / 890
+        // 20180503 _book._redis_development_and_operation 339 / 890
         // 跳过 常见异常, 以及 案列分析
-        // 20180508 _redis_development_and_operation 402 / 890
+        // 20180508 _book._redis_development_and_operation 402 / 890
         // 复制部分没有细读
-        //20180510 _redis_development_and_operation 441 / 890
+        //20180510 _book._redis_development_and_operation 441 / 890
         //跳过低七章
-        //20180511 _redis_development_and_operation  464 / 890
+        //20180511 _book._redis_development_and_operation  464 / 890
     //复习
-        //20180619 _redis_development_and_operation 108 2.4--列表
-        //20180625 _redis_development_and_operation 略过 第3章 redis shell 部分  223 / 890
-        //20180626 _redis_development_and_operation  复制 351 / 890
-        //20180627 _redis_development_and_operation  阻塞 402 / 890
-        //20180630 _redis_development_and_operation  哨兵Sentinel 521 / 890
-        //20180702 _redis_development_and_operation  哨兵Sentinel 562 / 890
+        //20180619 _book._redis_development_and_operation 108 2.4--列表
+        //20180625 _book._redis_development_and_operation 略过 第3章 redis shell 部分  223 / 890
+        //20180626 _book._redis_development_and_operation  复制 351 / 890
+        //20180627 _book._redis_development_and_operation  阻塞 402 / 890
+        //20180630 _book._redis_development_and_operation  哨兵Sentinel 521 / 890
+        //20180702 _book._redis_development_and_operation  哨兵Sentinel 562 / 890
 
     //设计与实现
-        //20180710 _redis_design_and_implementation  跳跃表 43 / 392
+        //20180710 _book._redis_design_and_implementation  跳跃表 43 / 392
 
     //TODO SDS 掌握
     //TODO HyperLogLog 略过
