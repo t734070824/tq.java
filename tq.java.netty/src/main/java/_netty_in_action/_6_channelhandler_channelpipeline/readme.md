@@ -56,6 +56,13 @@
 ### ChannelHandler 和 ChannelHandlerContext 的高级用法
 1. 可以通过将 ChannelHandler 添加到 ChannelPipeline 中来实现动态的协议切换
 2. 缓存到 ChannelHandlerContext 的引用以供稍后使用，这可能会发生在任何的 ChannelHandler 方法之外，甚至来自于不同的线程
-
-
+3. 因为一个ChannelHandler能够属于多个ChannelPipeline，它能够被绑定到多个ChannelHandlerContext实例上。
+    - 一个用于该目的的ChannelHandler必须有@Sharable注解；
+    - 如果一个不具有@Sharable注解的ChannelHandler被尝试去添加到多个ChannelPipeline中将会触发一个异常。
+    - 显然，为了安全的在多个并发Channel中使用ChannelHandler，可共享的ChannelHandler必须是线程安全的。
+4. 为什么要共享一个ChannelHandler ？ 
+    - 一个常见的原因是：构建一个单例的ChannelHandler在多个ChannelPipeline中为了跨越多个Channels来收集统计资料。
+   
+### 资源管理--释放
+1. 
 

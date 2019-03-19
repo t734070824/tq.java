@@ -2,6 +2,11 @@
 
 ## 传输
 
+### 零拷贝
+1. 是目前仅适用于NIO和Epoll传输的功能。
+2. 它允许你 快速且高效的移动数据从一个文件系统到网络，而无需从内核空间拷贝数据到用户空间，
+    这能够显著提升如FTP 或 HTTP协议的性能
+
 ### 内置的传输
 1. NIO--非阻塞IO
     - OP_ACCEPT 请求在接受新连接并创建 Channel 时获得通知
@@ -15,4 +20,4 @@
       替 换 为 EpollEventLoopGroup ， 
     - 并 且 将 NioServerSocketChannel.class 替 换 为
       EpollServerSocketChannel.class 即可
-3. 
+

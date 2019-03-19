@@ -1,4 +1,4 @@
-package _http_server;
+package _other._http_server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

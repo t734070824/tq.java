@@ -32,4 +32,6 @@ public class Note {
     //TODO jemalloc Netty 内存管理
     //TODO 平衡二叉树的伙伴分配算法
 
+    //TODO 不再因过快、过慢或超负载连接导致OutOfMemoryError
+
 }

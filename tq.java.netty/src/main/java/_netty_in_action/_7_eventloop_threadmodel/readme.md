@@ -38,24 +38,40 @@
 5. 参考:https://www.jianshu.com/p/38b56531565d
 
 ### JDK nio bug
-```text
-https://caorong.github.io/2016/12/24/head-first-netty-1/
-for(;;){
-    int selectedKeys = selector.select(timeoutMillis); // select with timeout
-    selectCnt ++;
-    // 我由于 select 阻塞 而等待了 timeoutMillis 毫秒， 说明， 我阻塞了，说明没有bug
-    if (time - TimeUnit.MILLISECONDS.toNanos(timeoutMillis) >= currentTimeNanos) {
-        selectCnt = 1;
-    } else if (SELECTOR_AUTO_REBUILD_THRESHOLD > 0 &&
-            selectCnt >= SELECTOR_AUTO_REBUILD_THRESHOLD) {
-        // 在小于 timeoutMillis 毫秒的时间内 select 的次数超过了 阀值(512) 次
-        rebuildSelector();
-        selector = this.selector;
-
-        selector.selectNow();// Select again
-        selectCnt = 1;
-        break;
+```java
+//https://caorong.github.io/2016/12/24/head-first-netty-1/
+class jdkniobug{
+    void check(){
+    for(;;){
+        int selectedKeys = selector.select(timeoutMillis); // select with timeout
+        selectCnt ++;
+        // 我由于 select 阻塞 而等待了 timeoutMillis 毫秒， 说明， 我阻塞了，说明没有bug
+        if (time - TimeUnit.MILLISECONDS.toNanos(timeoutMillis) >= currentTimeNanos) {
+            selectCnt = 1;
+        } else if (SELECTOR_AUTO_REBUILD_THRESHOLD > 0 &&
+                selectCnt >= SELECTOR_AUTO_REBUILD_THRESHOLD) {
+            // 在小于 timeoutMillis 毫秒的时间内 select 的次数超过了 阀值(512) 次
+            rebuildSelector();
+            selector = this.selector;
+    
+            selector.selectNow();// Select again
+            selectCnt = 1;
+            break;
+        }
     }
+    }
+
 }
 ```
+
+
+### NioEventLoop
+1. NioEventLoop是一个基于JDK NIO 的异步时间循环类, 处理一个channel的一个生命周期的所有事件
+2. NioEventLoop的整个生命周期只会依赖于一个单一的线程来完成。一个NioEventLoop可以分配给多个Channel
+3. 如果调用Channel操作的线程是EventLoop所关联的线程，那么该操作会被立即执行。否则会将该操作封装成任务放入EventLoop的任务队列中
+4. 所有提交到NioEventLoop的任务都会先放入队列中，然后在线程中以有序(FIFO)/连续的方式执行所有提交的任务
+5. NioEventLoop的事件循环主要完成了
+    - 已经注册到 Selector 的Channel 的监控, 并在感兴趣的时间可以执行时对其进行处理
+    - 完成任务队列(taskQueue)中的任务，以及对可执行的定时任务和周期性任务的处理
+        (scheduledTaskQueue中的可执行的任务都会先放入taskQueue中后，再从taskQueue中依次取出执行
 

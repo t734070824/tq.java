@@ -13,3 +13,14 @@
 
 6. CompositeByteBuf
     - 扩容
+
+6. ChannelPipeline 和 ctx 的关系
+    - TODO
+    
+6. SimpleChannelInboundHandler 中的泛型中的对象是 怎么来的
+    - 解码器
+7. SimpleChannelInboundHandler 的特性
+    - 主动释放 引用
+    
+8. 不要阻塞这个ChannelHandler线程,因为这会对整体的 I/O 处理产生负面的影响
+    - 当前绑定的线程 阻塞
