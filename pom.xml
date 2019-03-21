@@ -46,6 +46,7 @@
       <module>tq.java.Hadoop 2.X HDFS</module>
       <module>tq.java.kafka</module>
       <module>tq.java.flink</module>
+      <module>tq.java.docker</module>
   </modules>
   
   <properties>
