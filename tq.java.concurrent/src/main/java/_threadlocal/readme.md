@@ -2,9 +2,9 @@
 ### 理解
 1. ThreadLocal 内部是用数组实现的,数组中的成员是Entry,此Entry继承了WeakReference
 2. ThreadLocal有一个静态内部类 ThreadLocalMap
-3. 当ThreadLocal调用get方法的时候,首先获取当前线程对象,然后获取当前线程的ThreadLocalMap成员变量,通过ThreadLocal本身作为key
-获取当前ThreadLocal对象threadLocalHashCode,取模,获取数组下标,若果当前Entry的key==ThreadLocal就返回,如果不等,从当前下标往数组末尾查找,
-到数组末尾后,从0开始,还没有的话就创建并返回
+3. 当ThreadLocal调用get方法的时候,首先获取当前线程对象,然后获取当前线程的ThreadLocalMap成员变量,
+    通过ThreadLocal引用本身作为key, 获取当前ThreadLocal对象threadLocalHashCode,取模,获取数组下标,
+    若果当前Entry的key==ThreadLocal就返回,如果不等,从当前下标往数组末尾查找,到数组末尾后,从0开始,还没有的话就创建并返回
 		
 ### 优点(什么时候使用)
 1. 当对象不是线程安全的,并且不想加锁的时候
