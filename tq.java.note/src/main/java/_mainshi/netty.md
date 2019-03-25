@@ -12,4 +12,9 @@
         - IO多路复用
         - 异步非阻塞
         - 零拷贝
+2. 是否用过NIO
+       - ...
+       - selector
+       - epoll
+       - reactor
         
