@@ -19,6 +19,9 @@ if [ -z "${DOCKER_CERT_PATH}" ]; then
 fi
 ```
 
+2. centos7
+    - systemctl 的 bug
+
 
 ### 入门
 1. https://zhuanlan.zhihu.com/p/23599229

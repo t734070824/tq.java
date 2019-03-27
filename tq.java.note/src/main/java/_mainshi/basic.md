@@ -62,6 +62,8 @@
     - 链表
     - 红黑树
 20. 锁类型(偏向锁, 轻量级锁, 自旋锁, 锁升级)
+    - TODO
+    - 升级和降级
 21. JDK1.8 新特性
 22. java线程之间通信
 24. 同步器
@@ -241,3 +243,5 @@
 1. CyclicBarrier内部的实现与 CountDownLatch 有何不同？
 1. Semaphore 的内部实现是怎样的？
 1. 并发组件CopyOnWriteArrayList 是如何通过写时拷贝实现并发安全的 List？
+1. 进程和线程的区别
+    - TODO
