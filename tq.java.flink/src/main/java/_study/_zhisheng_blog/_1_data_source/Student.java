@@ -1,4 +1,4 @@
-package _study._flink_docs_release_1_7._data_source;
+package _study._zhisheng_blog._1_data_source;
 
 /**
  * @author 734070824@qq.com

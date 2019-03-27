@@ -1,8 +1,7 @@
-package _study._flink_docs_release_1_7._data_source;
+package _study._zhisheng_blog._1_data_source;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
-import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
