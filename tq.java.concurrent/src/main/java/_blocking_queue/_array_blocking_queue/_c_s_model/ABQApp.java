@@ -1,4 +1,4 @@
-package _array_blocking_queue._c_s_model;
+package _blocking_queue._array_blocking_queue._c_s_model;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

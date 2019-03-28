@@ -1,4 +1,4 @@
-package _array_blocking_queue._c_s_model._toast_on_matic;
+package _blocking_queue._array_blocking_queue._c_s_model._toast_on_matic;
 
 public class Toast{
 	public enum Status {DRY, BUTTERED, JAMMED};

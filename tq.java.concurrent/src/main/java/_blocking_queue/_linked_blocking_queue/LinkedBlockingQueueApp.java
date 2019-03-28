@@ -1,4 +1,4 @@
-package _linked_blocking_queue;
+package _blocking_queue._linked_blocking_queue;
 
 import java.util.concurrent.LinkedBlockingQueue;
 
