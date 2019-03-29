@@ -150,3 +150,5 @@
 1. MySQL常用监控？
 1. MySQL瓶颈分析？
 1. 数据库如实现 rollback
+1. 第一二三范式
+1. 一个表一千个列值 为 true和false, sql查询, 有 300个列值为true的行
