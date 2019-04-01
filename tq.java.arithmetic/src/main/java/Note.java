@@ -19,4 +19,6 @@ public class Note {
 
     //TODO 正则表达式
     //TODO Round Robin 轮询调度算法
+    //TODO 状态机
+
 }
