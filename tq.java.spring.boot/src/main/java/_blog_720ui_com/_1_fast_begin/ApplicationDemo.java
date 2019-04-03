@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author 734070824@qq.com
  * @date 2019/2/20 15:27
  */
-@SpringBootApplication
+//@SpringBootApplication
 public class ApplicationDemo {
 
     public static void main(String[] args) throws Exception {
