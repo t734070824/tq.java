@@ -18,7 +18,32 @@ public class ConcurrentLinkedQueue7<E> {
     }
 
     public boolean offer(E e){
+        Node<E> newNode = new Node<>(new AtomicReference<>(e), new AtomicReference<>(null));
+        while (true){
+            Node<E> curTail = tail.get();
+            AtomicReference<Node<E>> curNext = curTail.next;
+            if(curNext.compareAndSet(null, newNode)){
+                tail.compareAndSet(curTail, curNext.get());
+                return true;
+            }
+            tail.compareAndSet(curTail, curNext.get());
+        }
+    }
 
+    public E poll(){
+        while (true){
+            Node<E> curDummy = dummy.get();
+            Node<E> curNext = curDummy.next.get();
+            if(curNext == null){
+                return null;
+            }
+            E oldItem = curNext.item.get();
+            if(curNext.item.compareAndSet(oldItem, null)){
+                dummy.compareAndSet(curDummy, curNext);
+                return oldItem;
+            }
+            dummy.compareAndSet(curDummy, curNext);
+        }
     }
 
 
