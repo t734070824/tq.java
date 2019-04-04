@@ -34,7 +34,7 @@
 3. 可重复读(repeatable read):解决了**脏读**的问题, 保证在同一个事务的多次读取同样的记录的结果是一致的.
     - 幻读: 当某个事务正在读取某个范围的记录的时候,其他事务又在该范围插入了新的记录,使之前的事务在读取该范围的记录时,产生幻行
     - 解决: InnoDB 通过对版本并发控制(MVCC, Multiversion Concurrency Control),  解决幻读的问题
-    - Next-key locking 决绝 不可重复读
+    - Next-key locking 解决 不可重复读
     - mysql的事务默认隔离级别
 4. 可串行化(serializable):最高的隔离级别, 强制事务串行执行
 

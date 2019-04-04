@@ -242,6 +242,6 @@
 1. 讲讲对JUC 中回环屏障 CyclicBarrier 的使用？
 1. CyclicBarrier内部的实现与 CountDownLatch 有何不同？
 1. Semaphore 的内部实现是怎样的？
-1. 并发组件CopyOnWriteArrayList 是如何通过写时拷贝实现并发安全的 List？
+1. 并发组件 CopyOnWriteArrayList 是如何通过写时拷贝实现并发安全的 List？
 1. 进程和线程的区别
     - TODO
