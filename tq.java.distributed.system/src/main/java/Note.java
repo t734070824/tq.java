@@ -16,6 +16,9 @@ public class Note {
     //TODO 全局时钟 vs 逻辑时钟, Vector Clock
     //TODO GPS 原子钟
     //TODO 脑裂
+    //TODO Zookeeper
+    //TODO 服务治理
+    //TODO 选举算法
 
 
 }
