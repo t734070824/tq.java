@@ -234,14 +234,30 @@
     - TODO
 1. StampedLock 锁原理的理解？
 1. 谈下对基于链表的非阻塞无界队列 ConcurrentLinkedQueue 原理的理解？
+    - 无锁
+    - cas, 减少cas 次数
+    - 出队入队无竞争, 哨兵节点
+    - 延迟设置 tail
+    - **允许不一致**
 1. ConcurrentLinkedQueue 内部是如何使用 CAS 非阻塞算法来保证多线程下入队出队操作的线程安全？
+    - 状态机
 1. 基于链表的阻塞队列 LinkedBlockingQueue 原理。
-1. 阻塞队列LinkedBlockingQueue 内部是如何使用两个独占锁 ReentrantLock 以及对应的条件变量保证多线程先入队出队操作的线程安全？
+    - put,take Lock
+    - Condition
+1. 阻塞队列 LinkedBlockingQueue 内部是如何使用两个独占锁 ReentrantLock 以及对应的条件变量保证多线程先入队出队操作的线程安全？
+    - 放入前队列满: notFull.await()
+    - 放入后队列不满: notFull.signal()
+    - 放入前队列=0: notEmpty.signal()
 1. 分析下JUC 中倒数计数器 CountDownLatch 的使用与原理？
 1. CountDownLatch 与线程的 Join 方法区别是什么？
+    - CountDownLatch:
+        - AQS 队列, LockSupport
+    - Join
+        - Object.wait()
 1. 讲讲对JUC 中回环屏障 CyclicBarrier 的使用？
 1. CyclicBarrier内部的实现与 CountDownLatch 有何不同？
 1. Semaphore 的内部实现是怎样的？
 1. 并发组件 CopyOnWriteArrayList 是如何通过写时拷贝实现并发安全的 List？
+    - lock.lock()
 1. 进程和线程的区别
     - TODO
