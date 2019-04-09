@@ -1,5 +1,13 @@
 ### HTTP/WEB
 1. Session, Cookie, 格式 传输内容
+    - 都是为了标记用户状态
+    - session
+        - 服务端实现, 服务器中的一块内存
+        - Set-Cookies: JSESSIONID
+    - Cookie
+        - 存储在浏览器中
+        - 请求是发送个服务器
+        - 服务器根据 Sessionid 查找用户状态    
 2. Filter Servlet Listener
 3. get post 基本区别
 4. Servlet的生命周期
