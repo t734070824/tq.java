@@ -28,7 +28,7 @@ HTTP客户端不应该用管道化的方式发送会产生副作用的请求（�
 ## 代理和网关的对比
 - 代理的两端使用相同的协议，而网关的两端使用不同的协议，网关负责协议转换！
 ## Connection首部和盲中继
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.http/src/main/java/_the_definitive_uide/1.png?raw=true)
+![](1.png)
 
 这幅图中发生的情况如下所示。
 - 在图 4-15a 中， Web 客户端向代理发送了一条报文， 其中包含了 Connection:Keep-Alive 首部， 如果可能的话请求建立一条 keep-alive 连接。 客户端等待响应， 以确定对方是否认可它对 keep-alive 信道的请求。
