@@ -81,7 +81,7 @@
             -
             - entity-boby
 3. 状态码
-    - 100-199 信心提示
+    - 100-199 信息提示
         - 100 Continue
             - 客户端应用程序只有在避免向服务器发送一个服务器无法处理或使用的大实体时，才应该使用 100 Continue。
             - 询问服务器是否可以接收大实体
@@ -91,7 +91,15 @@
         - 301 Moved Permanently 
             - 在请求的 URL 已被移除时使用。响应的 Location 首部中应该包含资源现在所处的 URL
     - 400-499 客户端错误
+        - 400 Bad Request
+        - 401 Unauthorized
+        - 403 Forbidden
+        - 404 Not Found
     - 500-599 服务器错误
+        - 500 Internal Server Error 
+            - 服务器遇到一个妨碍它为请求提供服务的错误时，使用此状态码
+        - 501 Not Implemented 
+            - 客户端发起的请求超出服务器的能力范围（比如，使用了服务器不支持的请求方法）时，使用此状态码
 4. 首部
     - 通用首部
         - **既可以出现在请求报文中，也可以出现在响应报文中。**
@@ -99,8 +107,12 @@
         - Content-length
         - Content-type
         - Accept
+        - 缓存首部
+            - Cache-Control 用于随报文传送缓存指示
     - 请求首部
         - 提供更多有关请求的信息。
+        - Client-IP
+        - Host
     - 响应首部
         - 提供更多有关响应的信息。
     - 实体首部
