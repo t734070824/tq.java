@@ -107,13 +107,33 @@
         - Content-length
         - Content-type
         - Accept
+            - Accept 告诉服务器能够发送哪些媒体类型
+            - Accept-Charset 告诉服务器能够发送哪些字符集
+            - Accept-Encoding 告诉服务器能够发送哪些编码方式
+            - Accept-Language 告诉服务器能够发送哪些语言
         - 缓存首部
             - Cache-Control 用于随报文传送缓存指示
     - 请求首部
         - 提供更多有关请求的信息。
         - Client-IP
         - Host
+        - Authorization 包含了客户端提供给服务器，以便对其自身进行认证的数据
+        - Cookie 客户端用它向服务器传送一个令牌——它并不是真正的安全首部，但确实
+          隐含了安全功能 
     - 响应首部
         - 提供更多有关响应的信息。
+        - Age （从最初创建开始）响应持续时间
+        - Server 服务器应用程序软件的名称和版本
+        - Set-Cookie 不是真正的安全首部，但隐含有安全功能；可以在客户端设置一个令牌，
+          以便服务器对客户端进行标识 19
     - 实体首部
         - **描述主体的长度和内容，或者资源自身。**
+        - 告知报文的接收者它在对什么进行处理。
+        - Location 告知客户端实体实际上位于何处；用于将接收端定向到资源的（可能是新的）位置（URL）上去
+        - Content-Encoding 对主体执行的任意编码方式
+        - Content-Language 理解主体时最适宜使用的自然语言
+        - Content-Length 主体的长度或尺寸
+        - Content-Location 资源实际所处的位置
+        
+        
+### 连接管理
