@@ -47,6 +47,7 @@
       <module>tq.java.kafka</module>
       <module>tq.java.flink</module>
       <module>tq.java.docker</module>
+      <module>tq.java.zookeeper</module>
   </modules>
   
   <properties>
