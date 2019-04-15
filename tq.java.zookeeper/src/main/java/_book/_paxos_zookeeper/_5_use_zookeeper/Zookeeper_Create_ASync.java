@@ -53,7 +53,7 @@ public class Zookeeper_Create_ASync implements Watcher {
 
         @Override
         public void processResult(int rc, String path, Object ctx, String name) {
-            System.err.println("result: " + rc + "---" + path + "---" + path  + "---" + ctx  + "---" + name);
+            System.err.println("result: " + rc + "---" + path  + "---" + ctx  + "---" + name);
         }
     }
 

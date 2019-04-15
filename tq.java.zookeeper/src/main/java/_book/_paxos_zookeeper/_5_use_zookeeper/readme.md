@@ -22,4 +22,12 @@
     - delete
     - 删除指定节点
     - delete path [version]
-    - 
+    - **只允许删除叶子节点**
+    
+### Watcher
+1. 监控节点信息变化
+2. Watcher 通知是一次性的, 一旦触发一次通知后, 该 Watcher 失效, 需要返回注册 Watcher
+
+### Version
+1. setData(int version)
+2. cas
