@@ -18,14 +18,17 @@ public class FlatMapDemo {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         DataStreamSource<Student> studentDataStreamSource = env.addSource(new SourceFromMySQL());
 
-        SingleOutputStreamOperator<Student> studentSingleOutputStreamOperator = studentDataStreamSource.flatMap(new FlatMapFunction<Student, Student>() {
+        SingleOutputStreamOperator<Student> studentSingleOutputStreamOperator =
+                studentDataStreamSource.flatMap(new FlatMapFunction<Student, Student>() {
             @Override
             public void flatMap(Student value, Collector<Student> out) throws Exception {
                 if (value.id % 2 == 0) {
                     out.collect(value);
+                    System.err.println("out:" + out);
                 }
             }
         });
+
         studentSingleOutputStreamOperator.print();
 
         env.execute("FlatMapDemo");

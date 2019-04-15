@@ -25,6 +25,7 @@ public class SourceFromMySQL extends RichSourceFunction<Student>{
      */
     @Override
     public void open(Configuration parameters) throws Exception {
+        System.err.println("open");
         super.open(parameters);
         connection = getConnection();
         String sql = "select * from Student;";
@@ -38,6 +39,7 @@ public class SourceFromMySQL extends RichSourceFunction<Student>{
      */
     @Override
     public void close() throws Exception {
+        System.err.println("close");
         super.close();
         //关闭连接和释放资源
         if (connection != null) {
@@ -56,6 +58,7 @@ public class SourceFromMySQL extends RichSourceFunction<Student>{
      */
     @Override
     public void run(SourceContext<Student> ctx) throws Exception {
+        System.err.println("run");
         ResultSet resultSet = ps.executeQuery();
         while (resultSet.next()) {
             Student student = new Student(
@@ -69,7 +72,7 @@ public class SourceFromMySQL extends RichSourceFunction<Student>{
 
     @Override
     public void cancel() {
-
+        System.err.println("cancel:" + this);
     }
 
     private static Connection getConnection() {
