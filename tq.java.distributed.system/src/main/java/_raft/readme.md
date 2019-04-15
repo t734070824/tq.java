@@ -65,6 +65,7 @@
 
 ### Log sync
 ![](2.jpg)
+1. 最上面这个是新Leader，a~f是Follower，每个格子代表一条log entry，**格子内的数字代表这个log entry是在哪个term上产生的**。
 1. 新的Leader 被选出来之后, 它的日志和其他的Follower可能不一致, 需要机制保证日志的一致性
 2. Leader会为每个Follower维护一个 nextIndex, 表示leader 发送给各个Follower发送下一条log entry 的 index,
     **初始化为Leader 的最后一条log entry 的下一个位置**
