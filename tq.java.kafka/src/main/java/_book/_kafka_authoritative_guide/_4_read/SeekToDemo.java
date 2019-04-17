@@ -21,6 +21,6 @@ public class SeekToDemo {
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(kafkaProps);
         consumer.subscribe(Collections.singletonList("Tangqing"));
-        consumer.seekToBeginning(new TopicPartition("Tangqing", 0));
+//        consumer.seekToBeginning(new TopicPartition("Tangqing", 0));
     }
 }
