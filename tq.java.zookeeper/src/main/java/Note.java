@@ -6,4 +6,5 @@ public class Note {
 
 
     //TODO ZAB 深入
+    //TODO zookeeper 锁 vs redis 锁
 }
