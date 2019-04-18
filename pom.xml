@@ -48,6 +48,7 @@
       <module>tq.java.flink</module>
       <module>tq.java.docker</module>
       <module>tq.java.zookeeper</module>
+      <module>tq.java.spark</module>
   </modules>
   
   <properties>

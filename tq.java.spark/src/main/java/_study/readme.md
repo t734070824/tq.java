@@ -1,0 +1,1 @@
+Append output mode not supported when there are streaming aggregations on streaming DataFrames/DataSets without watermark;;
