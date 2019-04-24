@@ -32,5 +32,6 @@ public class Note {
 
 
     //TODO posix mutex condition
+    //TODO 函数式编程
 
 }

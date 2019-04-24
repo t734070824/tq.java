@@ -94,7 +94,7 @@
     - 高效低耗
 3. 会话激活
     - 超时会话激活
-    - 计算 ExpiratiionTime_New
+    - 计算 ExpiratiionTime_Newhu
     - 根据 ExpiratiionTime_Old 定位老的会话所在区块
     - 会话迁移
 1. 会话超时检查
