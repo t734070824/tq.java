@@ -43,7 +43,6 @@
       <module>tq.java.nginx</module>
       <module>tq.java.undertow</module>
       <module>tq.java.spring.boot</module>
-      <module>tq.java.Hadoop 2.X HDFS</module>
       <module>tq.java.kafka</module>
       <module>tq.java.docker</module>
       <module>tq.java.zookeeper</module>

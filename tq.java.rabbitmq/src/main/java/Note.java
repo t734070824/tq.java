@@ -9,5 +9,6 @@ public class Note {
         // 跳过 5,6,7,8
 
     //TODO RabbitMQ 事务
+    //TODO 深入理解其 线程模型
 
 }

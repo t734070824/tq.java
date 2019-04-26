@@ -23,7 +23,7 @@
         - 此时
             - mysid=1的服务器更新投票-->(2, 0)
             - mysid=1重新投票
-            - mysid=2重新发送投票信息
+            - mysid=2不更改投票, 只是重新发送投票信息
     - 统计投票
         - **是否有过半的机器收到相同的投票**, >= (n/2+1)
     - 改变服务器状态
@@ -68,6 +68,14 @@
     - electionEpoch: 选举周期, 递增+1
     - peerEpoch: Leader的 epoch
     - state: 服务器状态
-    - 329 (340 / 433) 
+3. QuorumCnxManager
+    - 每台服务器启动的时候, 都会启动 QuorumCnxManager
+    - 负责服务器之间底层Leader 选举过程中的网络通信
+    - 组成
+        - recvQueue: 保存接收到的队列
+        - queueSendMap: 待发送的队列
+            - 根据sid 分组, 为集群中每台机器分配一个单独的队列
+        - sendWorkerMap: 消息的发送器
+        - lastMessageSent
     
         
