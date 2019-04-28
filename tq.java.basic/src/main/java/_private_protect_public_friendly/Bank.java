@@ -5,4 +5,8 @@ package _private_protect_public_friendly;
  * @date 2019/4/26 16:59
  */
 public class Bank {
+
+    private Bank(){
+
+    }
 }
