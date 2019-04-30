@@ -2,6 +2,7 @@ package _lambda;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -11,7 +12,10 @@ import java.util.stream.Collectors;
  */
 public class GrammarDemo {
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws InterruptedException {
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
 
         //单语句写法
         List<String> collect = Arrays.asList(new String[]{"Ni", "hao", "Da"})
@@ -36,6 +40,8 @@ public class GrammarDemo {
                 })
                 .collect(Collectors.toList());
         collect1.forEach(System.out::println);
+        collect1.forEach(System.out::println);
+
 
     }
 }

@@ -20,5 +20,7 @@ public class Note {
     //TODO 服务治理
     //TODO 选举算法
 
+    //TODO 分布式事务 seata
+
 
 }
