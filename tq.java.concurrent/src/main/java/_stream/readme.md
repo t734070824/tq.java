@@ -48,3 +48,6 @@ public class Demo{
     - Terminal
         - forEach, forEachOrdered, toArray, reduce, collect, min, count, anyMatch, allMatch, noneMatch
         findFist, findAny, iterator
+    - Short-circuiting
+        - anyMatch, allMatch, noneMatch, findFirst, findAny, limit
+        
