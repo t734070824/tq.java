@@ -1,4 +1,4 @@
-package _lru;
+package _algorithm._lru;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,5 +1,6 @@
 public class Note {
 
+    //TODO 深入理解 Java final 变量的内存模型
     //TODO final 深入 (内存栅栏)
     //TODO peek pop 深入分辨一下
     //TODO 动态编译???
