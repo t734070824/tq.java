@@ -67,7 +67,7 @@
                 - 因此分区容错性也就成为一个分布式系统必然要面对和解决的问题
             - 如何 根据业务特点在 C 和 A 之间寻求平衡
     - BASE 理论
-        - [](../../../../../../../tq.java.distributed.system/src/main/java/_transaction/_distributed_transaction/readme.md)
+        - [](../../../../../../../tq.java.distributed.system/src/main/java/_me_online._transaction/_distributed_transaction/readme.md)
         - 基本可用
             - 响应时间上损失: 比如增加响应时间
             - 功能上的损失: 降级, 限流

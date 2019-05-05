@@ -1,4 +1,4 @@
-package _transaction._transaction;
+package _me_online._transaction._transaction;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

@@ -1,4 +1,4 @@
-package _helloworld;
+package _me_online._helloworld;
 
 import com.rabbitmq.client.*;
 

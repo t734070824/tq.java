@@ -1,28 +1,26 @@
-package queues;
+package _me_online.queues;
 
 import com.rabbitmq.client.*;
 
 import java.io.IOException;
 
-public class Worker2 {
+public class Worker1 {
 
     private static final String TASK_QUEUE_NAME = "task_queue";
 
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        //      设置RabbitMQ地址
+//      设置RabbitMQ地址
         factory.setHost("192.168.1.19");
         factory.setPort(5672);
 
         factory.setUsername("tangq");
         factory.setPassword("tangq");
-
-
         final Connection connection = factory.newConnection();
         final Channel channel = connection.createChannel();
 
         channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
-        System.out.println("Worker2 [*] Waiting for messages. To exit press CTRL+C");
+        System.out.println("Worker1 [*] Waiting for messages. To exit press CTRL+C");
         // 每次从队列中获取数量
         channel.basicQos(1);
 
@@ -31,11 +29,11 @@ public class Worker2 {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
 
-                System.out.println("Worker2 [x] Received '" + message + "'");
+                System.out.println("Worker1 [x] Received '" + message + "'");
                 try {
                     doWork(message);
                 } finally {
-                    System.out.println("Worker2 [x] Done");
+                    System.out.println("Worker1 [x] Done");
                     // 消息处理完成确认
                     channel.basicAck(envelope.getDeliveryTag(), false);
                 }
@@ -45,12 +43,6 @@ public class Worker2 {
         channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
     }
 
-    /**
-     * 任务处理
-     *
-     * @param task
-     *            void
-     */
     private static void doWork(String task) {
         try {
             Thread.sleep(1000); // 暂停1秒钟

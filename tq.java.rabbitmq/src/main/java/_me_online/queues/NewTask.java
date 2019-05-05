@@ -1,4 +1,4 @@
-package queues;
+package _me_online.queues;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
