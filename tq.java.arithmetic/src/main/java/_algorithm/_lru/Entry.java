@@ -1,4 +1,4 @@
-package _lru;
+package _algorithm._lru;
 
 public class Entry<K, V> {
     public Entry<K, V> pre;
