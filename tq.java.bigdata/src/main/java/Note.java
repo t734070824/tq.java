@@ -12,4 +12,5 @@ public class Note {
     //TODO 分区和stage到底什么关系
 
     //TODO spark core
+    // TODO MapReduce--> Shuffle
 }
