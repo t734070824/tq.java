@@ -1,4 +1,4 @@
-package _fibonacci;
+package _algorithm._fibonacci;
 
 public class FibonacciUtil {
 

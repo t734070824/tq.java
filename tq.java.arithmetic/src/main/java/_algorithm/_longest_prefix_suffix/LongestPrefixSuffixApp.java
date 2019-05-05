@@ -13,7 +13,7 @@ public class LongestPrefixSuffixApp {
         System.err.println(l + "--"+l.length());
 
 
-        System.err.println(longest("ABCDAB") + "--"+longest("ABCDAB").length());
+        System.err.println(longest("ABCDABCD") + "--"+longest("ABCDAB").length());
         System.err.println(longest("ABC") + "--"+longest("ABC").length());
         System.err.println(longest("ABCD") + "--"+longest("ABCD").length());
         System.err.println(longest("ABCDA") + "--"+longest("ABCDA").length());
@@ -21,6 +21,13 @@ public class LongestPrefixSuffixApp {
 
     }
 
+    /**
+     * 最长公共前后缀
+     * 先比较最长的, 然后一个一个减
+     * --> KMP
+     * @param s
+     * @return
+     */
     public static String longest(String s) {
         if(s.length() <= 1) return "";
         int len = s.length();

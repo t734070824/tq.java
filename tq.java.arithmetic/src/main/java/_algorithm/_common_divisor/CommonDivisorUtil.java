@@ -5,7 +5,6 @@ package _algorithm._common_divisor;
  */
 public class CommonDivisorUtil {
 
-    //TODO 欧几里得算法 -- 除法 理解并证明
 
     /**
      * 欧几里得算法 -- 除法
@@ -47,6 +46,45 @@ public class CommonDivisorUtil {
         return  gcd2(min, diff);
     }
 
+
+    /**
+     * 理解并证明
+     *
+     * 设有 n,m(m>n), 最大公约数t
+     * 证明: (xn + ym) % t == 0
+     * 解:
+     *      gcd(m,n)= t;
+     *      m=t1*t, n=t2t
+     *      xn+ym = x*t1*t + y*t2*t = (x*t1+y*t2)t
+     *      --> (xn + ym) % t == 0
+     * 证明: 两个整数的最大公约数等于其中较小的数和两数的差的最大公约数
+     * 解:
+     *      m>n
+     *      m=q*n+r(r=m%n)
+     *      r=m-q*n
+     *      假设 q=1;
+     *      r =m-n
+     */
+
+    //非递归
+    public static int gcd3(int a, int b){
+        int r;
+        while (b != 0){
+            //当 a<b, 第一次循环交换顺序
+            r = a%b;
+            a=b;
+            b=r;
+        }
+        return a;
+    }
+
+    //递归
+    public static int gcd4(int a, int b){
+        return b!=0?gcd4(b, a%b) : a;
+    }
+
+
+
     public static void main(String[] args) {
         System.err.println(gcd2(252, 105));
         System.err.println(gcd2(10215, 123123));
@@ -55,5 +93,12 @@ public class CommonDivisorUtil {
         System.err.println(gcd1(252, 105));
         System.err.println(gcd1(10215, 123123));
         System.err.println(gcd1(4353, 456));
+
+
+        System.err.println(gcd3(4353, 456));
+        System.err.println(gcd4(4353, 456));
+        System.err.println(gcd4(456, 4353));
     }
+
+
 }
