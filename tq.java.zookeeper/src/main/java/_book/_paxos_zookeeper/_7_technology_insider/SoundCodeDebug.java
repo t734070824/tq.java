@@ -1,6 +1,5 @@
-package _book._paxos_zookeeper._8_technology_insider;
+package _book._paxos_zookeeper._7_technology_insider;
 
-import _book._paxos_zookeeper._5_use_zookeeper.Zookeeper_Create_Sync;
 import org.apache.zookeeper.*;
 
 import java.io.IOException;
