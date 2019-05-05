@@ -84,7 +84,7 @@
     ![](3.jpg)
 2. ExpiratiionTime_1
     - ExpiratiionTime = CurrentTime + SessionTimeout
-    - 不方便服务器进行定时会话超时检查, 因为都会一样, 没有一个固定的间隔
+    - 不方便服务器进行定时会话超时检查, 没有一个固定的间隔
 3. ExpiratiionTime_2
     - 固定间隔 tickTime
     - ExpiratiionTime_tmp = CurrentTime + SessionTimeout
