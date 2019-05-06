@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  */
 public class NotString {
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         String str = "123assume345contribute你好&*(){}&^%$#\n@@";
 
         //去除字符串中的数字

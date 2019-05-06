@@ -115,3 +115,54 @@
 
 ### Leader 选举
 [](leader.md)
+
+### 各服务器角色介绍
+1. Leader
+    - **事务请求的唯一调度和处理者**, 保证集群事务处理的**顺序性**
+    - 集群内各服务器的调度者
+    - 请求处理链
+        - 责任链模式
+        - PrepRequestProcessor
+            - ProposalRequestProcessor
+                - CommitProcessor
+                    - ToBeAppliedRequestProcessor
+                    - FinalRequestProcessor
+                - SyncRequestProcessor
+                    - AckRequestProcessor
+        - PrepRequestProcessor
+            - 第一个请求处理器
+            - 判断是否是事务请求
+            - 创建请求事务头, 事务体, 会话检查, ACL检查, 版本检查
+        - ProposalRequestProcessor
+            - **事务投票处理器 以及 事务处理流程的发起者**
+            - 非事务请求直接到 CommitRequestProcessor
+            - 事务请求
+                - 提交给 CommitRequestProcessor
+                - 根据请求创建对应的Proposal建议, 发送给所有的 Follower 发起集群内的事务投票
+                - 同时, SyncRequestProcessor 进行事务日志记录
+        - SyncRequestProcessor
+            - 事务日志记录处理器
+            - 将事务日志记录到文件中
+            - 触发Zookeeper 进行 数据快照
+        - AckRequestProcessor
+            - **Leader 特有的处理器**
+            - 向 Proposal 收集器发送 Ack 反馈, 表示自己已完成对该 Proposal 的事务日志记录
+        - CommitProcessor
+            - 事务提交处理器
+            - 非事务请求, 直接下一个处理器
+            - 事务请求
+                - 等待集群内针对 Proposal 的投票直到 Proposal 可以被提交
+        - ToBeAppliedRequestProcessor
+            - ToBeApplied队列: 专门存储已被CommitProcessor 处理过的可以被提交的 Proposal
+            - 将请求逐个 交个 FinalRequestProcessor 处理 
+            - 处理完之后 再从 队列中移除
+        - FinalRequestProcessor
+            - 最后的处理器
+            - 创建响应
+            - 应用到内存数据库
+    - LearnerHandler
+        - 负责 Follower/Observer 服务器和leader 服务器之间的网络通信
+        - 数据同步, 请求转发, Proposal 提议
+    
+         
+    

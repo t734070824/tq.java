@@ -7,4 +7,5 @@ public class Note {
 
     //TODO ZAB 深入
     //TODO zookeeper 锁 vs redis 锁
+    //TODO zookeeper server 调用链模型
 }
