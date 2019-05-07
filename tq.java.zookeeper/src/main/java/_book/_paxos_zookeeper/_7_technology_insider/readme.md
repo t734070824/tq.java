@@ -163,6 +163,32 @@
     - LearnerHandler
         - 负责 Follower/Observer 服务器和leader 服务器之间的网络通信
         - 数据同步, 请求转发, Proposal 提议
-    
+2. Follower
+    - 主要工作
+        - 处理非事务请求, 转发事务请求给Leader 服务器
+        - 参与事务 Proposal 的投票
+        - Leader 选举投票
+    - 责任链模式
+        - FollowerRequestProcessor
+            - CommitProcessor
+                - FinalProcessor   
+        - SendAckRequestProcessor
+    - FollowerRequestProcessor
+        - 第一个
+        - 识别事务请求, 转发 Leader
+    - SendAckRequestProcessor Vs AckRequestProcessor(Leader)
+        - 相同
+            - 完成事务日志后反馈
+        - 不同
+            - AckRequestProcessor处理器和 leader 服务器在同一个服务器上, ACK反馈只是一个本地操作
+            - SendAckRequestProcessor 发送 ACK 给 Leader 反馈
+2. Observer
+    - 主要工作
+        - 和 Observer 类似
+        - 处理非事务请求, 转发事务请求给Leader 服务器
+        - **不参与任何形式的投票**
+        
+### 集群间通信
+1. TODO
          
     
