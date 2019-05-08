@@ -22,6 +22,9 @@
     - 只能保证一个共享变量的原子操作
     - ABA
 7. HashMap 多线程下的扩容死循环问题
+    - 转移数据操作 = 按旧链表的正序遍历链表、在新链表的头部依次插入，即在转移数据、扩容后，容易出现链表逆序的情况
+    - 并发扩容--环形链表
+    - 查询死循环
 8. 线程池 参数的意义
     - 核心
     - 最大
@@ -43,8 +46,15 @@
     - IO 和  NIO的区别 
         - TODO
     - 零拷贝, 堆外内存
+        - Direct Buffers
+        - CompositeByteBuf
+        - wrap(byte[]) 
+        - ByteBuf.silce
+        - FileRegion 包装的FileChannel.tranferTo
 14. 顺序加锁
 15. 快速失败(fast-fail) 和 安全失败(fail-safe)的区别
+    - [](../../../../../tq.java.basic/src/main/java/_collection/fast_safe_fail.md)        
+    - 如果迭代过程中发生了改变, 但是灭有 next调用 迭代, 那么 CME 就不会抛出
 16. finalize()
     - 对象不可达 判断是否需要调用
     - 唯一一次逃逸的机会
@@ -64,13 +74,15 @@
 20. 锁类型(偏向锁, 轻量级锁, 自旋锁, 锁升级)
     - TODO
     - 升级和降级
+    - [](../../../../../tq.java.concurrent/src/main/java/_synchronized/readme.md)
 21. JDK1.8 新特性
+    - lambda
+    - stream
 22. java线程之间通信
 24. 同步器
     - countDownLatch
     - Semaphore
     - ReentrantLock
-    - 
 25. String为什么可以用 + 操作, StringBuffer StringBuilder
     - 实现 TODO
 26. 两个方法完全相同可以重载吗
@@ -81,7 +93,9 @@
     - wait
     - yield
 30. 如何实现自定义注解
-    - TODO
+    - 这就是一个标记
+    - 需要一解析器
+    - 反射
 31. final finally finalize
 32. (short s1 =1;s1 = s1 +1) (short s1 =1;s1 += 1)
 33. runtimeException
@@ -97,7 +111,7 @@
      - ***
      - 20181220 跳过
 36. 用hashmap实现redis有什么问题（死锁，死循环，可用 ConcurrentHashmap）
-    - 死循环 TODO
+    - 死循环 
     - ConcurrentHashmap 源码 
     - 扩容
 37. 线程的状态
@@ -120,7 +134,7 @@
     - 链表
     - 红黑树
     - 扩容 2次幂
-        - TODO
+        - length -1 正好是一个低位掩码
 41. 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化
     - TODO
     - 不会变化 TODO
@@ -157,7 +171,7 @@
     - jdk7 VS jdk8
     - TODO
 50. hashmap如果只有一个写其他全读会出什么问题
-    - TODO
+    - 死锁
 51. volatile的用途
     - 免锁
     - 单例
@@ -194,9 +208,10 @@
 60. java的反射是如何实现的【阿里巴巴面试题目含答案】
     - RTTI
 61. 动态代理的几种实现方式及优缺点
-    - TODO
+    - jdk
+    - cglib
 62. 按线程池内部机制.当提交新任务时.有哪些异常要考虑？
-    - TODO
+    - 任务拒绝异常
 63. private
     - private 修饰的方法可以通过反射访问, 那么private的意义是什么?
         - private 并不是一种安全机制, 仅是一种作用域的声明
