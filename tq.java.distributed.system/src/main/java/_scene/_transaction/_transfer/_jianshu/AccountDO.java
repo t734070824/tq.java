@@ -1,4 +1,4 @@
-package _scene._transfer._jianshu;
+package _scene._transaction._transfer._jianshu;
 
 /**
  * @author 734070824@qq.com
