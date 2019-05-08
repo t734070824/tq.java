@@ -12,4 +12,5 @@ public class Note {
 
     //TODO I. -ZooKeeper相关: 1、5、6、7章(建议中间穿插第8章阅读).
     //TODO II. -分布式一致性协议相关: 2、3、
+    //TODO 2pc 3pc
 }
