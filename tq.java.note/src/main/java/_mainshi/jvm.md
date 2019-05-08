@@ -77,3 +77,5 @@
 1. 同步与异步？阻塞与非阻塞？
 1. 什么是GC调优？
 1. 常见异步的手段有哪些？
+1. -Xms > -Xmx 
+    - Initial heap size set to a larger value than the maximum heap size
