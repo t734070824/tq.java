@@ -8,7 +8,9 @@
 3. -Xmn2g：设置年轻代大小为2G
     - **默认等效效果是：-XX:NewSize==-XX:MaxNewSize==1024m**
 4. -Xss128k：设置每个线程的堆栈大小
-5. -XX:NewRatio=5:设置年轻代（包括Eden和两个Survivor区）与年老代的比值（除去持久代）, 默认=2, //TODO CMS失效???
+5. -XX:NewRatio=5
+    - 设置年轻代（包括Eden和两个Survivor区）与年老代的比值（除去持久代）, 默认=2, //TODO CMS失效???
+    - 5: 新生代:老年代=1:5 年轻代=1/6堆
 6. -XX:SurvivorRatio=5：设置年轻代中Eden区与Survivor区的大小比值
 7. -XX:MaxPermSize=16m:设置持久代大小为16m
 8. -XX:MaxTenuringThreshold=0：设置垃圾最大年龄。

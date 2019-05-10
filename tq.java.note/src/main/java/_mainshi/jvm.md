@@ -13,15 +13,31 @@
     - 共享变量 主内存
     - 线程本地内存, 变量副本
 6. happens-before规则
+    - 锁
+    - thread.start()
+    - valiant
+    - final
 7. volatile 关键字使用规则
+    - 可见性
+    - 非原子性
+    - + cas
 8. JVM老年代和新生代的比例
+    - -XX:NewRatio
 9. YGC 和 FGC 发生的具体场景
+    - ygc
+        - young 不足
+        - full gc
+    - full gc
+        - 预测本次垃圾回收后晋升到老年代的大小大于剩余大小
+        - 老年代空间不足
 10. jstack, jmap, jutil 分别的意义? 如何在线上排查JVM 相关的问题
+    - 线程堆栈, 内存快照, jmap -dump:live,format=b,file=/tmp/xxx.bin 17456, jstat -gcutil gc情况 
 11. 回收什么样子的对象
-12. CPU 100%
-13. 如何获取一个 dump文件
-14. 什么情况下触发Minor GC
-15. Serial 特点
+    - gc root 不可达
+        - **虚拟机栈中引用的对象**
+        - **方法区中类静态属性引用的变量**
+        - **方法区中常量引用的对象**
+        - Native引用的对象
 16. JVM对final关键字的编译优化
 17. java内存模型，垃圾回收机制，不可达算法
     - happer-brfore
@@ -79,3 +95,7 @@
 1. 常见异步的手段有哪些？
 1. -Xms > -Xmx 
     - Initial heap size set to a larger value than the maximum heap size
+12. CPU 100%
+13. 如何获取一个 dump文件
+14. 什么情况下触发Minor GC
+15. Serial 特点
