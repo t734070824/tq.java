@@ -46,6 +46,12 @@
         - -l: 除了线程堆栈外, 显示关于锁的附加信息
         - -m: 如果调用了本地方法的话, 显示 C/C++的堆栈
         
+### 命令
+1. 查看线程的堆栈信息 : jstack -l pid(/jstack -l pid >> ~/jstack.txt)
+2. dump堆内的对象 : jmap -dump:live,format=b,file=xxx pid
+3. -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=xxx  -- 设置JVM参数，当JVM OOM时输出堆的dump
+4. 获得当前系统占用CPU最高的10个进程，线程 ps Hh -eo pid,tid,pcpu,pmem | sort -nk3 |tail > temp.txt
+        
 ### JDK的可视化工具
 1. JConsole
 2. VisualVM
