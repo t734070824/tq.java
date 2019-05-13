@@ -148,7 +148,7 @@
         - 不是
             - 将关联的结果放到临时表中, 在所有关联结束后, 再进行文件排序
     - limit
-        - 会在排序之后应用, 即使返回较少的数据, 临时表和需要排序的数据量也是非常大
+        - **会在排序之后应用, 即使返回较少的数据, 临时表和需要排序的数据量也是非常大**
         - Mysql 5.6 返回部分排序结果时, 抛弃不满足条件的结果, 然后进行排序
         
 ### 查询执行引擎
@@ -222,7 +222,7 @@
             - 使用索引覆盖
                 - 延迟关联
                     - select field1, field2 from xxx order by con limit n, m;
-                    - 优化为: select field1, field2 from xxx inner join (select key from xxx oder by con limit n, m) as ttt useing(...)
+                    - 优化为: select field1, field2 from xxx inner join (select key from xxx oder by con limit n, m) as ttt useing(key)
             - order by desc limit
             - 汇总表
             - 关联到一个冗余表
