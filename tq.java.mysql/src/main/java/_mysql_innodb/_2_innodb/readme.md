@@ -23,7 +23,7 @@
         - log
     - 1.0.x开始
         - read, write 增大到4个
-        - innodb_read_io_threads, innodb_write_io_threads配置
+        - innodb_read_io_threads, innodb_write_io_threads 配置
     - Purge Thread
         - 事务被提交后, 其所使用的 undolog 可能不需要, 需要 PargeThread 回收已经使用并分配的 undo 页
         - Innodb 1.1 开始, purge 操作可以在单独的线程中进行

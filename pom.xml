@@ -46,6 +46,7 @@
       <module>tq.java.kafka</module>
       <module>tq.java.docker</module>
       <module>tq.java.zookeeper</module>
+      <module>tq.java.presto</module>
   </modules>
   
   <properties>
