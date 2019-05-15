@@ -24,10 +24,63 @@
 1. 隔离性--锁
 2. 原子性, 一致性, 持久性-- redo log + undo log
 3. redo 
-    - 持久性
+    - 持久性+原子性
+    - 恢复提交事务修改的页操作
+    - **记录的是每个页的日志**
+    - **物理日志**, 改变后的数据
     - 两部分
         - 重做日志缓冲(redo log buffer)
         - 重做日志文件(redo log file)
+    - Force log at Commit
+        - 事务提交前, 该事务的所有日志写入到重做日志文件进行持久化
+    - 基本都是顺序写, 运行时不需要对 redo log 进行读取操作, undo log 需要进行随机读写
+    - innodb_flush_at_trx_commit: 控制重做日志刷新到磁盘的策略
+        - 1 -- 默认, 事务提交一次 刷新一次
+        - 0 -- master thread , 一秒一次
+        - 2 -- 仅写入缓存, 操作系统决定
+    - vs bin log
+        - bin log
+            - Point-in-time的恢复
+            - 主从复制
+            - mysql 数据库上层产生, 针对 所有的存储引擎
+            - 逻辑日志, 对应的sql语句
+            - 只在日志**提交之后**进行**一次**写入
+        - redo log
+            - Innodb 引擎 产生
+            - 物理格式日志 , 记录的是每个页的日志
+            - **在事务的进行中不停的写入**
+            - **物理操作日志, 每个事务会有多个日志条目 并发的**
+    - lsn
+        - Log Sequence Number, 日志序列号, 单调递增
+        - 重做日志写入总量, 
+            - 根据写入事务的字节数来增加
+        - checkpoint 的位置
+            - 只恢复 checkpoint.LSN 后的数据
+        - 页的版本
+            - 记录页的 LSN
+            - 重启是, 如果 重做日志的 LSN > 页的 LSN, 并且 已提交, 需要进行恢复操作
+    - 恢复
+        - 不管是否正常关闭, 都会尝试恢复
+        
+3. undo
+    - 一致性
+    - 回滚记录到某个特定的版本
+        - 与之前相反的工作
+        - insert -- delete
+        - delete -- insert
+        - update -- 相反的 update
+    - mvcc
+        - **通过 mvcc 读取之前的行版本信息, 实现非锁定读**
+    - undo log的产生都会伴随 redo log的产生, undo log  也需要持久性的保护 
+    - 基本概念
+        - vs redo log
+            - redo log
+                - 记录事务的行为, 可以很好的通过对也进行 重放操作
+        - 存放在数据库内部的一个特殊段(segment), undo segment
+        - 逻辑日志, 数据库逻辑的恢复到原来的样子
+    - insert undo log
+    - update undo log
+    
 4. TODO
 
 ### 事务的实现(https://draveness.me/mysql-transaction)
