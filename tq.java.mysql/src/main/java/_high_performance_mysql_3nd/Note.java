@@ -40,6 +40,7 @@ public class Note {
     //TODO 查询状态
     //TODO 查询缓存 脏读?
     //TODO 关键就是3-6和9-11章，表结构设计，索引，分库分表，EXPLAIN+执行计划
-    //TOOD 案列学习
+    //TODO 案列学习
+    //TODO explain
 
 }

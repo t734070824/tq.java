@@ -11,4 +11,8 @@ public class Note {
 
     //TODO 20190327
         //TODO 复制 主从切换 高可用
+        //TODO 延迟关联
+        //TODO innodb_autoinc_lock_mode -->
+        //TODO 复制模式 statement-base replication(SBR) vs rows-base relication(RBS)
+
 }

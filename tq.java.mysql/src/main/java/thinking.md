@@ -90,3 +90,15 @@
 1. 什么是执行计划
     - mysql, spark 都有相关内容
     - TODO
+1. 读时无锁的实现
+    - MVCC
+2. MVCC 如何实现的
+    - 复制
+    - create version, delete version
+    - 乐观锁
+1. 自增步长设置
+    - auto_increment_offset --> 步长
+    - auto_increment_increment --> 初始值
+
+    
+    
