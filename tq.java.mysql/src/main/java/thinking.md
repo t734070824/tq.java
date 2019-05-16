@@ -99,6 +99,7 @@
 1. 自增步长设置
     - auto_increment_offset --> 步长
     - auto_increment_increment --> 初始值
-
-    
+1. 消除 幻读
+    - 间隙锁 + Repeatable Read
+    - 或者 
     
