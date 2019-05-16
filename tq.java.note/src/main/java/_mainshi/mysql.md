@@ -4,20 +4,43 @@
     - ***
     - 20181223 
     - 
-3. mysql二级缓存
 4. 索引原理 种类, 好处与问题
+    - 二叉树, 哈希表
+    - BTree
+    - B+Tree
+    - 随机-->顺序
+    - 排序, 查找快
+    - 数量大时 效率低
+    - 模糊查找, 范围查找 --> hash index
 5. 垂直和水平拆分, 谁先拆分, 拆分的原则
-    - TODO 
+    - 垂直
+        - 表字段根据具体业务分离, 然后join查询, 事务
+    - 水平
+        - 分库, 分表, 数据量大, 为了提高并发效率, 数量量查分
+        - hash
+        - 取模
 6. SQL优化
+    - 延迟关联
+    - 索引最左原则
 7. Explain
+    - TODO
 8. Statement PrepareStatement区别
-9. SQL 注入
+    - PreparedStatement
+        - 参数化查询
+        - 防止SQL注入攻击
+        - 预先编译
 10. 主键索引和非主键索引的区别, 分别属于哪类索引
-11. 为什么使用索引 为什么会变快
+    - 聚簇索引
+    - 非聚簇索引
 12. 数据库自增主键可能的问题
+    - 数据热点问题
+    - 数据同步复制 不一致的问题
 13. 数据库锁表的相关处理
+    - S X
+    - IS IX
+    - 
 14. mysql的行级锁加在哪个位置
-    - ???
+    - version
 15. myisam和innodb的区别（innodb是行级锁，myisam是表级锁）
     - 锁
     - 事务
@@ -29,14 +52,18 @@
     - 缓存表/汇总表
     - TODO
 17. mysql的binlog
-    - TODO
+    - sql执行日志
+    - 复制, 备份
 18. mysql是如何实现事务的
-    - TODO
+    - redo -- 原子 持久
+    - undo -- 一致
+    - 锁 -- 隔离
 19. 读写分离何时强制要读主库，读哪个从库是通过什么方式决定的，从库的同步mysql用的什么方式
     - TODO
 20. mysql的存储引擎
     - myISAM
     - InnoDB
+    - Memory
 21. mysql的默认隔离级别，其他隔离级别
     - 未提交读
     - 提交读
@@ -46,11 +73,14 @@
         - MVCC
     - 串行化
 22. sql语句各种条件的执行顺序，如select， where， order by， group by
-    - TODO
+    - 树
+    - 从下往上
 23. select xx from xx where xx and xx order by xx limit xx； 如何优化这个（看explain）
     - explain
+    - 延迟关联 主键先筛选一遍
 24. 求表的size，或做数据统计可用什么存储引擎
-    - TODO
+    - MyISAM
+    - Innodb
 25. 读多写少可用什么引擎
     - MyIsam
     - Innodb
@@ -58,9 +88,13 @@
     - Innodb
 27. myisam的优点，和innodb的区别
     - 读快
-    - TODO
+    - 无事务支持
+    - 表锁
+    - 全文索引 hash index
 28. innodb对一行数据的读会加锁吗？
     - 不加锁，读实际读的是副本
+    - for update
+    - share mode
 29. mysql的三大引擎是啥？
     - mysql常用的引擎有InnoDB，MyISAM，Memory，
     - 默认是InnoDB
@@ -104,8 +138,10 @@
 37. 意向锁
     - 表锁
     - 不与 共享锁 排它锁 冲突
+    - 会和 表的 X S 冲突
 38. MVCC 具体实现
-    - TODO
+    - undo version
+    - next key lock
 39. 间隙锁
     - Record Lock + Gap Lock
     - 幻读
@@ -118,31 +154,57 @@
 1. Datetime、Timestamp 存储时间的区别？
 1. Char、Varchar、Varbinary 存储字符的区别？
 1. 对比一下B+树索引和 Hash索引？
+    - hash
+        - 定值
+        - 无法范围
+        - 无法排序
 1. MySQL索引类型有？
+    - 聚簇 自适应hash
+    - 
 1. 如何管理 MySQL索引？
+    - B + TRee
 1. 对Explain参数及重要参数的理解？
+    - TODO
 1. 索引利弊是什么及索引分类？
+    - 快
+    - 空间
 1. 聚簇索引和非聚簇索引的区别？
+    - 主键
+    - 非主键
 1. B+tree 如何进行优化？索引遵循哪些原则？
+    - 选择性强的在前, 数值类型在前
+    - 最左
 1. 索引与锁有什么关系？
+    - 锁住索引对应的数据行
 1. 还有什么其他的索引类型，各自索引有哪些优缺点？
 1. 谈谈对Innodb事务的理解？
 1. 说说数据库事务特点及潜在问题？
 1. 什么是MySQL隔离级别？
 1. 有多少种事务失效的场景，如何解决？
 1. 一致性非锁定读和一致性锁定读是什么？
+    - mvcc Repeatable read
+    - for update, lock in share mode
 1. Innodb如何解决幻读？
+    - next-key lock
 1. 讲讲Innodb行锁？
+    - 事务, version, mvcc , s,x is, ix,
 1. 死锁及监控是什么？
+    - TODO
 1. 自增长与锁 ，锁的算法，锁问题，锁升级是什么？
+    - TODO
 1. 乐观锁的线程如何做失败补偿？
+    - 回滚, 重试
 1. 高并发场景（领红包）如何防止死锁，保证数据一致性？
+    - 分段
 1. 谈谈MySQL的锁并发？
+    - mvcc
 1. 查询优化的基本思路是什么？
     - 汇总表
     - 索引
-    - 
+    - 延迟关联
 1. 说说MySQL读写分离、分库分表？
+    - 主从
+    - 垂直 水平拆分
 1. 表结构对性能有什么影响?
 1. 浅谈索引优化？
 1. 说说Sql优化的几点原则？
