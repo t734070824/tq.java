@@ -30,7 +30,7 @@
 4. 分区复制
     - 同步机制
     - TODO
-5. 不可以减少分区个数的原因
+5. 不可以减少分区个数的原因/
     - TODO
 6. 理解 log.retention.ms, log.retention.bytes, log.segment.bytes, log.segment.ms 之间的作用关系
 7. 发送消息
