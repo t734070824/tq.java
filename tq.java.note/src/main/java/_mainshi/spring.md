@@ -27,17 +27,25 @@
 9. spring的bean配置的几种方式
     - xml
     - anno
+    - java
 10. spring的注入bean的方式
     - Byname
     - byType
-    - 构造函数5
+    - 构造函数
 11. @Transaction注解一般写在什么位置?如何控制其回滚?
-    - TODO
+    - 类或者方法
+    - 代理 rollback
 12. 说说Spring的IOC容器初始化流程？
-    - TODO
+    - refresh()
+    - DefaultResourceLoader
+    - BeanDefinition
+    - BeanDefinitionReader
+    - BeanDefinitionParseDelegate 解析 Bean 
+    - BeanDefinitionRegistry.registerBeanDefinition 注册bean
+    - ConcurrentHashMap  保存 BeanDefinition
 13. 循环依赖
     - 怎么检测
-        - TODO?
+        - Bean在创建过程中给该Bean 打标, 如果递归调用发现正在创建中, --> 循环依赖
     - 基于 setter 属性的循环依赖为什么不会出问题
         - TODO
 14. bean 的生命周期

@@ -9,3 +9,6 @@
     - DefaultListableBeanFactory.allowBeanDefinitionOverriding
         - context.setAllowBeanDefinitionOverriding(false);
         - 或者在web应用中继承ContextLoaderListener, 在 customizeContext 中修改为 false
+
+1. 如何解决循环依赖
+    - 
