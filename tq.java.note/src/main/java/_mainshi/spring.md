@@ -17,6 +17,12 @@
     - 工厂模式—BeanFactory用来创建对象的实例。
 4. IOC AOP的实现
 5. Spring, Spring MVC原理,流程
+    - springmvc
+        - request -- DispatcherServlet
+        - 查询 HandlerMapping, 分发指定的 Controller
+        - Controller 返回 ModelAndView
+        - DispatcherServlet 查询一个或多个 ViewResolve 视图解析器, 找到 ModelAndView 指定的视图
+        - 返回
 6. 设计模式在Spring中的应用
 7. Servlet中filter和spring中的Interceptor的区别 
 8. aop的底层实现，动态代理是如何动态，假如有100个对象，如何动态的为这100个对象代理
