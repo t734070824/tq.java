@@ -153,7 +153,7 @@
 4. 优化
     - create("/share_lock/[HostName]-请求类型-编号")
     - **getClildren(), 不注册任何 Watcher**
-    - 如果无法获取共享锁, 就调用 exist 来对比比自己小的那个节点注册 Watcher, 
+    - 如果无法获取共享锁, 就调用 exist 来对比 比自己小的那个节点注册 Watcher, 
         - 读
             - 向比自己序号小的最后一个**写**请求节点注册 Watcher
         - 写

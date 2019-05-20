@@ -59,7 +59,7 @@
         - len(12-15): 节点路径的长度
         - path(xx-xx): 节点路径(根据 节点路径的长度 来)
         - watch(最后一个): 是否注册 Watcher
-2. 响应洗衣解析
+2. 响应协议解析
     - len(0-3): 整个请求包的数据包长度
     - xid(4-7): 客户端请求的发起序号
     - zxid(8-15): 当前服务器处理过的最新的 ZXID
@@ -184,7 +184,7 @@
             - SendAckRequestProcessor 发送 ACK 给 Leader 反馈
 2. Observer
     - 主要工作
-        - 和 Observer 类似
+        - 和 Follower 类似
         - 处理非事务请求, 转发事务请求给Leader 服务器
         - **不参与任何形式的投票**
         
