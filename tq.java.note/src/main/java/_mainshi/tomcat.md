@@ -15,5 +15,9 @@
     - 分区
     - reacto
 7. web请求的过程
+    - nio
+    - msgreceive
+    - engine Host Context Wrapper Filter_Chain 
     - DispatcherServlet
-    - TODO
+    - HandlerMappig
+    - Controller

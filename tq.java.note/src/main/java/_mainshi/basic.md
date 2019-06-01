@@ -79,6 +79,10 @@
     - lambda
     - stream
 22. java线程之间通信
+    - sync, notify, wait
+    - lock, condition
+    - volatile
+    - queue
 24. 同步器
     - countDownLatch
     - Semaphore

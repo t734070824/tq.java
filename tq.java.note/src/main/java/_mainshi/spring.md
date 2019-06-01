@@ -59,6 +59,8 @@
     - 针对特殊行为的其他Aware接口
     - Bean配置文件中的Custom init()方法和destroy()方法
     - @PostConstruct和@PreDestroy注解方式
+1. 声明式事务的实现方式
+    - 拦截器
 1. 为什么需要代理模式？
 1. 讲讲静态代理模式的优点及其瓶颈？
 1. 对Java 接口代理模式的实现原理的理解？

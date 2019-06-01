@@ -54,7 +54,7 @@
 2. LRU List, Free Lis,  Flush List(内存管理) 
     - 缓冲池通过 LRU 算法进行管理
     - 当缓冲池无法存放新读取到的页时, 首先释放LRU列表中尾端的页
-    - 页 默认大小 16KB
+    - 页 默认大小 **16KB**
     - midpoint insertion strategy
         - 新读取到的页不直接放入LRU列表的首部
         - 放入列表的 midpoint 位置

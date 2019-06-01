@@ -102,4 +102,12 @@
 1. 消除 幻读
     - 间隙锁 + Repeatable Read
     - 或者 
+1. myisam 和 innodb 数据结构上的区别
+    - myisam
+        - 非聚簇索引
+        - 索引文件和数据文件分离
+        - myi, myd
+    - innodb
+        - 文件绑定在一起
+        - 非聚簇索引 + 聚簇索引
     

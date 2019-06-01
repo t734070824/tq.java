@@ -217,3 +217,5 @@
 1. 数据库如实现 rollback
 1. 第一二三范式
 1. 一个表一千个列值 为 true和false, sql查询, 有 300个列值为true的行
+1. mysql 主从同步异常以及处理
+    - TODO

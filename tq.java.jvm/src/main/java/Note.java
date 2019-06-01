@@ -11,4 +11,5 @@ public class Note {
     //TODO JVM 优化 https://tech.meituan.com/jvm_optimize.html
     //TODO CMS http://www.cnblogs.com/littleLord/p/5380624.html
     //TODO OOM问题排查 http://www.importnew.com/24393.html
+    //TODO http://www.importnew.com/18694.html jvm优总览
 }

@@ -54,9 +54,12 @@
     - prototype
         - **容器接收到该类型的对象的请求的时候**
     - request, session, global session
+        - request: 
+            - 每个HTTP请求创建一个全新的Request-Processor对象供当前请求使用，当请求结束后，该对象实生命周期就结束
+            - request可以看作prototype的一种特例，除了request的场景更加具体
 3. 工厂方法与FactoryBean
     - factoryBean
-        - 一个 Bean 而已
+        - 一个 Bean 而已 
         - 这个对象本身是生产 Bean 的工厂
 
 ### 容器背后的秘密
