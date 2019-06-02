@@ -33,7 +33,7 @@
         - **需要手动代码检测**
     - public boolean Thread.isInterrupted();
         - 实例方法
-        - 判断线程是否被中断
+        - 判断线程是否被中断 
     - public static boolean Thread.interrupted();
         - 判断是否被**中断并清除**当前中断状态
         - 静态方法
