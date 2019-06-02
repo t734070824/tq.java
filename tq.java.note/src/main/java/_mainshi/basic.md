@@ -280,3 +280,6 @@
     - lock.lock()
 1. 进程和线程的区别
     - TODO
+1. Nio select() 不阻塞的原因
+    - 在部分Linux的2.6的kernel中，poll和epoll对于突然中断的连接socket会对返回的eventSet事件集合置为POLLHUP，
+    - 也可能是POLLERR，eventSet事件集合发生了变化，这就可能导致Selector会被唤醒
