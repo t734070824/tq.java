@@ -13,7 +13,8 @@
         - 合理的引用程序需要捕捉的错误
         - RunTimeException
             - Exception类的子类
-            - 在 Java 虚拟机正常运行期间抛出的异常的超类。可能在执行方法期间抛出但未被捕获的RuntimeException 的任何子类都无需在 throws 子句中进行声明
+            - 在 Java 虚拟机正常运行期间抛出的异常的超类。
+                可能在执行方法期间抛出但未被捕获的RuntimeException 的任何子类都无需在 throws 子句中进行声明
             - NullPointerException, ClassCastException, ArrayIndexOutOfBoundsException
         - IOException
             - Exception类的子类

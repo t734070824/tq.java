@@ -47,6 +47,7 @@
       <module>tq.java.docker</module>
       <module>tq.java.zookeeper</module>
       <module>tq.java.presto</module>
+      <module>tq.java.spring.cloud</module>
   </modules>
   
   <properties>
