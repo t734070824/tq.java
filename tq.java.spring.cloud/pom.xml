@@ -8,7 +8,6 @@
     <artifactId>tq.java.spring.cloud</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>eureka-server</module>
     </modules>
 
 
