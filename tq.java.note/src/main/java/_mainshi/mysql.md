@@ -133,7 +133,17 @@
     - 20190610
         - show_query_log
         - explaine
-    - TODO
+    - now
+        - long_query_time
+        - slow_query_log
+        - slow_query_log_file
+        - log_queries_not_using_indexes
+        - MySQLdumpslow -s c -t 10 /tem/file/slow.log
+        - Explain
+            - type
+            - possible_keys
+            - key
+            - rows
 35. 内核参数调优
 36. 共享锁 排它锁 
     - S, X
@@ -172,6 +182,14 @@
 1. 索引利弊是什么及索引分类？
     - 快
     - 空间
+    - 分类
+        - 数据结构
+            - B+tree
+            - hash
+        - 物理存储
+            - 聚集 非聚集
+        - 逻辑角度
+            - 主键, 普通, 多列, 唯一, 空间
 1. 聚簇索引和非聚簇索引的区别？
     - 主键
     - 非主键
@@ -206,6 +224,7 @@
     - 汇总表
     - 索引
     - 延迟关联
+        - select * from table_x inner join (select Key from table_x order by xxx limit m , n) tt using(key)
 1. 说说MySQL读写分离、分库分表？
     - 主从
     - 垂直 水平拆分
@@ -222,3 +241,8 @@
 1. 一个表一千个列值 为 true和false, sql查询, 有 300个列值为true的行
 1. mysql 主从同步异常以及处理
     - TODO
+1. mysql查询到达叶子节点是如何查询的
+    - 二分
+1. 不可重复读 vs 幻读
+    - update vs add/delete
+    - mvcc vs next-key

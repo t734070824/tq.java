@@ -12,7 +12,29 @@
         - TODO
     - 如何提高并发度
         - TODO
-2. 如何给hashmap的key对象设计他的 hashcode
+1. hashmap
+    - 如何给hashmap的key对象设计他的 hashcode
+        - 扰动函数, 高低位异或
+    - HashMap 多线程下的扩容死循环问题
+        - jdk1.7
+            - 转移数据操作 = 按旧链表的正序遍历链表、在新链表的头部依次插入，即在转移数据、扩容后，容易出现链表逆序的情况
+            - 并发扩容--环形链表
+            - 查询死循环
+        - jdk1.8
+            - 按旧链表的逆序遍历链表, 转移后如果在同一个index 顺序不变
+    - hashmap的底层实现
+        - 数组+链表+红黑树
+        - 16, 8
+        - 扩容 2次幂
+            - length -1 正好是一个低位掩码, 直接做移位操作
+            - 在扩容的时候, 老的元素要么在 oldIndex, 要么在 oldIndex + oldCap
+    - vs LinkedHashMap vs TreeMap
+        - Map 
+        - Map + 链表
+            - 访问数据
+            - LRU 
+        - compare + 红黑树
+            - 不再有数组
 3. bytes --> long
 4. lru Cache
     - 链表+hashMap
@@ -21,10 +43,7 @@
     - 循环时间长开销大(争用比较激烈)
     - 只能保证一个共享变量的原子操作
     - ABA
-7. HashMap 多线程下的扩容死循环问题
-    - 转移数据操作 = 按旧链表的正序遍历链表、在新链表的头部依次插入，即在转移数据、扩容后，容易出现链表逆序的情况
-    - 并发扩容--环形链表
-    - 查询死循环
+
 8. 线程池 参数的意义
     - 核心
     - 最大
@@ -36,11 +55,21 @@
 9. 使用无界阻塞队列会出现的问题
     - OOM
 11. ThreadLocal
-    - Thread
-    - ThreadLocalMap
-    - Entry
-    - 当前 Thread 为 key, 链表逐个比较
-    - **不是一个 MAP**
+    - 基础
+        - Thread --> ThreadLocalMap --> Entry=ThreadLocalMap.get(this)
+        - 当前 ThreadLocal 为 key, 链表逐个比较, **不是一个 MAP**
+    - 内存泄漏
+        - key --> ThreadLocal Weak
+        - gc 回收 null --> value无法被回收
+        - 没有调用 get set remove
+    - 为什么不用 强引用
+        - 强引用无法被回收, 因为有 Thread --> threadLocal --> threadLocalMap 引用链
+        - 根本问题 不是是否使用强引用的问题 而是 ThreadLocal 和 Thread 的生命周期一样
+        - 主动 remove
+    - ThreadLocal的使用场景
+        - 不是用来解决多线程并发的
+        - 想共享又不想加锁
+        - connection
 12. ThreadPoolExecutor 内部原理
 13. NIO
     - IO 和  NIO的区别 
@@ -133,12 +162,6 @@
     - sleep, join
 39. sleep和wait的区别
     - 锁
-40. hashmap的底层实现
-    - 数组
-    - 链表
-    - 红黑树
-    - 扩容 2次幂
-        - length -1 正好是一个低位掩码
 41. 两个Integer的引用对象传给一个swap方法在方法内部交换引用，返回后，两个引用的值是否会发现变化
     - TODO
     - 不会变化 TODO
@@ -167,10 +190,6 @@
         - 底层实现
         - synchronized
             - monitorenter, monitorexit
-48. ThreadLocal的使用场景
-    - 不是用来解决多线程并发的
-    - 想共享又不想加锁
-    - connection
 49. ConcurrentHashmap的锁是如何加的？是不是分段越多越好
     - jdk7 VS jdk8
     - TODO
@@ -289,3 +308,5 @@
     - unfair
         - **compareandSetState**
         - setExclusiveOwnerThread
+1. AQS 如何来竞争锁
+    - compareandSetState(curState, expState)
