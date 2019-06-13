@@ -123,7 +123,7 @@ public class RBTree<T extends Comparable<T>> {
  *         /  \      --(右旋)-.            /  \                     #
  *        x   ry                           lx   y
  *       / \                                   / \                   #
- *      lx  rx                                rx  ry
+ *      lx  rx                                 rx  ry
  *
  */
     private void rightRotate(RBTNode<T> y) {
