@@ -1,0 +1,17 @@
+
+
+## redis
+spring:
+  datasource:
+    url: jdbc:mysql://mysql205.akcdevdev.com:3306/test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    max-idle: 10
+    max-wait: 10000
+    min-idle: 5
+    initial-size: 5
+    password: D2019kfzwG205
+    username: devsy
+
+server:
+  port:  8011
+  tomcat.uri-encoding:  UTF-8
