@@ -25,6 +25,7 @@
     - hashmap的底层实现
         - 数组+链表+红黑树
         - 16, 8
+        - 0.75f
         - 扩容 2次幂
             - length -1 正好是一个低位掩码, 直接做移位操作
             - 在扩容的时候, 老的元素要么在 oldIndex, 要么在 oldIndex + oldCap
@@ -35,6 +36,23 @@
             - LRU 
         - compare + 红黑树
             - 不再有数组
+    - 为什么不推荐可变对象 key
+        - hashcode 会变化
+        - 有可能 出现 同一个对象 充当多个key
+1. 对象相同 x.equals(y) == true, 会出现 x.hashcode != y.hashcode
+    - 规范是  x.equals(y) == true -->  x.hashcode == y.hashcode
+    - 不按规范来 或者 不重写 hashcode 可以出现这个情况
+1. ArrayList
+    - 数据结构
+        - 数组
+    - 初始容量
+        - 10, 最好设置初始容量, 防止频繁扩容
+    - 扩容
+        - size + 1 > capacity
+        - newCapacity = oldCapacity + oldCapacity >> 1
+        - 1.5倍
+2. LinkedList
+    - 链表, 无容量限制
 3. bytes --> long
 4. lru Cache
     - 链表+hashMap
@@ -84,6 +102,11 @@
 15. 快速失败(fast-fail) 和 安全失败(fail-safe)的区别
     - [](../../../../../tq.java.basic/src/main/java/_collection/fast_safe_fail.md)        
     - 如果迭代过程中发生了改变, 但是灭有 next调用 迭代, 那么 CME 就不会抛出
+    - fast-fail
+        - 报错, 线程不安全
+    - fail-safe
+        - 线程安全的类
+        - 数据不一致
 16. finalize()
     - 对象不可达 判断是否需要调用
     - 唯一一次逃逸的机会
@@ -310,3 +333,12 @@
         - setExclusiveOwnerThread
 1. AQS 如何来竞争锁
     - compareandSetState(curState, expState)
+1. Iterator 是什么
+    - 一种设计模式
+    - 顺序访问聚合数据的一个对象, 屏蔽底层实现细节
+1. ArrayList vs Array
+    - ArrayList
+        - 可变长度
+        - TODO
+    - Array
+        - 固定长度
