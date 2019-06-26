@@ -1,8 +1,6 @@
 #!/bin/bash
-
 #jdk下载地址
 JDK_SOURCE_URI="http://autoscripts.tcy365.net:32639/centos/jdk8/jdk-8u151-linux-x64.rpm"
-
 function warnEcho(){
     message=$1
     message="[WARN] "${message}
