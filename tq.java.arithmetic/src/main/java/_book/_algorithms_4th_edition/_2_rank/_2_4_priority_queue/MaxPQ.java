@@ -40,6 +40,19 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     }
 
     public void insert(Key k) {
+
+        if(N >= pq.length){
+            Key key = pq[N];
+            if(key.compareTo(k) >= 0){
+                return;
+            }else {
+                pq[N] = k;
+                swim(N);
+                return;
+            }
+        }
+
+
         pq[++N] = k;
         swim(N);
     }
@@ -120,12 +133,17 @@ public class MaxPQ<Key extends  Comparable<Key>> {
     }
 
     public static void main(String[] args) {
-        MaxPQ maxPQ = new MaxPQ(10);
+        MaxPQ<Integer> maxPQ = new MaxPQ(10);
 
-        maxPQ.insert(11);
+        for (int i = 0; i < 100; i++) {
+            maxPQ.insert(i);
+        }
+        maxPQ.insert(99);
 
-        maxPQ.insert(5);
-        maxPQ.insert(10);
-        System.err.println(maxPQ.getPq());
+        Integer[] pq = maxPQ.getPq();
+        for (Integer comparable : pq) {
+            System.err.println(comparable);
+        }
+
     }
 }

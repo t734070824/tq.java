@@ -27,4 +27,5 @@
 3. ABA问题--> 每个变量都加上一个版本号，每次改变时加1，即A —> B —> A，变成1A —> 2B —> 3A (AtomicStampedReference)
 
 ### unsafe.cpp-->compxchg
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.concurrent/src/main/java/_cas/1.png?raw=true)
+
+![](1.png)
