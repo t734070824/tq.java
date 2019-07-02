@@ -23,7 +23,7 @@ http://www.importnew.com/27477.html
     - 不会发生死锁: 即使持有锁的客户端因为崩溃等原因没有释放锁, 也能保证后续客户端可以获取锁
     - 容错性: 只要大部分的Redis节点正常运行, 客户端就可以加锁与解锁
     - 解铃还须系铃人: 加锁和解锁必须是同一个客户端
-2. 加锁: jedis.set(lockKey, requestId, "NX", "PX", expireTime)
+2. 加锁: **jedis.set(lockKey, requestId, "NX", "PX", expireTime)**
     - lockKey: 使用key来当锁，因为key是唯一的。
     - **requestId: 在解锁的时候就可以有依据(UUID), 保证加锁与解锁都是同一个客户端**
     - NX: SET IT NOT EXIST, 当key不存在时，我们进行set操作；若key已经存在，则不做任何操作
