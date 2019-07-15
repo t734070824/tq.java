@@ -15,3 +15,8 @@
     - **就像水流的栅栏, 所留 只经过 所有的栅栏一次**
 4. steam中 Intermediate 和 Terminal 操作的分界是什么
     - 
+
+5. weak reference引用的对象是有价值被cache
+    - gc
+    - 容易被构建的
+    - 价值较高的

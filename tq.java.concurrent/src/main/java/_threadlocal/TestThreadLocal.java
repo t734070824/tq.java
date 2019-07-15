@@ -1,5 +1,7 @@
 package _threadlocal;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestThreadLocal {
     private static final ThreadLocal<Integer> value = new ThreadLocal<Integer>() {
         @Override
@@ -7,10 +9,13 @@ public class TestThreadLocal {
             return 0;
         }
     };
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 5; i++) {
             new Thread(new MyThread(i)).start();
         }
+
+        TimeUnit.SECONDS.sleep(1);
+        System.err.println(value);
     }
     static class MyThread implements Runnable {
         private int index;

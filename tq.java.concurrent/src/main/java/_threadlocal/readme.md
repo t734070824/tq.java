@@ -15,8 +15,8 @@
 	
 ### 缺点
 1. 内存泄漏:
-    - ThreadLocalMap 使用ThreadLocal的弱引用作为key，
-    - 如果一个ThreadLocal没有外部强引用来引用它，那么系统 GC 的时候，这个ThreadLocal势必会被回收，
+    - ThreadLocalMap 使用 ThreadLocal 的弱引用作为key，
+    - 如果一个**ThreadLocal没有外部强引用来引用它**，那么系统 GC 的时候，这个ThreadLocal势必会被回收，
     - 这样一来，ThreadLocalMap中就会出现key为null的Entry，
     - 就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话，
     - 这些key为null的Entry的value就会一直存在一条强引用链：
@@ -34,7 +34,7 @@
 2. 使用强引用
     - 引用的 ThreadLocal要被回收, ThreadLocalMap 还持有 ThreadLocal 的强引用, 无法被回收, Entry 内存泄漏
 3. 使用弱引用
-    - ThreadLocal 将要被回收, ThreadLocalMap 持有 ThreadLocal 的弱引用, 及时没有手动删除, 也会被回收
+    - ThreadLocal 将要被回收, **只剩下 ThreadLocalMap 持有 ThreadLocal 的弱引用**, 没有及时手动删除, 也会被回收
     - value 在下一次调用 get set remove 被回收
 4. 比较
     - **由于 ThreadLocalMap 和 Thread 的生命周期 一样长, 如果没有手动删除对应的key 就会造成内存泄漏**
@@ -44,6 +44,7 @@
 ### 线程安全
 1. ThreadLocal 并**不是用来解决线程安全**的
 2. 存放到 ThreadLocal 的变量是当前线程本身就独一无二的变量
+
 ![](1.jpg)       
 
 ### get
@@ -60,6 +61,7 @@
 
 ### 最佳实践
 1. 每次使用完ThreadLocal，都调用它的remove()方法，清除数据。
+2. 一般用 weak reference引用的对象是有价值被cache, **而且很容易被重新被构建, 且很消耗内存的对象**.
 
 
 		
