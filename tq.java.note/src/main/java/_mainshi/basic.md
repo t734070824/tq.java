@@ -156,7 +156,7 @@
     - 反射
 31. final finally finalize
 32. (short s1 =1;s1 = s1 +1) (short s1 =1;s1 += 1)
-33. runtimeException
+33. Throwable
     - error : 无需捕获, 系统错误
     - Exception
         - runtimeException, IOException
