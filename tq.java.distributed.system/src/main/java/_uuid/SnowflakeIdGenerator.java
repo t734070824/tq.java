@@ -112,7 +112,5 @@ public class SnowflakeIdGenerator {
             System.out.println(Long.toBinaryString(id));
             System.out.println(id);
         }
-
-        //TODO 代码理解
     }
 }
