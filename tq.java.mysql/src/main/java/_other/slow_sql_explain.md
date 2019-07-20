@@ -52,7 +52,7 @@
         - const
             - 单表中最多匹配一行
         - eq_reg
-            - 夺标连接中 使用 primary key 或者 unique index
+            - 多表连接中 使用 primary key 或者 unique index
         - ref
             - 与 eq_reg 类似, 区别在于使用 普通索引
         - range
@@ -76,4 +76,6 @@
 1. EXPLAIN不考虑各种Cache
 1. EXPLAIN不能显示MySQL在执行查询时所作的优化工作
 1. 部分统计信息是估算的，并非精确值
-1. EXPALIN只能解释SELECT操作，其他操作要重写为SELECT后查看执行计划。
+1. EXPALIN只能解释SELECT操作，其他操作要重写为SELECT后查看执行计划。(20190720)
+    - mysql5.7以及之后 可以对 delete update 进行解释了
+   
