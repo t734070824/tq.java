@@ -1,12 +1,14 @@
 package _demo;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 
 import java.net.InetSocketAddress;
 
@@ -36,6 +38,7 @@ public class EchoServer {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             //EchoServerHandler被标记为@Shareable 可以总是使用一个实例
+//                            ch.pipeline().addLast(new DelimiterBasedFrameDecoder(10240, Unpooled.copiedBuffer("#".getBytes())));
                             ch.pipeline().addLast(serverHandler);
                         }
                     });
