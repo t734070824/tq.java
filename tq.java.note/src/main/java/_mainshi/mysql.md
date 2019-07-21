@@ -22,8 +22,6 @@
 6. SQL优化
     - 延迟关联
     - 索引最左原则
-7. Explain
-    - TODO
 8. Statement PrepareStatement区别
     - PreparedStatement
         - 参数化查询
@@ -133,7 +131,7 @@
 34. 慢sql, 索引优化, 大事务,
     - 20190610
         - show_query_log
-        - explaine
+        - explain
     - now
         - long_query_time
         - slow_query_log
@@ -142,6 +140,7 @@
         - MySQLdumpslow -s c -t 10 /tem/file/slow.log
         - Explain
             - type
+                - const, eq_reg, ref, rang, index, all 
             - possible_keys
             - key
             - rows
@@ -178,8 +177,6 @@
         - 
 1. 如何管理 MySQL索引？
     - B + TRee
-1. 对Explain参数及重要参数的理解？
-    - TODO
 1. 索引利弊是什么及索引分类？
     - 快
     - 空间
