@@ -69,4 +69,13 @@
     
 1. tcp 分包
     - TODO
+2. tcp连接状态变迁
+    - listen establish syn_send syn_recv fin_wait_1 fin_wait_2 closing time_wait closed 
+3. 如果数据接收方滑动窗口大小为 0, 那么 数据发送方 怎么来发送数据呢
+    - 等待接收方的通知
+    - 还是 继续发送, 等待返回 疑惑 等待失败
+4. 接收方 窗口变化通知
+    - 主动通知?
+    - 发送方 探测?
+    - TODO
 
