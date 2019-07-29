@@ -73,3 +73,12 @@
         - volume /data
         - run touch /data/x
         - run chown -R foo:foo /data
+        
+### 共享数据
+1. --volumes-from
+
+### 数据容器
+1. 与其他容器分享数据, 
+2. 可以不启动
+
+### 
