@@ -3,7 +3,7 @@
 ### CPU 占用高 100%
 1. top --> 获取进程
 2. top -Hp PID --> 获取线程 threadid
-3. threadid --> 16进制
+3. threadid --> 16进制 printf "%x\n" tid 
 4. jstack pid --> jstack -l pid >1.txt
 5. 查找对应  threadid  
 

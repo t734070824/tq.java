@@ -107,3 +107,8 @@
 13. 如何获取一个 dump文件
 14. 什么情况下触发Minor GC
 15. Serial 特点
+1. OOM说一下？怎么排查？哪些会导致OOM?    
+    - 无法找到一块连续的内存可供分配
+    - jmap dump live format file PID
+    - mat(Memory Analyzer Tool)
+    - Histogram heap 对象列表
