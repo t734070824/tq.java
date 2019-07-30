@@ -5,7 +5,11 @@
 ### 原理
 1. state标识 需要释放(countDown)的次数
 1. CountDownLatch(num): 标识要释放几次锁
-2. 主线程 await(): tryAcquireShared(1), 查看当前是否已经全部释放 
+2. 主线程 await(): 
+    - tryAcquireShared(1), 查看当前是否已经全部释放 
+    - protected int tryAcquireShared(int acquires) {return (getState() == 0) ? 1 : -1;}
+        - 检查当前的state 是否被释放完
+        - 使用 tryAcquireShared 方法 和 它起到的作用和方法名有差异
 3. 没有全部释放, 加入等待队列, 设置 Signel, LockSupport.park() 
 4. 当最后一次 countDown 之后, 由当前线程(countDown线程)唤醒靠近队列头部最近的等待node
 
