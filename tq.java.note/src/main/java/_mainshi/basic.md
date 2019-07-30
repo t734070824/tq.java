@@ -14,6 +14,16 @@
         - TODO
     - 如何提高并发度
         - ForwardNode, 多线程并发扩容
+    - 1.7 vs 1.8
+        - Segment + HashEntry + Unsafe --- Sync + CAS + node + Unsafe
+        - resize
+            - 1.7 获取锁, 单线程扩容
+            - 1.8 **并发扩容 从old数组的尾部开始**, 如果已被处理过 ForwardNode 标记
+            - size
+                - JDK1.7 和 JDK1.8 对 size 的计算是不一样的。 1.7 中是先不加锁计算三次，如果三次结果不一样在加锁。
+                - JDK1.8 size 是通过对 baseCount 和 counterCell 进行 CAS 计算，最终通过 baseCount 和 遍历 CounterCell 数组得出 size。
+                - JDK 8 推荐使用mappingCount 方法，因为这个方法的返回值是 long 类型，不会因为 size 方法是 int 类型限制最大值。
+    
 1. hashmap
     - 如何给hashmap的key对象设计他的 hashcode
         - 扰动函数, 高低位异或
@@ -37,13 +47,33 @@
             - 访问数据
             - LRU 
         - compare + 红黑树
-            - 不再有数组
+            - 没有数组
     - 为什么不推荐可变对象 key
         - hashcode 会变化
         - 有可能 出现 同一个对象 充当多个key
 1. 对象相同 x.equals(y) == true, 会出现 x.hashcode != y.hashcode
     - 规范是  x.equals(y) == true -->  x.hashcode == y.hashcode
     - 不按规范来 或者 不重写 hashcode 可以出现这个情况
+1. map怎么实现hashcode和equals,为什么重写equals必须重写hashcode
+    - String
+    - 非 final 的引用作为key
+    - equals: 默认比较对象的内存地址, hashcode:默认比较对象内存地址的散列值
+    - 都不重写
+        - 对象的变量的改变不会改变 内存地址
+        - 那么 equals 以及 hashcode的结果也不会变
+        - 结果
+            - 不会出现同一个map中 一个key 占用的多个index
+    - 重写 equals 不重写 hashcode
+        - 对象的变量的改变 equals的结果也会改变, 但是由于内存地址没有改变, hashcode 结果不变
+        - 结果
+            - 两个对象的 equals 相同 但是 hashcode 不同
+    - 重写 hashcode 不重写 equal
+        - 对象的 变量改变 会改变 hashcode的结果, 但是不会影响 equals的结果
+        - 结果
+            - 因为在 Map Set 中 先比较 Object 的hashcode 然后才是 equals
+            - 就会出现
+                - 对象作为 key, 如果 同一个对象(内存地址一样), 多次put, 在同一个集合中会多次出现同一个对象
+            
 1. ArrayList
     - 数据结构
         - 数组
@@ -121,6 +151,13 @@
 18. 乐观锁
     - CAS
     - 先获取, 修改, 然后假设没有其他人获取锁
+19. 锁优化
+    - ThreadLocal
+    - 乐观锁
+    - CAS
+    - LongAddr
+    - 分段
+    - 粒度
 19. hash冲突
     - equal
     - 链表
