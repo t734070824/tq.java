@@ -7,7 +7,7 @@ http://www.cnblogs.com/xrq730/p/4979021.html
 ### 20180523新的理解(非共享锁)
 1. 第一个线程和锁队列无关, 直接设置 setExclusiveOwnerThread(), 执行
 2. 第二个线程尝试获取锁, state = 0, 放入队列 --> LockSupport.park()
-3. 队列中, head为 空 Node, head以后的节点才是只能的等待节点
+3. 队列中, head为 空 Node, head以后的节点才是真正的等待节点
 4. 第一个线程释放锁后, Node h = head, 获取后面节点, LockSupport.unpark()
 5. 总结:
     - 正在运行的线程完全与 等待队列隔离
