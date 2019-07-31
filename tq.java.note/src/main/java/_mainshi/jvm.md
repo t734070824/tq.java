@@ -112,3 +112,15 @@
     - jmap dump live format file PID
     - mat(Memory Analyzer Tool)
     - Histogram heap 对象列表
+1. jvm虚拟机老年代什么情况下会发生gc，给你一个场景，一台4核8G的服务器，每隔两个小时就要出现一次老年代gc，
+    现在有日志，怎么分析是哪里出了问题
+    - 连续, 担保失败
+    - 两个方向
+        - 内存在两小时内持续增加 然后达到gc
+        - 内存一直很高, 有一块大内存无法回收
+        - 内存 比如--excel
+        - jmap-- mat--Histogram heap--列表
+        - top -- ps -mp pid -o THREAD,tid,time
+        - jstack running 
+2. 
+         
