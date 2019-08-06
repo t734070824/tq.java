@@ -17,4 +17,15 @@
     - selector
     - epoll
     - reactor
+
+1. 优势
+    - 封装NIO, 修复NIO 空循环bug
+        - Linux, io超时, 空循环
+        - 固定次数
+    - 编解码
+    - channelHandler 灵活
+    - Reactor 零拷贝 性能
+    - 同步非阻塞
+    - 串行处理 避免锁 volatile cas
+    
      
