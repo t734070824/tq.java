@@ -15,7 +15,7 @@ https://tech.meituan.com/nio.html
     - 线程切换成本较高: 可能导致线程切换的时间大于线程执行的时间, 导致系统 load 高,cpu使用率低
     
 ### 常见I/O模型的对比
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.basic/src/main/java/_nio/_io_compare/1.jpg?raw=true)      
+![](1.jpg)      
 
 ### socket.read()为例子
 1. 传统的BIO里面socket.read()，如果TCP RecvBuffer里没有数据，函数会一直阻塞，直到收到数据，返回读到的数据
@@ -31,7 +31,7 @@ https://tech.meituan.com/nio.html
 1. 事件分发器, 单线程选择就绪的事件
 2. I/O处理器, 包括 connect, read, write等, 开启CPu线程
 3. 业务线程:
-![](https://github.com/t734070824/tq.java/blob/master/tq.java.basic/src/main/java/_nio/_io_compare/2.jpg?raw=true)
+![](2.jpg)
 
 
 

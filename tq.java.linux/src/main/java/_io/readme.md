@@ -85,6 +85,21 @@
     - asynchronous IO: An asynchronous I/O operation does not cause the requesting process to be blocked;
     - synchronous IO做”IO operation”的时候会将process阻塞
         - blocking IO，non-blocking IO，IO multiplexing都属于synchronous IO。
-    
+        
+### 同步 vs 阻塞
+1. 道具
+    - 老张, 水壶两把--普通水壶, 会响的水壶
+2. 场景
+    - 老张 把水壶 放到火上 立等谁开 --> 同步阻塞
+    - 老张 把水壶 放到火上 去看电视 时不时的来厨房看看是否水开 --> 同步非阻塞
+    - 老张 把响水壶 放到火上 立等谁开 --> 异步阻塞
+    - 老张 把响水壶 放到火上 去看电视 响之前不去看水壶, 水开之后, 水壶响, 再去拿水壶 --> 异步非阻塞
+3. 总结
+    - 同步异步 针对 水壶
+        - 同步只能让调用者 轮询自己 (老张时不时的看是否水开)
+    - 阻塞非阻塞 针对 老张
+        - 立等的老张 --> 阻塞
+        - 看电视的老张 --> 非阻塞
+    - 虽然情况3 响水壶是异步的, 但是立等的老张是阻塞, 所以 --> **一般异步需要配合非阻塞使用**
 
    
