@@ -20,3 +20,9 @@
     - gc
     - 容易被构建的
     - 价值较高的
+1. 线程池为什么能维持线程不释放，随时运行各种任务？
+    - 在 getTask() 中是一个死循环, 借助任务阻塞队列 workQueue, workQueue.take()方法
+    - 工作队列workQueue会一直去拿任务，属于核心线程的会一直卡在 workQueue.take()方法，直到拿到Runnable 然后返回，
+    - 非核心线程会 workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) ，如果超时还没有拿到，
+    - 下一次循环判断compareAndDecrementWorkerCount就会返回null,
+    - Worker对象的run()方法循环体的判断为null,任务结束，然后线程被系统回收
