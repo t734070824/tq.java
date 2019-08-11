@@ -253,4 +253,6 @@
             - 叶子阶段存储的是 主键索引
         - 聚簇索引(主键索引)
             - 叶子节点 存储的是实际数据的物理地址
+2. select * from t where a=? and b>? order by c limit 0,100 如何加索引
+    - TODO
         
