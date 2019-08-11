@@ -5,4 +5,9 @@
 public class Note {
 
 
+
+    //TODO 后端节点宕机 是否会自动移除 --> 觉得能
+    //TODO 健康检查
+
+
 }
