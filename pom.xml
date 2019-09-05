@@ -48,6 +48,7 @@
       <module>tq.java.zookeeper</module>
       <module>tq.java.presto</module>
       <module>tq.java.spring.cloud</module>
+      <module>tq.java.mycat</module>
   </modules>
   
   <properties>
