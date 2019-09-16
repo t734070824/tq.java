@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://org.opencloudb/">
+
+    <!--schema就是逻辑库，相当于MySQL实例的数据库，一个MySQL实例可以有多个数据库，同样的一个MyCat实例也可以有多个schema-->
+    <!-- checkSQLschema就是打开SQL语句检查，把带schema名字的查询改写成不带的，一般查询最好不要带schema名字 -->
+    <!--sqlMaxLimit每条执行的SQL语句，如果没有加上limit语句，MyCat也会自动的加上所对应的值-->
+    <schema name="schema1" checkSQLschema="false" sqlMaxLimit="10000" dataNode="test4">
+        <!-- 运单表，分片列在rule.xml配置，这里正好就是主键id，所以分片规则是主键id对3取模-->
+        <table name="orders" primaryKey="id" dataNode="test$1-3" rule="mod-long-orders">
+            <!-- 运单子母件表，运单表的子表，order_id与orders的id列对应 -->
+            <childTable name="orders_cargo" joinKey="order_id" parentKey="id">
+            </childTable>
+            <!-- 客户运单关系表，运单表的子表，order_id与orders的id列对应 -->
+            <childTable name="customer_order_rel" joinKey="order_id" parentKey="id">
+            </childTable>
+            <!-- 快递员运单关系表，运单表的子表，order_id与orders的id列对应 -->
+            <childTable name="courier_order_rel" joinKey="order_id" parentKey="id">
+            </childTable>
+        </table>
+        <!-- 运单状态信息表，公共表，放在和运单表同样的分片上 -->
+        <table name="order_status_interception" primaryKey="id" type="global" dataNode="test$1-3">
+        </table>
+        <!-- 快递员表，非分片表 -->
+        <table name="courier" primaryKey="id" dataNode="test4">
+        </table>
+        <!-- 客户表，对主键id对2取模 -->
+        <table name="customer" primaryKey="id" dataNode="test$5-6" rule="mod-long-customer">
+        </table>
+    </schema>
+
+
+    <!-- 规定dataNode，就是分片的位置-->
+    <dataNode name="test1" dataHost="test" database="db1" />
+    <dataNode name="test2" dataHost="test" database="db2" />
+    <dataNode name="test3" dataHost="test" database="db3" />
+    <dataNode name="test4" dataHost="test" database="db4" />
+    <dataNode name="test5" dataHost="test" database="db5" />
+    <dataNode name="test6" dataHost="test" database="db6" />
+
+    <!-- 规定每个分片host的读写服务器以及登录用户名密码,还有心跳语句-->
+    <dataHost name="test" maxCon="1000" minCon="10" balance="0"
+              writeType="0" dbType="mysql" dbDriver="native" switchType="-1"  slaveThreshold="100">
+        <heartbeat>select 1 from dual</heartbeat>
+        <writeHost host="test" url="localhost:3306" user="test" password="test">
+            <readHost host="slave" url="localhost:3307"  user="root" password="sf123456"/>
+        </writeHost>
+    </dataHost>
+
+
+</mycat:schema>
