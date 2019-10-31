@@ -1,5 +1,6 @@
 package _regular;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -30,5 +31,16 @@ public class App {
 
         System.err.println(release.matcher("ct.123.release").find());
         System.err.println(release.matcher("dc.123.release").find());
+
+
+        Pattern pattern = Pattern.compile("您的短信验证码是：(.*?)【百世邻里】");
+        Matcher matcher = pattern.matcher("您的短信验证码是：780951【百世邻里】");
+        if(matcher.find()){
+            System.err.println(matcher.group(0));
+            System.err.println(matcher.group(1));
+            System.err.println(matcher.group(2));
+        }
+
+
     }
 }
