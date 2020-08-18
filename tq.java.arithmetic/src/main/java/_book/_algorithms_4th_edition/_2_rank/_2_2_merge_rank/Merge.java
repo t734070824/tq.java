@@ -37,6 +37,7 @@ public class Merge {
         }
         /**
          * 理解 hi+lo 以及 hi-lo 的区别
+         * 防止溢出
          */
         int mid = lo + (hi - lo) / 2;
         sort(a, lo, mid);
