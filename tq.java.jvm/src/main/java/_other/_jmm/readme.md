@@ -15,4 +15,4 @@
 1. 指令重排序
 2. 数据依赖性
 3. 内存屏障(Memory Barrier)
-4. Happen-before
+4. Happens-before
